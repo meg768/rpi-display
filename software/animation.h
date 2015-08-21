@@ -28,17 +28,17 @@ public:
 		return _duration;
 	}
 	
-	inline void delay(int value) {
+	inline void delay(double value) {
 		_delay = value;
 	}
 	
-	inline int delay() {
+	inline double delay() {
 		return _delay;
 	}
 	
 	inline void sleep() {
 		if (_delay > 0)
-			usleep(10 * _delay);
+			usleep(int(1000.0 * _delay));
 	}
 	
 	inline Matrix *matrix() {
@@ -80,7 +80,7 @@ protected:
 	Matrix *_matrix;
 	time_t _startTime;
 	int _duration;
-	int _delay;
+	double _delay;
 	
 };
 

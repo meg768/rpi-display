@@ -146,7 +146,7 @@ int main (int argc, char *argv[])
 	MatrixAnimation animation(&matrix);
 
 	animation.duration(60);
-	animation.delay(50);
+	animation.delay(50.0);
 
 	int option;
 	
@@ -156,7 +156,7 @@ int main (int argc, char *argv[])
 				animation.duration(atoi(optarg));
 				break;
 			case 'x':
-				animation.delay(atoi(optarg));
+				animation.delay(atof(optarg));
 				break;
 		}
 	}
