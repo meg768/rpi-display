@@ -103,7 +103,7 @@ public:
 				
 				// Wait for next frame to display
 				// (Seems like we have to reduce the delay by some factor)
-				usleep(int(double((delay * 1000)) * 10));
+				usleep(int(double((delay * 1000)) * delay()));
 				
 			}
 			
