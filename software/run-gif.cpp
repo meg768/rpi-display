@@ -54,7 +54,7 @@ public:
 				return 0;
 			
 			std::list<Magick::Image> images;
-			Magick::readImages(&images, fileName.c_str());
+			Magick::readImages(&images, _fileName.c_str());
 			
 			std::list<Magick::Image>::iterator iterator = images.begin();
 			
