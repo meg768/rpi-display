@@ -15,12 +15,20 @@ public:
 		_delay     = 10;
 	}
 	
-	void duration(int duration) {
-		_duration = duration;
+	void duration(int value) {
+		_duration = value;
 	}
 	
 	int duration() {
 		return _duration;
+	}
+	
+	void delay(int value) {
+		_delay = value;
+	}
+
+	int delay() {
+		return _delay;
 	}
 	
 	int expired() {
