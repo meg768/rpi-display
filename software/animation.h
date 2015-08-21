@@ -37,7 +37,7 @@ public:
 	
 	inline void sleep() {
 		if (_delay > 0)
-			usleep(1000 * _delay);
+			usleep(100 * _delay);
 	}
 	
 	inline Matrix *matrix() {
