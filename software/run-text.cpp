@@ -10,16 +10,16 @@ int main (int argc, char *argv[])
 
 	int option       = 0;
 	int iterations   = 1;
-	int pointSize    = 24;
-	int speed        = 5;
+	int pointSize    = 22;
+	int delay        = 5;
 	
 	try {
 		Matrix matrix;
 		
-		while ((option = getopt(argc, argv, "g:i:p:c:f:s:")) != -1) {
+		while ((option = getopt(argc, argv, "g:i:p:c:f:d:")) != -1) {
 			switch (option) {
-				case 's':
-					speed = atoi(optarg);
+				case 'd':
+					delay = atoi(optarg);
 					break;
 				case 'i':
 					iterations = atoi(optarg);
@@ -36,11 +36,8 @@ int main (int argc, char *argv[])
 			}
 		}
 		
-		if (speed < 0)
-			speed = 0;
-		
-		//if (speed > 10)
-		//	speed = 10;
+		if (delay < 0)
+			delay = 0;
 		
 		if (iterations == 0)
 			iterations = 1;
@@ -107,7 +104,7 @@ int main (int argc, char *argv[])
 				count++;
 			}
 
-			usleep(speed * 1000);
+			usleep(delay * 1000);
 		}
 
 	}
