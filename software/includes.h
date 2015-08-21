@@ -24,7 +24,7 @@
 #include <magick/image.h>
 
 
-#include <led-matrix.h>
+#include "led-matrix.h"
 
 using namespace std;
 
