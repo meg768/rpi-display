@@ -10,12 +10,10 @@ using namespace std;
 class RotatingBlockGenerator  {
 public:
 	RotatingBlockGenerator(Matrix *m) {
-		_canvas = m;
+		_matrix = m;
 		
 	}
-	inline Matrix *canvas() {
-		return _canvas;
-	}
+
 	
 	uint8_t scale_col(int val, int lo, int hi) {
 		if (val < lo) return 0;
@@ -25,18 +23,18 @@ public:
 
 
 	void run(Timer &timer) {
-		const int cent_x = canvas()->width() / 2;
-		const int cent_y = canvas()->height() / 2;
+		const int cent_x = _matrix->width() / 2;
+		const int cent_y = _matrix->height() / 2;
 		
 		// The square to rotate (inner square + black frame) needs to cover the
 		// whole area, even if diagnoal. Thus, when rotating, the outer pixels from
 		// the previous frame are cleared.
-		const int rotate_square = min(canvas()->width(), canvas()->height()) * 1.41;
+		const int rotate_square = min(_matrix->width(), _matrix->height()) * 1.41;
 		const int min_rotate = cent_x - rotate_square / 2;
 		const int max_rotate = cent_x + rotate_square / 2;
 		
 		// The square to display is within the visible area.
-		const int display_square = min(canvas()->width(), canvas()->height()) * 0.7;
+		const int display_square = min(_matrix->width(), _matrix->height()) * 0.7;
 		const int min_display = cent_x - display_square / 2;
 		const int max_display = cent_x + display_square / 2;
 		
@@ -53,18 +51,18 @@ public:
 						   deg_to_rad * rotation, &rot_x, &rot_y);
 					if (x >= min_display && x < max_display &&
 						y >= min_display && y < max_display) { // within display square
-						canvas()->setPixel(rot_x + cent_x, rot_y + cent_y,
+						_matrix->setPixel(rot_x + cent_x, rot_y + cent_y,
 										   scale_col(x, min_display, max_display),
 										   255 - scale_col(y, min_display, max_display),
 										   scale_col(y, min_display, max_display));
 					} else {
 						// black frame.
-						canvas()->setPixel(rot_x + cent_x, rot_y + cent_y, 0, 0, 0);
+						_matrix->setPixel(rot_x + cent_x, rot_y + cent_y, 0, 0, 0);
 					}
 				}
 			}
-			canvas()->refresh();
-			timer->sleep();
+			_matrix->refresh();
+			timer.sleep();
 		}
 	}
 	
@@ -75,7 +73,7 @@ private:
 		*new_y = x * sinf(angle) + y * cosf(angle);
 	}
 	
-	Matrix *_canvas;
+	Matrix *_matrix;
 	
 };
 
