@@ -155,9 +155,7 @@ int main (int argc, char *argv[])
 		}
 	}
 	
-	string animation = optind < argc ? argv[optind] : "";
-	
-	animation.fileName(animation);
+	animation.fileName(optind < argc ? argv[optind] : "");
 	
 	return animation.run();
 
