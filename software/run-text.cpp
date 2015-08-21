@@ -6,7 +6,7 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 	
 	const char *textColor  = "red";
-	const char *fontName   = "Arial";
+	const char *fontName   = "Arial-Black";
 
 	int option       = 0;
 	int iterations   = 1;
