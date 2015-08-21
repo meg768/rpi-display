@@ -73,11 +73,6 @@ public:
 		sleep();
 	}
 	
-	virtual int run(int argc, char *argv[]) {
-		args(argc, argv);
-		return run();
-	}
-	
 
 	
 protected:
