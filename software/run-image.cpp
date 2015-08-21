@@ -12,7 +12,7 @@ int main (int argc, char *argv[])
 	int scroll = 0;
 	int iterations = 1;
 	double rotate = 0;
-	std::fileName = "";
+	std::string fileName = "";
 	
 	while ((option = getopt(argc, argv, "f:r:i:d:s")) != -1) {
 		switch (option) {
