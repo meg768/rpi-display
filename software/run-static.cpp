@@ -1,20 +1,23 @@
-#include "globals.h"
-#include "canvas.h"
+#include "matrix.h"
+#include "timer.h"
 
 int main (int argc, char *argv[])
 {
 	srand(time(NULL));
 	Magick::InitializeMagick(*argv);
 
-	Canvas matrix;
+	Matrix matrix;
 	Timer timer;
 
 	int option = 0;
 	
-	while ((option = getopt(argc, argv, "d:")) != -1) {
+	while ((option = getopt(argc, argv, "d:x:")) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
+				break;
+			case 'd':
+				timer.delay(atoi(optarg));
 				break;
 		}
 	}
@@ -35,7 +38,7 @@ int main (int argc, char *argv[])
 		}
 
 		matrix.refresh();
-		usleep(5 * 1000);
+		timer.sleep();
 	}
 	
 	matrix.clear();
