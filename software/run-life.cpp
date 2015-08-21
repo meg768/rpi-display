@@ -1,10 +1,11 @@
 #include "globals.h"
+#include "canvas.h"
 
 using namespace std;
 
 class GameLife  {
 public:
-	GameLife(LogiMatrix *m, int delay_ms=25, bool torus=true)
+	GameLife(Canvas *m, int delay_ms=25, bool torus=true)
 	: delay_ms_(delay_ms), torus_(torus) {
 		_canvas = m;
 
@@ -162,7 +163,7 @@ private:
 	int width_;
 	int height_;
 	bool torus_;
-	LogiMatrix *_canvas;
+	Canvas *_canvas;
 };
 
 
@@ -171,7 +172,7 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 
-	LogiMatrix matrix;
+	Canvas matrix;
 	Timer timer;
 	
 	int option = 0;
@@ -179,9 +180,6 @@ int main (int argc, char *argv[])
 	
 	while ((option = getopt(argc, argv, "g:d:")) != -1) {
 		switch (option) {
-			case 'g':
-				matrix.setGamma(atof(optarg));
-				break;
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
