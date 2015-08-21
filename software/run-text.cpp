@@ -14,6 +14,7 @@ using rgb_matrix::GPIO;
 using rgb_matrix::FrameCanvas;
 using rgb_matrix::RGBMatrix;
 
+
 class LogiMatrix {
 
 	public:

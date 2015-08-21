@@ -3,8 +3,6 @@ OBJECTS=demo-main.o minimal-example.o text-example.o led-image-viewer.o
 BINARIES=run-text
 
 
-# Where our library resides. It is split between includes and the binary
-# library in lib
 RGB_INCDIR=../rpi-rgb-led-matrix/include
 RGB_LIBDIR=../rpi-rgb-led-matrix/lib
 RGB_LIBRARY_NAME=rgbmatrix
@@ -15,10 +13,20 @@ LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
 MAGICK_CXXFLAGS=`GraphicsMagick++-config --cppflags --cxxflags`
 MAGICK_LDFLAGS=`GraphicsMagick++-config --ldflags --libs`
 
-run-text: run-text.o $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) run-text.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+all: run-text run-rain run-perlin
 
-run-text.o : run-text.cpp
+run-text: run-text.o 
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
+run-rain: run-rain.o 
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
+run-perlin: run-perlin.o
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
+#run-text.o : run-text.cpp
+
+%.o : %.cpp
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
 
 %.o : %.cc
