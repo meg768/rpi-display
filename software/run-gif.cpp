@@ -107,7 +107,7 @@ public:
 				
 			}
 			
-			matric->clear();
+			matrix->clear();
 			matrix->refresh();
 			
 			
