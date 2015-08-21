@@ -554,7 +554,7 @@ int main (int argc, char *argv[])
 	
 	while (!timer.expired()) {
 
-		matrix.fill(gLevels)
+		matrix.fill(gLevels);
 		
 		matrix.refresh();
 		timer.sleep();
