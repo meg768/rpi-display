@@ -1,23 +1,21 @@
 
-#include "globals.h"
+#include "matrix"
 
 int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 
-	LogiMatrix matrix;
+	Matrix matrix;
 
 	int option = 0;
 	int duration = 0;
 	int scroll = 0;
 	int iterations = 1;
 	double rotate = 0;
+	std::fileName = "";
 	
-	while ((option = getopt(argc, argv, "r:i:g:d:s")) != -1) {
+	while ((option = getopt(argc, argv, "f:r:i:d:s")) != -1) {
 		switch (option) {
-			case 'g':
-				matrix.setGamma(atof(optarg));
-				break;
 			case 'd':
 				duration = atoi(optarg);
 				break;
@@ -30,18 +28,19 @@ int main (int argc, char *argv[])
 			case 'r':
 				rotate = atof(optarg);
 				break;
+			case 'f':
+				fileName = optarg;
+				break;
 		}
 	}
 
-	const char *animation = optind < argc ? argv[optind] : 0;
-	
-	if (animation == 0) {
+	if (fileName.length == 0) {
 		fprintf(stderr, "No image specified.\n");
 		return -1;
 	}
 	
 	Magick::Image image;
-	image.read(animation);
+	image.read(fileName);
 
 	if (!scroll) {
 		int imageWidth = image.columns();

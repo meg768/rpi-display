@@ -47,9 +47,6 @@
       location = "group:run-static.cpp">
    </FileRef>
    <FileRef
-      location = "group:run-test.cpp">
-   </FileRef>
-   <FileRef
       location = "group:run-text.cpp">
    </FileRef>
    <FileRef
