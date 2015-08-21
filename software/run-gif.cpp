@@ -129,6 +129,8 @@ private:
 
 int main (int argc, char *argv[])
 {
+	srand(time(NULL));
+
 	Magick::InitializeMagick(*argv);
 
 	Matrix matrix;
