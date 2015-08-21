@@ -1,28 +1,8 @@
-#ifndef _globals_h
-#define _globals_h
-
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
-#include <sys/ioctl.h>
-#include <sys/time.h>
-#include <string.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <signal.h>
-#include <memory.h>
-#include <math.h>
-
-#include <vector>
+#ifndef _timer_h
+#define _timer_h
 
 
-#include <Magick++.h>
-
-
+#include "includes.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////
 

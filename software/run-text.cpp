@@ -1,60 +1,5 @@
-#include "led-matrix.h"
+#include "matrix.h"
 
-#include <math.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#include <vector>
-#include <Magick++.h>
-#include <magick/image.h>
-
-using rgb_matrix::GPIO;
-using rgb_matrix::FrameCanvas;
-using rgb_matrix::RGBMatrix;
-
-
-class LogiMatrix {
-
-	public:
-	LogiMatrix() {
-		io = new rgb_matrix::GPIO();
-		io->Init();
-		
-		matrix = new rgb_matrix::RGBMatrix(io, 32, 1, 1);
-		canvas = matrix->CreateFrameCanvas();
-	}
-
-	virtual ~LogiMatrix() {
-	}
-	
-	int width() {
-		return canvas->width();
-	}
-	
-	int height() {
-		return canvas->height();
-	}
-
-	void clear() {
-		canvas->Clear();
-	}
-	
-	void setPixel(int x, int y, int r, int g, int b) {
-		canvas->SetPixel(x, y, r, g, b);
-	}
-
-	void refresh() {
-		canvas = matrix->SwapOnVSync(canvas);
-	}
-	
-	
-private:
-	rgb_matrix::RGBMatrix *matrix;
-	rgb_matrix::GPIO *io;
-	rgb_matrix::FrameCanvas *canvas;
-};
 
 int main (int argc, char *argv[])
 {
@@ -69,7 +14,7 @@ int main (int argc, char *argv[])
 	int speed        = 3;
 	
 	try {
-		LogiMatrix matrix;
+		Matrix matrix;
 		
 		while ((option = getopt(argc, argv, "g:i:p:c:f:s:")) != -1) {
 			switch (option) {

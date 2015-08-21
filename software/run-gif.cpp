@@ -1,6 +1,5 @@
 
 
-#include "includes.h"
 #include "animation.h"
 
 
@@ -81,7 +80,7 @@ public:
 			if (iterations < 0)
 				iterations = 0;
 			
-			Canvas *canvas = Animation::canvas();
+			Matrix *canvas = Animation::canvas();
 			
 			while (!expired()) {
 				
@@ -138,7 +137,8 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 
-	GifAnimation animation;
+	Matrix matrix;
+	GifAnimation animation(&matrix);
 	return animation.run(argc, argv);
 
 }

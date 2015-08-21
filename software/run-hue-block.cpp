@@ -1,20 +1,19 @@
-#include "globals.h"
+#include "matrix.h"
+#include "timer.h"
 
 
-#include <Magick++.h>
-
-LogiMatrix *_matrix = 0;
+Matrix *_matrix = 0;
 
 using namespace std;
 
 // Simple class that generates a rotating block on the screen.
 class RotatingBlockGenerator  {
 public:
-	RotatingBlockGenerator(LogiMatrix *m) {
+	RotatingBlockGenerator(Matrix *m) {
 		_canvas = m;
 		
 	}
-	inline LogiMatrix *canvas() {
+	inline Matrix *canvas() {
 		return _canvas;
 	}
 	
@@ -75,7 +74,7 @@ private:
 		*new_y = x * sinf(angle) + y * cosf(angle);
 	}
 	
-	LogiMatrix *_canvas;
+	Matrix *_canvas;
 	
 };
 
@@ -87,7 +86,7 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 
-	LogiMatrix matrix;
+	Matrix matrix;
 	Timer timer;
 	
 	int option = 0;

@@ -1,4 +1,5 @@
-#include "globals.h"
+#include "matrix.h"
+#include "timer.h"
 
 
 using namespace std;
@@ -338,7 +339,7 @@ void Circle::calculateDistanceLut (void)
 int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
-	LogiMatrix matrix;
+	Matrix matrix;
 	Timer timer;
 	
 	

@@ -1,15 +1,16 @@
 #ifndef _animation_h
 #define _animation_h
 
-#include "canvas.h"
+#include "includes.h"
+#include "matrix.h"
 
 class Animation {
 	
 public:
-	Animation(int duration = 60) {
+	Animation(Matrix *matrix, int duration = 60) {
 		srand(time(NULL));
 
-		_canvas = new Canvas();
+		_matrix = matrix;
 		_duration = duration;
 		_startTime = time(NULL);
 		_speed = 1.0;
@@ -17,7 +18,6 @@ public:
 	}
 	
 	~Animation() {
-		delete _canvas;
 	}
 	
 	inline void duration(int value) {
@@ -42,8 +42,8 @@ public:
 			usleep(_delay);
 	}
 	
-	inline Canvas *canvas() {
-		return _canvas;
+	inline Matrix *matrix() {
+		return _matrix;
 	}
 	
 	virtual int expired() {
@@ -87,15 +87,15 @@ public:
 	}
 	
 	virtual int run() {
-		_canvas->clear();
-		_canvas->refresh();
+		_matrix->clear();
+		_matrix->refresh();
 		
 		while (!expired()) {
 			loop();
 		}
 		
-		_canvas->clear();
-		_canvas->refresh();
+		_matrix->clear();
+		_matrix->refresh();
 		
 		return 0;
 		
@@ -113,7 +113,7 @@ public:
 
 	
 protected:
-	Canvas *_canvas;
+	Matrix *_matrix;
 	time_t _startTime;
 	int _duration;
 	int _delay;
