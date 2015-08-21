@@ -13,6 +13,8 @@ LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
 MAGICK_CXXFLAGS=`GraphicsMagick++-config --cppflags --cxxflags`
 MAGICK_LDFLAGS=`GraphicsMagick++-config --ldflags --libs`
 
+INCLUDES=matrix.h animation.h includes.h
+
 all: run-text run-rain
 
 allX: run-text run-rain run-perlin run-gif run-clock run-static run-life
@@ -20,22 +22,22 @@ allX: run-text run-rain run-perlin run-gif run-clock run-static run-life
 run-text: run-text.o 
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-rain: run-rain.o matrix.h animation.h
+run-rain: run-rain.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-rain.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-perlin: run-perlin.o
+run-perlin: run-perlin.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-perlin.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-life: run-life.o
+run-life: run-life.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-life.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-clock: run-clock.o
+run-clock: run-clock.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-clock.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-static: run-static.o
+run-static: run-static.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-static.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-gif: run-gif.o
+run-gif: run-gif.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-gif.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 
