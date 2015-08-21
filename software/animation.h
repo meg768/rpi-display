@@ -20,10 +20,6 @@ public:
 		delete _canvas;
 	}
 	
-	inline void gamma(double value) {
-		_canvas->setGamma(value);
-	}
-	
 	inline void duration(int value) {
 		_duration = value;
 	}
