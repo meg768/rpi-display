@@ -6,19 +6,20 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 	
 	const char *textColor  = "red";
-	const char *fontName   = "Arial-Black";
+	const char *fontName   = "Arial-Bold";
 
 	int option       = 0;
 	int iterations   = 1;
 	int fontSize     = 20;
 	int delay        = 18;
+	std::string text = "ABC 123";
 	
 	try {
 		Matrix matrix;
 		
-		while ((option = getopt(argc, argv, "g:i:s:c:f:d:")) != -1) {
+		while ((option = getopt(argc, argv, "i:s:c:f:x:")) != -1) {
 			switch (option) {
-				case 'd':
+				case 'x':
 					delay = atoi(optarg);
 					break;
 				case 'i':
@@ -33,6 +34,9 @@ int main (int argc, char *argv[])
 				case 'f':
 					fontName = optarg;
 					break;
+				case 't':
+					text = optarg;
+					break;
 			}
 		}
 		
@@ -42,12 +46,6 @@ int main (int argc, char *argv[])
 		if (iterations == 0)
 			iterations = 1;
 		
-		const char *text = optind < argc ? argv[optind] : 0;
-		
-		if (text == 0) {
-			fprintf(stderr, "No text specified.\n");
-			return -1;
-		}
 		
 		Magick::Image tmp("32x32", "black");
 		
