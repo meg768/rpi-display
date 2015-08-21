@@ -27,13 +27,16 @@ run-perlin: run-perlin.o
 run-life: run-life.o
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-life: $@.o
+run-life: run-life.o
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-clock: $@.o
+run-clock: run-clock.o
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-static: $@.o
+run-static: run-static.o
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
+run-gif: run-gif.o
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 #run-text.o : run-text.cpp
