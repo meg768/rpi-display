@@ -21,24 +21,23 @@ run-text: run-text.o
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-rain: run-rain.o matrix.h animation.h
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-rain.0 -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-perlin: run-perlin.o
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-perlin.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-life: run-life.o
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-life.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-clock: run-clock.o
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-clock.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-static: run-static.o
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-static.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-gif: run-gif.o
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-gif.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-#run-text.o : run-text.cpp
 
 %.o : %.cpp
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
