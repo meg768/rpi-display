@@ -10,13 +10,13 @@ int main (int argc, char *argv[])
 
 	int option       = 0;
 	int iterations   = 1;
-	int pointSize    = 22;
+	int fontSize     = 22;
 	int delay        = 5;
 	
 	try {
 		Matrix matrix;
 		
-		while ((option = getopt(argc, argv, "g:i:p:c:f:d:")) != -1) {
+		while ((option = getopt(argc, argv, "g:i:s:c:f:d:")) != -1) {
 			switch (option) {
 				case 'd':
 					delay = atoi(optarg);
@@ -24,8 +24,8 @@ int main (int argc, char *argv[])
 				case 'i':
 					iterations = atoi(optarg);
 					break;
-				case 'p':
-					pointSize = atoi(optarg);
+				case 's':
+					fontSize = atoi(optarg);
 					break;
 				case 'c':
 					textColor = optarg;
@@ -57,7 +57,7 @@ int main (int argc, char *argv[])
 		tmp.font(fontFile);
 		tmp.strokeColor(textColor);
 		tmp.fillColor(textColor);
-		tmp.fontPointsize(pointSize);
+		tmp.fontPointsize(fontSize);
 		
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(text, &metric);
@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
 		image.font(fontFile);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
-		image.fontPointsize(pointSize);
+		image.fontPointsize(fontSize);
 		
 		image.draw(Magick::DrawableText(1, 16.0 + metric.textHeight() / 2.0 + metric.descent(), text));
 

@@ -53,9 +53,6 @@
       location = "group:run-text.cpp">
    </FileRef>
    <FileRef
-      location = "group:run-text.py">
-   </FileRef>
-   <FileRef
       location = "group:run-twinkle.cpp">
    </FileRef>
    <FileRef
