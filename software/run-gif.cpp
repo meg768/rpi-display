@@ -1,5 +1,5 @@
 
-
+#include "matrix.h"
 #include "animation.h"
 
 
@@ -7,7 +7,7 @@ class GifAnimation : public Animation {
 
 public:
 	
-	GifAnimation() {
+	GifAnimation(Matrix *matrix) : Animation(matrix) {
 		_iterations = 1;
 		_fileName   = "animations/tree.gif";
 	}
@@ -68,8 +68,8 @@ public:
 				}
 			}
 			
-			if (iterations < 0)
-				iterations = 0;
+			if (_iterations < 0)
+				_iterations = 0;
 			
 			Matrix *matrix = Animation::matrix();
 			
