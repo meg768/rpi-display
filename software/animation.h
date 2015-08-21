@@ -32,7 +32,7 @@ public:
 		_delay = value;
 	}
 	
-	inline double delay() {
+	inline int delay() {
 		return _delay;
 	}
 	
