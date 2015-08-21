@@ -75,14 +75,15 @@ class Matrix {
 
 		int width  = canvas->width();
 		int height = canvas->height();
-		int count  = width * height;
 		
-		for (int i = 0; i < count; i++, p++) {
-			uint32_t color = *p;
-			int blue  = color & 0xFF;
-			int green = (color >> 8) & 0xFF;
-			int red   = (color >> 16) & 0xFF;
-			setPixel(x, y, red, green, blue);
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				uint32_t color = *p++;
+				int blue  = color & 0xFF;
+				int green = (color >> 8) & 0xFF;
+				int red   = (color >> 16) & 0xFF;
+				setPixel(x, y, red, green, blue);
+			}
 		}
 	}
 	
