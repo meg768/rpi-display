@@ -96,7 +96,7 @@ private:
 class MatrixAnimation : public Animation {
 	
 public:
-	MatrixAnimation() : Animation() {
+	MatrixAnimation(Matrix *matrix) : Animation(matrix) {
 
 		int size = _matrix->width();
 		
