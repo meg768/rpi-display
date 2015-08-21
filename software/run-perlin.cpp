@@ -495,7 +495,7 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 
 	int option = 0;
-	int delay = 100;
+	int delay  = 200;
 	
 	Timer timer;
 	int mode = 2;

@@ -43,7 +43,7 @@ public:
 	
 	inline void sleep() {
 		if (_delay > 0)
-			usleep(10 * _delay);
+			usleep(100 * _delay);
 	}
 
 private:
