@@ -1,7 +1,3 @@
-#include "led-matrix.h"
-
-
-
 #include "matrix.h"
 #include "animation.h"
 
