@@ -13,9 +13,9 @@ MAGICK_LDFLAGS=`GraphicsMagick++-config --ldflags --libs`
 
 INCLUDES=matrix.h animation.h includes.h
 
-all: run-text run-rain run-gif
+#all: run-text run-rain run-gif
 
-allX: run-text run-rain run-perlin run-gif run-clock run-static run-life
+all: run-text run-rain run-perlin run-gif run-clock run-static run-life
 
 run-text: run-text.o 
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)

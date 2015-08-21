@@ -28,7 +28,7 @@ public:
 				string folder = "./animations";
 				DIR *dir = opendir(folder.c_str());
 				
-				vector <string> files;
+				std::vector <string> files;
 				
 				if (dir != NULL) {
 					struct dirent *entry;
@@ -137,7 +137,7 @@ int main (int argc, char *argv[])
 	GifAnimation animation(&matrix);
 
 	animation.duration(60);
-	animation.delay(50);
+	animation.delay(8);
 	
 	int option = 0;
 	
