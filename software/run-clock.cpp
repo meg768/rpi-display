@@ -1,5 +1,5 @@
 #include "globals.h"
-#include "Canvas.h"
+#include "canvas.h"
 
 class Clock {
 	
