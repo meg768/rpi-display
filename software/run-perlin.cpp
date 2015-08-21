@@ -1,4 +1,4 @@
-#include "canvas.h"
+#include "matrix.h"
 #include "timer.h"
 
 static const uint8_t gammaLut[] = {
@@ -148,7 +148,7 @@ uint32_t Pattern::translateHueValue (int32_t hue, float value)
 	return MAKE_COLOR (r,g,b);
 }
 
-Canvas matrix;
+Matrix matrix;
 Pattern *pattern = 0;
 
 class Perlin : public Pattern
