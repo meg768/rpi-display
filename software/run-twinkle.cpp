@@ -300,6 +300,7 @@ int main (int argc, char *argv[])
 	while (!timer.expired()) {
 		matrix.fill( (uint32_t *)gLevels);
 		matrix.refresh();
+		timer.sleep();
 		
 		pattern->next();
 	}
