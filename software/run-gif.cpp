@@ -7,33 +7,24 @@ class GifAnimation : public Animation {
 
 public:
 	
-	virtual int run(int argc, char *argv[]) {
+	GifAnimation() {
+		_iterations = 1;
+		_fileName   = "animations/tree.gif";
+	}
+	
+	void iterations(int value) {
+		_iterations = value;
+	}
+	
+	void fileName(const char *fileName) {
+		_fileName = fileName;
+	}
+
+	virtual int run() {
 		
 		try {
 			
-			speed(5.0);
-			
-			Animation::args(argc, argv);
-
-			int option = 0;
-			int iterations = -1;
-			int verbose = 0;
-
-			while ((option = getopt(argc, argv, "s:g:d:i:v")) != -1) {
-				switch (option) {
-					case 'i':
-						iterations = atoi(optarg);
-						break;
-					case 'v':
-						verbose = true;
-						break;
-				}
-			}
-			
-			string animation = optind < argc ? argv[optind] : "";
-
-			
-			if (animation.length() == 0) {
+			if (_fileName.length() == 0) {
 				string folder = "./animations";
 				DIR *dir = opendir(folder.c_str());
 				
@@ -55,7 +46,7 @@ public:
 					return -1;
 				}
 				
-				animation = folder + "/" + files[rand() % files.size()];
+				_fileName = folder + "/" + files[rand() % files.size()];
 				
 			}
 			
@@ -80,7 +71,7 @@ public:
 			if (iterations < 0)
 				iterations = 0;
 			
-			Matrix *canvas = Animation::canvas();
+			Matrix *matrix = Animation::matrix();
 			
 			while (!expired()) {
 				
@@ -102,13 +93,13 @@ public:
 				Magick::Image &image = *iterator;
 				
 				// Draw the image
-				canvas->drawImage(image);
+				matrix->drawImage(image);
 				
 				// Get the animation delay factor
 				size_t delay = image.animationDelay();
 				
 				iterator++;
-				canvas->refresh();
+				matrix->refresh();
 				
 				// Wait for next frame to display
 				// (Seems like we have to reduce the delay by some factor)
@@ -116,8 +107,8 @@ public:
 				
 			}
 			
-			canvas->clear();
-			canvas->refresh();
+			matric->clear();
+			matrix->refresh();
 			
 			
 		}
@@ -130,6 +121,9 @@ public:
 	}
 	
 
+private:
+	string _fileName;
+	int _iterations;
 };
 
 
@@ -139,7 +133,33 @@ int main (int argc, char *argv[])
 
 	Matrix matrix;
 	GifAnimation animation(&matrix);
-	return animation.run(argc, argv);
+
+	animation.duration(60);
+	animation.delay(50);
+	
+	int option = 0;
+	int iterations = -1;
+	int verbose = 0;
+	
+	while ((option = getopt(argc, argv, "d:x:i:")) != -1) {
+		switch (option) {
+			case 'd':
+				animation.duration(atoi(optarg));
+				break;
+			case 'x':
+				animation.delay(atoi(optarg));
+				break;
+			case 'i':
+				animation.iterations(atoi(optarg));
+				break;
+		}
+	}
+	
+	string animation = optind < argc ? argv[optind] : "";
+	
+	animation.fileName(animation);
+	
+	return animation.run();
 
 }
 
