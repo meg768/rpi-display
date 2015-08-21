@@ -1,20 +1,18 @@
 #include "globals.h"
+#include "canvas.h"
 
 int main (int argc, char *argv[])
 {
 	srand(time(NULL));
 	Magick::InitializeMagick(*argv);
 
-	LogiMatrix matrix;
+	Canvas matrix;
 	Timer timer;
 
 	int option = 0;
 	
-	while ((option = getopt(argc, argv, "g:d:")) != -1) {
+	while ((option = getopt(argc, argv, "d:")) != -1) {
 		switch (option) {
-			case 'g':
-				matrix.setGamma(atof(optarg));
-				break;
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
@@ -37,7 +35,7 @@ int main (int argc, char *argv[])
 		}
 
 		matrix.refresh();
-		usleep(3 * 1000);
+		usleep(5 * 1000);
 	}
 	
 	matrix.clear();

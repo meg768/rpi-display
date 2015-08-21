@@ -235,7 +235,7 @@ int main (int argc, char *argv[])
 		time_t t = time(0);
 		struct tm *now = localtime(&t);
 		clock.drawTime(now);
-		usleep(950);
+		usleep(500 * 1000);
 	}
 	
 	matrix.clear();
