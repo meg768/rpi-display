@@ -1,6 +1,5 @@
-#include <vector>
-
-#include "globals.h"
+#include "matrix.h"
+#include "timer.h"
 
 
 using namespace std;
@@ -43,7 +42,7 @@ static const uint8_t gammaLut[] = {
 #define DISPLAY_WIDTH 32
 #define DISPLAY_HEIGHT 32
 
-uint16_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
+uint32_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
 
 class Pattern
@@ -68,8 +67,8 @@ public:
 		width = m_width; height = m_height;
 	}
 	
-	uint16_t translateHue (int32_t hue);
-	uint16_t translateHueValue (int32_t hue, float value);
+	uint32_t translateHue (int32_t hue);
+	uint32_t translateHueValue (int32_t hue, float value);
 	
 protected:
 	const int32_t m_width;
@@ -299,7 +298,7 @@ int main (int argc, char *argv[])
 	pattern->init();
 
 	while (!timer.expired()) {
-		matrix.fill( (uint16_t *)gLevels);
+		matrix.fill( (uint32_t *)gLevels);
 		matrix.refresh();
 		
 		pattern->next();
