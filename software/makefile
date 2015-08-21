@@ -24,6 +24,18 @@ run-rain: run-rain.o
 run-perlin: run-perlin.o
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
+run-life: run-life.o
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
+run-life: $@.o
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
+run-clock: $@.o
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
+run-static: $@.o
+	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
 #run-text.o : run-text.cpp
 
 %.o : %.cpp
