@@ -62,7 +62,7 @@ public:
 		delete [] newValues_;
 	}
 	
-	LogiMatrix *canvas() {
+	Canvas *canvas() {
 		return _canvas;
 	}
 	
