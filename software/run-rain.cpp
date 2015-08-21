@@ -162,7 +162,7 @@ int main (int argc, char *argv[])
 	MatrixAnimation animation(&matrix);
 
 	animation.duration(60);
-	animation.delay(5);
+	animation.delay(50);
 	animation.run(argc, argv);
 	
 	return 0;

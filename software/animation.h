@@ -64,7 +64,7 @@ public:
 		optind = 1;
 		opterr = 0;
 		
-		while ((option = getopt(argc, argv, "s:g:d:")) != -1) {
+		while ((option = getopt(argc, argv, "d:x:")) != -1) {
 			switch (option) {
 				case 'd':
 					duration(atoi(optarg));
