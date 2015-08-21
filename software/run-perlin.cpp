@@ -529,7 +529,7 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 
 	int option = 0;
-	int delay = 20;
+	int delay = 100;
 	
 	Timer timer;
 	int mode = 2;
@@ -554,16 +554,8 @@ int main (int argc, char *argv[])
 	
 	while (!timer.expired()) {
 
+		matrix.fill(gLevels)
 		
-		for (int y = 0; y < 32; y++) {
-			for (int x = 0; x < 32; x++) {
-				uint32_t color = gLevels[y][x];
-				int blue = color & 0xFF;
-				int green = (color >> 8) & 0xFF;
-				int red = (color >> 16) & 0xFF;
-				matrix.setPixel(x, y, red, green, blue);
-			}
-		}
 		matrix.refresh();
 		timer.sleep();
 		
