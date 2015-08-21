@@ -21,7 +21,7 @@ run-text: run-text.o
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-rain: run-rain.o matrix.h animation.h
-	$(CXX) $(CXXFLAGS) run-rain.0 -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-rain.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-perlin: run-perlin.o
 	$(CXX) $(CXXFLAGS) run-perlin.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
