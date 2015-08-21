@@ -33,12 +33,12 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
-
+/*
 	if (fileName.length() == 0) {
 		fprintf(stderr, "No image specified.\n");
 		return -1;
 	}
-	
+	*/
 	Magick::Image image;
 	image.read(fileName);
 
