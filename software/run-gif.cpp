@@ -96,14 +96,14 @@ public:
 				matrix->drawImage(image);
 				
 				// Get the animation delay factor
-				size_t delay = image.animationDelay();
+				size_t animationDelay = image.animationDelay();
 				
 				iterator++;
 				matrix->refresh();
 				
 				// Wait for next frame to display
 				// (Seems like we have to reduce the delay by some factor)
-				usleep(int(double((delay * 1000)) * delay()));
+				usleep(int(double((animationDelay * 1000)) * delay()));
 				
 			}
 			
