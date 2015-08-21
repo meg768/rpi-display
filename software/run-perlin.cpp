@@ -500,6 +500,8 @@ int main (int argc, char *argv[])
 	Timer timer;
 	int mode = 2;
 	
+	timer.delay(delay);
+	
 	while ((option = getopt(argc, argv, "d:m:x:")) != -1) {
 		switch (option) {
 			case 'd':
