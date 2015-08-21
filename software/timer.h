@@ -12,6 +12,7 @@ public:
 	Timer(int duration = 60) {
 		_duration  = duration;
 		_startTime = time(NULL);
+		_delay     = 10;
 	}
 	
 	void duration(int duration) {
@@ -32,9 +33,15 @@ public:
 		return false;
 	}
 	
+	inline void sleep() {
+		if (_delay > 0)
+			usleep(10 * _delay);
+	}
+
 private:
 	time_t _startTime;
 	int _duration;
+	int _delay;
 };
 
 

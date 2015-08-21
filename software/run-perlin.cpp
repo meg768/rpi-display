@@ -1,47 +1,6 @@
-#include <math.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#include <vector>
-#include <Magick++.h>
-#include <magick/image.h>
-
 #include "canvas.h"
+#include "timer.h"
 
-using namespace std;
-
-class Timer {
-	
-public:
-	Timer(int duration = 60) {
-		_duration  = duration;
-		_startTime = time(NULL);
-	}
-	
-	void duration(int duration) {
-		_duration = duration;
-	}
-	
-	int duration() {
-		return _duration;
-	}
-	
-	int expired() {
-		if (_duration > 0) {
-			if (time(NULL) - _startTime > _duration) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-private:
-	time_t _startTime;
-	int _duration;
-};
 static const uint8_t gammaLut[] = {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -570,17 +529,21 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 
 	int option = 0;
-
+	int delay = 20;
+	
 	Timer timer;
 	int mode = 2;
 	
-	while ((option = getopt(argc, argv, "d:m:")) != -1) {
+	while ((option = getopt(argc, argv, "d:m:x:")) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
 			case 'm':
 				mode = atoi(optarg);
+				break;
+			case 'x':
+				timer.delay(atoi(optarg));
 				break;
 		}
 	}
@@ -602,7 +565,7 @@ int main (int argc, char *argv[])
 			}
 		}
 		matrix.refresh();
-		usleep(10000);
+		timer.sleep();
 		
 		pattern->next();
 	
