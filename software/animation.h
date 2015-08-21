@@ -4,9 +4,7 @@
 #include "includes.h"
 #include "matrix.h"
 
-/*
- jolksd
- */
+
 class Animation {
 	
 public:
