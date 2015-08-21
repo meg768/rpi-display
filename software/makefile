@@ -20,7 +20,7 @@ allX: run-text run-rain run-perlin run-gif run-clock run-static run-life
 run-text: run-text.o 
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-rain: run-rain.o 
+run-rain: run-rain.o matrix.h animation.h
 	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-perlin: run-perlin.o

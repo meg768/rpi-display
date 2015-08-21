@@ -4,6 +4,9 @@
 #include "includes.h"
 #include "matrix.h"
 
+/*
+ jolksd
+ */
 class Animation {
 	
 public:
@@ -37,7 +40,7 @@ public:
 	
 	inline void sleep() {
 		if (_delay > 0)
-			usleep(10 * _delay);
+			usleep(100 * _delay);
 	}
 	
 	inline Matrix *matrix() {
