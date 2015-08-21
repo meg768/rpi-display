@@ -64,6 +64,7 @@ public:
 				}
 			}
 			canvas()->refresh();
+			timer->sleep();
 		}
 	}
 	
