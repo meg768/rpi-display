@@ -1,6 +1,4 @@
 CXXFLAGS=-Wall -O3 -g
-OBJECTS=demo-main.o minimal-example.o text-example.o led-image-viewer.o
-BINARIES=run-text
 
 
 RGB_INCDIR=../rpi-rgb-led-matrix/include
@@ -15,7 +13,7 @@ MAGICK_LDFLAGS=`GraphicsMagick++-config --ldflags --libs`
 
 INCLUDES=matrix.h animation.h includes.h
 
-all: run-text run-rain
+all: run-text run-rain run-gif
 
 allX: run-text run-rain run-perlin run-gif run-clock run-static run-life
 
