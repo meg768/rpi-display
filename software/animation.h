@@ -54,33 +54,6 @@ public:
 		return false;
 	}
 	
-	virtual void args(int argc, char *argv[]) {
-		int option = 0;
-		
-		int optindSaved   = optind;
-		int opterrSaved   = opterr;
-		char *optargSaved = optarg;
-		
-		optind = 1;
-		opterr = 0;
-		
-		while ((option = getopt(argc, argv, "d:x:")) != -1) {
-			switch (option) {
-				case 'd':
-					duration(atoi(optarg));
-					break;
-				case 'x':
-					delay(atof(optarg));
-					break;
-			}
-		}
-
-		optind = optindSaved;
-		optarg = optargSaved;
-		opterr = opterrSaved;
-		
-	}
-	
 	virtual int run() {
 		_matrix->clear();
 		_matrix->refresh();
@@ -112,7 +85,6 @@ protected:
 	time_t _startTime;
 	int _duration;
 	int _delay;
-	double _speed;
 	
 };
 

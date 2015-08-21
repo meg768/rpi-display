@@ -118,20 +118,6 @@ public:
 		
 	}
 
-	virtual void args(int argc, char *argv[]) {
-		Animation::args(argc, argv);
-
-		int option;
-		
-		while ((option = getopt(argc, argv, "h:")) != -1) {
-			switch (option) {
-				case 'h':
-					hue(atoi(optarg));
-					break;
-			}
-		}
-		
-	}
 	
 	virtual void loop() {
 		_matrix->clear();
@@ -163,7 +149,22 @@ int main (int argc, char *argv[])
 
 	animation.duration(60);
 	animation.delay(50);
-	animation.run(argc, argv);
+
+	int option;
+	
+	while ((option = getopt(argc, argv, "d:x:")) != -1) {
+		switch (option) {
+			case 'd':
+				animation.duration(atoi(optarg));
+				break;
+			case 'x':
+				animation.delay(atoi(optarg));
+				break;
+		}
+	}
+	
+	
+	animation.run();
 	
 	return 0;
 }
