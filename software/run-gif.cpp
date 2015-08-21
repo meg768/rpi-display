@@ -25,7 +25,7 @@ public:
 		try {
 			
 			if (_fileName.length() == 0) {
-				string folder = "./animations";
+				std::string folder = "./animations";
 				DIR *dir = opendir(folder.c_str());
 				
 				std::vector <string> files;
@@ -43,10 +43,12 @@ public:
 				
 				if (files.size() == 0) {
 					fprintf(stderr, "No animation specified.\n");
-					return -1;
+					exit(-1);
 				}
 				
-				_fileName = folder + "/" + files[rand() % files.size()];
+				int index = rand() % files.size();
+				printf("Picking imae %d\n", index);
+				_fileName = folder + "/" + files[index];
 				
 			}
 			
