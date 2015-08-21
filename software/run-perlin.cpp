@@ -1,10 +1,47 @@
+#include <math.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 #include <vector>
+#include <Magick++.h>
+#include <magick/image.h>
 
-#include "globals.h"
-
+#include "canvas.h"
 
 using namespace std;
 
+class Timer {
+	
+public:
+	Timer(int duration = 60) {
+		_duration  = duration;
+		_startTime = time(NULL);
+	}
+	
+	void duration(int duration) {
+		_duration = duration;
+	}
+	
+	int duration() {
+		return _duration;
+	}
+	
+	int expired() {
+		if (_duration > 0) {
+			if (time(NULL) - _startTime > _duration) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+private:
+	time_t _startTime;
+	int _duration;
+};
 static const uint8_t gammaLut[] = {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -47,7 +84,7 @@ static const uint8_t gammaLut[] = {
 
 
 
-uint16_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
+uint32_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
 
 class Pattern
@@ -72,8 +109,8 @@ public:
 		width = m_width; height = m_height;
 	}
 	
-	uint16_t translateHue (int32_t hue);
-	uint16_t translateHueValue (int32_t hue, float value);
+	uint32_t translateHue (int32_t hue);
+	uint32_t translateHueValue (int32_t hue, float value);
 	
 protected:
 	const int32_t m_width;
@@ -84,7 +121,7 @@ private:
 
 
 
-#define MAKE_COLOR(r,g,b) (((r)&0xf)<<8)+(((g)&0xf)<<4)+((b)&0xf)
+#define MAKE_COLOR(r,g,b) (((r)&0xff)<<16)+(((g)&0xff)<<8)+((b)&0xff)
 
 //---------------------------------------------------------------------------------------------
 // convert a hue from 0 to 95 to its 12-bit RGB color
@@ -92,7 +129,7 @@ private:
 // hue: 0 = red, 32 = blue, 64 = green
 //
 
-uint16_t Pattern::translateHue (int32_t hue)
+uint32_t Pattern::translateHue (int32_t hue)
 {
 	uint8_t hi, lo;
 	uint8_t r, g, b;
@@ -109,9 +146,9 @@ uint16_t Pattern::translateHue (int32_t hue)
 		case 5: r = 0xff,    g = 0xff-lo, b = 0;       break;
 	}
 	
-	r = gammaLut[r];
-	g = gammaLut[g];
-	b = gammaLut[b];
+//	r = gammaLut[r];
+//	g = gammaLut[g];
+//	b = gammaLut[b];
 	
 	return MAKE_COLOR (r,g,b);
 }
@@ -124,7 +161,7 @@ uint16_t Pattern::translateHue (int32_t hue)
 // value: 0 = off, 1.0 = 100%
 //
 
-uint16_t Pattern::translateHueValue (int32_t hue, float value)
+uint32_t Pattern::translateHueValue (int32_t hue, float value)
 {
 	uint8_t hi, lo;
 	uint8_t r, g, b;
@@ -145,14 +182,14 @@ uint16_t Pattern::translateHueValue (int32_t hue, float value)
 	g = ((float)g + 0.5) * value;
 	b = ((float)b + 0.5) * value;
 	
-	r = gammaLut[r];
-	g = gammaLut[g];
-	b = gammaLut[b];
+//	r = gammaLut[r];
+//	g = gammaLut[g];
+//	b = gammaLut[b];
 	
 	return MAKE_COLOR (r,g,b);
 }
 
-LogiMatrix matrix;
+Canvas matrix;
 Pattern *pattern = 0;
 
 class Perlin : public Pattern
@@ -511,7 +548,7 @@ float Perlin::noise (float x, float y, float z)
 }
 
 
-
+/*
 void timer_handler (int signum)
 {
 	// write levels to display
@@ -524,7 +561,7 @@ void timer_handler (int signum)
 	}
 }
 
-
+*/
 
 
 
@@ -554,9 +591,18 @@ int main (int argc, char *argv[])
 	
 	while (!timer.expired()) {
 
-		// write levels to display
-		matrix.fill( (uint16_t *)gLevels);
+		
+		for (int y = 0; y < 32; y++) {
+			for (int x = 0; x < 32; x++) {
+				uint32_t color = gLevels[y][x];
+				int blue = color & 0xFF;
+				int green = (color >> 8) & 0xFF;
+				int red = (color >> 16) & 0xFF;
+				matrix.setPixel(x, y, red, green, blue);
+			}
+		}
 		matrix.refresh();
+		usleep(10000);
 		
 		pattern->next();
 	
