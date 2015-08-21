@@ -87,7 +87,9 @@ int main (int argc, char *argv[])
 
 	Matrix matrix;
 	Timer timer;
-	
+
+	timer.delay(500);
+
 	int option = 0;
 	int duration = -1;
 	
