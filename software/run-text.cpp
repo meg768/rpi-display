@@ -17,7 +17,7 @@ int main (int argc, char *argv[])
 	try {
 		Matrix matrix;
 		
-		while ((option = getopt(argc, argv, "i:s:c:f:x:")) != -1) {
+		while ((option = getopt(argc, argv, "t:i:s:c:f:x:")) != -1) {
 			switch (option) {
 				case 'x':
 					delay = atoi(optarg);
