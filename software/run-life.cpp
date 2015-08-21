@@ -10,8 +10,8 @@ public:
 	: delay_ms_(delay_ms), torus_(torus) {
 		_matrix = m;
 
-		width_ = _matrix()->width();
-		height_ = _matrix()->height();
+		width_ = _matrix->width();
+		height_ = _matrix->height();
 		
 		srand(time(NULL));
 		
