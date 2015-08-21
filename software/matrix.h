@@ -74,7 +74,7 @@ class Matrix {
 		uint32_t *p = buffer;
 
 		int width  = canvas->width();
-		int height = canvas->height()
+		int height = canvas->height();
 		int count  = width * height;
 		
 		for (int i = 0; i < count; i++, p++) {
