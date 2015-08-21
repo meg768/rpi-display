@@ -10,8 +10,8 @@ int main (int argc, char *argv[])
 
 	int option       = 0;
 	int iterations   = 1;
-	int pointSize    = 16;
-	int speed        = 3;
+	int pointSize    = 24;
+	int speed        = 5;
 	
 	try {
 		Matrix matrix;
