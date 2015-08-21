@@ -2,7 +2,7 @@
 
 
 
-#include "canvas.h"
+#include "matrix"
 #include "animation.h"
 
 
@@ -33,7 +33,7 @@ public:
 		_hue = value;
 	}
 	
-	void draw(Canvas *canvas) {
+	void draw(Matrix *matrix) {
 		int hue = 120;
 		int x = _column;
 		int y = _row;
@@ -47,7 +47,7 @@ public:
 		else
 			hue = _hue;
 
-		canvas->setPixel(x, y--, 255, 255, 255);
+		matrix->setPixel(x, y--, 255, 255, 255);
 		
 		for (int i = 0; i < _length; i++) {
 			// Calculate brightness
@@ -67,7 +67,7 @@ public:
 			color.saturation = 100;
 			color.luminance  = luminance;
 
-			canvas->setPixel(x, y--, color);
+			matrix->setPixel(x, y--, color);
 		}
 	}
 	
@@ -136,8 +136,8 @@ public:
 	virtual void loop() {
 		_matrix->clear();
 		
-		for (int i = 0; i < _canvas->width(); i++) {
-			_worms[i].draw(_canvas);
+		for (int i = 0; i < _matrix->width(); i++) {
+			_worms[i].draw(_matrix);
 			_worms[i].idle();
 		}
 		
