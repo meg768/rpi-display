@@ -16,7 +16,7 @@ int main (int argc, char *argv[])
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
-			case 'd':
+			case 'x':
 				timer.delay(atoi(optarg));
 				break;
 		}
