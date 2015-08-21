@@ -221,13 +221,10 @@ int main (int argc, char *argv[])
 	
 	int option = 0;
 	
-	while ((option = getopt(argc, argv, "g:d:")) != -1) {
+	while ((option = getopt(argc, argv, "d:")) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
-				break;
-			case 'g':
-				matrix.setGamma(atof(optarg));
 				break;
 		}
 	}
