@@ -5,7 +5,6 @@
 #include "canvas.h"
 #include "animation.h"
 
-using namespace std;
 
 class Worm {
 	
@@ -99,7 +98,7 @@ class MatrixAnimation : public Animation {
 public:
 	MatrixAnimation() : Animation() {
 
-		int size = _canvas->width();
+		int size = _matrix->width();
 		
 		_worms.resize(size);
 		
@@ -135,19 +134,19 @@ public:
 	}
 	
 	virtual void loop() {
-		_canvas->clear();
+		_matrix->clear();
 		
 		for (int i = 0; i < _canvas->width(); i++) {
 			_worms[i].draw(_canvas);
 			_worms[i].idle();
 		}
 		
-		_canvas->refresh();
+		_matrix->refresh();
 		
 	}
 
 protected:
-	vector <Worm> _worms;
+	std::vector <Worm> _worms;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -159,10 +158,11 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 	
+	Matrix matrix;
+	MatrixAnimation animation(&matrix);
 
-	MatrixAnimation animation;
 	animation.duration(60);
-	animation.speed(1.0);
+	animation.delay(5);
 	animation.run(argc, argv);
 	
 	return 0;

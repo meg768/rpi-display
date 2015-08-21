@@ -13,7 +13,7 @@ LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
 MAGICK_CXXFLAGS=`GraphicsMagick++-config --cppflags --cxxflags`
 MAGICK_LDFLAGS=`GraphicsMagick++-config --ldflags --libs`
 
-all: run-text
+all: run-text run-rain
 
 allX: run-text run-rain run-perlin run-gif run-clock run-static run-life
 

@@ -94,9 +94,6 @@ int main (int argc, char *argv[])
 	
 	while ((option = getopt(argc, argv, "g:d:")) != -1) {
 		switch (option) {
-			case 'g':
-				matrix.setGamma(atof(optarg));
-				break;
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;

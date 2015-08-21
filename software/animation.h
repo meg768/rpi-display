@@ -13,8 +13,7 @@ public:
 		_matrix = matrix;
 		_duration = duration;
 		_startTime = time(NULL);
-		_speed = 1.0;
-		_delay = 1000;
+		_delay = 100;
 	}
 	
 	~Animation() {
@@ -28,18 +27,17 @@ public:
 		return _duration;
 	}
 	
-	inline void speed(double value) {
-		_speed = value;
-		_delay = 1000.0 * value;
+	inline void delay(int value) {
+		_delay = value;
 	}
 	
-	inline double speed() {
-		return _speed;
+	inline double delay() {
+		return _delay;
 	}
 	
 	inline void sleep() {
 		if (_delay > 0)
-			usleep(_delay);
+			usleep(1000 * _delay);
 	}
 	
 	inline Matrix *matrix() {
@@ -71,11 +69,8 @@ public:
 				case 'd':
 					duration(atoi(optarg));
 					break;
-				case 'g':
-					gamma(atof(optarg));
-					break;
-				case 's':
-					speed(atof(optarg));
+				case 'x':
+					delay(atof(optarg));
 					break;
 			}
 		}

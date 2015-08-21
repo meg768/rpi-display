@@ -10,8 +10,8 @@ int main (int argc, char *argv[])
 
 	int option       = 0;
 	int iterations   = 1;
-	int fontSize     = 22;
-	int delay        = 5;
+	int fontSize     = 20;
+	int delay        = 18;
 	
 	try {
 		Matrix matrix;
