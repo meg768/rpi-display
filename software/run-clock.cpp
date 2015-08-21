@@ -1,10 +1,10 @@
 #include "globals.h"
-
+#include "Canvas.h"
 
 class Clock {
 	
 public:
-	Clock(LogiMatrix *matrix) {
+	Clock(Canvas *matrix) {
 		_matrix = matrix;
 		_nightMode = false;
 	}
@@ -207,7 +207,7 @@ public:
 	}
 	
 private:
-	LogiMatrix *_matrix;
+	Canvas *_matrix;
 	int _nightMode;
 };
 
@@ -216,7 +216,7 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 	
-	LogiMatrix matrix;
+	Canvas matrix;
 	Timer timer(-1);
 	
 	int option = 0;
