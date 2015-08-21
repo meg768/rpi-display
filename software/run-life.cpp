@@ -1,5 +1,6 @@
 
 #include "matrix.h"
+#include "timer.h"
 
 using namespace std;
 
