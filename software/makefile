@@ -18,10 +18,10 @@ INCLUDES=matrix.h animation.h includes.h timer.h
 all: run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static
 
 run-image: run-image.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-image.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-text: run-text.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $? -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-text.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 run-rain: run-rain.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-rain.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
