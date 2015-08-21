@@ -1,5 +1,59 @@
-#include "globals.h"
+#include "led-matrix.h"
 
+#include <math.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <vector>
+#include <Magick++.h>
+#include <magick/image.h>
+
+using rgb_matrix::GPIO;
+using rgb_matrix::FrameCanvas;
+using rgb_matrix::RGBMatrix;
+
+class LogiMatrix {
+
+	public:
+	LogiMatrix() {
+		io = new rgb_matrix::GPIO();
+		io->Init();
+		
+		matrix = new rgb_matrix::RGBMatrix(io, 32, 1, 1);
+		canvas = matrix->CreateFrameCanvas();
+	}
+
+	virtual ~LogiMatrix() {
+	}
+	
+	int width() {
+		return canvas->width();
+	}
+	
+	int height() {
+		return canvas->height();
+	}
+
+	void clear() {
+		canvas->Clear();
+	}
+	
+	void setPixel(int x, int y, int r, int g, int b) {
+		canvas->SetPixel(x, y, r, g, b);
+	}
+
+	void refresh() {
+		canvas = matrix->SwapOnVSync(canvas);
+	}
+	
+	
+private:
+	rgb_matrix::RGBMatrix *matrix;
+	rgb_matrix::GPIO *io;
+	rgb_matrix::FrameCanvas *canvas;
+};
 
 int main (int argc, char *argv[])
 {
@@ -33,17 +87,14 @@ int main (int argc, char *argv[])
 				case 'f':
 					fontName = optarg;
 					break;
-				case 'g':
-					matrix.setGamma(atof(optarg));
-					break;
 			}
 		}
 		
 		if (speed < 0)
 			speed = 0;
 		
-		if (speed > 10)
-			speed = 10;
+		//if (speed > 10)
+		//	speed = 10;
 		
 		if (iterations == 0)
 			iterations = 1;
@@ -61,7 +112,7 @@ int main (int argc, char *argv[])
 		sprintf(fontFile, "./fonts/%s.ttf", fontName);
 		
 		tmp.font(fontFile);
-		tmp.strokeColor("transparent");
+		tmp.strokeColor(textColor);
 		tmp.fillColor(textColor);
 		tmp.fontPointsize(pointSize);
 		
