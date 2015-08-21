@@ -78,7 +78,7 @@ class Matrix {
 		int count  = width * height;
 		
 		for (int i = 0; i < count; i++, p++) {
-			uint32_t color = *p
+			uint32_t color = *p;
 			int blue  = color & 0xFF;
 			int green = (color >> 8) & 0xFF;
 			int red   = (color >> 16) & 0xFF;
