@@ -9,7 +9,7 @@ public:
 	
 	GifAnimation(Matrix *matrix) : Animation(matrix) {
 		_iterations = -1;
-		_fileName   = "animations/tree.gif";
+		_fileName   = "";
 	}
 	
 	void iterations(int value) {
