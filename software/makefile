@@ -41,8 +41,8 @@ run-gif: run-gif.o $(INCLUDES)
 run-twinkle: run-twinkle.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-twinkle.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
-run-hue-block: run-hue-block $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-hue-block -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+run-hue-block: run-hue-block.o $(INCLUDES)
+	$(CXX) $(CXXFLAGS) run-hue-block.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 %.o : %.cpp
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
