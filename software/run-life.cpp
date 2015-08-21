@@ -1,16 +1,16 @@
-#include "globals.h"
-#include "canvas.h"
+
+#include "matrix.h"
 
 using namespace std;
 
 class GameLife  {
 public:
-	GameLife(Canvas *m, int delay_ms=25, bool torus=true)
+	GameLife(Matrix *m, int delay_ms=25, bool torus=true)
 	: delay_ms_(delay_ms), torus_(torus) {
-		_canvas = m;
+		_matrix = m;
 
-		width_ = canvas()->width();
-		height_ = canvas()->height();
+		width_ = _matrix()->width();
+		height_ = _matrix()->height();
 		
 		srand(time(NULL));
 		
@@ -62,8 +62,8 @@ public:
 		delete [] newValues_;
 	}
 	
-	Canvas *canvas() {
-		return _canvas;
+	Matrix *matrix() {
+		return _matrix;
 	}
 	
 
@@ -75,12 +75,12 @@ public:
 			for (int x=0; x<width_; ++x) {
 				for (int y=0; y<height_; ++y) {
 					if (values_[x][y])
-						canvas()->setPixel(x, y, r_, g_, b_);
+						_matrix->setPixel(x, y, r_, g_, b_);
 					else
-						canvas()->setPixel(x, y, 0, 0, 0);
+						_matrix->setPixel(x, y, 0, 0, 0);
 				}
 			}
-			_canvas->refresh();
+			_matrix->refresh();
 			usleep(delay_ms_ * 1000); // ms
 		}
 	}
@@ -163,7 +163,7 @@ private:
 	int width_;
 	int height_;
 	bool torus_;
-	Canvas *_canvas;
+	Matrix *_matrix;
 };
 
 
@@ -172,13 +172,13 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 
-	Canvas matrix;
+	Matrix matrix;
 	Timer timer;
 	
 	int option = 0;
 	int duration = 60;
 	
-	while ((option = getopt(argc, argv, "g:d:")) != -1) {
+	while ((option = getopt(argc, argv, "d:")) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
