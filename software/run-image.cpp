@@ -34,7 +34,7 @@ int main (int argc, char *argv[])
 		}
 	}
 
-	if (fileName.length() == 0) {
+	if (fileName.length == 0) {
 		fprintf(stderr, "No image specified.\n");
 		return -1;
 	}
