@@ -92,10 +92,13 @@ int main (int argc, char *argv[])
 	int option = 0;
 	int duration = -1;
 	
-	while ((option = getopt(argc, argv, "g:d:")) != -1) {
+	while ((option = getopt(argc, argv, "x:d:")) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
+				break;
+			case 'x':
+				timer.delay(atoi(optarg));
 				break;
 		}
 	}

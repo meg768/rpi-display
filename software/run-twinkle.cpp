@@ -281,6 +281,9 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 	Timer timer;
 
+	timer.duration(60);
+	timer.delay(2000);
+	
 	int option = 0;
 	
 	while ((option = getopt(argc, argv, "d:x:")) != -1) {
