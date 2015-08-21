@@ -69,6 +69,24 @@ class Matrix {
 		canvas->Clear();
 	}
 	
+	void fill(uint32_t *buffer) {
+		
+		uint32_t *p = buffer;
+
+		int width  = canvas->width();
+		int height = canvas->height()
+		int count  = width * height;
+		
+		for (int i = 0; i < count; i++, p++) {
+			uint32_t color = *p
+			int blue  = color & 0xFF;
+			int green = (color >> 8) & 0xFF;
+			int red   = (color >> 16) & 0xFF;
+			setPixel(x, y, red, green, blue);
+		}
+	}
+	
+
 	void setPixel(int x, int y, int r, int g, int b) {
 		canvas->SetPixel(x, y, r, g, b);
 	}
