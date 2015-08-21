@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:run-gif.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:run-rain.cpp">
+   </FileRef>
+   <FileRef
       location = "group:globals.h">
    </FileRef>
    <FileRef
@@ -15,9 +21,6 @@
    </FileRef>
    <FileRef
       location = "group:makefile">
-   </FileRef>
-   <FileRef
-      location = "group:run-animation.cpp">
    </FileRef>
    <FileRef
       location = "group:run-circle.cpp">
