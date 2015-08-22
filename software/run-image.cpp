@@ -47,8 +47,17 @@ int main (int argc, char *argv[])
 		return -1;
 	}
 	*/
+
 	Magick::Image image;
 	image.read(fileName);
+
+	{
+		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+		img.composite(image, 0, 0, Magick::OverCompositeOp);
+		
+		image = img;
+		
+	}
 
 	if (!scroll) {
 		int imageWidth = image.columns();
@@ -71,15 +80,7 @@ int main (int argc, char *argv[])
 			image.sample(Magick::Geometry(matrix.width(), matrix.height()));
 		}
 
-		//const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, 32, 32);
-		
-		{
-			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
-			img.composite(image, 0, 0, Magick::OverCompositeOp);
-			
-			image = img;
-			
-		}
+
 		matrix.drawImage(image);
 		matrix.refresh();
 		
