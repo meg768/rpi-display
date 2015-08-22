@@ -106,15 +106,24 @@ int main (int argc, char *argv[])
 	
 	else if (mode == "fade") {
 
-		/*
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < MaxRGB; i++) {
 			image.opacity(i);
 			usleep(delay * 1000.0);
 			matrix.drawImage(image);
 			matrix.refresh();
 		}
-*/
+		matrix.drawImage(image);
+		matrix.refresh();
+		if (duration > 0)
+			sleep(duration);
 
+		for (int i = MaxRGB; i > 0; i--) {
+			image.opacity(i);
+			usleep(delay * 1000.0);
+			matrix.drawImage(image);
+			matrix.refresh();
+		}
+/*
 		printf("%d", MaxRGB);
 		image.opacity(220 );
 
@@ -124,9 +133,7 @@ int main (int argc, char *argv[])
 
 		matrix.drawImage(image);
 		matrix.refresh();
-		
-		if (duration > 0)
-			sleep(duration);
+*/
 /*
 		for (int i = 100; i > 0; i--) {
 			image.opacity(i);
