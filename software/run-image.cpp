@@ -107,13 +107,12 @@ int main (int argc, char *argv[])
 	else if (mode == "fade") {
 
 		for (int i = 0; i < MaxRGB; i++) {
-			image.opacity(i);
-
-			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "red");
 			img.composite(image, 0, 0, Magick::OverCompositeOp);
+			img.opacity(i);
 			matrix.drawImage(img);
 			matrix.refresh();
-			usleep(500.0 * 1000.0);
+			usleep(50.0 * 1000.0);
 		}
 
  
