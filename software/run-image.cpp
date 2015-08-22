@@ -42,13 +42,8 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
-/*
-	if (fileName.length() == 0) {
-		fprintf(stderr, "No image specified.\n");
-		return -1;
-	}
-	*/
 
+	
 	Magick::Image image;
 	image.read(fileName);
 
@@ -102,59 +97,14 @@ int main (int argc, char *argv[])
 		int offsetY      = -(screenHeight - imageHeight) / 2;
 		
 
-		if (imageWidth >= imageHeight) {
-			image.sample(Magick::Geometry((screenWidth * imageWidth) / imageHeight, screenHeight));
+		for (int i = 0, offset = screenWidth; i < screenWidth * 2 + imageWidth; i++, offset--) {
 			
-			imageWidth   = image.columns();
-			imageHeight  = image.rows();
-
-			offsetX = -screenWidth;
-			offsetY = -(screenHeight - imageHeight) / 2;
-		}
-		else {
-			image.sample(Magick::Geometry(screenWidth, (screenHeight * imageHeight) / imageWidth));
-
-			imageWidth   = image.columns();
-			imageHeight  = image.rows();
-
-			offsetX = -(screenWidth - imageWidth) / 2;
-			offsetY = -screenHeight; ;
+			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, screenWidth, screenHeight);
 			
-		}
-
-		int count = 0;
-		
-		while (count < iterations) {
-			
-			
-			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
-			
-			for (int row = 0; row < screenHeight; row++) {
-				for (int col = 0; col < screenWidth; col++) {
-					if (offsetX + col < 0 || offsetX + col >= imageWidth)
-						matrix.setPixel(col, row, 0, 0, 0);
-					else if (offsetY + row < 0 || offsetY + row >= imageHeight)
-						matrix.setPixel(col, row, 0, 0, 0);
-					else
-						matrix.setPixel(col, row, pixels->red, pixels->green, pixels->blue);
+			for (int y = 0; y < screenHeight; y++) {
+				for (int x = 0; x < screenWidth; x++) {
+					setPixel(x, y, pixels->red, pixels->green, pixels->blue);
 					pixels++;
-				}
-			}
-			
-			matrix.refresh();
-			
-			if (imageWidth >= imageHeight) {
-			
-				if (++offsetX >= (imageWidth + screenWidth)) {
-					offsetX = -screenWidth;
-					count++;
-				}
-			}
-
-			else {
-				if (++offsetY >= (imageHeight + screenHeight)) {
-					offsetY = -screenHeight;
-					count++;
 				}
 			}
 			usleep(delay * 1000.0);
