@@ -108,7 +108,7 @@ int main (int argc, char *argv[])
 
 		for (int i = 0; i < MaxRGB; i++) {
 			image.opacity(i);
-			usleep(delay * 1000.0);
+			usleep(400.0 * 1000.0);
 			matrix.drawImage(image);
 			matrix.refresh();
 		}
@@ -119,7 +119,7 @@ int main (int argc, char *argv[])
 
 		for (int i = MaxRGB; i > 0; i--) {
 			image.opacity(i);
-			usleep(delay * 1000.0);
+			usleep(400.0 * 1000.0);
 			matrix.drawImage(image);
 			matrix.refresh();
 		}
