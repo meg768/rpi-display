@@ -116,7 +116,7 @@ int main (int argc, char *argv[])
 */
 
 		printf("%d", MaxRGB);
-		image.opacity(MaxRGB );
+		image.opacity(128 );
 
 		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
 		img.composite(image, 0, 0, Magick::OverCompositeOp);
