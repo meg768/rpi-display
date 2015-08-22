@@ -108,8 +108,12 @@ int main (int argc, char *argv[])
 
 		for (int i = 0; i < MaxRGB; i++) {
 			image.opacity(i);
-			usleep(4000.0 * 1000.0);
-			matrix.drawImage(image);
+
+			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+			img.composite(image, 0, 0, Magick::OverCompositeOp);
+			image = img;
+			usleep(400.0 * 1000.0);
+			matrix.drawImage(img);
 			matrix.refresh();
 		}
 		
@@ -121,8 +125,12 @@ int main (int argc, char *argv[])
 
 		for (int i = MaxRGB; i > 0; i--) {
 			image.opacity(i);
-			usleep(4000.0 * 1000.0);
-			matrix.drawImage(image);
+
+			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+			img.composite(image, 0, 0, Magick::OverCompositeOp);
+			image = img;
+			usleep(400.0 * 1000.0);
+			matrix.drawImage(img);
 			matrix.refresh();
 		}
 /*
