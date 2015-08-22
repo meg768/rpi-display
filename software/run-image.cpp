@@ -103,7 +103,7 @@ int main (int argc, char *argv[])
 			
 			for (int y = 0; y < screenHeight; y++) {
 				for (int x = 0; x < screenWidth; x++) {
-					setPixel(x, y, pixels->red, pixels->green, pixels->blue);
+					matrix.setPixel(x, y, pixels->red, pixels->green, pixels->blue);
 					pixels++;
 				}
 			}
