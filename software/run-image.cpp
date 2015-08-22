@@ -52,7 +52,7 @@ int main (int argc, char *argv[])
 
 	// Convert transparent PNG:s
 	if (true) {
-		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+		Magick::Image img(Magick::Geometry(image.columns(), image.rows()), "black");
 		img.composite(image, 0, 0, Magick::OverCompositeOp);
 		
 		image = img;
