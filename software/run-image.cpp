@@ -109,7 +109,7 @@ int main (int argc, char *argv[])
 		for (int i = 0; i < MaxRGB; i++) {
 			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "red");
 			img.composite(image, 0, 0, Magick::OverCompositeOp);
-			img.opacity(i);
+			img.blur(8, 1);
 			matrix.drawImage(img);
 			matrix.refresh();
 			usleep(50.0 * 1000.0);
