@@ -94,10 +94,11 @@ int main (int argc, char *argv[])
 			image = img;
 		}
 		
-		int length  = image.width();
+		int length       = imageWidth;
 		int offsetX      = -matrixWidth;
 		int offsetY      = -(matrixHeight - imageHeight) / 2;
-		int middle      = 15;
+		int middle       = 15;
+		
 		for (int i = 0; i < length; i++, offsetX++) {
 			
 			matrix.clear();
