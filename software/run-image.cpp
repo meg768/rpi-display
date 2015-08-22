@@ -108,7 +108,7 @@ int main (int argc, char *argv[])
 			
 			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
 			
-			matrix.drawImage(0, 0, offsetX, 0);
+			matrix.drawImage(image, 0, 0, offsetX, 0);
 			/*
 			for (int row = 0; row < screenHeight; row++) {
 				for (int col = 0; col < screenWidth; col++) {
