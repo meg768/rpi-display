@@ -8,16 +8,18 @@ int main (int argc, char *argv[])
 
 	Matrix matrix;
 
+	string fileName = "";
 	int option = 0;
 	int duration = 10;
 	int scroll = true;
 	int iterations = 1;
-	double rotate = 0;
-	string fileName = "";
 	double delay = 18.0;
-	double hold = 0.0;
-	
-	while ((option = getopt(argc, argv, "x:f:r:i:d:s:h:")) != -1) {
+	double hold = 2;
+
+	int matrixHeight = matrix.height();
+	int matrixWidth  = matrix.height();
+
+	while ((option = getopt(argc, argv, "x:f:i:d:s:h:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atoi(optarg);
@@ -27,9 +29,6 @@ int main (int argc, char *argv[])
 				break;
 			case 's':
 				scroll = atoi(optarg);
-				break;
-			case 'r':
-				rotate = atof(optarg);
 				break;
 			case 'f':
 				fileName = optarg;
@@ -79,8 +78,9 @@ int main (int argc, char *argv[])
 		}
 	}
 
-	scroll = true;
-	
+	int imageWidth   = image.columns();
+	int imageHeight  = image.rows();
+
 	if (!scroll) {
 
 		matrix.drawImage(image);
@@ -91,30 +91,20 @@ int main (int argc, char *argv[])
 		
 	}
 	else {
-		int screenHeight = matrix.height();
-		int screenWidth  = matrix.height();
-		int imageWidth   = image.columns();
-		int imageHeight  = image.rows();
-		int offsetX      = -screenWidth;
-		int offsetY      = -(screenHeight - imageHeight) / 2;
+		int offsetX = -matrixWidth;
+		int offsetY = -(matrixHeight - imageHeight) / 2;
+		int length  = screenWidth * 2 + imageWidth;
 		
-
-		for (int i = 0, offset = screenWidth; i < screenWidth * 2 + imageWidth; i++, offset--) {
-			
-			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
+		for (int i = 0; i < length; i++, offsetX++) {
 			
 			matrix.drawImage(image, 0, 0, offsetX, offsetY);
-			/*
-			for (int y = 0; y < screenHeight; y++) {
-				for (int x = 0; x < screenWidth; x++) {
-					matrix.setPixel(x, y, pixels->red, pixels->green, pixels->blue);
-					pixels++;
-				}
-			}
-			 */
-			offsetX++;
+
 			matrix.refresh();
 			usleep(delay * 1000.0);
+			
+			if (hold > 0 && i == length / 2) {
+				usleep(1000.0 * hold);
+			}
 		}
 		
 	}
