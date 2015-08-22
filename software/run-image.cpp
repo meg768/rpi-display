@@ -93,6 +93,7 @@ int main (int argc, char *argv[])
 		
 		for (int i = 0; i < length; i++, offsetX++) {
 			
+			matrix.clear();
 			matrix.drawImage(image, 0, 0, offsetX, offsetY);
 			matrix.refresh();
 			
