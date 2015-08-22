@@ -116,6 +116,7 @@ int main (int argc, char *argv[])
 */
 
 		image.opacity((MaxRGB / 2) / 8);
+		image.blur(8, 1);
 		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
 		img.composite(image, 0, 0, Magick::OverCompositeOp);
 		image = img;
