@@ -114,7 +114,12 @@ int main (int argc, char *argv[])
 			matrix.refresh();
 		}
 */
-		image.blur(4, 0.5);
+
+		image.opacity(MaxRGB / 2);
+		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+		img.composite(image, 0, 0, Magick::OverCompositeOp);
+		image = img;
+
 		matrix.drawImage(image);
 		matrix.refresh();
 		
