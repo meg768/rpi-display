@@ -9,6 +9,7 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 
 	string fileName = "";
+	string mode = "scroll";
 	int option = 0;
 	int duration = 10;
 	int scroll = true;
@@ -19,7 +20,7 @@ int main (int argc, char *argv[])
 	int matrixHeight = matrix.height();
 	int matrixWidth  = matrix.height();
 
-	while ((option = getopt(argc, argv, "x:f:i:d:s:h:")) != -1) {
+	while ((option = getopt(argc, argv, "x:f:i:d:s:h:m:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atoi(optarg);
@@ -38,6 +39,9 @@ int main (int argc, char *argv[])
 				break;
 			case 'h':
 				hold = atof(optarg);
+				break;
+			case 'm':
+				mode = optarg;
 				break;
 		}
 	}
@@ -81,16 +85,7 @@ int main (int argc, char *argv[])
 	int imageWidth   = image.columns();
 	int imageHeight  = image.rows();
 
-	if (!scroll) {
-
-		matrix.drawImage(image);
-		matrix.refresh();
-		
-		if (duration > 0)
-			sleep(duration);
-		
-	}
-	else {
+	if (mode == "scroll") {
 		int offsetX = -matrixWidth;
 		int offsetY = -(matrixHeight - imageHeight) / 2;
 		int length  = matrixWidth * 2 + imageWidth;
@@ -107,8 +102,21 @@ int main (int argc, char *argv[])
 				usleep(hold * 1000.0 * 1000.0);
 			}
 		}
+	}
+	
+	else if (mode == "fade") {
+	}
+	
+	else  {
+
+		matrix.drawImage(image);
+		matrix.refresh();
+		
+		if (duration > 0)
+			sleep(duration);
 		
 	}
+
 	
     return 0;
 }
