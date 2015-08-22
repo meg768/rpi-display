@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
 		const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, 32, 32);
 		
 		Magick::Image img("32x32", "black");
-		img.composite(image, 0, 0); //, Magick::CompositeOperator(30));
+		img.composite(image, 0, 0, Magick::OverCompositeOp);
 		
 		if (rotate != 0)
 			img.rotate((rotate / 360.0) * 2.0 * 3.14);
