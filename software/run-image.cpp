@@ -100,6 +100,8 @@ int main (int argc, char *argv[])
 		
 		int screenHeight = matrixHeight;
 		int screenWidth  = matrixWidth;
+		int offsetX      = -screenWidth;
+		int offsetY      = -(screenHeight - imageHeight) / 2;
 		
 		while (count < iterations) {
 			matrix.clear();
