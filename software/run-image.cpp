@@ -98,12 +98,12 @@ int main (int argc, char *argv[])
 		for (int i = 0; i < length; i++, offsetX++) {
 			
 			matrix.drawImage(image, 0, 0, offsetX, offsetY);
-
 			matrix.refresh();
+			
 			usleep(delay * 1000.0);
 			
 			if (hold > 0 && i == length / 2) {
-				usleep(1000.0 * hold);
+				usleep(hold * 1000.0);
 			}
 		}
 		
