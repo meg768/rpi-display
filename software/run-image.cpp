@@ -11,7 +11,7 @@ int main (int argc, char *argv[])
 	string fileName = "";
 	string mode = "fade";
 	int option = 0;
-	int duration = 10;
+	double duration = 10.0;
 	int scroll = true;
 	int iterations = 1;
 	double delay = 18.0;
@@ -23,7 +23,7 @@ int main (int argc, char *argv[])
 	while ((option = getopt(argc, argv, "x:f:i:d:s:h:m:")) != -1) {
 		switch (option) {
 			case 'd':
-				duration = atoi(optarg);
+				duration = atof(optarg);
 				break;
 			case 'i':
 				iterations = atoi(optarg);
@@ -112,10 +112,12 @@ int main (int argc, char *argv[])
 			matrix.drawImage(image);
 			matrix.refresh();
 		}
+		
 		matrix.drawImage(image);
 		matrix.refresh();
+		
 		if (duration > 0)
-			sleep(duration);
+			usleep(1000.0 * duration);
 
 		for (int i = MaxRGB; i > 0; i--) {
 			image.opacity(i);
@@ -143,7 +145,7 @@ int main (int argc, char *argv[])
 		}
 	*/
 	}
-	
+	/*
 	else  {
 
 		matrix.drawImage(image);
@@ -153,7 +155,7 @@ int main (int argc, char *argv[])
 			sleep(duration);
 		
 	}
-
+*/
 	
     return 0;
 }
