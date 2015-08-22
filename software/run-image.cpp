@@ -99,7 +99,7 @@ int main (int argc, char *argv[])
 
 			for (int y = 0; y < matrixHeight; y++) {
 				for (int x = 0; x < matrixWidth; x++) {
-					if (offsetX + x > imageWidth)
+					if (offsetX + x > imageWidth || offsetX < 0)
 						matrix.setPixel(x, y, 0, 0, 0);
 					else
 						matrix.setPixel(x, y, pixel->red, pixel->green, pixel->blue);
