@@ -88,7 +88,7 @@ int main (int argc, char *argv[])
 	if (mode == "scroll") {
 
 		if (true) {
-			Magick::Image img(Magick::Geometry(image.rows(), image.columns() + 2 * matrixWidth), "black");
+			Magick::Image img(Magick::Geometry(image.columns() + 2 * matrixWidth, image.rows(), "black");
 			img.composite(image, matrixWidth, 0, Magick::OverCompositeOp);
 			
 			image = img;
