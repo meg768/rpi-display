@@ -95,9 +95,9 @@ int main (int argc, char *argv[])
 			
 			for (int x = 0; x < 32; x++)
 				for (int y = 0; y < 32; y++)
-					setPixel(x, y, 0, 0, 0);
+					matrix.setPixel(x, y, 0, 0, 0);
 			
-			matrix.clear();
+			//matrix.clear();
 			matrix.drawImage(image, 0, 0, offsetX, offsetY);
 			matrix.refresh();
 			
