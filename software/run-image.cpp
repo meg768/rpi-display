@@ -10,15 +10,14 @@ int main (int argc, char *argv[])
 
 	string fileName = "";
 	string mode = "scroll";
-	int option = 0;
 	double duration = 10.0;
-	int scroll = true;
-	int iterations = 1;
-	double delay = 18.0;
-	double hold = 2.0;
+	double delay    = 18.0;
+	double hold     = 2.0;
 
 	int matrixHeight = matrix.height();
 	int matrixWidth  = matrix.height();
+
+	int option = 0;
 
 	while ((option = getopt(argc, argv, "x:f:i:d:s:h:m:")) != -1) {
 		switch (option) {
@@ -52,10 +51,10 @@ int main (int argc, char *argv[])
 
 	// Convert transparent PNG:s
 	if (true) {
-		Magick::Image img(Magick::Geometry(image.columns(), image.rows()), "black");
-		img.composite(image, 0, 0, Magick::OverCompositeOp);
+		Magick::Image tmp(Magick::Geometry(image.columns(), image.rows()), "black");
+		tmp.composite(image, 0, 0, Magick::OverCompositeOp);
 		
-		image = img;
+		image = tmp;
 	}
 /*
 	// Crop if needed
@@ -93,6 +92,8 @@ int main (int argc, char *argv[])
 
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
+		int matrixWidth  = matrix.width();
+		int matrixHeight = matrix.height();
 
 		for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
 			matrix.clear();
