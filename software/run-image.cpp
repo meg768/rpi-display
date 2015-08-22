@@ -9,7 +9,7 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 
 	string fileName = "";
-	string mode = "fade";
+	string mode = "scroll";
 	int option = 0;
 	double duration = 10.0;
 	int scroll = true;
@@ -85,7 +85,7 @@ int main (int argc, char *argv[])
 	int imageWidth   = image.columns();
 	int imageHeight  = image.rows();
 
-	if (mode == "scrollX") {
+	if (mode == "scroll") {
 		int offsetX = -matrixWidth;
 		int offsetY = -(matrixHeight - imageHeight) / 2;
 		int length  = matrixWidth * 2 + imageWidth;
