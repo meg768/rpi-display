@@ -282,7 +282,7 @@ int main (int argc, char *argv[])
 	Timer timer;
 
 	timer.duration(60);
-	timer.delay(2000);
+	timer.delay(2.0);
 	
 	int option = 0;
 	
@@ -292,7 +292,7 @@ int main (int argc, char *argv[])
 				timer.duration(atoi(optarg));
 				break;
 			case 'x':
-				timer.delay(atoi(optarg));
+				timer.delay(atof(optarg));
 				break;
 		}
 	}

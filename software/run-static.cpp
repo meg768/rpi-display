@@ -9,7 +9,7 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 	Timer timer;
 	
-	timer.delay(300);
+	timer.delay(2.0);
 
 	int option = 0;
 	
@@ -19,7 +19,7 @@ int main (int argc, char *argv[])
 				timer.duration(atoi(optarg));
 				break;
 			case 'x':
-				timer.delay(atoi(optarg));
+				timer.delay(atof(optarg));
 				break;
 		}
 	}

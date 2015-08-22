@@ -67,8 +67,7 @@ public:
 	}
 	
 private:
-	void Rotate(int x, int y, float angle,
-				float *new_x, float *new_y) {
+	void Rotate(int x, int y, float angle, float *new_x, float *new_y) {
 		*new_x = x * cosf(angle) - y * sinf(angle);
 		*new_y = x * sinf(angle) + y * cosf(angle);
 	}
@@ -88,7 +87,7 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 	Timer timer;
 
-	timer.delay(500);
+	timer.delay(3.0);
 
 	int option = 0;
 	int duration = -1;
@@ -99,7 +98,7 @@ int main (int argc, char *argv[])
 				timer.duration(atoi(optarg));
 				break;
 			case 'x':
-				timer.delay(atoi(optarg));
+				timer.delay(atof(optarg));
 				break;
 		}
 	}
