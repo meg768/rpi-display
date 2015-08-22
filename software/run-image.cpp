@@ -82,9 +82,6 @@ int main (int argc, char *argv[])
 		}
 	}
 */
-	int imageWidth   = image.columns();
-	int imageHeight  = image.rows();
-
 	if (mode == "scroll") {
 
 		if (true) {
@@ -111,68 +108,15 @@ int main (int argc, char *argv[])
 		}
 	}
 	
-	else if (mode == "fade") {
-
-		for (int i = 0; i < MaxRGB; i++) {
-			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "red");
-			img.composite(image, 0, 0, Magick::OverCompositeOp);
-			img.opacity(i);
-			img.colorSpace(Magick::RGBColorspace);
-			matrix.drawImage(img);
-			matrix.refresh();
-			usleep(50.0 * 1000.0);
-		}
+	else {
 
  
 		matrix.drawImage(image);
 		matrix.refresh();
 		
-//		if (duration > 0)
-//			usleep(1000.0 * duration);
 
-		sleep(2);
-/*
-		for (int i = MaxRGB; i > 0; i--) {
-			image.opacity(i);
-
-			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "red");
-			img.composite(image, 0, 0, Magick::OverCompositeOp);
-			matrix.drawImage(img);
-			matrix.refresh();
-			//usleep(4000.0 * 1000.0);
-		}
-*/
- /*
-		printf("%d", MaxRGB);
-		image.opacity(220 );
-
-		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
-		img.composite(image, 0, 0, Magick::OverCompositeOp);
-		image = img;
-
-		matrix.drawImage(image);
-		matrix.refresh();
-*/
-/*
-		for (int i = 100; i > 0; i--) {
-			image.opacity(i);
-			usleep(delay * 1000.0);
-			matrix.drawImage(image);
-			matrix.refresh();
-		}
-	*/
+		usleep(1000.0 * duration);
 	}
-	/*
-	else  {
-
-		matrix.drawImage(image);
-		matrix.refresh();
-		
-		if (duration > 0)
-			sleep(duration);
-		
-	}
-*/
 	
     return 0;
 }
