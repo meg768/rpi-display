@@ -93,30 +93,15 @@ int main (int argc, char *argv[])
 			
 			image = img;
 		}
+
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
-		int iterations   = 1;
-		int count        = 0;
-		
-		int screenHeight = matrixHeight;
-		int screenWidth  = matrixWidth;
-		int offsetX      = -screenWidth;
-		int offsetY      = -(screenHeight - imageHeight) / 2;
-		int i = 0;
-		
-		while (offsetX < imageWidth) {
+
+		for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
 			matrix.clear();
 			
 			matrix.drawImage(image, 0, 0, offsetX, 0);
 			matrix.refresh();
-
-			offsetX++;
-			i++;
-			usleep(int(delay * 1000.0));
-
-			if (hold > 0 && i  == imageWidth / 2) {
-				usleep(hold * 1000.0);
-			}
 		}
 	}
 	
