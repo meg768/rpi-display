@@ -95,7 +95,7 @@ int main (int argc, char *argv[])
 		int offsetY = -(matrixHeight - imageHeight) / 2;
 		int length  = matrixWidth * 2 + imageWidth;
 		
-		for (int i = 0; i < length; i++, offsetX++) {
+		for (int i = 0; i < length; i++, i++, offsetX++) {
 			
 			matrix.drawImage(image, 0, 0, offsetX, offsetY);
 			matrix.refresh();
