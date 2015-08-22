@@ -94,7 +94,7 @@ int main (int argc, char *argv[])
 		int offsetX = -matrixWidth;
 		int offsetY = -(matrixHeight - imageHeight) / 2;
 		int length  = matrixWidth * 2 + imageWidth;
-		int middle  = matrixWidth;
+		int middle  = (matrixWidth + imageWidth) / 2;
 		
 		for (int i = 0; i < length; i++, offsetX++) {
 			
