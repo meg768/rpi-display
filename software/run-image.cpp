@@ -98,6 +98,9 @@ int main (int argc, char *argv[])
 		int iterations   = 1;
 		int count        = 0;
 		
+		int screenHeight = matrixHeight;
+		int screenWidth  = matrixWidth;
+		
 		while (count < iterations) {
 			matrix.clear();
 			
