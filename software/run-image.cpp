@@ -49,7 +49,7 @@ int main (int argc, char *argv[])
 	
 	Magick::Image image;
 	image.read(fileName);
-
+/*
 	// Convert transparent PNG:s
 	if (true) {
 		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
@@ -81,7 +81,7 @@ int main (int argc, char *argv[])
 			image.sample(Magick::Geometry(matrix.width(), matrix.height()));
 		}
 	}
-
+*/
 	int imageWidth   = image.columns();
 	int imageHeight  = image.rows();
 
