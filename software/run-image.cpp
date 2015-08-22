@@ -94,7 +94,7 @@ int main (int argc, char *argv[])
 		int offsetX = -matrixWidth;
 		int offsetY = -(matrixHeight - imageHeight) / 2;
 		int length  = matrixWidth * 2 + imageWidth;
-		int middle  = length / 2;
+		int middle  = matrixWidth;
 		
 		for (int i = 0; i < length; i++, offsetX++) {
 			
@@ -103,7 +103,7 @@ int main (int argc, char *argv[])
 			
 			usleep(delay * 1000.0);
 			
-			if (hold > 0 && i == middle) {
+			if (i == middle) {
 				usleep(hold * 1000.0);
 			}
 		}
