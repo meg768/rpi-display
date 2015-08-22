@@ -102,6 +102,12 @@ int main (int argc, char *argv[])
 			
 			matrix.drawImage(image, 0, 0, offsetX, 0);
 			matrix.refresh();
+			
+			usleep(1000.0 * delay);
+
+			if (hold > 0 && offsetX == imageWidth / 2)
+				usleep(1000.0 * hold);
+			
 		}
 	}
 	
