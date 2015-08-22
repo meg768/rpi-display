@@ -8,13 +8,14 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 
 	int option = 0;
-	int duration = 0;
-	int scroll = 0;
+	int duration = 10;
+	int scroll = true;
 	int iterations = 1;
 	double rotate = 0;
 	string fileName = "";
+	double delay = 2.0;
 	
-	while ((option = getopt(argc, argv, "f:r:i:d:s")) != -1) {
+	while ((option = getopt(argc, argv, "x:f:r:i:d:s:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atoi(optarg);
@@ -23,13 +24,16 @@ int main (int argc, char *argv[])
 				iterations = atoi(optarg);
 				break;
 			case 's':
-				scroll = true;
+				scroll = atoi(optarg);
 				break;
 			case 'r':
 				rotate = atof(optarg);
 				break;
 			case 'f':
 				fileName = optarg;
+				break;
+			case 'x':
+				delay = atof(optarg);
 				break;
 		}
 	}
@@ -76,7 +80,7 @@ int main (int argc, char *argv[])
 		
 		
 		if (duration > 0)
-			sleep(duration);
+			usleep(duration);
 		
 	}
 	else {
@@ -143,7 +147,7 @@ int main (int argc, char *argv[])
 				}
 			}
 			
-			usleep(4 * 1000);
+			usleep(delay * 1000.0);
 		}
 		
 	}

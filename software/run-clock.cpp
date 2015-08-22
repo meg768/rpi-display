@@ -217,7 +217,7 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 	
 	Matrix matrix;
-	Timer timer(-1);
+	Timer timer(500.0);
 	
 	int option = 0;
 	
@@ -235,7 +235,7 @@ int main (int argc, char *argv[])
 		time_t t = time(0);
 		struct tm *now = localtime(&t);
 		clock.drawTime(now);
-		usleep(500 * 1000);
+		timer.sleep();
 	}
 	
 	matrix.clear();
