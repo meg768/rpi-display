@@ -105,7 +105,7 @@ int main (int argc, char *argv[])
 	}
 	
 	else if (mode == "fade") {
-/*
+
 		for (int i = 0; i < MaxRGB; i++) {
 			image.opacity(i);
 
@@ -113,10 +113,10 @@ int main (int argc, char *argv[])
 			img.composite(image, 0, 0, Magick::OverCompositeOp);
 			matrix.drawImage(img);
 			matrix.refresh();
-			//usleep(4000.0 * 1000.0);
+			usleep(500.0 * 1000.0);
 		}
-*/
-		
+
+ 
 		matrix.drawImage(image);
 		matrix.refresh();
 		
