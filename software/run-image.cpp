@@ -73,10 +73,10 @@ int main (int argc, char *argv[])
 
 		//const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, 32, 32);
 		
-		//Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
-		image.composite(image, 0, 0, Magick::OverCompositeOp);
+		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+		img.composite(image, 0, 0, Magick::OverCompositeOp);
 		
-		
+		image = img;
 		matrix.drawImage(image);
 		matrix.refresh();
 		
