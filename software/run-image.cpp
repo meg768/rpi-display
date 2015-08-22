@@ -78,6 +78,8 @@ int main (int argc, char *argv[])
 			image.sample(Magick::Geometry(matrix.width(), matrix.height()));
 		}
 	}
+
+	scroll = true;
 	
 	if (!scroll) {
 
@@ -99,7 +101,7 @@ int main (int argc, char *argv[])
 
 		for (int i = 0, offset = screenWidth; i < screenWidth * 2 + imageWidth; i++, offset--) {
 			
-			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, screenWidth, screenHeight);
+			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
 			
 			for (int y = 0; y < screenHeight; y++) {
 				for (int x = 0; x < screenWidth; x++) {
@@ -107,6 +109,7 @@ int main (int argc, char *argv[])
 					pixels++;
 				}
 			}
+			offsetX++;
 			matrix.refresh();
 			usleep(delay * 1000.0);
 		}
