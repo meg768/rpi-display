@@ -13,9 +13,10 @@ int main (int argc, char *argv[])
 	int iterations = 1;
 	double rotate = 0;
 	string fileName = "";
-	double delay = 2.0;
+	double delay = 18.0;
+	double hold = 0.0;
 	
-	while ((option = getopt(argc, argv, "x:f:r:i:d:s:")) != -1) {
+	while ((option = getopt(argc, argv, "x:f:r:i:d:s:h:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atoi(optarg);
@@ -34,6 +35,9 @@ int main (int argc, char *argv[])
 				break;
 			case 'x':
 				delay = atof(optarg);
+				break;
+			case 'h':
+				hold = atof(optarg);
 				break;
 		}
 	}
@@ -116,6 +120,7 @@ int main (int argc, char *argv[])
 		
 		while (count < iterations) {
 			
+			
 			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
 			
 			for (int row = 0; row < screenHeight; row++) {
@@ -146,7 +151,13 @@ int main (int argc, char *argv[])
 					count++;
 				}
 			}
-			
+			/*
+			if (hold > 0) {
+				if () {
+					usleep(hold * 1000.0);
+				}
+			}
+			 */
 			usleep(delay * 1000.0);
 		}
 		
