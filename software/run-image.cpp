@@ -93,7 +93,7 @@ int main (int argc, char *argv[])
 	else {
 		int offsetX = -matrixWidth;
 		int offsetY = -(matrixHeight - imageHeight) / 2;
-		int length  = screenWidth * 2 + imageWidth;
+		int length  = matrixWidth * 2 + imageWidth;
 		
 		for (int i = 0; i < length; i++, offsetX++) {
 			
