@@ -100,7 +100,7 @@ int main (int argc, char *argv[])
 			for (int y = 0; y < matrixHeight; y++) {
 				for (int x = 0; x < matrixWidth; x++) {
 					matrix.setPixel(x, y, pixel->red, pixel->green, pixel->blue);
-					pixel+;
+					pixel++;
 				}
 			}
 			//matrix.drawImage(image, 0, 0, offsetX, offsetY);
