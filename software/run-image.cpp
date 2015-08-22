@@ -98,7 +98,7 @@ int main (int argc, char *argv[])
 					matrix.setPixel(x, y, 0, 0, 0);
 			
 			//matrix.clear();
-			matrix.drawImage(image, 0, 0, offsetX, offsetY);
+			matrix.drawImage(image, 0, 0, offsetX+1, offsetY+1);
 			matrix.refresh();
 			
 			usleep(delay * 1000.0);
