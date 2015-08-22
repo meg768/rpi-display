@@ -93,12 +93,17 @@ int main (int argc, char *argv[])
 		
 		for (int i = 0; i < length; i++, offsetX++) {
 			
-			for (int x = 0; x < 32; x++)
-				for (int y = 0; y < 32; y++)
-					matrix.setPixel(x, y, 0, 0, 0);
-			
-			//matrix.clear();
-			matrix.drawImage(image, 0, 0, offsetX+1, offsetY+1);
+			matrix.clear();
+
+			const Magick::PixelPacket *pixel = image.getConstPixels(offsetX, offsetY, matrixWidth, matrixHeight);
+
+			for (int y = 0; y < matrixHeight; y++) {
+				for (x = 0; x < matrixWidth; x++) {
+					matrix.setPixel(x, y, pixel->red, pixel->green, pixel->blue);
+					pixels+;
+				}
+			}
+			//matrix.drawImage(image, 0, 0, offsetX, offsetY);
 			matrix.refresh();
 			
 			usleep(delay * 1000.0);
