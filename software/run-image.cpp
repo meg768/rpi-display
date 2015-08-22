@@ -98,7 +98,7 @@ int main (int argc, char *argv[])
 			const Magick::PixelPacket *pixel = image.getConstPixels(offsetX, offsetY, matrixWidth, matrixHeight);
 
 			for (int y = 0; y < matrixHeight; y++) {
-				for (x = 0; x < matrixWidth; x++) {
+				for (int x = 0; x < matrixWidth; x++) {
 					matrix.setPixel(x, y, pixel->red, pixel->green, pixel->blue);
 					pixels+;
 				}
