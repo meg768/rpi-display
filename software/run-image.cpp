@@ -51,39 +51,42 @@ int main (int argc, char *argv[])
 	Magick::Image image;
 	image.read(fileName);
 
-	{
+	// Convert transparent PNG:s
+	if (true) {
 		Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
 		img.composite(image, 0, 0, Magick::OverCompositeOp);
 		
 		image = img;
-		
 	}
 
-	if (!scroll) {
-		int imageWidth = image.columns();
+	// Crop if needed
+	if (true) {
+		int imageWidth  = image.columns();
 		int imageHeight = image.rows();
-		
+
 		// Make square image
 		if (imageWidth != imageHeight) {
 			if (imageWidth > imageHeight)
 				image.crop(Magick::Geometry(imageHeight, imageHeight, (imageWidth - imageHeight) / 2, 0));
 			else
 				image.crop(Magick::Geometry(imageWidth, imageWidth, 0, (imageHeight - imageWidth) / 2));
-			
-			imageWidth  = image.rows();
-			imageHeight = image.columns();
-			
 		}
-		
-		// Scale if needed
+	}
+
+	// Scale if needed
+	if (true) {
+		int imageWidth  = image.columns();
+		int imageHeight = image.rows();
+
 		if (imageWidth != matrix.width()) {
 			image.sample(Magick::Geometry(matrix.width(), matrix.height()));
 		}
-
+	}
+	
+	if (!scroll) {
 
 		matrix.drawImage(image);
 		matrix.refresh();
-		
 		
 		if (duration > 0)
 			sleep(duration);
