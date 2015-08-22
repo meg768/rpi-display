@@ -110,7 +110,7 @@ int main (int argc, char *argv[])
 			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "red");
 			img.composite(image, 0, 0, Magick::OverCompositeOp);
 			img.opacity(i);
-			img.colorSpace(RGBColorspace);
+			img.colorSpace(Magick::RGBColorspace);
 			matrix.drawImage(img);
 			matrix.refresh();
 			usleep(50.0 * 1000.0);
