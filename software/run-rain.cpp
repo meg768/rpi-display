@@ -150,13 +150,16 @@ int main (int argc, char *argv[])
 
 	int option;
 	
-	while ((option = getopt(argc, argv, "d:x:")) != -1) {
+	while ((option = getopt(argc, argv, "d:x:h:")) != -1) {
 		switch (option) {
 			case 'd':
 				animation.duration(atoi(optarg));
 				break;
 			case 'x':
 				animation.delay(atof(optarg));
+				break;
+			case 'h':
+				animation.hue(atoi(optarg));
 				break;
 		}
 	}

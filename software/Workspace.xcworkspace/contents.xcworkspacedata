@@ -58,7 +58,4 @@
    <FileRef
       location = "group:run-wipe.cpp">
    </FileRef>
-   <FileRef
-      location = "group:../../../../../../Volumes/Macintosh HD/Users/Magnus/Dropbox/Beaglebone/twitter-display/software/run-rain.cpp">
-   </FileRef>
 </Workspace>

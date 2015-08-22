@@ -499,7 +499,7 @@ int main (int argc, char *argv[])
 
 	
 	Timer timer;
-	timer.delay(3.0);
+	timer.delay(10.0);
 	
 	while ((option = getopt(argc, argv, "d:m:x:")) != -1) {
 		switch (option) {

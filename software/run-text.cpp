@@ -11,7 +11,8 @@ int main (int argc, char *argv[])
 	int option       = 0;
 	int iterations   = 1;
 	int fontSize     = 20;
-	int delay        = 18;
+	double delay     = 18.0;
+
 	std::string text = "ABC 123";
 	
 	try {
@@ -20,7 +21,7 @@ int main (int argc, char *argv[])
 		while ((option = getopt(argc, argv, "t:i:s:c:f:x:")) != -1) {
 			switch (option) {
 				case 'x':
-					delay = atoi(optarg);
+					delay = atof(optarg);
 					break;
 				case 'i':
 					iterations = atoi(optarg);
@@ -102,7 +103,7 @@ int main (int argc, char *argv[])
 				count++;
 			}
 
-			usleep(delay * 1000);
+			usleep(int(delay * 1000.0));
 		}
 
 	}

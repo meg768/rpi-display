@@ -282,7 +282,7 @@ int main (int argc, char *argv[])
 	Timer timer;
 
 	timer.duration(60);
-	timer.delay(2.0);
+	timer.delay(50.0);
 	
 	int option = 0;
 	
