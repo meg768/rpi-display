@@ -111,10 +111,9 @@ int main (int argc, char *argv[])
 
 			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
 			img.composite(image, 0, 0, Magick::OverCompositeOp);
-			image = img;
-			usleep(400.0 * 1000.0);
 			matrix.drawImage(img);
 			matrix.refresh();
+			usleep(4000.0 * 1000.0);
 		}
 		
 		matrix.drawImage(image);
@@ -128,10 +127,9 @@ int main (int argc, char *argv[])
 
 			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
 			img.composite(image, 0, 0, Magick::OverCompositeOp);
-			image = img;
-			usleep(400.0 * 1000.0);
 			matrix.drawImage(img);
 			matrix.refresh();
+			usleep(4000.0 * 1000.0);
 		}
 /*
 		printf("%d", MaxRGB);
