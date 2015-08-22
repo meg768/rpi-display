@@ -86,26 +86,36 @@ int main (int argc, char *argv[])
 	int imageHeight  = image.rows();
 
 	if (mode == "scroll") {
-		int offsetX = -matrixWidth;
-		int offsetY = -(matrixHeight - imageHeight) / 2;
-		int length  = matrixWidth * 2 + imageWidth;
-		int middle  = (matrixWidth + imageWidth) / 2;
+
+		if (true) {
+			Magick::Image img(Magick::Geometry(image.rows(), image.columns() + 2 * matrixWidth), "black");
+			img.composite(image, matrixWidth, 0, Magick::OverCompositeOp);
+			
+			image = img;
+		}
 		
+		int length  = image.width();
+		int offsetX      = -matrixWidth;
+		int offsetY      = -(matrixHeight - imageHeight) / 2;
+		int middle      = 15;
 		for (int i = 0; i < length; i++, offsetX++) {
 			
 			matrix.clear();
 
-			const Magick::PixelPacket *pixel = image.getConstPixels(offsetX, offsetY, matrixWidth, matrixHeight);
-
-			for (int y = 0; y < matrixHeight; y++) {
-				for (int x = 0; x < matrixWidth; x++) {
-					if (offsetX + x > imageWidth || offsetX < 0)
-						matrix.setPixel(x, y, 0, 0, 0);
+			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
+			
+			for (int row = 0; row < screenHeight; row++) {
+				for (int col = 0; col < screenWidth; col++) {
+					if (offsetX + col < 0 || offsetX + col >= imageWidth)
+						matrix.setPixel(col, row, 0, 0, 0);
+					else if (offsetY + row < 0 || offsetY + row >= imageHeight)
+						matrix.setPixel(col, row, 0, 0, 0);
 					else
-						matrix.setPixel(x, y, pixel->red, pixel->green, pixel->blue);
-					pixel++;
+						matrix.setPixel(col, row, pixels->red, pixels->green, pixels->blue);
+					pixels++;
 				}
 			}
+
 			//matrix.drawImage(image, 0, 0, offsetX, offsetY);
 			matrix.refresh();
 			
