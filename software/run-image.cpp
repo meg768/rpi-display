@@ -101,7 +101,7 @@ int main (int argc, char *argv[])
 			
 			usleep(1000.0 * delay);
 
-			if (hold > 0 && (offsetX == matrixWidth + imageWidth) / 2)
+			if (hold > 0 && offsetX == imageWidth / 2)
 				usleep(1000.0 * 1000.0 * hold);
 			
 		}
