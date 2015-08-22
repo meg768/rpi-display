@@ -114,7 +114,7 @@ int main (int argc, char *argv[])
 			matrix.refresh();
 		}
 */
-		image.opacity(50);
+		image.opacity(MaxRGB / 2);
 		matrix.drawImage(image);
 		matrix.refresh();
 		
