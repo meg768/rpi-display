@@ -495,12 +495,11 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 
 	int option = 0;
-	int delay  = 200;
+	int mode = 2;
+
 	
 	Timer timer;
-	int mode = 2;
-	
-	timer.delay(delay);
+	timer.delay(3.0);
 	
 	while ((option = getopt(argc, argv, "d:m:x:")) != -1) {
 		switch (option) {
@@ -511,7 +510,7 @@ int main (int argc, char *argv[])
 				mode = atoi(optarg);
 				break;
 			case 'x':
-				timer.delay(atoi(optarg));
+				timer.delay(atof(optarg));
 				break;
 		}
 	}
