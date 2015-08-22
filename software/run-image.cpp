@@ -14,7 +14,7 @@ int main (int argc, char *argv[])
 	int scroll = true;
 	int iterations = 1;
 	double delay = 18.0;
-	double hold = 2;
+	double hold = 2.0;
 
 	int matrixHeight = matrix.height();
 	int matrixWidth  = matrix.height();
@@ -104,7 +104,7 @@ int main (int argc, char *argv[])
 			usleep(delay * 1000.0);
 			
 			if (i == middle) {
-				usleep(hold * 1000.0);
+				usleep(hold * 1000.0 * 1000.0);
 			}
 		}
 		
