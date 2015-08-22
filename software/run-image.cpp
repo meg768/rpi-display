@@ -102,6 +102,7 @@ int main (int argc, char *argv[])
 		int screenWidth  = matrixWidth;
 		int offsetX      = -screenWidth;
 		int offsetY      = -(screenHeight - imageHeight) / 2;
+		int i = 0;
 		
 		while (offsetX < imageWidth) {
 			matrix.clear();
@@ -110,10 +111,10 @@ int main (int argc, char *argv[])
 			matrix.refresh();
 
 			offsetX++;
-
+			i++;
 			usleep(int(delay * 1000.0));
 
-			if (hold > 0 && offsetX == imageWidth / 2) {
+			if (hold > 0 && i  == matrixWidth + imageWidth / 2) {
 				usleep(hold * 1000.0);
 			}
 		}
