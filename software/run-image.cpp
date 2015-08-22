@@ -103,10 +103,10 @@ int main (int argc, char *argv[])
 			
 			matrix.clear();
 
-			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
+			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, matrixWidth, matrixHeight);
 			
-			for (int row = 0; row < screenHeight; row++) {
-				for (int col = 0; col < screenWidth; col++) {
+			for (int row = 0; row < matrixHeight; row++) {
+				for (int col = 0; col < matrixWidth; col++) {
 					if (offsetX + col < 0 || offsetX + col >= imageWidth)
 						matrix.setPixel(col, row, 0, 0, 0);
 					else if (offsetY + row < 0 || offsetY + row >= imageHeight)
