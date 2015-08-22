@@ -84,7 +84,7 @@ int main (int argc, char *argv[])
 		
 		
 		if (duration > 0)
-			usleep(1000.0 * duration);
+			sleep(duration);
 		
 	}
 	else {
