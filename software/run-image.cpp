@@ -102,8 +102,8 @@ int main (int argc, char *argv[])
 			
 			usleep(1000.0 * delay);
 
-			if (hold > 0 && offsetX == imageWidth / 2)
-				usleep(1000.0 * hold);
+			if (hold > 0 && offsetX == (matrixWith + imageWidth) / 2)
+				usleep(1000.0 * 1000.0 * hold);
 			
 		}
 	}
@@ -115,7 +115,7 @@ int main (int argc, char *argv[])
 		matrix.refresh();
 		
 
-		usleep(1000.0 * duration);
+		usleep(1000.0 * 1000.0 * duration);
 	}
 	
     return 0;
