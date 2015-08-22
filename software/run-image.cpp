@@ -107,6 +107,7 @@ int main (int argc, char *argv[])
 					pixels++;
 				}
 			}
+			matrix.refresh();
 			usleep(delay * 1000.0);
 		}
 		
