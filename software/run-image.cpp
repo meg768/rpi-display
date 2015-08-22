@@ -103,12 +103,15 @@ int main (int argc, char *argv[])
 			
 			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
 			
+			matrix.drawImage(image, 0, 0, offsetX, offsetY);
+			/*
 			for (int y = 0; y < screenHeight; y++) {
 				for (int x = 0; x < screenWidth; x++) {
 					matrix.setPixel(x, y, pixels->red, pixels->green, pixels->blue);
 					pixels++;
 				}
 			}
+			 */
 			offsetX++;
 			matrix.refresh();
 			usleep(delay * 1000.0);
