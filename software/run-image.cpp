@@ -9,7 +9,8 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 
 	string fileName = "";
-	string mode = "scroll";
+	string mode     = "scroll";
+	int iterations  = 1;
 	double duration = 10.0;
 	double delay    = 18.0;
 	double hold     = 2.0;
@@ -19,16 +20,13 @@ int main (int argc, char *argv[])
 
 	int option = 0;
 
-	while ((option = getopt(argc, argv, "x:f:i:d:s:h:m:")) != -1) {
+	while ((option = getopt(argc, argv, "x:f:i:d:h:m:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atof(optarg);
 				break;
 			case 'i':
 				iterations = atoi(optarg);
-				break;
-			case 's':
-				scroll = atoi(optarg);
 				break;
 			case 'f':
 				fileName = optarg;
