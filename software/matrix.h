@@ -172,9 +172,9 @@ class Matrix {
 		
 		for (int row = y; row < height; row++) {
 			for (int col = x; col < width; col++) {
-				uint8_t red   = pixels->red * pixels->opacity;
-				uint8_t green = pixels->green * pixels->opacity;
-				uint8_t blue  = pixels->blue * pixels->opacity;
+				uint8_t red   = pixels->red;
+				uint8_t green = pixels->green;
+				uint8_t blue  = pixels->blue;
 				setPixel(col, row, red, green, blue);
 				pixels++;
 			}
