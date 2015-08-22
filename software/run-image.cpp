@@ -119,13 +119,15 @@ int main (int argc, char *argv[])
 		matrix.drawImage(image);
 		matrix.refresh();
 		
-		if (duration > 0)
-			usleep(1000.0 * duration);
+//		if (duration > 0)
+//			usleep(1000.0 * duration);
 
+		sleep(2);
+		
 		for (int i = MaxRGB; i > 0; i--) {
 			image.opacity(i);
 
-			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "black");
+			Magick::Image img(Magick::Geometry(image.rows(), image.columns()), "red");
 			img.composite(image, 0, 0, Magick::OverCompositeOp);
 			matrix.drawImage(img);
 			matrix.refresh();
