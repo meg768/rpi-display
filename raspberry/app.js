@@ -26,28 +26,23 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 1)) {
+		switch (random.rand(0, 2)) {
 			case 0:
 				cmd.command = './run-rain';
-				cmd.args    = ['-d', 2];
+				cmd.args    = ['-d', -1];
 				break;
 			case 1: 
 				cmd.command = './run-perlin';
-				cmd.args    = ['-d', 2];
+				cmd.args    = ['-d', -1];
+				break;
+			case 2: 
+				cmd.command = './run-perlin';
+				cmd.args    = ['-d', -1, '-m', 3, '-x', 50];
 				break;
 		}
 		
-		var process = startProcess(cmd.command, cmd.args, cmd.options);
+		startProcess(cmd.command, cmd.args, cmd.options);
 		
-		if (process != undefined) {
-			process.on('close', function() {		
-				startRandomProcess();
-			});
-			process.on('error', function() {		
-				startRandomProcess();
-			});
-			
-		}
 		
 	}
 	
