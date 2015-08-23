@@ -104,7 +104,7 @@ public:
 				
 				// Wait for next frame to display
 				// (Seems like we have to reduce the delay by some factor)
-				usleep(int(animationDelay * 1000.0 * delay));
+				usleep(int(animationDelay * 1000.0 * delay()));
 			}
 			
 			matrix->clear();
