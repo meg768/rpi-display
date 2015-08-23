@@ -33,7 +33,7 @@ function main() {
 			msg.type     = 'text';
 			msg.priority = 'low';
 			msg.color    = 'rgb(0, 0, 255)';
-			msg.text     = sprintf('%02d:%02d', date.getHours(), date.getMinutes());
+			msg.text     = sprintf('   %02d:%02d   ', date.getHours(), date.getMinutes());
 
 			message(msg);	
 		});
