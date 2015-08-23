@@ -25,11 +25,12 @@ function main() {
 		rule.second = 30;
 
 		function hslToRgb(h, s, l){
+		    
 		    var r, g, b;
 		
-		    if(s == 0){
+		    if (s == 0){
 		        r = g = b = l; // achromatic
-		    }else{
+		    } else{
 		        var hue2rgb = function hue2rgb(p, q, t){
 		            if(t < 0) t += 1;
 		            if(t > 1) t -= 1;
@@ -48,6 +49,7 @@ function main() {
 		
 		    return {red:Math.round(r * 255), green:Math.round(g * 255), blue:Math.round(b * 255)};
 		}	
+		
 		schedule.scheduleJob(rule, function() {
 
 			var now = new Date();
@@ -75,22 +77,26 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 5)) {
+		switch (random.rand(0, 9)) {
 			case 0:
 			case 1:
+			case 2:
+			case 3:
+			case 4:
 				cmd.command = './run-rain';
 				cmd.args    = ['-d', -1];
 				break;
-			case 2: 
+			case 5: 
 				cmd.command = './run-perlin';
 				cmd.args    = ['-d', -1, '-m', 2, '-x', 25];
 				break;
-			case 3: 
+			case 6: 
+			case 7: 
+			case 8:
 				cmd.command = './run-perlin';
 				cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
 				break;
-			case 4: 
-			case 5: 
+			case 9: 
 				cmd.command = './run-gif';
 				cmd.args    = ['-d', -1];
 				break;
