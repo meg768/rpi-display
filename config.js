@@ -141,10 +141,6 @@ module.exports = {
 
 		],
 		
-		font : {
-			size: 26
-		},
-		
 		colors:  {
 			clock   : 'blue',
 			price   : 'white',
