@@ -53,7 +53,7 @@ function main() {
 			var now = new Date();
 			var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;
 			
-			var color = hslToRgb(hue / 360, 1, 1);
+			var color = hslToRgb(hue / 360, 1, 0.5);
 			
 			var msg = {};
 			msg.type     = 'text';
