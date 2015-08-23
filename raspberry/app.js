@@ -109,9 +109,9 @@ function main() {
 		messages.forEach(function(msg) {
 
 			if (msg.type == 'text') {
-				var command = 'python';
-				var args    = ['run-text.py'];
-				var options = {cwd: 'python'};
+				var command = 'run-text';
+				var args    = [];
+				var options = {cwd: 'matrix'};
 		
 
 				if (typeof msg.text == 'string') {
@@ -149,9 +149,9 @@ function main() {
 			}
 
 			if (msg.type == 'image') {
-				var command = 'python';
-				var args    = ['run-image.py'];
-				var options = {cwd: 'python'};
+				var command = 'run-image';
+				var args    = [];
+				var options = {cwd: 'matrix'};
 		
 
 				if (msg.image != undefined) {
@@ -174,9 +174,9 @@ function main() {
 			}
 
 			if (msg.type == 'emoji') {
-				var command = 'python';
-				var args    = ['run-image.py'];
-				var options = {cwd: 'python'};
+				var command = 'run-image';
+				var args    = [];
+				var options = {cwd: 'matrix'};
 		
 
 				if (msg.id != undefined) {
@@ -198,7 +198,7 @@ function main() {
 								
 			}
 
-
+			/*
 			if (msg.type == 'audio') {
 				var command   = 'omxplayer';
 				var args      = [];
@@ -213,6 +213,7 @@ function main() {
 				if (args.length > 0)
 					commands.push({command:command, args:args, options:options, priority:msg.priority});
 			}
+			*/
 
 			
 		});
@@ -223,7 +224,7 @@ function main() {
 	
 	function enableSocketIO() {
 	
-		var serverURL  = 'http://phase-display.herokuapp.com';
+		var serverURL  = 'http://rpi-display.herokuapp.com';
 		var serverName = 'Heroku';
 		
 		socket = require('socket.io-client')(serverURL);
