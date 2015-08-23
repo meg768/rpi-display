@@ -61,7 +61,7 @@ module.exports = {
 			hour : range(8, 21),
 
 			// Display RSS news every 20 minutes
-			minute : range(0, 59, 20)
+			minute : range(7, 59, 20)
 		}
 		
 	},
@@ -81,7 +81,7 @@ module.exports = {
 		
 		schedule: {
 			hour   : range(8, 21),
-			minute : range(5, 59, 5)
+			minute : range(11, 59, 30)
 		}
 		
 	},
@@ -113,7 +113,7 @@ module.exports = {
 		
 		schedule: {
 			hour   : range(8, 21),
-			minute : range(0, 59, 10)
+			minute : range(13, 59, 15)
 		},
 	
 		rates : [
