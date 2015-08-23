@@ -25,7 +25,7 @@ module.exports = {
 	matrix: {
 		text: {
 			// The default font used when not specified
-			font  : 'Century-Gothic-Bold-Italic',
+			font  : 'Arial-Bold',
 			
 			// ... and size
 			size  : 24,
@@ -104,7 +104,7 @@ module.exports = {
 			minute : range(0, 59, 15)
 		},
 		
-		host     : 'phase-display.herokuapp.com',
+		host     : 'rpi-display.herokuapp.com',
 		path     : '/'
 	},
 	
