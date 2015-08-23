@@ -41,15 +41,14 @@ public:
 					closedir(dir);
 				}
 				
-				if (files.size() == 0) {
-					fprintf(stderr, "No animation specified.\n");
-					exit(-1);
-				}
+				if (files.size() > 0)
+					_fileName = folder + "/" + files[rand() % files.size()];
 				
-				int index = rand() % files.size();
-				printf("Picking imae %d\n", index);
-				_fileName = folder + "/" + files[index];
-				
+			}
+
+			if (_fileName.length() == 0) {
+				fprintf(stderr, "No animation specified.\n");
+				exit(-1);
 			}
 			
 			if (duration() == 0)
