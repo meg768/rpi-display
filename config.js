@@ -66,16 +66,6 @@ module.exports = {
 		
 	},
 	
-	clock: {
-		enabled: false,
-		
-		schedule: {
-			hour   : range(8, 22),
-			minute : range(0, 59, 1),
-			second : range(0, 59, 10)
-		}		
-	},
-
 	weather: {
 		enabled: true,
 		

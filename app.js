@@ -132,26 +132,6 @@ function runWeather(config) {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-function runClock(config) {
-
-	if (config.enabled) {
-
-		var Clock = require('./modules/clock.js');
-		var clock = new Clock(config);
-
-
-		clock.on('time', function(date) {
-			var display = new matrix.Display();
-			display.text(sprintf('%02d:%02d', date.getHours(), date.getMinutes()));
-			display.send({priority:'low'});
-		});
-		
-	}
-	
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
 function runRSS(config) {
 
 	if (config.enabled) {
@@ -185,7 +165,6 @@ function run() {
 		response.send("OK");
 	});
 	
-	runClock(config.clock);
 	runWeather(config.weather);
 	runQuotes(config.quotes);
 	runRates(config.rates);
