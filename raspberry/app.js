@@ -26,7 +26,7 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 2)) {
+		switch (random.rand(0, 1)) {
 			case 0:
 				cmd.command = './run-rain';
 				cmd.args    = ['-d', 2];
