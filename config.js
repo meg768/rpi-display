@@ -28,7 +28,7 @@ module.exports = {
 			font  : 'Arial-Bold',
 			
 			// ... and size
-			size  : 24,
+			size  : 20,
 			
 			// .. and color ('random' may also be used)
 			color : 'blue',
