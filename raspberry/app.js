@@ -17,21 +17,45 @@ function main() {
 	var _queue = new Queue();
 
 
+	function startRandomProcess() {
+
+		if (!_queue.empty()) {
+			return;
+		}
+
+		var cmd = {};
+		cmd.options = {cwd: 'matrix'}
+		
+		switch (random.rand(0, 2)) {
+			case 0:
+				cmd.command = './run-rain';
+				cmd.args    = ['-d', 2];
+				break;
+			case 1: 
+				cmd.command = './run-perlin';
+				cmd.args    = ['-d', 2];
+				break;
+		}
+		
+		var process = startProcess(cmd.command, cmd.args, cmd.options);
+		
+		if (process != undefined) {
+			process.on('close', function() {		
+				startRandomProcess();
+			});
+			process.on('error', function() {		
+				startRandomProcess();
+			});
+			
+		}
+		
+	}
+	
 	_queue.on('idle', function() {
 
 		console.log('Idle...');
 
-		var command = './run-rain';
-		var args    = [];
-		var options = {cwd: 'matrix'};
-
-		args.push('-d');
-		args.push(-1);
-		
-		startProcess(command, args, options);
-		
-
-
+		startRandomProcess();
 	});
 	
 	_queue.on('process', function(item, callback) {
@@ -96,7 +120,7 @@ function main() {
 				});		
 			}
 			
-			_process = process;
+			return _process = process;
 		}
 		catch (error) {
 			NO(error);
