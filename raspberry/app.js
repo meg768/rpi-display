@@ -17,6 +17,28 @@ function main() {
 	var _queue = new Queue();
 
 
+		
+	function enableClock() {
+		var rule = new schedule.RecurrenceRule();
+	
+		rule.minute = new schedule.Range(0, 59, 1);
+		rule.second = new schedule.Range(0, 59, 10);
+
+	
+		schedule.scheduleJob(rule, function() {
+
+			var date = new Date();
+			
+			var msg = {};
+			msg.type     = 'text';
+			msg.priority = 'low';
+			msg.color    = 'rgb(0, 0, 255)';
+			msg.text     = sprintf('%02d:%02d', date.getHours(), date.getMinutes());
+
+			message(msg);	
+		});
+	}
+	
 	function startRandomProcess() {
 
 		if (!_queue.empty()) {
@@ -366,6 +388,7 @@ function main() {
 
 	enableSocketIO();
 	sayHello();
+	enableClock();
 	
 	 	
 }
