@@ -42,6 +42,7 @@ public:
 		}
 		else
 			hue = _hue;
+		hue = rand() % 360; ////luminance -= (rand() % 30) + 15;
 
 		matrix->setPixel(x, y--, 255, 255, 255);
 		
