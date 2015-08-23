@@ -25,6 +25,9 @@ function main() {
 		var args    = [];
 		var options = {cwd: 'matrix'};
 
+		args.push('-d');
+		args.push('-1');
+		
 		startProcess(command, args, options);
 		
 
