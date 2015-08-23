@@ -27,13 +27,13 @@ function main() {
 	
 		schedule.scheduleJob(rule, function() {
 
-			var date = new Date();
+			var now = new Date();
+			var hue = ((now.getHors() % 12) * 60 + now.getMinutes()) / 2;
 			
 			var msg = {};
 			msg.type     = 'text';
 			msg.priority = 'low';
-			msg.color    = 'rgb(0, 0, 255)';
-			msg.text     = sprintf('   %02d:%02d   ', date.getHours(), date.getMinutes());
+			msg.text     = sprintf('   %02d:%02d   ', now.getHours(), now.getMinutes());
 
 			message(msg);	
 		});
