@@ -21,7 +21,7 @@ function main() {
 
 		console.log('Idle...');
 
-		var command = './run-text';
+		var command = './run-rain';
 		var args    = [];
 		var options = {cwd: 'matrix'};
 
