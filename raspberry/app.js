@@ -39,7 +39,7 @@ function main() {
 		});
 	}
 	
-	function startRandomProcess() {
+	function startBackgroundProcess() {
 
 		if (!_queue.empty()) {
 			return;
@@ -48,7 +48,7 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 3)) {
+		switch (random.rand(0, 4)) {
 			case 0:
 				cmd.command = './run-rain';
 				cmd.args    = ['-d', -1];
@@ -65,6 +65,10 @@ function main() {
 				cmd.command = './run-gif';
 				cmd.args    = ['-d', -1];
 				break;
+			case 4: 
+				cmd.command = './run-twinkle';
+				cmd.args    = ['-d', -1];
+				break;
 		}
 		
 		startProcess(cmd.command, cmd.args, cmd.options);
@@ -76,7 +80,7 @@ function main() {
 
 		console.log('Idle...');
 
-		startRandomProcess();
+		startBackgroundProcess();
 	});
 	
 	_queue.on('process', function(item, callback) {
