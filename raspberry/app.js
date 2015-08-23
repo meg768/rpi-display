@@ -48,25 +48,23 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 4)) {
+		switch (random.rand(0, 5)) {
 			case 0:
+			case 1:
 				cmd.command = './run-rain';
 				cmd.args    = ['-d', -1];
 				break;
-			case 1: 
+			case 2: 
 				cmd.command = './run-perlin';
 				cmd.args    = ['-d', -1, '-m', 2, '-x', 25];
 				break;
-			case 2: 
+			case 3: 
 				cmd.command = './run-perlin';
 				cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
 				break;
-			case 3: 
-				cmd.command = './run-gif';
-				cmd.args    = ['-d', -1];
-				break;
 			case 4: 
-				cmd.command = './run-twinkle';
+			case 5: 
+				cmd.command = './run-gif';
 				cmd.args    = ['-d', -1];
 				break;
 		}
