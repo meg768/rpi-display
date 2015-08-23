@@ -63,7 +63,7 @@ function main() {
 				break;
 			case 3: 
 				cmd.command = './run-gif';
-				cmd.args    = [];
+				cmd.args    = ['-d', -1];
 				break;
 		}
 		
