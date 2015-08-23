@@ -22,7 +22,7 @@ function main() {
 		var rule = new schedule.RecurrenceRule();
 	
 		rule.minute = new schedule.Range(0, 59, 1);
-		rule.second = new schedule.Range(0, 59, 10);
+		rule.second = 30;
 
 	
 		schedule.scheduleJob(rule, function() {
