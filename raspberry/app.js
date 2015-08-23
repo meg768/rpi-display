@@ -8,78 +8,99 @@ var random   = require('./random.js');
 
 function main() {
 
+	var Queue = require('./runqueue.js');
+
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
 	
-	var queue, io;
-	
+	var _process = null;
+	var _queue = new Queue();
 
-	function enableQueue() {
-	
-		var Queue = require('./runqueue.js');
 
-		function spawnCommand(command, args, options, callback) {
-	
-			try {
-				if (callback == undefined) {
-					callback = function() {
-					};
-				}
-	
-				function NO(error) {
-					console.log("Failed to spawn...", error == undefined ? '' : error);
-					callback();				
-				}
-	
-				function YES() {
-					callback();				
-				}
-	
-				console.log('Spawning: %s', command, args, options);					
-	
-				var spawn = require('child_process').spawn;
-				var process = spawn(command, args, options);
-	
-				process.stderr.on('data', function (data) {
-					console.log('stderr: ' + data);
-				});
-	
-				process.stdout.on('data', function (data) {
-					console.log('stdout: ' + data);
-				});
-				
-				if (process == null) {
-					NO();
-				}
-				else {
-					process.on('error', function() {
-						NO();
-					});
+	_queue.on('idle', function() {
+
+		console.log('Idle...');
+
+		var command = './run-text';
+		var args    = [];
+		var options = {cwd: 'matrix'};
+
+		startProcess(command, args, options);
 		
-					process.on('close', function() {
-						YES();
-					});		
-				}
+
+
+	});
+	
+	_queue.on('process', function(item, callback) {
+		startProcess(item.command, item.args, item.options, callback);
+	});
+
+
+
+	function stopProcess() {
+		if (_process != null) {
+			var process = _process;
+			
+			_process = null;
+
+			process.kill('SIGINT');
+
+		}
+	}	
+
+	function startProcess(command, args, options, callback) {
+
+		try {
+			stopProcess();
+			
+			if (callback == undefined) {
+				callback = function() {
+				};
 			}
-			catch (error) {
-				NO(error);
+
+			function NO(error) {
+				console.log("Failed to spawn...", error == undefined ? '' : error);
+				callback();				
+			}
+
+			function YES() {
+				callback();				
+			}
+
+			console.log('Spawning: %s', command, args, options);					
+
+			var spawn = require('child_process').spawn;
+			var process = spawn(command, args, options);
+
+			process.stderr.on('data', function (data) {
+				console.log('stderr: ' + data);
+			});
+
+			process.stdout.on('data', function (data) {
+				console.log('stdout: ' + data);
+			});
+			
+			if (process == null) {
+				NO();
+			}
+			else {
+				process.on('error', function() {
+					NO();
+				});
+	
+				process.on('close', function() {
+					YES();
+				});		
 			}
 			
+			_process = process;
+		}
+		catch (error) {
+			NO(error);
 		}
 		
+	}
 	
-		// Create the 'global' queue
-		queue = new Queue();
-	
-		queue.on('idle', function() {
-			console.log('Idle...');
-		});
-		
-		queue.on('process', function(item, callback) {
-			spawnCommand(item.command, item.args, item.options, callback);
-		});
-	
-	}	
 	
 	function spawn(commands) {
 		console.log("Got 'spawn' command from Heroku...", commands);
@@ -87,15 +108,15 @@ function main() {
 		if (!util.isArray(commands))
 			commands = [commands];
 			
-		var idle = queue.empty();
+		var idle = _queue.empty();
 		
 		commands.forEach(function(cmd) {
 			if (typeof cmd.priority == 'string' && cmd.priority == 'low') {
 				if (idle)	
-					queue.push(cmd);
+					_queue.push(cmd);
 			}
 			else 
-				queue.push(cmd);				
+				_queue.push(cmd);				
 		});		
 	}
 	
@@ -320,7 +341,7 @@ function main() {
 		message(messages);		
 	}
 	  
-	enableQueue();
+
 	enableSocketIO();
 	sayHello();
 	
