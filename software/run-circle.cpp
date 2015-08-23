@@ -316,7 +316,7 @@ int main (int argc, char *argv[])
 	
 	Pattern *pattern = new Circle (DISPLAY_WIDTH, DISPLAY_HEIGHT,
 								   (DISPLAY_WIDTH - 1.0) / 2.0 -4, (DISPLAY_HEIGHT - 1.0) / 2.0 + 4,
-								   0.5, 0.75);
+								   0.25, 0.75);
 	pattern->init ();
 	
 	while (!timer.expired()) {
