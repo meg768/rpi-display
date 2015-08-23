@@ -28,7 +28,7 @@ function main() {
 		schedule.scheduleJob(rule, function() {
 
 			var now = new Date();
-			var hue = ((now.getHors() % 12) * 60 + now.getMinutes()) / 2;
+			var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;
 			
 			var msg = {};
 			msg.type     = 'text';
