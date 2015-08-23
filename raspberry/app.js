@@ -109,7 +109,7 @@ function main() {
 		messages.forEach(function(msg) {
 
 			if (msg.type == 'text') {
-				var command = 'run-text';
+				var command = './run-text';
 				var args    = [];
 				var options = {cwd: 'matrix'};
 		
@@ -149,7 +149,7 @@ function main() {
 			}
 
 			if (msg.type == 'image') {
-				var command = 'run-image';
+				var command = './run-image';
 				var args    = [];
 				var options = {cwd: 'matrix'};
 		
@@ -174,7 +174,7 @@ function main() {
 			}
 
 			if (msg.type == 'emoji') {
-				var command = 'run-image';
+				var command = './run-image';
 				var args    = [];
 				var options = {cwd: 'matrix'};
 		
