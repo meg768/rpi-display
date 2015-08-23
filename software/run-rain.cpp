@@ -19,6 +19,7 @@ public:
 		_row    = -(rand() % 64);
 		_delay  = (rand() % 8);
 		_ticks  = 0;
+		_hue    = rand() % 360; ////luminance -= (rand() % 30) + 15;
 	}
 	
 	void column(int value) {
@@ -42,7 +43,6 @@ public:
 		}
 		else
 			hue = _hue;
-		hue = rand() % 360; ////luminance -= (rand() % 30) + 15;
 
 		matrix->setPixel(x, y--, 255, 255, 255);
 		
