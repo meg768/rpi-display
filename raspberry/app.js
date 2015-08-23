@@ -140,7 +140,7 @@ function main() {
 				}
 
 				if (msg.delay != undefined) {
-					args.push('-d');
+					args.push('-x');
 					args.push(msg.delay);			
 				}
 				
@@ -165,7 +165,7 @@ function main() {
 				}
 
 				if (msg.delay != undefined) {
-					args.push('-d');
+					args.push('-x');
 					args.push(msg.delay);			
 				}
 				
@@ -190,7 +190,7 @@ function main() {
 				}
 
 				if (msg.delay != undefined) {
-					args.push('-d');
+					args.push('-x');
 					args.push(msg.delay);			
 				}
 				
