@@ -19,7 +19,6 @@ public:
 		_row    = -(rand() % 64);
 		_delay  = (rand() % 8);
 		_ticks  = 0;
-		_hue    = rand() % 360; ////luminance -= (rand() % 30) + 15;
 	}
 	
 	void column(int value) {
