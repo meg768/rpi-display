@@ -13,7 +13,7 @@ int main (int argc, char *argv[])
 	int iterations  = 1;
 	double duration = 10.0;
 	double delay    = 18.0;
-	double hold     = 2.0;
+	double hold     = 0.0;
 
 	int matrixHeight = matrix.height();
 	int matrixWidth  = matrix.height();

@@ -136,7 +136,7 @@ function runWeather(config) {
 			
 			if (item.image != undefined) {
 				display.image(sprintf('images/weather/%s.png', item.image));
-				display.text(sprintf('%d° (%d°)', item.high, item.low),{color:'blue'});
+				display.text(sprintf('%d°', item.high),{color:'blue'});
 			}
 			else {
 				display.text(sprintf('%s %d° (%d°)', item.condition, item.high, item.low),{color:'blue'});
