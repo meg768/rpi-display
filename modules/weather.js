@@ -100,6 +100,7 @@ module.exports = function(config) {
 						item.date      = new Date(moment(forecast[index].date, 'DD MMM YYYY').valueOf());
 						item.day       = weekdays[item.date.getDay()];
 						item.condition = lookup.text;
+						item.image     = lookup.image;
 						item.code      = forecast[index].code;
 						
 						items.push(item);

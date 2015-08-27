@@ -133,7 +133,16 @@ function runWeather(config) {
 		weather.on('forecast', function(item) {
 			var display = new matrix.Display();
 			display.text(item.day, {color:'white'});
-			display.text(sprintf('%s %d° (%d°)', item.condition, item.high, item.low),{color:'blue'});
+			
+			if (item.image != undefined) {
+				display.image(sprintf('images/weather/%s.png', item.image));
+				display.text(sprintf('%d° (%d°)', item.high, item.low),{color:'blue'});
+			}
+			else {
+				display.text(sprintf('%s %d° (%d°)', item.condition, item.high, item.low),{color:'blue'});
+				
+			}
+
 			display.send();
 		});
 		
