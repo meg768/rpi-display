@@ -330,6 +330,8 @@ function main() {
 	
 		var serverURL  = 'http://rpi-display.herokuapp.com';
 		var serverName = 'Heroku';
+
+		serverURL  = 'http://192.1681.65';
 		
 		socket = require('socket.io-client')(serverURL);
 
