@@ -116,8 +116,9 @@ function runWeather(config) {
 	var config = {
 		enabled: true,
 		
-		schedule: {
+		'schedule': {
 			hour   : [21, 22, 21],
+			minute : new schedule.Range(0, 59),
 			second : [10, 20, 30, 40, 50]
 		}
 		
