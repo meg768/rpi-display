@@ -113,6 +113,17 @@ function runMail(config) {
 
 function runWeather(config) {
 
+	var config = {
+		enabled: true,
+		
+		schedule: {
+			hour   : [21, 22, 21],
+			second : [10, 20, 30, 40, 50]
+		}
+		
+
+		
+	}
 
 	if (config.enabled) {
 		var Weather = require('./modules/weather.js');
@@ -166,11 +177,11 @@ function run() {
 	});
 	
 	runWeather(config.weather);
-	runQuotes(config.quotes);
-	runRates(config.rates);
-	runMail(config.email);
-	runPing(config.ping);
-	runRSS(config.rss);
+	//runQuotes(config.quotes);
+	//runRates(config.rates);
+	//runMail(config.email);
+	//runPing(config.ping);
+	//runRSS(config.rss);
 
 	console.log('Ready!');
 

@@ -18,55 +18,56 @@ module.exports = function(config) {
 	function getConditionFromCode(code) {
 	
 		var table = {
-			0:'Tornado',
-			1:'Tropisk storm',
-			2:'Orkan',
-			3:'Kraftigt åskväder',
-			4:'Åska',
-			5:'Snöblandat regn',
-			6:'Blandat regn och snöblandat regn',
-			7:'Blandad snö och slask',
-			8:'Fryst duggregs',
-			9:'Duggregn',
-			10:'Kallt regn',
-			11:'Regnigt',
-			12:'Regnigt',
-			13:'Snöbyar',
-			14:'Lätt snöfall',
-			15:'Snöyra',
-			16:'Snö',
-			17:'Hagel',
-			18:'Slask',
-			19:'Dammigt (?)',
-			20:'Dimmigt',
-			21:'Disigt',
-			22:'Rökigt(!)',
-			23:'Stormigt',
-			24:'Blåsigt',
-			25:'Kallt',
-			26:'Molnigt',
-			27:'Mestadels moln',
-			28:'Mestadels moln',
-			29:'Delvis molnigt',
-			30:'Delvis molnigt',
-			31:'Klart',
-			32:'Soligt',
-			33:'Uppehåll',
-			34:'Uppehåll',
-			35:'Regn och hagel',
-			36:'Varmt',
-			37:'Enstaka åskväder',
-			38:'Åska',
-			39:'Åska',
-			40:'Delvis regn',
-			41:'Mycket snöigt',
-			42:'Spridda snöbyar',
-			43:'Mycket snö',
-			44:'Delvis molnigt',
-			45:'Regnigt',
-			46:'Snöigt',
-			47:'Delvis regn',
-			3200:'Not available'
+			0:  {name: 'tornado',                 text: 'Tornado'},
+			1:  {name: 'tropical-storm',          text: 'Tropisk storm'},
+			2:  {name: 'hurricane',               text: 'Orkan'},
+			3:  {name: 'severe-thunderstorms',    text: 'Kraftigt åskväder'},
+			4:  {name: 'thunderstorms',           text: 'Åska'},
+			5:  {name: 'mixed-rain-and-snow',     text: 'Snöblandat regn'},
+			6:  {name: 'mixed-rain-and-sleet',    text: 'Blandat regn och snöblandat regn'},
+			7:  {name: 'mixed-snow-and-sleet',    text: 'Blandad snö och slask'},
+			8:  {name: 'freezing-drizzle',        text: 'Fryst duggregn'},
+			9:  {name: 'drizzle',                 text: 'Duggregn'},
+			10: {name: 'freezing-rain',           text: 'Kallt regn'},
+			11: {name: 'showers',                 text: 'Regnigt'},
+			12: {name: 'showers',                 text: 'Regnigt'},
+			13: {name: 'snow-flurries',           text: 'Snöbyar'},
+			14: {name: 'light-snow-showers',      text: 'Lätt snöfall'},
+			15: {name: 'blowing-snow',            text: 'Snöyra'},
+			16: {name: 'snow',                    text: 'Snö'},
+			17: {name: 'hail',                    text: 'Hagel'},
+			18: {name: 'sleet',                   text: 'Slask'},
+			19: {name: 'dust',                    text: 'Disigt'},
+			20: {name: 'foggy',                   text: 'Dimmigt'},
+			21: {name: 'haze',                    text: 'Disigt'},
+			22: {name: 'smoky',                   text: 'Rökigt'},
+			23: {name: 'blustery',                text: 'Stormigt'},
+			24: {name: 'windy',                   text: 'Blåsigt'},
+			25: {name: 'cold',                    text: 'Kallt'},
+			26: {name: 'cloudy',                  text: 'Molnigt'},
+			27: {name: 'mostly-cloudy-night',     text: 'Mestadels moln'},
+			28: {name: 'mostly-cloudy-day',       text: 'Mestadels moln'},
+			29: {name: 'partly-cloudy-night',     text: 'Delvis molnigt'},
+			30: {name: 'partly-cloudy-day',       text: 'Delvis molnigt'},
+			31: {name: 'clear-night',             text: 'Klart'},
+			32: {name: 'sunny',                   text: 'Soligt'},
+			33: {name: 'fair-night',              text: 'Uppehåll'},
+			34: {name: 'fair-day',                text: 'Uppehåll'},
+			35: {name: 'mixed-rain-and-hail',     text: 'Regn och hagel'},
+			36: {name: 'hot',                     text: 'Varmt'},
+			37: {name: 'isolated-thunderstorms',  text: 'Enstaka åskväder'},
+			38: {name: 'scattered-thunderstorms', text: 'Åska'},
+			39: {name: 'scattered-thunderstorms', text: 'Åska'},
+			40: {name: 'scattered-showers',       text: 'Delvis regn'},
+			41: {name: 'heavy-snow',              text: 'Mycket snöigt'},
+			42: {name: 'scattered-snow-showers',  text: 'Spridda snöbyar'},
+			43: {name: 'heavy-snow',              text: 'Mycket snö'},
+			44: {name: 'partly-cloudy',           text: 'Delvis molnigt'},
+			45: {name: 'thundershowers',          text: 'Regnigt'},
+			46: {name: 'snow-showers',            text: 'Snöigt'},
+			47: {name: 'isolated thundershowers', text: 'Delvis regn',
+			
+			3200: {name: 'not-available', text: 'Hmm'}
 		};
 	
 		code = parseInt(code);
@@ -92,12 +93,13 @@ module.exports = function(config) {
 					for (var index in forecast) {
 						var item = {};
 						var weekdays = ['Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag']; 
+						var lookup   = getConditionFromCode(forecast[index].code);
 	
 						item.high      = convertFarenheightToCelcius(forecast[index].high);
 						item.low       = convertFarenheightToCelcius(forecast[index].low);
 						item.date      = new Date(moment(forecast[index].date, 'DD MMM YYYY').valueOf());
 						item.day       = weekdays[item.date.getDay()];
-						item.condition = getConditionFromCode(forecast[index].code);
+						item.condition = lookup.text;
 						item.code      = forecast[index].code;
 						
 						items.push(item);
