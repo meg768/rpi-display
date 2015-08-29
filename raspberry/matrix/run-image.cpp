@@ -97,7 +97,7 @@ int main (int argc, char *argv[])
 			
 		}
 	}
-	else if (imageWidth < matrixWidth) {
+	else if (imageHeight < matrixHeight) {
 		
 		if (true) {
 			Magick::Image img(Magick::Geometry(imageWidth, imageHeight + 2 * matrixHeight), "black");
