@@ -112,7 +112,7 @@ int main (int argc, char *argv[])
 		timer.duration(duration);
 		timer.delay(delay);
 		
-		for (int i = 0; i <= 100; i++) {
+		for (int i = 0; i <= 100; i += 2) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
 			matrix.refresh();
@@ -126,7 +126,7 @@ int main (int argc, char *argv[])
 			timer.sleep();
 			
 		}
-		for (int i = 100; i >= 0; i--) {
+		for (int i = 100; i >= 0; i -= 2) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
 			matrix.refresh();
