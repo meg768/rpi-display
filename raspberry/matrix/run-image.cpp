@@ -9,7 +9,7 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 
 	string fileName = "";
-	string mode     = "scroll";
+	string scroll   = "auto";
 	int iterations  = 1;
 	int duration    = 10;
 	double delay    = 18.0;
@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
 
 	int option = 0;
 
-	while ((option = getopt(argc, argv, "x:f:i:d:h:m:")) != -1) {
+	while ((option = getopt(argc, argv, "x:f:i:d:h:s:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atof(optarg);
@@ -37,8 +37,8 @@ int main (int argc, char *argv[])
 			case 'h':
 				hold = atof(optarg);
 				break;
-			case 'm':
-				mode = optarg;
+			case 's':
+				scroll = optarg;
 				break;
 		}
 	}
@@ -72,7 +72,7 @@ int main (int argc, char *argv[])
 	imageHeight  = image.rows();
 
 
-	if (imageWidth > imageHeight) {
+	if (imageWidth > imageHeight || scroll == "horizontal") {
 
 		if (true) {
 			Magick::Image img(Magick::Geometry(imageWidth + 2 * matrixWidth, imageHeight), "black");
@@ -97,7 +97,7 @@ int main (int argc, char *argv[])
 			
 		}
 	}
-	else if (imageWidth < imageHeight) {
+	else if (imageWidth < imageHeight || scroll == "vertical") {
 		
 		if (true) {
 			Magick::Image img(Magick::Geometry(imageWidth, imageHeight + 2 * matrixHeight), "black");
