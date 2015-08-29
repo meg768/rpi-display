@@ -40,6 +40,9 @@ int main (int argc, char *argv[])
 			case 'm':
 				mode = optarg;
 				break;
+			case 'm':
+				mode = optarg;
+				break;
 		}
 	}
 
@@ -109,11 +112,10 @@ int main (int argc, char *argv[])
 	
 	else {
 
-		for (int i = 0; i <= 100; i += 2) {
+		for (int i = 0; i <= 100; i += 3) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
 			matrix.refresh();
-			//usleep(1000.0 * 5.0);
 		}
 
 		matrix.setBrightness(100);
@@ -122,11 +124,10 @@ int main (int argc, char *argv[])
 		
 		usleep(1000.0 * 1000.0 * (double)duration);
 
-		for (int i = 100; i >= 0; i -= 2) {
+		for (int i = 100; i >= 0; i -= 3) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
 			matrix.refresh();
-			//usleep(1000.0 * 5.0);
 		}
 
 
