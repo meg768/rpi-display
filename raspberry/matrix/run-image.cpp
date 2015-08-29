@@ -71,13 +71,15 @@ int main (int argc, char *argv[])
 	imageWidth   = image.columns();
 	imageHeight  = image.rows();
 
-	if (scroll == "auto") {
-		if (imageWidth > imageHeight)
-			scroll = "horizontal";
-		else if (imageWidth < imageHeight)
-			scroll = "vertical";
-		else
-			scroll = "horizontal";
+	if (scroll != "none") {
+		if (scroll == "auto") {
+			if (imageWidth > imageHeight)
+				scroll = "horizontal";
+			else if (imageWidth < imageHeight)
+				scroll = "vertical";
+			else
+				scroll = "horizontal";
+		}
 	}
 	
 	if (scroll == "horizontal") {
