@@ -9,7 +9,7 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 
 	string fileName = "";
-	int scroll      = true;
+	string mode     = "scroll";
 	int iterations  = 1;
 	int duration    = 10;
 	double delay    = 18.0;
@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
 
 	int option = 0;
 
-	while ((option = getopt(argc, argv, "x:f:i:d:h:s:")) != -1) {
+	while ((option = getopt(argc, argv, "x:f:i:d:h:m:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atof(optarg);
@@ -37,8 +37,8 @@ int main (int argc, char *argv[])
 			case 'h':
 				hold = atof(optarg);
 				break;
-			case 's':
-				scroll = true;
+			case 'm':
+				mode = optarg;
 				break;
 		}
 	}
@@ -55,47 +55,24 @@ int main (int argc, char *argv[])
 		image = tmp;
 	}
 
-
-	// Make sure the image has the same height as the matrix
-	if (true) {
-		int imageWidth  = image.columns();
-		int imageHeight = image.rows();
-	
-		if (imageHeight != matrixHeight) {
-			image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
-		}
-	}
-
-	
-	/*
-	// Crop if needed
-	if (true) {
-		int imageWidth  = image.columns();
-		int imageHeight = image.rows();
-
-		// Make square image
-		if (imageWidth != imageHeight) {
-			if (imageWidth > imageHeight)
-				image.crop(Magick::Geometry(imageHeight, imageHeight, (imageWidth - imageHeight) / 2, 0));
-			else
-				image.crop(Magick::Geometry(imageWidth, imageWidth, 0, (imageHeight - imageWidth) / 2));
-		}
-	}
-
-	// Scale if needed
-	if (true) {
-		int imageWidth  = image.columns();
-		int imageHeight = image.rows();
-
-		if (imageWidth != matrix.width()) {
-			image.sample(Magick::Geometry(matrix.width(), matrix.height()));
-		}
-	}
-*/
 	int imageWidth   = image.columns();
 	int imageHeight  = image.rows();
+	
+	if (imageWidth > imageHeight) {
+		image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
+	}
+	else if (imageWidth < imageHeight) {
+		image.sample(Magick::Geometry(matrixWidth, int(double(imageHeight) * double(imageWidth) / double(matrixWidth)));
+	}
+	else if (imageWidth != matrixWidth) {
+		image.sample(Magick::Geometry(matrixWidth, matrixHeight);
+	}
 
-	if (scroll || imageWidth > matrixWidth) {
+	imageWidth   = image.columns();
+	imageHeight  = image.rows();
+
+
+	if (mode == "scroll" || imageWidth > matrixWidth) {
 
 		if (true) {
 			Magick::Image img(Magick::Geometry(imageWidth + 2 * matrixWidth, imageHeight), "black");
