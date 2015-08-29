@@ -14,7 +14,7 @@ int main (int argc, char *argv[])
 	double duration = 10.0;
 	double delay    = 18.0;
 	double hold     = 0.0;
-
+	
 	int matrixHeight = matrix.height();
 	int matrixWidth  = matrix.height();
 
@@ -109,7 +109,7 @@ int main (int argc, char *argv[])
 	
 	else {
 
- 
+		matrix.setBrightness(30);
 		matrix.drawImage(image);
 		matrix.refresh();
 		
