@@ -186,11 +186,11 @@ function run() {
 	});
 	
 	runWeather(config.weather);
-	//runQuotes(config.quotes);
-	//runRates(config.rates);
-	//runMail(config.email);
-	//runPing(config.ping);
-	//runRSS(config.rss);
+	runQuotes(config.quotes);
+	runRates(config.rates);
+	runMail(config.email);
+	runPing(config.ping);
+	runRSS(config.rss);
 
 	console.log('Ready!');
 

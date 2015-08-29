@@ -13,7 +13,6 @@ int main (int argc, char *argv[])
 	int iterations  = 1;
 	int duration    = 10;
 	double delay    = 18.0;
-	double hold     = 0.0;
 	
 	int matrixHeight = matrix.height();
 	int matrixWidth  = matrix.width();
@@ -23,7 +22,7 @@ int main (int argc, char *argv[])
 	while ((option = getopt(argc, argv, "x:f:i:d:h:s:")) != -1) {
 		switch (option) {
 			case 'd':
-				duration = atof(optarg);
+				duration = atoi(optarg);
 				break;
 			case 'i':
 				iterations = atoi(optarg);
@@ -33,9 +32,6 @@ int main (int argc, char *argv[])
 				break;
 			case 'x':
 				delay = atof(optarg);
-				break;
-			case 'h':
-				hold = atof(optarg);
 				break;
 			case 's':
 				scroll = optarg;
@@ -102,8 +98,8 @@ int main (int argc, char *argv[])
 			
 			usleep(1000.0 * delay);
 
-			if (hold > 0 && offsetX == (imageWidth - matrixWidth) / 2)
-				usleep(1000.0 * 1000.0 * hold);
+			if (duration > 0 && offsetX == (imageWidth - matrixWidth) / 2)
+				usleep(1000.0 * 1000.0 * double(duration));
 			
 		}
 	}
@@ -127,8 +123,8 @@ int main (int argc, char *argv[])
 			
 			usleep(1000.0 * delay);
 			
-			if (hold > 0 && offsetY == (imageHeight - matrixHeight) / 2)
-				usleep(1000.0 * 1000.0 * hold);
+			if (duration > 0 && offsetY == (imageHeight - matrixHeight) / 2)
+				usleep(1000.0 * 1000.0 * duration);
 			
 		}
 	}

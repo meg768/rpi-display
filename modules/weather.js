@@ -65,7 +65,7 @@ module.exports = function(config) {
 			44: {name: 'partly-cloudy',           text: 'Delvis molnigt',           image: 'partly-cloudy'},
 			45: {name: 'thundershowers',          text: 'Regnigt',                  image: 'rain'},
 			46: {name: 'snow-showers',            text: 'Snöigt',                   image: 'snow'},
-			47: {name: 'isolated thundershowers', text: 'Delvis regn',              image: 'partly-rain'},
+			47: {name: 'isolated-thundershowers', text: 'Delvis regn',              image: 'partly-rain'},
 			
 			3200: {name: 'not-available', text: 'Hmm'}
 		};
