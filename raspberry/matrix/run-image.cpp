@@ -24,6 +24,9 @@ int main (int argc, char *argv[])
 			case 'd':
 				duration = atoi(optarg);
 				break;
+			case 'h':
+				duration = atoi(optarg);
+				break;
 			case 'i':
 				iterations = atoi(optarg);
 				break;
