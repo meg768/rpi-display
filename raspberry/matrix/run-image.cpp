@@ -54,6 +54,16 @@ int main (int argc, char *argv[])
 		
 		image = tmp;
 	}
+	
+	if (true) {
+		int imageWidth  = image.columns();
+		int imageHeight = image.rows();
+	
+		if (imageHeight != matrixHeight) {
+			image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
+			mode = "scroll";
+		}
+	}
 /*
 	// Crop if needed
 	if (true) {
@@ -108,7 +118,8 @@ int main (int argc, char *argv[])
 	}
 	
 	else {
-
+		
+		// Fade in
 		for (int i = 0; i <= 100; i += 3) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
@@ -121,6 +132,7 @@ int main (int argc, char *argv[])
 		
 		usleep(1000.0 * 1000.0 * (double)duration);
 
+		// Fade out
 		for (int i = 100; i >= 0; i -= 3) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
