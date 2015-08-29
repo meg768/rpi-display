@@ -62,17 +62,17 @@ int main (int argc, char *argv[])
 		image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
 	}
 	else if (imageWidth < imageHeight) {
-		image.sample(Magick::Geometry(matrixWidth, int(double(imageHeight) * double(imageWidth) / double(matrixWidth)));
+		image.sample(Magick::Geometry(matrixWidth, int(double(imageHeight) * double(imageWidth) / double(matrixWidth))));
 	}
 	else if (imageWidth != matrixWidth) {
-		image.sample(Magick::Geometry(matrixWidth, matrixHeight);
+		image.sample(Magick::Geometry(matrixWidth, matrixHeight));
 	}
 
 	imageWidth   = image.columns();
 	imageHeight  = image.rows();
 
 
-	if (mode == "scroll" || imageWidth > matrixWidth) {
+	if (imageWidth > matrixWidth) {
 
 		if (true) {
 			Magick::Image img(Magick::Geometry(imageWidth + 2 * matrixWidth, imageHeight), "black");
@@ -93,6 +93,31 @@ int main (int argc, char *argv[])
 			usleep(1000.0 * delay);
 
 			if (hold > 0 && offsetX == (imageWidth - matrixWidth) / 2)
+				usleep(1000.0 * 1000.0 * hold);
+			
+		}
+	}
+	else if (imageWidth < matrixWidth) {
+		
+		if (true) {
+			Magick::Image img(Magick::Geometry(imageWidth, imageHeight + 2 * matrixHeight), "black");
+			img.composite(image, 0, matrixHeight, Magick::OverCompositeOp);
+			
+			image = img;
+		}
+		
+		imageWidth   = image.columns();
+		imageHeight  = image.rows();
+		
+		for (int offsetY = 0; offsetY < imageHeight; offsetY++) {
+			matrix.clear();
+			
+			matrix.drawImage(image, 0, 0, 0, offsetY);
+			matrix.refresh();
+			
+			usleep(1000.0 * delay);
+			
+			if (hold > 0 && offsetY == (imageHeight - matrixHeight) / 2)
 				usleep(1000.0 * 1000.0 * hold);
 			
 		}
