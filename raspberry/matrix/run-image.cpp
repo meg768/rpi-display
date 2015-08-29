@@ -9,18 +9,18 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 
 	string fileName = "";
-	string mode     = "scroll";
+	int scroll      = true;
 	int iterations  = 1;
 	int duration    = 10;
 	double delay    = 18.0;
 	double hold     = 0.0;
 	
 	int matrixHeight = matrix.height();
-	int matrixWidth  = matrix.height();
+	int matrixWidth  = matrix.width();
 
 	int option = 0;
 
-	while ((option = getopt(argc, argv, "x:f:i:d:h:m:")) != -1) {
+	while ((option = getopt(argc, argv, "x:f:i:d:h:s:")) != -1) {
 		switch (option) {
 			case 'd':
 				duration = atof(optarg);
@@ -37,8 +37,8 @@ int main (int argc, char *argv[])
 			case 'h':
 				hold = atof(optarg);
 				break;
-			case 'm':
-				mode = optarg;
+			case 's':
+				scroll = true;
 				break;
 		}
 	}
@@ -54,17 +54,20 @@ int main (int argc, char *argv[])
 		
 		image = tmp;
 	}
-	
+
+
+	// Make sure the image has the same height as the matrix
 	if (true) {
 		int imageWidth  = image.columns();
 		int imageHeight = image.rows();
 	
 		if (imageHeight != matrixHeight) {
 			image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
-			mode = "scroll";
 		}
 	}
-/*
+
+	
+	/*
 	// Crop if needed
 	if (true) {
 		int imageWidth  = image.columns();
@@ -89,19 +92,20 @@ int main (int argc, char *argv[])
 		}
 	}
 */
-	if (mode == "scroll") {
+	int imageWidth   = image.columns();
+	int imageHeight  = image.rows();
+
+	if (scroll || imageWidth > matrixWidth) {
 
 		if (true) {
-			Magick::Image img(Magick::Geometry(image.columns() + 2 * matrixWidth, image.rows()), "black");
+			Magick::Image img(Magick::Geometry(imageWidth + 2 * matrixWidth, imageHeight), "black");
 			img.composite(image, matrixWidth, 0, Magick::OverCompositeOp);
 			
 			image = img;
 		}
 
-		int imageWidth   = image.columns();
-		int imageHeight  = image.rows();
-		int matrixWidth  = matrix.width();
-		int matrixHeight = matrix.height();
+		imageWidth   = image.columns();
+		imageHeight  = image.rows();
 
 		for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
 			matrix.clear();
