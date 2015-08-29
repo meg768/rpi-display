@@ -40,9 +40,6 @@ int main (int argc, char *argv[])
 			case 'm':
 				mode = optarg;
 				break;
-			case 'm':
-				mode = optarg;
-				break;
 		}
 	}
 
