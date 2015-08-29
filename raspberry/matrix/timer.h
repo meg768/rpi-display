@@ -9,17 +9,17 @@
 class Timer {
 	
 public:
-	Timer(int duration = 60) {
+	Timer(int duration = 60.0) {
 		_duration  = duration;
 		_startTime = time(NULL);
 		_delay     = 100.0;
 	}
 	
-	void duration(int value) {
+	void duration(double value) {
 		_duration = value;
 	}
 	
-	int duration() {
+	double duration() {
 		return _duration;
 	}
 	
@@ -33,7 +33,7 @@ public:
 	
 	int expired() {
 		if (_duration > 0) {
-			if (time(NULL) - _startTime > _duration) {
+			if ((double)(time(NULL) - _startTime) > _duration) {
 				return true;
 			}
 		}
@@ -48,7 +48,7 @@ public:
 
 private:
 	time_t _startTime;
-	int _duration;
+	double _duration;
 	double _delay;
 };
 

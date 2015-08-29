@@ -108,13 +108,24 @@ int main (int argc, char *argv[])
 	}
 	
 	else {
-
-		matrix.setBrightness(30);
-		matrix.drawImage(image);
-		matrix.refresh();
+		int brightness = 0;
 		
+		Timer timer();
+		timer.duration(duration);
+		timer.setDelay(delay);
+		
+		while (!timer.expired()) {
+			matrix.setBrightness(brightness);
+			if (brightness < 100)
+				brightness++;
+			matrix.drawImage(image);
+			matrix.refresh();
 
-		usleep(1000.0 * 1000.0 * duration);
+			timer.sleep();
+			
+		}
+
+
 	}
 	
     return 0;
