@@ -88,6 +88,10 @@ class Matrix {
 	}
 	
 
+	void setBrightness(int value) {
+		canvas->SetBrightness(value);
+	}
+	
 	void setPixel(int x, int y, int r, int g, int b) {
 		canvas->SetPixel(x, y, r, g, b);
 	}
