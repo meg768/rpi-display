@@ -71,8 +71,16 @@ int main (int argc, char *argv[])
 	imageWidth   = image.columns();
 	imageHeight  = image.rows();
 
-
-	if (imageWidth > imageHeight || scroll == "horizontal") {
+	if (scroll == "auto") {
+		if (imageWidth > imageHeight)
+			scroll = "horizontal";
+		else if (imageWidth < imageHeight)
+			scroll = "vertical";
+		else
+			scroll = "horizontal";
+	}
+	
+	if (scroll == "horizontal") {
 
 		if (true) {
 			Magick::Image img(Magick::Geometry(imageWidth + 2 * matrixWidth, imageHeight), "black");
@@ -97,7 +105,7 @@ int main (int argc, char *argv[])
 			
 		}
 	}
-	else if (imageWidth < imageHeight || scroll == "vertical") {
+	else if (scroll == "vertical") {
 		
 		if (true) {
 			Magick::Image img(Magick::Geometry(imageWidth, imageHeight + 2 * matrixHeight), "black");
