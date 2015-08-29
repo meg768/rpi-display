@@ -109,7 +109,7 @@ int main (int argc, char *argv[])
 	
 	else {
 
-		for (int i = 0; i <= 100; i += 5) {
+		for (int i = 0; i <= 100; i += 2) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
 			matrix.refresh();
@@ -122,7 +122,7 @@ int main (int argc, char *argv[])
 		
 		usleep(1000.0 * 1000.0 * (double)duration);
 
-		for (int i = 100; i >= 0; i -= 5) {
+		for (int i = 100; i >= 0; i -= 2) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
 			matrix.refresh();
