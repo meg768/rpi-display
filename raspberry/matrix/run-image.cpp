@@ -111,7 +111,7 @@ int main (int argc, char *argv[])
 		int brightness = 0;
 		
 		Timer timer();
-		timer.duration(duration);
+		timer.setDuration(duration);
 		timer.setDelay(delay);
 		
 		while (!timer.expired()) {
