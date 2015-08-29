@@ -120,14 +120,10 @@ int main (int argc, char *argv[])
 		}
 
 		matrix.setBrightness(100);
-		
-		while (!timer.expired()) {
-			matrix.drawImage(image);
-			matrix.refresh();
+		matrix.drawImage(image);
+		matrix.refresh();
+		usleep(1000.0 * 1000.0 * delay);
 
-			timer.sleep();
-			
-		}
 		for (int i = 100; i >= 0; i -= 15) {
 			matrix.setBrightness(i);
 			matrix.drawImage(image);
