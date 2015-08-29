@@ -11,7 +11,7 @@ int main (int argc, char *argv[])
 	string fileName = "";
 	string scroll   = "auto";
 	int iterations  = 1;
-	int duration    = 10;
+	int duration    = 0;
 	double delay    = 18.0;
 	
 	int matrixHeight = matrix.height();
@@ -41,6 +41,7 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+	
 
 	
 	Magick::Image image;
