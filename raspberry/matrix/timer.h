@@ -15,11 +15,11 @@ public:
 		_delay     = 100.0;
 	}
 	
-	void duration(double value) {
+	void duration(int value) {
 		_duration = value;
 	}
 	
-	double duration() {
+	int duration() {
 		return _duration;
 	}
 	
@@ -33,7 +33,7 @@ public:
 	
 	int expired() {
 		if (_duration > 0) {
-			if ((double)(time(NULL) - _startTime) > _duration) {
+			if ((time(NULL) - _startTime) > _duration) {
 				return true;
 			}
 		}
@@ -48,7 +48,7 @@ public:
 
 private:
 	time_t _startTime;
-	double _duration;
+	int _duration;
 	double _delay;
 };
 

@@ -11,7 +11,7 @@ int main (int argc, char *argv[])
 	string fileName = "";
 	string mode     = "scroll";
 	int iterations  = 1;
-	double duration = 10.0;
+	int duration    = 10;
 	double delay    = 18.0;
 	double hold     = 0.0;
 	
@@ -110,9 +110,9 @@ int main (int argc, char *argv[])
 	else {
 		int brightness = 0;
 		
-		Timer timer();
-		timer.setDuration(duration);
-		timer.setDelay(delay);
+		Timer timer;
+		timer.duration(duration);
+		timer.delay(delay);
 		
 		while (!timer.expired()) {
 			matrix.setBrightness(brightness);
