@@ -1,4 +1,4 @@
-BINARIES         = run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static run-image run-circle run-wash
+BINARIES         = run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static run-image run-circle run-wash run-clock
 INCLUDES         = matrix.h animation.h includes.h timer.h
 CXXFLAGS         = -Wall -O3 -g
 
@@ -18,7 +18,7 @@ all: $(BINARIES)
 clean:
 	rm -f *.o $(BINARIES)
 	
-run-image: run-image.o $(INCLUDES)
+run-image: run-image.cpp $(INCLUDES)
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
 run-text: run-text.cpp $(INCLUDES)
@@ -54,17 +54,11 @@ run-circle: run-circle.cpp $(INCLUDES)
 run-wash: run-wash.cpp $(INCLUDES)
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
+run-clock: run-clock.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 %.o : %.cc
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
-
-
-#%.o : %.cpp
-#	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
-#
-#%.o : %.cc
-#	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
-
