@@ -70,13 +70,10 @@ run-wash: run-wash.o $(INCLUDES)
 %.o : %.cc
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
 
-/*
-%.o : %.cpp
-	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
 
-%.o : %.cc
-	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
-
-
-*/
+#%.o : %.cpp
+#	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
+#
+#%.o : %.cc
+#	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
 
