@@ -1,24 +1,32 @@
-CXXFLAGS=-Wall -O3 -g
+BINARIES = run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static run-image run-circle run-wash
+INCLUDES = matrix.h animation.h includes.h timer.h
 
+CXXFLAGS = -Wall -O3 -g
 
-RGB_INCDIR=../rpi-rgb-led-matrix/include
-RGB_LIBDIR=../rpi-rgb-led-matrix/lib
-RGB_LIBRARY_NAME=rgbmatrix
-RGB_LIBRARY=$(RGB_LIBDIR)/lib$(RGB_LIBRARY_NAME).a
+RGB_INCDIR       = ../rpi-rgb-led-matrix/include
+RGB_LIBDIR       = ../rpi-rgb-led-matrix/lib
+RGB_LIBRARY_NAME = rgbmatrix
+RGB_LIBRARY      =$(RGB_LIBDIR)/lib$(RGB_LIBRARY_NAME).a
 
-LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
+LDFLAGS  += -L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
+LDFLAGS  += `GraphicsMagick++-config --ldflags --libs`
+
+CXXFLAGS += `GraphicsMagick++-config --cppflags --cxxflags`
 
 # Imagemagic flags, only needed if actually compiled.
-MAGICK_CXXFLAGS=`GraphicsMagick++-config --cppflags --cxxflags`
-MAGICK_LDFLAGS=`GraphicsMagick++-config --ldflags --libs`
+#MAGICK_CXXFLAGS=`GraphicsMagick++-config --cppflags --cxxflags`
+#MAGICK_LDFLAGS=`GraphicsMagick++-config --ldflags --libs`
 
-INCLUDES=matrix.h animation.h includes.h timer.h
 
 #all: run-text run-rain run-gif
 
 #all: run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static run-image run-circle run-wash
 all: run-image
 
+clean:
+	rm $(BINARIES)
+	rm *.o
+	
 run-image: run-image.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-image.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
