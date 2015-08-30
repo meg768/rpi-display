@@ -54,8 +54,6 @@ run-circle: run-circle.cpp $(INCLUDES)
 run-wash: run-wash.cpp $(INCLUDES)
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
-run-clock: run-clock.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
