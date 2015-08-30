@@ -28,7 +28,7 @@ clean:
 	rm *.o
 	
 run-image: run-image.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-image.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+	$(CXX) $(CXXFLAGS) run-image.o -o $@ $(LDFLAGS) 
 
 run-text: run-text.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-text.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
@@ -63,6 +63,14 @@ run-circle: run-circle.o $(INCLUDES)
 run-wash: run-wash.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-wash.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
+
+%.o : %.cpp
+	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
+
+%.o : %.cc
+	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
+
+/*
 %.o : %.cpp
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
 
@@ -70,4 +78,5 @@ run-wash: run-wash.o $(INCLUDES)
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
 
 
+*/
 
