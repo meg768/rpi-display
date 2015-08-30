@@ -1,6 +1,7 @@
 #include <vector>
 
-#include "globals.h"
+#include "matrix.h"
+#include "timer.h"
 
 
 using namespace std;
@@ -242,7 +243,7 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 
-	LogiMatrix matrix;
+	Matrix matrix;
 	Timer timer;
 	
 	int option = 0;
