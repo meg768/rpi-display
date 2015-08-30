@@ -50,6 +50,9 @@ run-hue-block: run-hue-block.o $(INCLUDES)
 run-circle: run-circle.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-circle.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
+run-wash: run-wash.o $(INCLUDES)
+	$(CXX) $(CXXFLAGS) run-wash.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
+
 %.o : %.cpp
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
 
