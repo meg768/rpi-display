@@ -21,7 +21,7 @@ clean:
 	rm *.o
 	
 run-image: run-image.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-image.o -o $@ $(LDFLAGS) 
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
 run-text: run-text.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-text.o -o $@ $(LDFLAGS) 
