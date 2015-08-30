@@ -78,7 +78,7 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 8)) {
+		switch (random.rand(0, 10)) {
 			case 0:
 			case 1:
 			case 2:
@@ -98,6 +98,14 @@ function main() {
 			case 7: 
 			case 8: 
 				cmd.command = './run-gif';
+				cmd.args    = ['-d', -1];
+				break;
+			case 9: 
+				cmd.command = './run-clock';
+				cmd.args    = ['-d', -1];
+				break;
+			case 10: 
+				cmd.command = './run-circle';
 				cmd.args    = ['-d', -1];
 				break;
 		}
