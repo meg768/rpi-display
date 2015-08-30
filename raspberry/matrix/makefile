@@ -19,7 +19,7 @@ clean:
 	rm -f *.o $(BINARIES)
 	
 run-image: $@.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
+	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
 run-text: run-text.cpp $(INCLUDES)
 	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
