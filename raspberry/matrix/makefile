@@ -13,11 +13,10 @@ LDFLAGS  += `GraphicsMagick++-config --ldflags --libs`
 CXXFLAGS += `GraphicsMagick++-config --cppflags --cxxflags`
 CXXFLAGS += -I$(RGB_INCDIR)
 
-all: run-image 
-#$(BINARIES)
+all: $(BINARIES) 
 
 clean:
-	rm $(BINARIES)
+	rm -f $(BINARIES)
 	rm *.o
 	
 run-image: run-image.cpp $(INCLUDES)
