@@ -17,7 +17,7 @@ all: $(BINARIES)
 
 clean:
 	rm -f $(BINARIES)
-	rm *.o
+	rm -f *.o
 	
 run-image: run-image.o $(INCLUDES)
 	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
