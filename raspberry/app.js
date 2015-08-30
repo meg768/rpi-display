@@ -78,7 +78,7 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 10)) {
+		switch (random.rand(0, 15)) {
 			case 0:
 			case 1:
 			case 2:
@@ -97,18 +97,31 @@ function main() {
 				break;
 			case 7: 
 			case 8: 
+			case 9: 
 				cmd.command = './run-gif';
 				cmd.args    = ['-d', -1];
 				break;
-			case 9: 
+			case 10: 
+			case 11: 
+			case 12: 
 				cmd.command = './run-clock';
 				cmd.args    = ['-d', -1];
 				break;
-			case 10: 
+			case 13: 
 				cmd.command = './run-circle';
 				cmd.args    = ['-d', -1];
 				break;
+			case 14: 
+				cmd.command = './run-twinkle';
+				cmd.args    = ['-d', -1];
+				break;
+			case 15: 
+				cmd.command = './run-hue-block';
+				cmd.args    = ['-d', -1];
+				break;
 		}
+				cmd.command = './run-clock';
+				cmd.args    = ['-d', -1];
 		
 		startProcess(cmd.command, cmd.args, cmd.options);
 		
