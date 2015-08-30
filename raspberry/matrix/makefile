@@ -23,38 +23,38 @@ clean:
 run-image: run-image.cpp $(INCLUDES)
 	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-text: run-text.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-text.o -o $@ $(LDFLAGS) 
+run-text: run-text.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-rain: run-rain.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-rain.o -o $@ $(LDFLAGS) 
+run-rain: run-rain.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-perlin: run-perlin.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-perlin.o -o $@ $(LDFLAGS)
+run-perlin: run-perlin.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-life: run-life.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-life.o -o $@ $(LDFLAGS)
+run-life: run-life.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-clock: run-clock.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-clock.o -o $@ $(LDFLAGS)
+run-clock: run-clock.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-static: run-static.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-static.o -o $@ $(LDFLAGS)
+run-static: run-static.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-gif: run-gif.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-gif.o -o $@ $(LDFLAGS) 
+run-gif: run-gif.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-twinkle: run-twinkle.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-twinkle.o -o $@ $(LDFLAGS)
+run-twinkle: run-twinkle.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-hue-block: run-hue-block.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-hue-block.o -o $@ $(LDFLAGS)
+run-hue-block: run-hue-block.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-circle: run-circle.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-circle.o -o $@ $(LDFLAGS)
+run-circle: run-circle.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
-run-wash: run-wash.o $(INCLUDES)
-	$(CXX) $(CXXFLAGS) run-wash.o -o $@ $(LDFLAGS)
+run-wash: run-wash.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $@.o -o $@ $(LDFLAGS) 
 
 
 %.o : %.cpp
