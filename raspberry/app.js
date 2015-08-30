@@ -120,8 +120,6 @@ function main() {
 				cmd.args    = ['-d', -1];
 				break;
 		}
-				cmd.command = './run-clock';
-				cmd.args    = ['-d', -1];
 		
 		startProcess(cmd.command, cmd.args, cmd.options);
 		
