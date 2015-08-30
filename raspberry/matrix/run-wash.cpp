@@ -246,12 +246,17 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 	Timer timer;
 	
+	timer.delay(18);
+	
 	int option = 0;
 		
 	while ((option = getopt(argc, argv, "d:")) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
+				break;
+			case 'x':
+				timer.delay(atof(optarg));
 				break;
 		}
 	}
@@ -263,7 +268,7 @@ int main (int argc, char *argv[])
 	while (!timer.expired()) {
 		matrix.fill( (uint32_t *)gLevels);
 		matrix.refresh();
-		
+		timer.sleep();
 		pattern->next();
 	}
 	
