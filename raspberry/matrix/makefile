@@ -1,7 +1,6 @@
-BINARIES = run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static run-image run-circle run-wash
-INCLUDES = matrix.h animation.h includes.h timer.h
-
-CXXFLAGS = -Wall -O3 -g
+BINARIES         = run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static run-image run-circle run-wash
+INCLUDES         = matrix.h animation.h includes.h timer.h
+CXXFLAGS         = -Wall -O3 -g
 
 RGB_INCDIR       = ../rpi-rgb-led-matrix/include
 RGB_LIBDIR       = ../rpi-rgb-led-matrix/lib
@@ -14,13 +13,14 @@ LDFLAGS  += `GraphicsMagick++-config --ldflags --libs`
 CXXFLAGS += `GraphicsMagick++-config --cppflags --cxxflags`
 CXXFLAGS += -I$(RGB_INCDIR)
 
-all: $(BINARIES)
+all: run-image 
+#$(BINARIES)
 
 clean:
 	rm $(BINARIES)
 	rm *.o
 	
-run-image: run-image.o $(INCLUDES)
+run-image: run-image.cpp $(INCLUDES)
 	$(CXX) $(CXXFLAGS) run-image.o -o $@ $(LDFLAGS) 
 
 run-text: run-text.o $(INCLUDES)
