@@ -58,9 +58,9 @@ public:
 			Magick::readImages(&frames, _fileName.c_str());
 			
 			std::vector<Magick::Image> images;
-			Magick::coalesceImages(images, frames.begin(), frames.end());
+			Magick::coalesceImages(&images, frames.begin(), frames.end());
 			
-			int imageIndex = 0, imageCount = images_sequence->size();
+			int imageIndex = 0, imageCount = images->size();
 			
 			// Check if we have a first image
 			if (imageCount > 0) {
