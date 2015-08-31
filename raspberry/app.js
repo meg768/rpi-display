@@ -98,11 +98,11 @@ function main() {
 			case 7: 
 			case 8: 
 			case 9: 
+			case 10: 
+			case 11: 
 				cmd.command = './run-gif';
 				cmd.args    = ['-d', -1];
 				break;
-			case 10: 
-			case 11: 
 			case 12: 
 				cmd.command = './run-clock';
 				cmd.args    = ['-d', -1];
