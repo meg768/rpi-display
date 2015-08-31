@@ -41,9 +41,6 @@
       location = "group:run-perlin.cpp">
    </FileRef>
    <FileRef
-      location = "group:run-rgb.cpp">
-   </FileRef>
-   <FileRef
       location = "group:run-static.cpp">
    </FileRef>
    <FileRef

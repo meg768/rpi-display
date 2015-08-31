@@ -54,15 +54,18 @@ public:
 			if (duration() == 0)
 				return 0;
 			
-			std::list<Magick::Image> images;
-			Magick::readImages(&images, _fileName.c_str());
+			std::vector<Magick::Image> frames;
+			Magick::readImages(&frames, _fileName.c_str());
 			
-			std::list<Magick::Image>::iterator iterator = images.begin();
+			std::vector<Magick::Image> images;
+			Magick::coalesceImages(images, frames.begin(), frames.end());
+			
+			int imageIndex = 0, imageCount = images_sequence->size();
 			
 			// Check if we have a first image
-			if (iterator != images.end()) {
+			if (imageCount > 0) {
 				// If so, get the number of animation iterations
-				Magick::Image &image = *iterator;
+				Magick::Image &image = images[0];
 				
 				if (_iterations == -1) {
 					_iterations = image.animationIterations();
@@ -77,7 +80,7 @@ public:
 			while (!expired()) {
 				
 				// Done iterating?!
-				if (iterator == images.end()) {
+				if (imageIndex >= imageCount) {
 					
 					// If duration not set, increase iterations
 					if (duration() <= 0 && _iterations > 0) {
@@ -88,10 +91,10 @@ public:
 						
 					}
 					
-					iterator = images.begin();
+					imageIndex = 0;
 				}
 				
-				Magick::Image &image = *iterator;
+				Magick::Image &image = images[index];
 				
 				// Draw the image
 				matrix->drawImage(image);
@@ -137,7 +140,7 @@ int main (int argc, char *argv[])
 	GifAnimation animation(&matrix);
 
 	animation.duration(60);
-	animation.delay(8);
+	animation.delay(10);
 	
 	int option = 0;
 	
