@@ -60,7 +60,7 @@ public:
 			std::vector<Magick::Image> images;
 			Magick::coalesceImages(&images, frames.begin(), frames.end());
 			
-			int imageIndex = 0, imageCount = images->size();
+			int imageIndex = 0, imageCount = images.size();
 			
 			// Check if we have a first image
 			if (imageCount > 0) {
@@ -94,7 +94,7 @@ public:
 					imageIndex = 0;
 				}
 				
-				Magick::Image &image = images[index];
+				Magick::Image &image = images[imageIndex];
 				
 				// Draw the image
 				matrix->drawImage(image);
@@ -102,7 +102,7 @@ public:
 				// Get the animation delay factor
 				double animationDelay = double(image.animationDelay());
 				
-				iterator++;
+				imageIndex++;
 				matrix->refresh();
 				
 				// Wait for next frame to display
