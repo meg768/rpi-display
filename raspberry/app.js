@@ -71,6 +71,8 @@ function main() {
 	
 	function startBackgroundProcess() {
 
+		var now = Date();
+		
 		if (!_queue.empty()) {
 			return;
 		}
@@ -78,47 +80,55 @@ function main() {
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
 		
-		switch (random.rand(0, 15)) {
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-				cmd.command = './run-rain';
-				cmd.args    = ['-d', -1];
-				break;
-			case 5: 
-				cmd.command = './run-perlin';
-				cmd.args    = ['-d', -1, '-m', 2, '-x', 25];
-				break;
-			case 6: 
-				cmd.command = './run-perlin';
-				cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
-				break;
-			case 7: 
-			case 8: 
-			case 9: 
-			case 10: 
-			case 11: 
-				cmd.command = './run-gif';
-				cmd.args    = ['-d', -1];
-				break;
-			case 12: 
-				cmd.command = './run-clock';
-				cmd.args    = ['-d', -1];
-				break;
-			case 13: 
-				cmd.command = './run-circle';
-				cmd.args    = ['-d', -1];
-				break;
-			case 14: 
-				cmd.command = './run-twinkle';
-				cmd.args    = ['-d', -1];
-				break;
-			case 15: 
-				cmd.command = './run-hue-block';
-				cmd.args    = ['-d', -1];
-				break;
+		if (now.getHours() >= 0 && now.getHours() <= 7) {
+			cmd.command = './run-rain';
+			cmd.args    = ['-d', -1];
+			
+		}
+		else {
+			switch (random.rand(0, 15)) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					cmd.command = './run-rain';
+					cmd.args    = ['-d', -1];
+					break;
+				case 5: 
+					cmd.command = './run-perlin';
+					cmd.args    = ['-d', -1, '-m', 2, '-x', 25];
+					break;
+				case 6: 
+					cmd.command = './run-perlin';
+					cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
+					break;
+				case 7: 
+				case 8: 
+				case 9: 
+				case 10: 
+				case 11: 
+					cmd.command = './run-gif';
+					cmd.args    = ['-d', -1];
+					break;
+				case 12: 
+					cmd.command = './run-clock';
+					cmd.args    = ['-d', -1];
+					break;
+				case 13: 
+					cmd.command = './run-circle';
+					cmd.args    = ['-d', -1];
+					break;
+				case 14: 
+					cmd.command = './run-twinkle';
+					cmd.args    = ['-d', -1];
+					break;
+				case 15: 
+					cmd.command = './run-hue-block';
+					cmd.args    = ['-d', -1];
+					break;
+			}
+			
 		}
 		
 		startProcess(cmd.command, cmd.args, cmd.options);
