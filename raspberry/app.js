@@ -71,7 +71,7 @@ function main() {
 	
 	function startBackgroundProcess() {
 
-		var now = Date();
+		var now = new Date();
 		
 		if (!_queue.empty()) {
 			return;
