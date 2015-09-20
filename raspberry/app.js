@@ -19,11 +19,13 @@ function main() {
 
 		
 	function enableClock() {
+		var now  = new Date();
 		var rule = new schedule.RecurrenceRule();
 	
+		rule.hour   = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16 17, 18, 19, 20, 21, 22, 23]
 		rule.minute = new schedule.Range(0, 59, 1);
 		rule.second = 30;
-
+			
 		function hslToRgb(h, s, l){
 		    
 		    var r, g, b;
@@ -52,9 +54,7 @@ function main() {
 		
 		schedule.scheduleJob(rule, function() {
 
-			var now = new Date();
-			var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;
-			
+			var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;			
 			var color = hslToRgb(hue / 360, 1, 0.5);
 			
 			var msg = {};
@@ -62,7 +62,7 @@ function main() {
 			msg.priority = 'low';
 			msg.delay    = 30;
 			msg.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
-			msg.text     = sprintf('   %02d:%02d   ', now.getHours(), now.getMinutes());
+			msg.text     = sprintf('%02d:%02d', now.getHours(), now.getMinutes());
 			console.log(msg);
 
 			message(msg);	
