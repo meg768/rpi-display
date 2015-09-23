@@ -19,7 +19,6 @@ function main() {
 
 		
 	function enableClock() {
-		var now  = new Date();
 		var rule = new schedule.RecurrenceRule();
 	
 		rule.hour   = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
@@ -53,7 +52,7 @@ function main() {
 		}	
 		
 		schedule.scheduleJob(rule, function() {
-
+			var now = new Date();
 			var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;			
 			var color = hslToRgb(hue / 360, 1, 0.5);
 			
