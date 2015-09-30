@@ -5,8 +5,8 @@
 using namespace std;
 
 
-#define DISPLAY_WIDTH 32
-#define DISPLAY_HEIGHT 32
+//#define DISPLAY_WIDTH 32
+//#define DISPLAY_HEIGHT 32
 
 uint32_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
@@ -314,8 +314,8 @@ int main (int argc, char *argv[])
 	}
 	
 	
-	Pattern *pattern = new Circle (DISPLAY_WIDTH, DISPLAY_HEIGHT,
-								   (DISPLAY_WIDTH - 1.0) / 2.0 -4, (DISPLAY_HEIGHT - 1.0) / 2.0 + 4,
+	Pattern *pattern = new Circle (matrix.width(), matrix.height(),
+								   (matrix.width() - 1.0) / 2.0 -4, (matrix.height() - 1.0) / 2.0 + 4,
 								   0.25, 0.75);
 	pattern->init ();
 	
