@@ -2,8 +2,8 @@
 #include "timer.h"
 
 
-#define DISPLAY_WIDTH 32
-#define DISPLAY_HEIGHT 32
+#define DISPLAY_WIDTH 64
+#define DISPLAY_HEIGHT 64
 
 
 
