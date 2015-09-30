@@ -496,6 +496,7 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+	gLevels = new uint32_t[matrix.widht() * matrix.height()];
 
 	pattern = new Perlin (matrix.width(), matrix.height(), mode); //, 8.0/64.0, 0.0125, 512.0, 0.005);
 	pattern->init ();
@@ -503,7 +504,7 @@ int main (int argc, char *argv[])
 	
 	while (!timer.expired()) {
 
-		matrix.fill((uint32_t *)gLevels);
+		matrix.fill(gLevels);
 		
 		matrix.refresh();
 		timer.sleep();
@@ -514,7 +515,8 @@ int main (int argc, char *argv[])
 	
 	matrix.clear();
 	matrix.refresh();
-	
+
+	delete [] gLevels;	
     return 0;
 }
 
