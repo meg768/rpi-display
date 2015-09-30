@@ -2,14 +2,10 @@
 #include "timer.h"
 
 
-#define DISPLAY_WIDTH 64
-#define DISPLAY_HEIGHT 64
 
 
 
-
-
-uint32_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
+uint32_t *gLevels;
 
 
 class Pattern
@@ -314,26 +310,26 @@ bool Perlin::next (void)
 				case 1:
 					hue = (m_hue_options + n)*96.0 + 0.5;
 					hue = hue % 96;
-					gLevels[y][x] = this->translateHue (hue);
+					gLevels[y * m_width + x] = this->translateHue (hue);
 					break;
 					
 					// hue rotates at constant velocity, varies based on noise
 				case 2:
 					hue = (m_hue_state + n)*96.0 + 0.5;
 					hue = hue % 96;
-					gLevels[y][x] = this->translateHue (hue);
+					gLevels[y * m_width + x] = this->translateHue (hue);
 					break;
 					
 					// hue rotates at constant velocity, brightness varies based on noise
 				case 3:
 					hue = (m_hue_state)*96.0 + 0.5;
 					hue = hue % 96;
-					gLevels[y][x] = this->translateHueValue (hue, n);
+					gLevels[y * m_width + x] = this->translateHueValue (hue, n);
 					break;
 					
 					// undefined mode, blank display
 				default:
-					gLevels[x][y] = 0;
+					gLevels[y * m_width + x] = 0;
 					break;
 					
 			}
@@ -473,20 +469,6 @@ float Perlin::noise (float x, float y, float z)
 }
 
 
-/*
-void timer_handler (int signum)
-{
-	// write levels to display
-	matrix.fill( (uint16_t *)gLevels);
-	matrix.refresh();
-	
-	// calculate next frame in animation
-	if (pattern != NULL) {
-		pattern->next();
-	}
-}
-
-*/
 
 
 
