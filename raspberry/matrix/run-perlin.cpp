@@ -497,7 +497,7 @@ int main (int argc, char *argv[])
 		}
 	}
 
-	pattern = new Perlin (DISPLAY_WIDTH, DISPLAY_HEIGHT, mode); //, 8.0/64.0, 0.0125, 512.0, 0.005);
+	pattern = new Perlin (matrix.width(), matrix.height(), mode); //, 8.0/64.0, 0.0125, 512.0, 0.005);
 	pattern->init ();
 	
 	
