@@ -8,7 +8,7 @@ using namespace std;
 //#define DISPLAY_WIDTH 32
 //#define DISPLAY_HEIGHT 32
 
-uint32_t gLevels[64][64];
+uint32_t *gLevels;
 
 
 class Pattern
@@ -302,7 +302,8 @@ int main (int argc, char *argv[])
 	Timer timer;
 	
 	
-	
+	gLevels = new uint32_t[matrix.width() * matrix.height()];
+
 	int option = 0;
 	
 	while ((option = getopt(argc, argv, "d:")) != -1) {
@@ -332,6 +333,7 @@ int main (int argc, char *argv[])
 	matrix.clear();
 	matrix.refresh();
 	
+	delete [] gLevels;
 	
     return 0;
 }
