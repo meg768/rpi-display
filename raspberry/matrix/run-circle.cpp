@@ -8,7 +8,7 @@ using namespace std;
 //#define DISPLAY_WIDTH 32
 //#define DISPLAY_HEIGHT 32
 
-uint32_t *gLevels;
+uint32_t **gLevels;
 
 
 class Pattern
