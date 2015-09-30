@@ -8,7 +8,7 @@ using namespace std;
 //#define DISPLAY_WIDTH 32
 //#define DISPLAY_HEIGHT 32
 
-uint32_t gLevels[][];
+uint32_t *gLevels;
 
 
 class Pattern
@@ -245,7 +245,7 @@ bool Circle::next (void)
 			hue = m_state - distance;
 			while (hue < 0) hue += 96;
 			while (hue >= 96) hue -= 96;
-			gLevels[row][col] = translateHue (hue);
+			gLevels[row * m_width + col] = translateHue (hue);
 		}
 	}
 	
