@@ -36,9 +36,7 @@ Remove everything and insert this.
 
 ## Install node
 
-Follow the instructions under Debian.
-
-	https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
+Follow the instructions under Debian. https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
 
 Basically this is:
 
