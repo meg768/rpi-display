@@ -7,13 +7,13 @@ Expand SD card size
 	$ sudo raspi-config
 	
 
-## Wi-Fi
+## Enable Wi-fi
 
 Edit the file **/etc/network/interfaces** file
 
 	$ sudo nano /etc/network/interfaces
 
-Insert this
+Remove everything and insert this.
 
 	auto lo
 	iface lo inet loopback
@@ -36,102 +36,35 @@ Insert this
 
 ## Install node
 
+Follow the instructions under Debian.
+
 	https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
 
-## Clone project
+Basically this is:
 
-	$ git clone https://github.com/meg768/rpi-display.git
-
+	$ sudo su
+	$ curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
+	$ exit
+	$ sudo apt-get install --yes nodejs build-essential
 
 ## Install GraphicsMagick
 
 	$ sudo aptitude install libgraphicsmagick++1-dev
+	
+## Clone project
 
+	$ git clone https://github.com/meg768/rpi-display.git
 
-## Build the rpi-rgb-led-matrix
+## Build the rpi-rgb-led-matrix binaries
 
-	$ cd rpi-display/raspberry/rpi-rgb-led-matrix
+	$ cd ~/rpi-display/raspberry/rpi-rgb-led-matrix
 	$ make
 	$ make led-image-viewer
 
 
+## Build the matrix binaries
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
------------------------------------
-
-Replace /etc/network/interfaces with this.
-
------------------------------------
-auto lo
-iface lo inet loopback
-
-auto eth0
-iface eth0 inet dhcp
-
-auto wlan0
-iface wlan0 inet dhcp
-wpa-ssid "Julia"
-wpa-psk "potatismos"
-
-iface default inet dhcp
-
-
-
------------------------------------
-expand SD card
-
-sudo raspi-config
------------------------------------
-
-
-sudo rm /var/lib/dpkg/status ??
-sudo touch /var/lib/dpkg/status ??
-
-————————
-
-sudo apt-get update
-sudo apt-get upgrade
-
-
-
------------------------------------
-
-git clone https://github.com/meg768/rpi-display.git
-
-
-Vafan?
-
-sudo aptitude install libgraphicsmagick++1-dev
-make led-image-viewer
-
-
-------------------
-Install node
-
-
-
-
-
+	$ cd ~/rpi-display/raspberry/matrix
+	$ make
+	
 
