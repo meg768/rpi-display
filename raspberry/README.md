@@ -1,3 +1,4 @@
+# Setting up the Raspberry
 
 This assumes you are using the image 2015-05-05-raspbian-wheezy.img
 
@@ -6,7 +7,7 @@ Expand SD card size
 	$ sudo raspi-config
 	
 
-* Wi-Fi
+## Wi-Fi
 
 Edit the file **/etc/network/interfaces** file
 
@@ -28,26 +29,26 @@ Insert this
 	iface default inet dhcp
 
 
-* Update apt-get and aptitude
+## Update apt-get and aptitude
 
 	$ sudo apt-get update && sudo apt-get dist-upgrade && sudo aptitude update
 
 
-* Install node
+## Install node
 
 	https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
 
-* Clone project
+## Clone project
 
 	$ git clone https://github.com/meg768/rpi-display.git
 
 
-* Install GraphicsMagick
+## Install GraphicsMagick
 
 	$ sudo aptitude install libgraphicsmagick++1-dev
 
 
-* Build the rpi-rgb-led-matrix
+## Build the rpi-rgb-led-matrix
 
 	$ cd rpi-display/raspberry/rpi-rgb-led-matrix
 	$ make
