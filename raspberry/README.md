@@ -1,8 +1,8 @@
 # Setting up the Raspberry
 
-This assumes you are using the image 2015-05-05-raspbian-wheezy.img
+This assumes you are using the image 2015-05-05-raspbian-wheezy.img. You may find it here: https://www.raspberrypi.org/downloads/raspbian
 
-Expand SD card size
+## Expand SD card size
 
 	$ sudo raspi-config
 	
