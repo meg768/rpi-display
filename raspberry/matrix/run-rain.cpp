@@ -79,7 +79,7 @@ public:
 			_ticks = 0;
 			_row++;
 			
-			if (_row - _length > 32)
+			if (_row - _length > _height)
 				reset();
 			
 		}
