@@ -494,6 +494,9 @@ int main (int argc, char *argv[])
 			case 'x':
 				timer.delay(atof(optarg));
 				break;
+			case 'b':
+				matrix.setBrightness(atoi(optarg));
+				break;
 		}
 	}
 	gLevels = new uint32_t[matrix.width() * matrix.height()];
