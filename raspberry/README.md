@@ -55,7 +55,7 @@ Log out, and connect to this new IP-address.
 
 ## Update apt-get and aptitude
 
-	Next, when connected again, update some things. It is quite important for things to work.
+Next, when connected again, update some things. It is quite important for things to work.
 
 	$ sudo apt-get update && sudo apt-get dist-upgrade
 
