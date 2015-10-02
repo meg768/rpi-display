@@ -82,7 +82,7 @@ public:
 	}
 	
 private:
-	int _length, _iterations, _delay, _ticks, _hue;
+	int _length, _delay, _ticks, _hue;
 	int _row, _column;
 };
 
