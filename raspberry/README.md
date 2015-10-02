@@ -1,14 +1,20 @@
-# Setting up the Raspberry
+# Setting up the Raspberry PI
 
-This assumes you are using the image 2015-05-05-raspbian-wheezy.img. You may find it here: https://www.raspberrypi.org/downloads/raspbian
+This assumes you are using the image 2015-05-05-raspbian-wheezy.img. You may find it here: https://www.raspberrypi.org/downloads/raspbian.
+This also assumes you have copied the image to a micro SD card. I used **Pi Filler** since I am using a Mac, but other options may
+be available for Windows users. This also assumes you have some kind of communication between your PC/Mac and your Raspberry.
+I used **Lan Scan Pro** for Mac to discover the IP address of your RPI.
 
 ## Expand SD card size
+
+The first thing to do is to expand the file size of the SD card. Enter the following
 
 	$ sudo raspi-config
 	
 
 ## Enable Wi-fi
 
+This is optional but I wanted my RPI to be wireless. I used a D-Link DWA-121 that worked out of the box. 
 Edit the file **/etc/network/interfaces** file
 
 	$ sudo nano /etc/network/interfaces
