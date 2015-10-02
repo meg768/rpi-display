@@ -146,7 +146,7 @@ int main (int argc, char *argv[])
 
 	animation.duration(60);
 	animation.delay(0.3);
-
+	
 	int option;
 	
 	while ((option = getopt(argc, argv, "d:x:h:")) != -1) {

@@ -38,7 +38,7 @@ Remove everything and insert this.
 
 Follow the instructions under Debian. https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
 
-Basically this is:
+Basically this is (as of 2015-10-02):
 
 	$ sudo su
 	$ curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
@@ -46,6 +46,8 @@ Basically this is:
 	$ sudo apt-get install --yes nodejs build-essential
 
 ## Install GraphicsMagick
+
+In order to display images and animated GIFs you need GraphicsMagick.
 
 	$ sudo aptitude install libgraphicsmagick++1-dev
 	
@@ -61,7 +63,9 @@ Basically this is:
 
 ## Testing circuitry
 
-This test below is for a 96x96 square matrix. See https://github.com/hzeller/rpi-rgb-led-matrix for more information.
+The pulsing color test (-D4) is really a good test to see if all your circuitry is done right.
+This test below is for a 96x96 square matrix. See https://github.com/hzeller/rpi-rgb-led-matrix 
+for more information about parameters.
 
 	$ cd ~/rpi-display/raspberry/rpi-rgb-led-matrix
 	$ sudo ./led-matrix -P3 -c3 -D4
