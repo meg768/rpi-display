@@ -8,6 +8,7 @@ public:
 	Worm() {
 		_row     = 0;
 		_column  = 0;
+		_height  = 0;
 		_length  = 0;
 		_delay   = 0;
 		_ticks   = 0;
@@ -15,14 +16,18 @@ public:
 	}
 	
 	void reset() {
-		_length = (rand() % 16) + 32;
-		_row    = -(rand() % 64);
+		_length = (rand() % (_height / 2)) + _height;
+		_row    = -(rand() % (_height * 2));
 		_delay  = (rand() % 8);
 		_ticks  = 0;
 	}
 	
 	void column(int value) {
 		_column = value;
+	}
+
+	void height(int value) {
+		_height = value;
 	}
 	
 	void hue(int value) {
@@ -31,8 +36,8 @@ public:
 	
 	void draw(Matrix *matrix) {
 		int hue = 120;
-		int x = _column;
-		int y = _row;
+		int x   = _column;
+		int y   = _row;
 
 		if (_hue < 0) {
 			time_t t = time(0);
@@ -100,6 +105,7 @@ public:
 		
 		for (int i = 0; i < size; i++) {
 			_worms[i].column(i);
+			_worms[i].height(matrix->height());
 			_worms[i].reset();
 		}
 	}
