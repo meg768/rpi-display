@@ -483,7 +483,7 @@ int main (int argc, char *argv[])
 	Timer timer;
 	timer.delay(10.0);
 	
-	while ((option = getopt(argc, argv, "d:m:x:")) != -1) {
+	while ((option = getopt(argc, argv, "d:m:x:b:")) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
