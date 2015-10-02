@@ -5,6 +5,14 @@ This also assumes you have copied the image to a micro SD card. I used **Pi Fill
 be available for Windows users. This also assumes you have some kind of communication between your PC/Mac and your Raspberry.
 I used **Lan Scan Pro** for Mac to discover the IP address of your RPI.
 
+## Connect to your RPI
+	
+The address is below for my configuration. Let **Lan Scan** (or other software) tell you the real address.
+
+	$ ssh pi@192.168.1.120
+	
+The password, when prompted, is **raspberry**.
+
 ## Expand SD card size
 
 The first thing to do is to expand the file size of the SD card. Enter the following
@@ -29,8 +37,8 @@ Remove everything and insert this.
 	
 	auto wlan0
 	iface wlan0 inet dhcp
-	wpa-ssid "network-name"
-	wpa-psk "password"
+	wpa-ssid "//network-name//"
+	wpa-psk "//password//"
 	
 	iface default inet dhcp
 
