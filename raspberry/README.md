@@ -3,7 +3,7 @@
 This assumes you are using the image 2015-05-05-raspbian-wheezy.img. You may find it here: https://www.raspberrypi.org/downloads/raspbian.
 This also assumes you have copied the image to a micro SD card. I used **Pi Filler** since I am using a Mac, but other options may
 be available for Windows users. This also assumes you have some kind of communication between your PC/Mac and your Raspberry.
-I used **Lan Scan Pro** for Mac to discover the IP address of your RPI.
+I used **Lan Scan Pro** for Mac to discover the IP address of the RPI.
 
 ## Connect to your RPI
 	
@@ -19,6 +19,7 @@ The first thing to do is to expand the file size of the SD card. Enter the follo
 
 	$ sudo raspi-config
 	
+Choose the option to expand the file size of the SD card. After reboot, log in again.
 
 ## Enable Wi-fi
 
@@ -37,20 +38,31 @@ Remove everything and insert this.
 	
 	auto wlan0
 	iface wlan0 inet dhcp
-	wpa-ssid "//network-name//"
-	wpa-psk "//password//"
+	wpa-ssid "my-network-name"
+	wpa-psk "my-password"
 	
 	iface default inet dhcp
 
 
+Reboot and log in again using the same IP address as above. To find out the WiFi IP-address, type:
+
+	$ ifconfig
+	
+Under the title **wlan0** you hopefully will see a new IP address. This is your wireless IP.
+You may connect to this address in the future and discard the previous ethernet address. 
+
+Log out, and connect to this new IP-address.
+
 ## Update apt-get and aptitude
 
-	$ sudo apt-get update && sudo apt-get dist-upgrade && sudo aptitude update
+	Next, when connected again, update some things. It is quite important for things to work.
+
+	$ sudo apt-get update && sudo apt-get dist-upgrade
 
 
 ## Install node
 
-Follow the instructions under Debian. https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
+This project needs NodeJS. Follow the instructions under Debian. https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
 
 Basically this is (as of 2015-10-02):
 
@@ -63,9 +75,12 @@ Basically this is (as of 2015-10-02):
 
 In order to display images and animated GIFs you need GraphicsMagick.
 
+	$ sudo aptitude update
 	$ sudo aptitude install libgraphicsmagick++1-dev
 	
 ## Clone project
+
+Finally, clone this project.
 
 	$ git clone https://github.com/meg768/rpi-display.git
 
@@ -77,12 +92,19 @@ In order to display images and animated GIFs you need GraphicsMagick.
 
 ## Testing circuitry
 
-The pulsing color test (-D4) is really a good test to see if all your circuitry is done right.
+Hook everything up and try one of the demos. The pulsing color test (-D4) 
+is really a good test to see if all your circuitry is done right. 
 This test below is for a 96x96 square matrix. See https://github.com/hzeller/rpi-rgb-led-matrix 
 for more information about parameters.
 
 	$ cd ~/rpi-display/raspberry/rpi-rgb-led-matrix
 	$ sudo ./led-matrix -P3 -c3 -D4
+
+For a single 32x32 LED matrix, do this:
+
+	$ cd ~/rpi-display/raspberry/rpi-rgb-led-matrix
+	$ sudo ./led-matrix -D4
+
 
 ## Build the matrix binaries
 
