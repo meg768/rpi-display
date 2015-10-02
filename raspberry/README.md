@@ -59,6 +59,12 @@ Basically this is:
 	$ make
 	$ make led-image-viewer
 
+## Testing circuitry
+
+This test below is for a 96x96 square matrix. See https://github.com/hzeller/rpi-rgb-led-matrix for more information.
+
+	$ cd ~/rpi-display/raspberry/rpi-rgb-led-matrix
+	$ sudo ./led-matrix -P3 -c3 -D4
 
 ## Build the matrix binaries
 
