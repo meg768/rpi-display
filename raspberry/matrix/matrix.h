@@ -38,7 +38,7 @@ class Matrix {
 			exit(-1);
 		}
 		
-		matrix = new rgb_matrix::RGBMatrix(io, 32, 3, 3);
+		matrix = new rgb_matrix::RGBMatrix(io, 32, 1, 1);
 		canvas = matrix->CreateFrameCanvas();
 	}
 
