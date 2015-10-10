@@ -46,7 +46,7 @@ public:
 	}
 	
 	virtual int expired() {
-		if (_duration > 0) {
+		if (_duration >= 0) {
 			if (time(NULL) - _startTime > _duration) {
 				return true;
 			}
