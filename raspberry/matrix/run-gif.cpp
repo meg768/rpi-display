@@ -51,9 +51,6 @@ public:
 				exit(-1);
 			}
 			
-			if (duration() == 0)
-				return 0;
-			
 			std::vector<Magick::Image> frames;
 			Magick::readImages(&frames, _fileName.c_str());
 			
