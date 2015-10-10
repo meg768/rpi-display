@@ -17,7 +17,7 @@ public:
 	
 	void reset() {
 		// 0.25 - 1.25 = 0.25 + (0-1)
-		_length = _height / 4 + _height * int((float((rand() % 100)) / 100.0));
+		_length = _height / 4 + _height * int((float((rand() % 100)) / 50.0));
 		_row    = -(rand() % (_height * 2));
 		_delay  = (rand() % 8);
 		_ticks  = 0;
