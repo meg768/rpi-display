@@ -99,6 +99,7 @@ public:
 				// Get the animation delay factor
 				double animationDelay = double(image.animationDelay());
 				
+				printf("Delay: %f\n", animation);
 				imageIndex++;
 				matrix->refresh();
 				
