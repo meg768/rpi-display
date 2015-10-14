@@ -27,7 +27,7 @@ public:
 			if (_fileName.length() != 0) {
 				struct stat status;
 				
-				if (stat(_filename.c_str(), &status) != 0) {
+				if (stat(_fileName.c_str(), &status) != 0) {
 					fprintf(stderr, "Cannot open file.\n");
 					exit(-1);
 				}
