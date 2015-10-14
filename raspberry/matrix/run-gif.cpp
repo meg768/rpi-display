@@ -27,7 +27,7 @@ public:
 			if (_fileName.length() == 0) {
 
 				char folder[1000];
-				sprintf(folder, "./animations/%dx%d", _matrix.width(), _matrix.height());
+				sprintf(folder, "./animations/%dx%d", _matrix->width(), _matrix->height());
 				
 				_fileName = folder;
 			}
