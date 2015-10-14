@@ -88,19 +88,18 @@ function main() {
 			switch (random.rand(0, 15)) {
 				case 0:
 				case 1:
-				case 2:
 					cmd.command = './run-rain';
 					cmd.args    = ['-d', -1];
 					break;
-				case 3: 
+				case 2: 
 					cmd.command = './run-perlin';
 					cmd.args    = ['-d', -1, '-m', 2, '-x', 25];
 					break;
-				case 4: 
+				case 3: 
 					cmd.command = './run-perlin';
 					cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
 					break;
-				default: 
+				default: 	
 					cmd.command = './run-gif';
 					cmd.args    = ['-d', -1];
 					break;
