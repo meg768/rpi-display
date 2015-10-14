@@ -23,7 +23,15 @@ public:
 	virtual int run() {
 		
 		try {
-			
+
+			if (_fileName.length() == 0) {
+
+				char folder[1000];
+				sprintf(folder, "./animations/%dx%d", _matrix.width(), _matrix.height());
+				
+				_fileName = folder;
+			}
+
 			if (_fileName.length() != 0) {
 				
 				for (;;) {
@@ -68,27 +76,6 @@ public:
 			
 			}
 			
-			if (_fileName.length() == 0) {
-				std::string folder = "./animations";
-				DIR *dir = opendir(folder.c_str());
-				
-				std::vector <string> files;
-				
-				if (dir != NULL) {
-					struct dirent *entry;
-					
-					while ((entry = readdir(dir)) != NULL) {
-						if (entry->d_name[0] != '.')
-							files.push_back(entry->d_name);
-					}
-					
-					closedir(dir);
-				}
-				
-				if (files.size() > 0)
-					_fileName = folder + "/" + files[rand() % files.size()];
-				
-			}
 			
 			if (_fileName.length() == 0) {
 				fprintf(stderr, "No animation specified.\n");
