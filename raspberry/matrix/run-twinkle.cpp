@@ -262,8 +262,10 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+	
+	gLevels = new uint32_t[matrix.width() * matrix.height()];
 
-	Pattern *pattern = new Twinkle (DISPLAY_WIDTH, DISPLAY_HEIGHT);
+	Pattern *pattern = new Twinkle (matrix.width(), matrix.height());
 	pattern->init();
 
 	while (!timer.expired()) {
@@ -277,6 +279,8 @@ int main (int argc, char *argv[])
 	
 	matrix.clear();
 	matrix.refresh();
+	
+	delete [] gLevels;
 	
     return 0;
 }
