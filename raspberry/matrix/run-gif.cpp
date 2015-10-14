@@ -24,6 +24,36 @@ public:
 		
 		try {
 			
+			if (_fileName.length() != 0) {
+				struct stat status;
+				
+				if (stat(_filename.c_str(), &status) != 0) {
+					fprintf(stderr, "Cannot open file.\n");
+					exit(-1);
+				}
+				
+				if (S_ISDIR(status.st_mode)) {
+					DIR *dir = opendir(_fileName.c_str());
+					
+					std::vector <string> files;
+					
+					if (dir != NULL) {
+						struct dirent *entry;
+						
+						while ((entry = readdir(dir)) != NULL) {
+							if (entry->d_name[0] != '.')
+								files.push_back(entry->d_name);
+						}
+						
+						closedir(dir);
+					}
+					
+					if (files.size() > 0)
+						_fileName = folder + "/" + files[rand() % files.size()];
+				}
+			
+			}
+			
 			if (_fileName.length() == 0) {
 				std::string folder = "./animations";
 				DIR *dir = opendir(folder.c_str());
@@ -45,7 +75,7 @@ public:
 					_fileName = folder + "/" + files[rand() % files.size()];
 				
 			}
-
+			
 			if (_fileName.length() == 0) {
 				fprintf(stderr, "No animation specified.\n");
 				exit(-1);
