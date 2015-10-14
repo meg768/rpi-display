@@ -5,10 +5,7 @@
 using namespace std;
 
 
-#define DISPLAY_WIDTH 32
-#define DISPLAY_HEIGHT 32
-
-uint32_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
+uint32_t *gLevels;
 
 
 class Pattern
@@ -203,14 +200,14 @@ bool Twinkle::next (void)
 						m_twinklers[row][col].state = 1;
 						m_twinklers[row][col].hue = r % 96;
 						m_twinklers[row][col].percent = 10;
-						gLevels[row][col] = translateHueValue (m_twinklers[row][col].hue,
+						gLevels[row * m_width + col] = translateHueValue (m_twinklers[row][col].hue,
 															   (float)m_twinklers[row][col].percent/100.0);
 					}
 					break;
 					
 				case 1: // ramp up
 					m_twinklers[row][col].percent += 10;
-					gLevels[row][col] = translateHueValue (m_twinklers[row][col].hue,
+					gLevels[row * m_width + col] = translateHueValue (m_twinklers[row][col].hue,
 														   (float)m_twinklers[row][col].percent/100.0);
 					if (m_twinklers[row][col].percent == 100) {
 						m_twinklers[row][col].state = 2;
@@ -223,7 +220,7 @@ bool Twinkle::next (void)
 					break;
 				case 3: // ramp down
 					m_twinklers[row][col].percent -= 10;
-					gLevels[row][col] = translateHueValue (m_twinklers[row][col].hue,
+					gLevels[row * m_width + col] = translateHueValue (m_twinklers[row][col].hue,
 														   (float)m_twinklers[row][col].percent/100.0);
 					if (m_twinklers[row][col].percent == 0) {
 						m_twinklers[row][col].state = 0;
