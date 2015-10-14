@@ -89,41 +89,19 @@ function main() {
 				case 0:
 				case 1:
 				case 2:
-				case 3:
-				case 4:
 					cmd.command = './run-rain';
 					cmd.args    = ['-d', -1];
 					break;
-				case 5: 
+				case 3: 
 					cmd.command = './run-perlin';
 					cmd.args    = ['-d', -1, '-m', 2, '-x', 25];
 					break;
-				case 6: 
+				case 4: 
 					cmd.command = './run-perlin';
 					cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
 					break;
-				case 7: 
-				case 8: 
-				case 9: 
-				case 10: 
-				case 11: 
+				default: 
 					cmd.command = './run-gif';
-					cmd.args    = ['-d', -1];
-					break;
-				case 12: 
-					cmd.command = './run-clock';
-					cmd.args    = ['-d', -1];
-					break;
-				case 13: 
-					cmd.command = './run-circle';
-					cmd.args    = ['-d', -1];
-					break;
-				case 14: 
-					cmd.command = './run-twinkle';
-					cmd.args    = ['-d', -1];
-					break;
-				case 15: 
-					cmd.command = './run-hue-block';
 					cmd.args    = ['-d', -1];
 					break;
 			}
