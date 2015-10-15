@@ -48,7 +48,7 @@ int main (int argc, char *argv[])
 			iterations = 1;
 		
 		
-		Magick::Image tmp(matrix.width(), matrix.height(), "black");
+		Magick::Image tmp(Magick::Geometry(matrix.width(), matrix.height()), "black");
 		
 		char fontFile[200];
 		sprintf(fontFile, "./fonts/%s.ttf", fontName);
