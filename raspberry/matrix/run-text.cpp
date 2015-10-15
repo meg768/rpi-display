@@ -77,13 +77,25 @@ int main (int argc, char *argv[])
 		int screenWidth  = matrix.width();
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
-		int offsetX      = 0; //-screenWidth;
-		int offsetY      = 0; //-(screenHeight - imageHeight) / 2;
+		//int offsetX      = 0; //-screenWidth;
+		//int offsetY      = 0; //-(screenHeight - imageHeight) / 2;
 		
 		int count = 0;
 		
 
 		while (count < iterations) {
+
+			for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
+				matrix.clear();
+				
+				matrix.drawImage(image, 0, 0, offsetX, 0);
+				matrix.refresh();
+				
+				usleep(1000.0 * delay);
+				
+			}
+/*
+			
 			matrix.clear();
 
 			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
@@ -108,6 +120,7 @@ int main (int argc, char *argv[])
 			}
 
 			usleep(int(delay * 1000.0 * delayFactor));
+*/
 		}
 
 	}
