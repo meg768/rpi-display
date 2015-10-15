@@ -86,11 +86,10 @@ int main (int argc, char *argv[])
 		while (count < iterations) {
 			matrix.clear();
 
-			matrix.drawImage(image, 0, 0, offsetX, offsetY);
-			matrix.refresh();
-			
-			
-			
+			Magick::Image screen(Magick::Geometry(matrix.width(), matrix.height()), "black");
+
+			screen.draw(Magick::DrawableCompositeImage(offsetX, offsetY, matrix.width(), matrix.height(), image));
+			matrix.drawImage(screen);
 			/*
 			
 			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
@@ -107,6 +106,7 @@ int main (int argc, char *argv[])
 				}
 			}
 			*/
+			matrix.refresh();
 			
 			if (++offsetX > imageWidth) {
 				offsetX = 0; //-screenWidth;
