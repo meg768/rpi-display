@@ -44,7 +44,7 @@ int main (int argc, char *argv[])
 		if (delay < 0)
 			delay = 0;
 
-		double delayFactor = (32.0 * 32.0) / (double)matrix.width() * (double)matrix.height();
+		double delayFactor = (32.0 * 32.0) / ((double)matrix.width() * (double)matrix.height());
 
 		if (iterations == 0)
 			iterations = 1;
@@ -52,7 +52,7 @@ int main (int argc, char *argv[])
 		
 		Magick::Image tmp(Magick::Geometry(matrix.width(), matrix.height()), "black");
 		
-		printf("%f", delayFactor);
+		printf("delayFactor %f\n", delayFactor);
 		
 		char fontFile[200];
 		sprintf(fontFile, "./fonts/%s.ttf", fontName);
@@ -78,10 +78,9 @@ int main (int argc, char *argv[])
 
 		for (int count = 0; count < iterations; count++) {
 
-			for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
+			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
 				matrix.clear();
-				
-				matrix.drawImage(image, 0, 0, offsetX, 0);
+				matrix.drawImage(image, 0, 0, offsetX, offsetY);
 				matrix.refresh();
 				
 				usleep(int(delay * 1000.0 * delayFactor));
