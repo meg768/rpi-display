@@ -43,7 +43,9 @@ int main (int argc, char *argv[])
 		
 		if (delay < 0)
 			delay = 0;
-		
+
+		double delayFactor = (32.0 * 32.0) / (double)matrix.width() * (double)matrix.height();
+
 		if (iterations == 0)
 			iterations = 1;
 		
@@ -103,7 +105,7 @@ int main (int argc, char *argv[])
 				count++;
 			}
 
-			usleep(int(delay * 1000.0));
+			usleep(int(delay * 1000.0 * delayFactor));
 		}
 
 	}
