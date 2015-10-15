@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
 		image.draw(Magick::DrawableText(matrix.width(), matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
 
 		int screenHeight = matrix.height();
-		int screenWidth  = matrix.height();
+		int screenWidth  = matrix.width();
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
 		int offsetX      = 0; //-screenWidth;
@@ -86,9 +86,9 @@ int main (int argc, char *argv[])
 		while (count < iterations) {
 			matrix.clear();
 
-			Magick::Image screen(Magick::Geometry(matrix.width(), matrix.height()), "black");
+			Magick::Image screen(Magick::Geometry(matrix.width(), matrix.height()), "red");
 
-			screen.draw(Magick::DrawableCompositeImage(offsetX, offsetY, matrix.width(), matrix.height(), image));
+			//screen.draw(Magick::DrawableCompositeImage(offsetX, offsetY, matrix.width(), matrix.height(), image));
 			matrix.drawImage(screen);
 			/*
 			
