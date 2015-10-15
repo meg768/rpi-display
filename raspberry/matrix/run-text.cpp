@@ -83,7 +83,7 @@ int main (int argc, char *argv[])
 		int count = 0;
 		
 
-		while (count < iterations) {
+		for (int count = 0; count < iterations; count++) {
 
 			for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
 				matrix.clear();
@@ -94,6 +94,7 @@ int main (int argc, char *argv[])
 				usleep(1000.0 * delay);
 				
 			}
+			
 /*
 			
 			matrix.clear();
