@@ -93,10 +93,6 @@ function main() {
 					break;
 				case 2: 
 					cmd.command = './run-perlin';
-					cmd.args    = ['-d', -1, '-m', 2, '-x', 25];
-					break;
-				case 3: 
-					cmd.command = './run-perlin';
 					cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
 					break;
 				default: 	
