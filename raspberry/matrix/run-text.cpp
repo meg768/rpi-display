@@ -77,8 +77,8 @@ int main (int argc, char *argv[])
 		int screenWidth  = matrix.height();
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
-		int offsetX      = -screenWidth;
-		int offsetY      = -(screenHeight - imageHeight) / 2;
+		int offsetX      = 0; //-screenWidth;
+		int offsetY      = 0; //-(screenHeight - imageHeight) / 2;
 		
 		int count = 0;
 		
@@ -103,7 +103,7 @@ int main (int argc, char *argv[])
 			matrix.refresh();
 			
 			if (++offsetX > imageWidth) {
-				offsetX = -screenWidth;
+				offsetX = 0; //-screenWidth;
 				count++;
 			}
 
