@@ -48,7 +48,7 @@ int main (int argc, char *argv[])
 			iterations = 1;
 		
 		
-		Magick::Image tmp("32x32", "black");
+		Magick::Image tmp(matrix.width(), matrix.height(), "black");
 		
 		char fontFile[200];
 		sprintf(fontFile, "./fonts/%s.ttf", fontName);
@@ -61,13 +61,13 @@ int main (int argc, char *argv[])
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(text, &metric);
 		
-		Magick::Image image(Magick::Geometry(metric.textWidth() + 2.0, 32.0), "black");
+		Magick::Image image(Magick::Geometry(metric.textWidth() + 2, matrix.height()), "black");
 		image.font(fontFile);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
 		
-		image.draw(Magick::DrawableText(1, 16.0 + metric.textHeight() / 2.0 + metric.descent(), text));
+		image.draw(Magick::DrawableText(1, matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
 
 		int screenHeight = matrix.height();
 		int screenWidth  = matrix.height();
