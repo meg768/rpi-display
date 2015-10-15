@@ -76,6 +76,12 @@ int main (int argc, char *argv[])
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
 
+		if (true) {
+			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
+				matrix.drawImage(image, 0, 0, offsetX, offsetY);
+			}
+		}
+
 		for (int count = 0; count < iterations; count++) {
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
