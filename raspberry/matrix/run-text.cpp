@@ -68,13 +68,13 @@ int main (int argc, char *argv[])
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(text, &metric);
 		
-		Magick::Image image(Magick::Geometry(metric.textWidth() + matrix.width(), matrix.height()), "black");
+		Magick::Image image(Magick::Geometry(metric.textWidth() + matrix.width() + 4, matrix.height()), "black");
 		image.font(fontFile);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
 		
-		image.draw(Magick::DrawableText(matrix.width(), matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
+		image.draw(Magick::DrawableText(matrix.width() + 2, matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
 
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
