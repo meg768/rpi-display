@@ -73,15 +73,8 @@ int main (int argc, char *argv[])
 		
 		image.draw(Magick::DrawableText(matrix.width(), matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
 
-		int screenHeight = matrix.height();
-		int screenWidth  = matrix.width();
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
-		//int offsetX      = 0; //-screenWidth;
-		//int offsetY      = 0; //-(screenHeight - imageHeight) / 2;
-		
-		int count = 0;
-		
 
 		for (int count = 0; count < iterations; count++) {
 
@@ -91,37 +84,9 @@ int main (int argc, char *argv[])
 				matrix.drawImage(image, 0, 0, offsetX, 0);
 				matrix.refresh();
 				
-				usleep(1000.0 * delay);
+				usleep(int(delay * 1000.0 * delayFactor));
 				
 			}
-			
-/*
-			
-			matrix.clear();
-
-			const Magick::PixelPacket *pixels = image.getConstPixels(offsetX, offsetY, screenWidth, screenHeight);
-
-			for (int row = 0; row < screenHeight; row++) {
-				for (int col = 0; col < screenWidth; col++) {
-					if (offsetX + col < 0 || offsetX + col >= imageWidth)
-						matrix.setPixel(col, row, 0, 0, 0);
-					else if (offsetY + row < 0 || offsetY + row >= imageHeight)
-						matrix.setPixel(col, row, 0, 0, 0);
-					else
-						matrix.setPixel(col, row, pixels->red, pixels->green, pixels->blue);
-					pixels++;
-				}
-			}
-
-			matrix.refresh();
-			
-			if (++offsetX > imageWidth) {
-				offsetX = 0; //-screenWidth;
-				count++;
-			}
-
-			usleep(int(delay * 1000.0 * delayFactor));
-*/
 		}
 
 	}
