@@ -10,7 +10,7 @@ int main (int argc, char *argv[])
 
 	int option       = 0;
 	int iterations   = 1;
-	int fontSize     = 20;
+	double fontSize  = 20.0;
 	double delay     = 18.0;
 
 	std::string text = "ABC 123";
@@ -27,7 +27,7 @@ int main (int argc, char *argv[])
 					iterations = atoi(optarg);
 					break;
 				case 's':
-					fontSize = atoi(optarg);
+					fontSize = atof(optarg);
 					break;
 				case 'c':
 					textColor = optarg;
@@ -45,7 +45,10 @@ int main (int argc, char *argv[])
 			delay = 0;
 
 		double delayFactor = (32.0 * 32.0) / ((double)matrix.width() * (double)matrix.height());
-
+		double fontFactor  = (double)matrix.height() / 32.0;
+		
+		fontSize = fontSize * fontFactor;
+		
 		if (iterations == 0)
 			iterations = 1;
 		
