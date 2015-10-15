@@ -77,9 +77,11 @@ int main (int argc, char *argv[])
 		int imageHeight  = image.rows();
 
 		if (true) {
-			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
-				matrix.drawImage(image, 0, 0, offsetX, offsetY);
-			}
+			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, image.columns(), image.rows());
+			
+			//for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
+			//	matrix.drawImage(image, 0, 0, offsetX, offsetY);
+			//}
 		}
 
 		for (int count = 0; count < iterations; count++) {
