@@ -97,7 +97,7 @@ int main (int argc, char *argv[])
 						uint8_t red   = pp->red;
 						uint8_t green = pp->green;
 						uint8_t blue  = pp->blue;
-						matrix.setPixel(col, row, red, green, blue);
+						matrix.setPixel(x, y, red, green, blue);
 					}
 				}
 
