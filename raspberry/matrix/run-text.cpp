@@ -48,7 +48,7 @@ int main (int argc, char *argv[])
 			delay = 0;
 
 		double delayFactor = (32.0 * 32.0) / ((double)matrixWidht * (double)matrixHeight);
-		double fontFactor  = 1.0; //(double)matrix.height() / 32.0;
+		double fontFactor  = (double)matrixHeight / 32.0;
 		
 		fontSize = fontSize * fontFactor;
 		
