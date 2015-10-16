@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
 		
-		image.draw(Magick::DrawableText(0*matrix.width() + 2, matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
+		image.draw(Magick::DrawableText(matrix.width() + 2, matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
 
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
@@ -91,7 +91,7 @@ int main (int argc, char *argv[])
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
 				matrix.clear();
-				image.chop(Magick::Geometry(offsetX, offsetY, matrix.width(), matrix.height()));
+				Magick::Image foo = image.crop(Magick::Geometry(offsetX, offsetY, matrix.width(), matrix.height()));
 				matrix.drawImage(image);
 				matrix.refresh();
 				
