@@ -71,7 +71,7 @@ int main (int argc, char *argv[])
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(text, &metric);
 		
-		Magick::Image image(Magick::Geometry(metric.textWidth() + matrixWidht, matrixHeight), "green");
+		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "green");
 		image.font(fontFile);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
