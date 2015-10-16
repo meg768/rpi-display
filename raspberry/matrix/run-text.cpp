@@ -90,8 +90,8 @@ int main (int argc, char *argv[])
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
 				matrix.clear();
-				matrix.drawImage(image);
-				/*
+				//matrix.drawImage(image);
+				
 				for (int y = 0; y < matrixHeight; y++) {
 					for (int x = 0; x < matrixWidht; x++) {
 						const Magick::PixelPacket *pp = pixels + x + (y * imageWidth);
@@ -101,7 +101,7 @@ int main (int argc, char *argv[])
 						matrix.setPixel(x, y, red, green, blue);
 					}
 				}
-				*/
+				
 				matrix.refresh();
 				
 				usleep(int(delay * 1000.0 * delayFactor*10));
