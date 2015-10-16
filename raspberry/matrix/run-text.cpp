@@ -91,7 +91,8 @@ int main (int argc, char *argv[])
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
 				matrix.clear();
-				matrix.drawImage(image, 0, 0, offsetX, offsetY);
+				Magick::Image foo = image.chop(Magick::Geometry(offsetX, offsetY), matrix.widht(), matrix.height());
+				matrix.drawImage(foo);
 				matrix.refresh();
 				
 				usleep(int(delay * 1000.0 * delayFactor));
