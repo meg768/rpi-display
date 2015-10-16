@@ -68,13 +68,13 @@ int main (int argc, char *argv[])
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(text, &metric);
 		
-		Magick::Image image(Magick::Geometry(metric.textWidth() + matrix.width() + 4, matrix.height()), "green");
+		Magick::Image image(Magick::Geometry(metric.textWidth() + matrix.width(), matrix.height()), "green");
 		image.font(fontFile);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
 		
-		image.draw(Magick::DrawableText(matrix.width() + 2, matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
+		image.draw(Magick::DrawableText(matrix.width(), matrix.height() / 2 + metric.textHeight() / 2.0 + metric.descent(), text));
 
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
@@ -91,7 +91,9 @@ int main (int argc, char *argv[])
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
 				matrix.clear();
-				Magick::Image foo(Magick::Geometry(matrix.width(), matrix.height()));
+				Magick::Image foo(Magick::Geometry(matrix.width(), matrix.height()), "blue");
+
+				
 				image.composite(foo, offsetX, offsetY);
 				matrix.drawImage(foo);
 				matrix.refresh();
