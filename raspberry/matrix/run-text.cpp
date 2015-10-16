@@ -82,7 +82,7 @@ int main (int argc, char *argv[])
 		int matrixHeight = matrix.height();
 
 
-		const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, image.width(), image.height());
+		const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, imageWidth, imageHeight);
 
 		for (int count = 0; count < iterations; count++) {
 
