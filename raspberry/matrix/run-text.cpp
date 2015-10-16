@@ -53,7 +53,7 @@ int main (int argc, char *argv[])
 			iterations = 1;
 		
 		
-		Magick::Image tmp(Magick::Geometry(matrix.width(), matrix.height()), "black");
+		Magick::Image tmp(Magick::Geometry(matrix.width(), matrix.height()), "blue");
 		
 		printf("delayFactor %f\n", delayFactor);
 		
@@ -68,7 +68,7 @@ int main (int argc, char *argv[])
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(text, &metric);
 		
-		Magick::Image image(Magick::Geometry(metric.textWidth() + matrix.width() + 4, matrix.height()), "black");
+		Magick::Image image(Magick::Geometry(metric.textWidth() + matrix.width() + 4, matrix.height()), "green");
 		image.font(fontFile);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
@@ -79,7 +79,7 @@ int main (int argc, char *argv[])
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
 
-		if (true) {
+		if (false) {
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
 				matrix.setPixel(offsetX, offsetY, 0, 0, 0);
 			}
