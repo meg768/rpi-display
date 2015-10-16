@@ -78,7 +78,7 @@ int main (int argc, char *argv[])
 		image.fontPointsize(fontSize);
 		
 		//image.draw(Magick::DrawableText(matrixWidht, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), text));
-		image.draw(Magick::DrawableText(0, matrixHeight / 2.0 - metric.textHeight() / 2.0 + metric.descent(), text));
+		image.draw(Magick::DrawableText(matrixWidht, matrixHeight / 2.0 - metric.textHeight() / 2.0 + metric.descent(), text));
 
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
