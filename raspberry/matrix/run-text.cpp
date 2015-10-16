@@ -91,7 +91,7 @@ int main (int argc, char *argv[])
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth; offsetX++) {
 				matrix.clear();
-				Magick::Image foo = image.chop(Magick::Geometry(offsetX, offsetY, matrix.width(), matrix.height()));
+				image.chop(Magick::Geometry(offsetX, offsetY, matrix.width(), matrix.height()));
 				matrix.drawImage(foo);
 				matrix.refresh();
 				
