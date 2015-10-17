@@ -56,10 +56,10 @@ public:
 				
 				// Done iterating?!
 				if (imageIndex >= imageCount) {
+					break;
 					
 					// If duration not set, increase iterations
 					if (_duration <= 0 && _iterations > 0) {
-						break;
 						_iterations--;
 						
 						if (_iterations <= 0)
