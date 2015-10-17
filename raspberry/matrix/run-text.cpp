@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
 		
 		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "black");
 		image.font(fontFile);
-		image.strokeColor(Magick::Color(255, 0, 0, 32));
+		image.strokeColor(textColor);
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
 		image.draw(Magick::DrawableText(matrixWidht, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), text));
