@@ -17,7 +17,7 @@ int main (int argc, char *argv[])
 		
 		int option       = 0;
 		int iterations   = 1;
-		double fontSize  = (matrix.height() / 32) * 20;
+		double fontSize  = 20;
 		double delay     = 18.0;
 		
 		std::string text = "ABC 123";
@@ -51,15 +51,11 @@ int main (int argc, char *argv[])
 		if (delay < 0)
 			delay = 0;
 		
-		double delayFactor = (32.0 * 32.0) / ((double)matrixWidht * (double)matrixHeight);
-		
 		if (iterations == 0)
 			iterations = 1;
 		
 		
 		Magick::Image tmp(Magick::Geometry(matrixWidht, matrixHeight), "black");
-		
-		printf("delayFactor %f\n", delayFactor);
 		
 		char fontFile[200];
 		sprintf(fontFile, "./fonts/%s.ttf", fontName);
@@ -118,7 +114,7 @@ int main (int argc, char *argv[])
 		
 		if (true) {
 			int count = frames.size();
-			int foo =int(delay * 1000.0 * delayFactor);
+			int foo = int(delay * 1000.0);
 			
 			for (int i = 0; i < count; i++) {
 				Magick::Image &frame = frames[i];
