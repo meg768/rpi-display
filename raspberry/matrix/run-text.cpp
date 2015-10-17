@@ -95,10 +95,12 @@ int main (int argc, char *argv[])
 				const Magick::PixelPacket *p = pixels + offsetX;
 
 				for (int y = 0; y < matrixHeight; y++) {
-					for (int x = 0; x < matrixWidht; x++) {
-						const Magick::PixelPacket *pp = p + x + (y * imageWidth);
+					const Magick::PixelPacket *pp = p + (y * imageWidth);
+
+					for (int x = 0; x < matrixWidht; x++, pp++) {
 						matrix.setPixel(x, y, pp->red, pp->green, pp->blue);
 					}
+					
 				}
 				
 				matrix.refresh();
