@@ -65,7 +65,7 @@ int main (int argc, char *argv[])
 		sprintf(fontFile, "./fonts/%s.ttf", fontName);
 		
 		tmp.font(fontFile);
-		tmp.strokeColor(textColor);
+		tmp.strokeColor("transparent");
 		tmp.fillColor(textColor);
 		tmp.fontPointsize(fontSize);
 		
@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
 		
 		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "black");
 		image.font(fontFile);
-		image.strokeColor(textColor);
+		image.strokeColor("transparent");
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
 		image.draw(Magick::DrawableText(matrixWidht, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), text));
