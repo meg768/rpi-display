@@ -129,7 +129,7 @@ public:
 	}
 
 
-	void fontSize(int value) {
+	void fontSize(double value) {
 		_fontSize = value;
 	}
 
@@ -144,8 +144,8 @@ public:
 		
 		tmp.font(_fontName);
 		tmp.strokeColor("transparent");
-		tmp.fillColor(_textColor.c_str());
-		tmp.fontPointsize(_fontSize.c_str());
+		tmp.fillColor(_textColor);
+		tmp.fontPointsize(_fontSize);
 		
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(_text, &metric);
@@ -199,7 +199,7 @@ public:
 	
 private:
 	std::string _fontName;
-	std::string _fontSize;
+	double _fontSize;
 	std::string _textColor;
 	std::string _text;
 	
