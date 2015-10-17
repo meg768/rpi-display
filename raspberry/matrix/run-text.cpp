@@ -90,7 +90,7 @@ int main (int argc, char *argv[])
 		for (int count = 0; count < iterations; count++) {
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
-				matrix.clear();
+				//matrix.clear();
 
 				const Magick::PixelPacket *p = pixels + offsetX;
 

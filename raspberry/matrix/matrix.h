@@ -57,15 +57,15 @@ class Matrix {
 		exit(-1);
 	}
 		
-	int width() {
+	inline int width() {
 		return canvas->width();
 	}
 	
-	int height() {
+	inline int height() {
 		return canvas->height();
 	}
 
-	void clear() {
+	inline void clear() {
 		canvas->Clear();
 	}
 	
@@ -88,11 +88,11 @@ class Matrix {
 	}
 	
 
-	void setBrightness(int value) {
+	inline void setBrightness(int value) {
 		matrix->SetBrightness(value);
 	}
 	
-	void setPixel(int x, int y, int r, int g, int b) {
+	inline void setPixel(int x, int y, int r, int g, int b) {
 		canvas->SetPixel(x, y, r, g, b);
 	}
 
