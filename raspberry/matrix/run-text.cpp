@@ -43,7 +43,7 @@ public:
 				// If so, get the number of animation iterations
 				Magick::Image &image = _images[0];
 				
-				if (_iterations == -1) {
+				if (_iterations <= 0) {
 					_iterations = image.animationIterations();
 				}
 			}
