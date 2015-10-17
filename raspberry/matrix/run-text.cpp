@@ -1,6 +1,259 @@
 #include "matrix.h"
 
 
+
+#include "matrix.h"
+#include "animation.h"
+
+
+class ImageAnimation : public Animation {
+
+
+public:
+	
+	ImageAnimation(Matrix *matrix) : Animation(matrix) {
+		_iterations = -1;
+		_animationDelay = 1;
+	}
+	
+	void iterations(int value) {
+		_iterations = value;
+	}
+
+	void animationDelay(double value) {
+		_animationDelay = value;
+	}
+
+	void images(std::vector<Magick::Image> &value) {
+		_images = value;
+	}
+
+	
+	virtual int run() {
+		
+		Matrix *matrix = Animation::matrix();
+
+		try {
+			int imageIndex = 0, imageCount = _images.size();
+			
+			// Check if we have a first image
+			if (imageCount > 0) {
+				// If so, get the number of animation iterations
+				Magick::Image &image = _images[0];
+				
+				if (_iterations == -1) {
+					_iterations = image.animationIterations();
+				}
+			}
+			
+			if (_iterations <= 0)
+				_iterations = 1;
+			
+			
+			while (!expired()) {
+				
+				// Done iterating?!
+				if (imageIndex >= imageCount) {
+					
+					// If duration not set, increase iterations
+					if (duration() <= 0 && _iterations > 0) {
+						_iterations--;
+						
+						if (_iterations == 0)
+							break;
+						
+					}
+					
+					imageIndex = 0;
+				}
+				
+				Magick::Image &image = images[imageIndex];
+				
+				// Draw the image
+				matrix->drawImage(image);
+				
+				// Get the animation delay factor
+				double animationDelay = double(image.animationDelay());
+				
+				if (animationDelay <= 0)
+					animationDelay = _imageDelay;
+				
+				imageIndex++;
+				matrix->refresh();
+				
+				// Wait for next frame to display
+				// (Seems like we have to reduce the delay by some factor)
+				usleep(int(animationDelay * 1000.0 * delay()));
+			}
+			
+			matrix->clear();
+			matrix->refresh();
+			
+			
+		}
+		catch (std::exception &error) {
+			fprintf(stderr, "Could not start animation: %s\n", error.what());
+			return -1;
+		}
+		
+		return 0;
+	}
+	
+	
+private:
+	std::vector<Magick::Image> _images;
+	double _animationDelay;
+	int _iterations;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+class TextAnimation : public : ImageAnimation {
+	
+public:
+	TextAnimation(Matrix *matrix) : ImageAnimation(matrix) {
+		
+		_textColor = "red";
+		_fontName  = "./fonts/Arial-Bold.ttf";
+		_fontSize  = 18;
+	}
+	
+	void fontName(const char *value) {
+		_fontName = value;
+	}
+
+	void textColor(const char *value) {
+		_textColor = value;
+	}
+
+
+	void fontSize(int value) {
+		_fontSize = value;
+	}
+
+	void text(const char *value) {
+		_text = value;
+
+		int matrixWidth  = _matrix->width();
+		int matrixHeight = _matrix->height();
+		
+		
+		Magick::Image tmp(Magick::Geometry(matrixWidht, matrixHeight), "black");
+		
+		tmp.font(_fontName);
+		tmp.strokeColor("transparent");
+		tmp.fillColor(_textColor);
+		tmp.fontPointsize(_fontSize);
+		
+		Magick::TypeMetric metric;
+		tmp.fontTypeMetrics(_text, &metric);
+		
+		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "black");
+		image.font(_fontName);
+		image.strokeColor("transparent");
+		image.fillColor(_textColor);
+		image.fontPointsize(_fontSize);
+		image.draw(Magick::DrawableText(matrixWidht, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), _text));
+		
+		int imageWidth   = image.columns();
+		int imageHeight  = image.rows();
+		
+		std::vector<Magick::Image> frames;
+		
+		if (true) {
+			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, imageWidth, imageHeight);
+			
+			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
+				
+				Magick::Image frame(Magick::Geometry(matrixWidht, matrixHeight), "black");
+				
+				frame.modifyImage();
+				
+				Magick::Pixels framePixels(frame);
+				Magick::PixelPacket *framePixelPacket = framePixels.get(0, 0, matrixWidht, matrixHeight);
+				
+				const Magick::PixelPacket *p = pixels + offsetX;
+				
+				for (int y = 0; y < matrixHeight; y++, p += imageWidth) {
+					const Magick::PixelPacket *pp = p;
+					
+					for (int x = 0; x < matrixWidht; x++, pp++) {
+						*framePixelPacket = *pp;
+						framePixelPacket++;
+					}
+					
+				}
+				
+				framePixels.sync();
+				frames.push_back(frame);
+				
+				
+			}
+		}
+		
+		images(frames);
+
+	}
+	
+private:
+	std::string _fontName;
+	std::string _fontSize;
+	std::string _textColor;
+	std::string _text;
+	
+	
+};
+
+int main (int argc, char *argv[])
+{
+	srand(time(NULL));
+	
+	Magick::InitializeMagick(*argv);
+	
+	Matrix matrix;
+	TextAnimation animation(&matrix);
+	
+	animation.duration(60);
+	animation.delay(10);
+	
+	int option = 0;
+	
+	while ((option = getopt(argc, argv, "d:x:i:f:")) != -1) {
+		switch (option) {
+			case 'd':
+				animation.duration(atoi(optarg));
+				break;
+			case 'x':
+				animation.delay(atof(optarg));
+				break;
+			case 'i':
+				animation.iterations(atoi(optarg));
+				break;
+			case 't':
+				animation.text(optarg);
+				break;
+		}
+	}
+	
+	return animation.run();
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
@@ -133,7 +386,7 @@ int main (int argc, char *argv[])
 	
 	return 0;
 }
-
+*/
 
 /*
 
