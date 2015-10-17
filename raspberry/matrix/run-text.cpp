@@ -220,7 +220,7 @@ int main (int argc, char *argv[])
 	
 	int option = 0;
 	
-	while ((option = getopt(argc, argv, "d:x:i:f:")) != -1) {
+	while ((option = getopt(argc, argv, "d:x:i:f:t:c:f:")) != -1) {
 		switch (option) {
 			case 'd':
 				animation.duration(atoi(optarg));
@@ -233,6 +233,12 @@ int main (int argc, char *argv[])
 				break;
 			case 't':
 				animation.text(optarg);
+				break;
+			case 'c':
+				animation.textColor(optarg);
+				break;
+			case 'f':
+				animation.fontName(optarg);
 				break;
 		}
 	}
