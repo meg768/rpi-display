@@ -14,6 +14,7 @@ public:
 	ImageAnimation(Matrix *matrix) : Animation(matrix) {
 		_iterations     = -1;
 		_animationDelay = 1;
+		
 	}
 	
 	void iterations(int value) {
@@ -120,6 +121,7 @@ public:
 		_fontName   = "./fonts/Arial-Bold.ttf";
 		_fontSize   = 18;
 		_iterations = 1;
+		_duration   = 0;
 	}
 	
 	void fontName(const char *value) {
