@@ -117,11 +117,13 @@ class TextAnimation : public ImageAnimation {
 public:
 	TextAnimation(Matrix *matrix) : ImageAnimation(matrix) {
 		
-		_textColor  = "red";
-		_fontName   = "./fonts/Arial-Bold.ttf";
-		_fontSize   = 18;
-		_iterations = 1;
-		_duration   = 0;
+		_textColor      = "red";
+		_fontName       = "./fonts/Arial-Bold.ttf";
+		_fontSize       = 18;
+		_iterations     = 1;
+		_duration       = 0;
+		_animationDelay = 1;
+		_delay          = 10;
 	}
 	
 	void fontName(const char *value) {
@@ -222,9 +224,6 @@ int main (int argc, char *argv[])
 	
 	Matrix matrix;
 	TextAnimation animation(&matrix);
-	
-	animation.duration(60);
-	animation.delay(10);
 	
 	int option = 0;
 	
