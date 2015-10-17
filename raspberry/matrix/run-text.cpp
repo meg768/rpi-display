@@ -1,3 +1,56 @@
+#include "TextAnimation.h"
+
+
+
+int main (int argc, char *argv[])
+{
+	srand(time(NULL));
+	
+	Magick::InitializeMagick(*argv);
+	
+	Matrix matrix;
+	TextAnimation animation(&matrix);
+	
+	int option = 0;
+	
+	while ((option = getopt(argc, argv, "d:x:i:f:t:c:f:s:")) != -1) {
+		switch (option) {
+			case 'd':
+				animation.duration(atoi(optarg));
+				break;
+			case 'x':
+				animation.delay(atof(optarg));
+				break;
+			case 'i':
+				animation.iterations(atoi(optarg));
+				break;
+			case 't':
+				animation.text(optarg);
+				break;
+			case 'c':
+				animation.textColor(optarg);
+				break;
+			case 'f':
+				animation.fontName(optarg);
+				break;
+			case 's':
+				animation.fontSize(atof(optarg));
+				break;
+		}
+	}
+	
+	return animation.run();
+	
+}
+
+
+
+
+
+/*
+
+
+
 #include "matrix.h"
 
 
@@ -260,7 +313,7 @@ int main (int argc, char *argv[])
 
 
 
-
+*/
 
 
 

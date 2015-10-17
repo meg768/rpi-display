@@ -47,6 +47,12 @@
       location = "group:run-text.cpp">
    </FileRef>
    <FileRef
+      location = "group:ImageAnimation.h">
+   </FileRef>
+   <FileRef
+      location = "group:TextAnimation.h">
+   </FileRef>
+   <FileRef
       location = "group:run-twinkle.cpp">
    </FileRef>
    <FileRef
