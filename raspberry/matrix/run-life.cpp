@@ -1,6 +1,6 @@
 
-#include "matrix.h"
-#include "timer.h"
+#include "include/matrix.h"
+#include "include/timer.h"
 
 using namespace std;
 

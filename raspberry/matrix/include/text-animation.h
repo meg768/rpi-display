@@ -1,4 +1,4 @@
-#include "ImageAnimation.h"
+#include "image-animation.h"
 
 
 class TextAnimation : public ImageAnimation {

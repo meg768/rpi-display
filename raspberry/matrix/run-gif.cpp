@@ -1,5 +1,5 @@
 
-#include "ImageAnimation.h"
+#include "include/image-animation.h"
 
 
 class GifAnimation : public ImageAnimation {

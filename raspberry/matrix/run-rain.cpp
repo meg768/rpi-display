@@ -1,5 +1,5 @@
-#include "matrix.h"
-#include "animation.h"
+#include "include/matrix.h"
+#include "include/animation.h"
 
 
 class Worm {

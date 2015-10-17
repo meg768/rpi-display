@@ -5,16 +5,16 @@
       location = "group:makefile">
    </FileRef>
    <FileRef
-      location = "group:timer.h">
+      location = "group:Timer.h">
    </FileRef>
    <FileRef
       location = "group:includes.h">
    </FileRef>
    <FileRef
-      location = "group:animation.h">
+      location = "group:Animation.h">
    </FileRef>
    <FileRef
-      location = "group:matrix.h">
+      location = "group:Matrix.h">
    </FileRef>
    <FileRef
       location = "group:run-gif.cpp">
