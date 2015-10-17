@@ -13,7 +13,7 @@ int main (int argc, char *argv[])
 		int matrixHeight = matrix.height();
 
 		const char *textColor  = "red";
-		const char *fontName   = "Arial-Bold";
+		const char *fontName   = "./fonts/Arial-Bold.ttf";
 		
 		int option       = 0;
 		int iterations   = 1;
@@ -57,10 +57,7 @@ int main (int argc, char *argv[])
 		
 		Magick::Image tmp(Magick::Geometry(matrixWidht, matrixHeight), "black");
 		
-		char fontFile[200];
-		sprintf(fontFile, "./fonts/%s.ttf", fontName);
-		
-		tmp.font(fontFile);
+		tmp.font(fontName);
 		tmp.strokeColor("transparent");
 		tmp.fillColor(textColor);
 		tmp.fontPointsize(fontSize);
@@ -69,7 +66,7 @@ int main (int argc, char *argv[])
 		tmp.fontTypeMetrics(text, &metric);
 		
 		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "black");
-		image.font(fontFile);
+		image.font(fontName);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
@@ -77,7 +74,6 @@ int main (int argc, char *argv[])
 
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
-
 
 		std::vector<Magick::Image> frames;
 
