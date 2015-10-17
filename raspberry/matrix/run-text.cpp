@@ -142,7 +142,7 @@ public:
 
 		int matrixWidth  = _matrix->width();
 		int matrixHeight = _matrix->height();
-		
+		_fontSize = 32;
 		
 		Magick::Image tmp(Magick::Geometry(matrixWidth, matrixHeight), "black");
 		
