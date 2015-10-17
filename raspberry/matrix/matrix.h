@@ -196,7 +196,7 @@ class Matrix {
 	}
 	
 	void refresh() {
-		_canvas = _matrix->SwapOnVSync(canvas);
+		_canvas = _matrix->SwapOnVSync(_canvas);
 	}
 	
 	
