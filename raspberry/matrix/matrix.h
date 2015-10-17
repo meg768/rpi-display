@@ -39,7 +39,7 @@ class Matrix {
 		}
 		
 		_matrix = new rgb_matrix::RGBMatrix(io, 32, 3, 3);
-		_canvas = matrix->CreateFrameCanvas();
+		_canvas = _matrix->CreateFrameCanvas();
 	}
 
 	virtual ~Matrix() {
