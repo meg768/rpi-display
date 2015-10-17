@@ -103,9 +103,9 @@ int main (int argc, char *argv[])
 					const Magick::PixelPacket *pp = p;
 					
 					for (int x = 0; x < matrixWidht; x++, pp++) {
-						framePixelPacket->red = pp->red;
-						framePixelPacket->green = pp->green;
-						framePixelPacket->blue = pp->blue;
+						*framePixelPacket = *pp;
+						framePixelPacket++;
+						pp++;
 					}
 					
 				}
