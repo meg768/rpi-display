@@ -53,7 +53,7 @@ public:
 				if (imageIndex >= imageCount) {
 
 					// If duration not set, increase iterations
-					if (_iterations > 0) {
+					if (_duration > 0 && _iterations > 0) {
 						_iterations--;
 						
 						if (_iterations <= 0)
