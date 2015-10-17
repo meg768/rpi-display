@@ -21,7 +21,7 @@ int main (int argc, char *argv[])
 		int matrixWidht  = matrix.width();
 		int matrixHeight = matrix.height();
 		
-		while ((option = getopt(argc, argv, "t:i:s:c:f:x:")) != -1) {
+		while ((option = getopt(argc, argv, "t:i:s:c:f:x:p:")) != -1) {
 			switch (option) {
 				case 'x':
 					delay = atof(optarg);
