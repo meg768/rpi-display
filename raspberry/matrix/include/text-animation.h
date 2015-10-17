@@ -10,7 +10,7 @@ public:
 		_fontName       = "./fonts/Arial-Bold.ttf";
 		_fontSize       = 18;
 		_iterations     = 1;
-		_duration       = 0;
+		_duration       = 120;
 		_animationDelay = 1;
 		_delay          = 10;
 	}
