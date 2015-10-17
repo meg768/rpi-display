@@ -72,12 +72,12 @@ int main (int argc, char *argv[])
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(text, &metric);
 		
-		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "green");
+		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "black");
 		image.font(fontFile);
 		image.strokeColor("transparent");
 		image.fillColor(textColor);
 		image.fontPointsize(fontSize);
-		image.draw(Magick::DrawableText(0, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), text));
+		image.draw(Magick::DrawableText(matrixWidth, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), text));
 
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
@@ -90,7 +90,7 @@ int main (int argc, char *argv[])
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
 				
-				Magick::Image frame(Magick::Geometry(matrixWidht, matrixHeight), "red");
+				Magick::Image frame(Magick::Geometry(matrixWidht, matrixHeight), "black");
 
 				frame.modifyImage();
 				
@@ -119,13 +119,14 @@ int main (int argc, char *argv[])
 		
 		if (true) {
 			int count = frames.size();
+			int foo =int(delay * 1000.0 * delayFactor);
 			
 			for (int i = 0; i < count; i++) {
 				Magick::Image &frame = frames[i];
 
 				matrix.drawImage(frame);
 				matrix.refresh();
-				usleep(int(delay * 1000.0 * delayFactor));
+				usleep(foo);
 
 			}
 		}
