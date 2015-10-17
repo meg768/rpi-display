@@ -141,7 +141,7 @@ public:
 		_text = value;
 	}
 	
-	virtual void run() {
+	virtual int run() {
 
 		int matrixWidth  = _matrix->width();
 		int matrixHeight = _matrix->height();
@@ -201,7 +201,7 @@ public:
 		
 		images(frames);
 
-		ImageAnimation::run();
+		return ImageAnimation::run();
 	}
 	
 private:
