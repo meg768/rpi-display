@@ -67,7 +67,7 @@ public:
 					imageIndex = 0;
 				}
 				
-				Magick::Image &image = images[imageIndex];
+				Magick::Image &image = _images[imageIndex];
 				
 				// Draw the image
 				matrix->drawImage(image);
