@@ -32,19 +32,19 @@ class Matrix {
 		signal(SIGINT, Matrix::quit);
 		signal(SIGKILL, Matrix::quit);
 		
-		io = new rgb_matrix::GPIO();
+		_io = new rgb_matrix::GPIO();
 		
-		if (!io->Init()) {
+		if (!_io->Init()) {
 			exit(-1);
 		}
 		
-		matrix = new rgb_matrix::RGBMatrix(io, 32, 3, 3);
-		canvas = matrix->CreateFrameCanvas();
+		_matrix = new rgb_matrix::RGBMatrix(io, 32, 3, 3);
+		_canvas = matrix->CreateFrameCanvas();
 	}
 
 	virtual ~Matrix() {
-		delete matrix;
-		delete io;
+		delete _matrix;
+		delete _io;
 	}
 	
 	static void quit(int sig)
@@ -58,23 +58,23 @@ class Matrix {
 	}
 		
 	inline int width() {
-		return canvas->width();
+		return _canvas->width();
 	}
 	
 	inline int height() {
-		return canvas->height();
+		return _canvas->height();
 	}
 
 	inline void clear() {
-		canvas->Clear();
+		_canvas->Clear();
 	}
 	
 	void fill(uint32_t *buffer) {
 		
 		uint32_t *p = buffer;
 
-		int width  = canvas->width();
-		int height = canvas->height();
+		int width  = _canvas->width();
+		int height = _canvas->height();
 		
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
@@ -89,16 +89,16 @@ class Matrix {
 	
 
 	inline void setBrightness(int value) {
-		matrix->SetBrightness(value);
+		_matrix->SetBrightness(value);
 	}
 	
 	inline void setPWMBits(int value) {
-		matrix->SetPWMBits(value);
+		_matrix->SetPWMBits(value);
 	
 	}
 
 	inline void setPixel(int x, int y, int r, int g, int b) {
-		canvas->SetPixel(x, y, r, g, b);
+		_canvas->SetPixel(x, y, r, g, b);
 	}
 
 
@@ -114,6 +114,7 @@ class Matrix {
 		
 		setPixel(x, y, red, green, blue);
 	}
+	
 	void HslToRgb(double h, double s, double v, uint8_t &red, uint8_t &green, uint8_t &blue)
 	{
 		double hh = 0, p = 0, q = 0, t = 0, ff = 0;
@@ -195,14 +196,14 @@ class Matrix {
 	}
 	
 	void refresh() {
-		canvas = matrix->SwapOnVSync(canvas);
+		_canvas = _matrix->SwapOnVSync(canvas);
 	}
 	
 	
-private:
-	rgb_matrix::RGBMatrix *matrix;
-	rgb_matrix::GPIO *io;
-	rgb_matrix::FrameCanvas *canvas;
+protected:
+	rgb_matrix::RGBMatrix *_matrix;
+	rgb_matrix::GPIO *_io;
+	rgb_matrix::FrameCanvas *_canvas;
 };
 
 
