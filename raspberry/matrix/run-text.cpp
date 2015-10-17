@@ -139,11 +139,12 @@ public:
 
 	void text(const char *value) {
 		_text = value;
+	}
+	
+	virtual void run() {
 
 		int matrixWidth  = _matrix->width();
 		int matrixHeight = _matrix->height();
-		_fontSize = 32;
-		_textColor = "green";
 		
 		Magick::Image tmp(Magick::Geometry(matrixWidth, matrixHeight), "black");
 		
@@ -200,6 +201,7 @@ public:
 		
 		images(frames);
 
+		ImageAnimation::run();
 	}
 	
 private:
