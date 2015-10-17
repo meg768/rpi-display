@@ -95,7 +95,7 @@ int main (int argc, char *argv[])
 				frame.modifyImage();
 				
 				Magick::Pixels framePixels(frame);
-				PixelPacket *framePixelPacket = framePixels.get(0, 0, matrixWidht, matrixHeight);
+				Magick::PixelPacket *framePixelPacket = framePixels.get(0, 0, matrixWidht, matrixHeight);
 				
 				const Magick::PixelPacket *p = pixels + offsetX;
 				
