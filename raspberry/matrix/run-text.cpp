@@ -150,12 +150,12 @@ public:
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(_text, &metric);
 		
-		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidht, matrixHeight), "black");
+		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidth, matrixHeight), "black");
 		image.font(_fontName);
 		image.strokeColor("transparent");
 		image.fillColor(_textColor);
 		image.fontPointsize(_fontSize);
-		image.draw(Magick::DrawableText(matrixWidht, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), _text));
+		image.draw(Magick::DrawableText(matrixWidth, matrixHeight / 2.0 + metric.textHeight() / 2.0 + metric.descent(), _text));
 		
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
@@ -165,21 +165,21 @@ public:
 		if (true) {
 			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, imageWidth, imageHeight);
 			
-			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
+			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidth; offsetX++) {
 				
-				Magick::Image frame(Magick::Geometry(matrixWidht, matrixHeight), "black");
+				Magick::Image frame(Magick::Geometry(matrixWidth, matrixHeight), "black");
 				
 				frame.modifyImage();
 				
 				Magick::Pixels framePixels(frame);
-				Magick::PixelPacket *framePixelPacket = framePixels.get(0, 0, matrixWidht, matrixHeight);
+				Magick::PixelPacket *framePixelPacket = framePixels.get(0, 0, matrixWidth, matrixHeight);
 				
 				const Magick::PixelPacket *p = pixels + offsetX;
 				
 				for (int y = 0; y < matrixHeight; y++, p += imageWidth) {
 					const Magick::PixelPacket *pp = p;
 					
-					for (int x = 0; x < matrixWidht; x++, pp++) {
+					for (int x = 0; x < matrixWidth; x++, pp++) {
 						*framePixelPacket = *pp;
 						framePixelPacket++;
 					}
