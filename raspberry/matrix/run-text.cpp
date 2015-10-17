@@ -110,7 +110,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-class TextAnimation : public : ImageAnimation {
+class TextAnimation : public ImageAnimation {
 	
 public:
 	TextAnimation(Matrix *matrix) : ImageAnimation(matrix) {
