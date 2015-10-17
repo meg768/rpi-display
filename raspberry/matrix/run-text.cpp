@@ -105,7 +105,6 @@ int main (int argc, char *argv[])
 					for (int x = 0; x < matrixWidht; x++, pp++) {
 						*framePixelPacket = *pp;
 						framePixelPacket++;
-						pp++;
 					}
 					
 				}
