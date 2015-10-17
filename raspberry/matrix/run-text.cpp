@@ -82,18 +82,40 @@ int main (int argc, char *argv[])
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
 
+
 		std::vector<Magick::Image> frames;
 
 		if (true) {
-			
-			int count = imageWidth - matrixWidht;
-			
-			for (int i = 0; i < count; i++) {
-				Magick::Image frame(Magick::Geometry(matrixWidht, matrixHeight), "red");
-				frame.composite(image, i, 0, Magick::CopyCompositeOp);
+			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, imageWidth, imageHeight);
+
+			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
 				
+				Magick::Image frame(Magick::Geometry(matrixWidht, matrixHeight), "red");
+
+				frame.modifyImage();
+				
+				Magick::Pixels framePixels(frame);
+				PixelPacket *framePixelPacket = framePixels.get(0, 0, matrixWidht, matrixHeight);
+				
+				const Magick::PixelPacket *p = pixels + offsetX;
+				
+				for (int y = 0; y < matrixHeight; y++, p += imageWidth) {
+					const Magick::PixelPacket *pp = p;
+					
+					for (int x = 0; x < matrixWidht; x++, pp++) {
+						framePixelPacket->red = pp->red;
+						framePixelPacket->green = pp->green;
+						framePixelPacket->blue = pp->blue;
+					}
+					
+				}
+				
+				framePixels.sync();
 				frames.push_back(frame);
+				
+				
 			}
+
 		}
 		
 		if (true) {
