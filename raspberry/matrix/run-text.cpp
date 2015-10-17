@@ -26,6 +26,9 @@ int main (int argc, char *argv[])
 				case 'x':
 					delay = atof(optarg);
 					break;
+				case 'p':
+					matrix.setPWMBits(atoi(optarg));
+					break;
 				case 'i':
 					iterations = atoi(optarg);
 					break;
