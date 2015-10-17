@@ -90,12 +90,11 @@ int main (int argc, char *argv[])
 		for (int count = 0; count < iterations; count++) {
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
-				//matrix.clear();
 
 				const Magick::PixelPacket *p = pixels + offsetX;
 
-				for (int y = 0; y < matrixHeight; y++) {
-					const Magick::PixelPacket *pp = p + (y * imageWidth);
+				for (int y = 0; y < matrixHeight; y++, p += imageWidth) {
+					const Magick::PixelPacket *pp = p;
 
 					for (int x = 0; x < matrixWidht; x++, pp++) {
 						matrix.setPixel(x, y, pp->red, pp->green, pp->blue);
