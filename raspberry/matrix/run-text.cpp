@@ -83,10 +83,9 @@ int main (int argc, char *argv[])
 		int imageHeight  = image.rows();
 
 
-		std::vector<Magick::Image> images;
+		std::vector<Magick::Image> frames;
 
 		if (true) {
-			std::vector<Magick::Image> frames;
 			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, imageWidth, imageHeight);
 
 			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidht; offsetX++) {
@@ -115,17 +114,14 @@ int main (int argc, char *argv[])
 				
 				
 			}
-			Magick::coalesceImages(&images, frames.begin(), frames.end());
-
-
 		}
 		
 		if (true) {
-			int count = images.size();
+			int count = frames.size();
 			int foo =int(delay * 1000.0 * delayFactor);
 			
 			for (int i = 0; i < count; i++) {
-				Magick::Image &frame = images[i];
+				Magick::Image &frame = frames[i];
 
 				matrix.drawImage(frame);
 				matrix.refresh();
