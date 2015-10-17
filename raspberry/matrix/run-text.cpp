@@ -12,7 +12,7 @@ class ImageAnimation : public Animation {
 public:
 	
 	ImageAnimation(Matrix *matrix) : Animation(matrix) {
-		_iterations = -1;
+		_iterations     = -1;
 		_animationDelay = 1;
 	}
 	
@@ -31,9 +31,10 @@ public:
 	
 	virtual int run() {
 		
-		Matrix *matrix = Animation::matrix();
 
 		try {
+			Matrix *matrix = Animation::matrix();
+
 			int imageIndex = 0, imageCount = _images.size();
 			
 			// Check if we have a first image
@@ -100,7 +101,7 @@ public:
 	}
 	
 	
-private:
+protected:
 	std::vector<Magick::Image> _images;
 	double _animationDelay;
 	int _iterations;
@@ -115,9 +116,10 @@ class TextAnimation : public ImageAnimation {
 public:
 	TextAnimation(Matrix *matrix) : ImageAnimation(matrix) {
 		
-		_textColor = "red";
-		_fontName  = "./fonts/Arial-Bold.ttf";
-		_fontSize  = 18;
+		_textColor  = "red";
+		_fontName   = "./fonts/Arial-Bold.ttf";
+		_fontSize   = 18;
+		_iterations = 1;
 	}
 	
 	void fontName(const char *value) {
@@ -198,13 +200,14 @@ public:
 	}
 	
 private:
-	std::string _fontName;
 	double _fontSize;
+	std::string _fontName;
 	std::string _textColor;
 	std::string _text;
 	
 	
 };
+
 
 int main (int argc, char *argv[])
 {
@@ -220,7 +223,7 @@ int main (int argc, char *argv[])
 	
 	int option = 0;
 	
-	while ((option = getopt(argc, argv, "d:x:i:f:t:c:f:")) != -1) {
+	while ((option = getopt(argc, argv, "d:x:i:f:t:c:f:s:")) != -1) {
 		switch (option) {
 			case 'd':
 				animation.duration(atoi(optarg));
@@ -239,6 +242,9 @@ int main (int argc, char *argv[])
 				break;
 			case 'f':
 				animation.fontName(optarg);
+				break;
+			case 's':
+				animation.fontSize(atof(optarg));
 				break;
 		}
 	}
