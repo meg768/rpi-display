@@ -5,22 +5,23 @@ int main (int argc, char *argv[])
 {
 	Magick::InitializeMagick(*argv);
 	
-	const char *textColor  = "red";
-	const char *fontName   = "Arial-Bold";
-	
-	int option       = 0;
-	int iterations   = 1;
-	double fontSize  = 20.0;
-	double delay     = 18.0;
-	
-	std::string text = "ABC 123";
 	
 	try {
 		Matrix matrix;
 		
 		int matrixWidht  = matrix.width();
 		int matrixHeight = matrix.height();
+
+		const char *textColor  = "red";
+		const char *fontName   = "Arial-Bold";
 		
+		int option       = 0;
+		int iterations   = 1;
+		double fontSize  = (matrix.height() / 32) * 20;
+		double delay     = 18.0;
+		
+		std::string text = "ABC 123";
+
 		while ((option = getopt(argc, argv, "t:i:s:c:f:x:p:")) != -1) {
 			switch (option) {
 				case 'x':
@@ -51,10 +52,6 @@ int main (int argc, char *argv[])
 			delay = 0;
 		
 		double delayFactor = (32.0 * 32.0) / ((double)matrixWidht * (double)matrixHeight);
-		double fontFactor  = 1.0 + (((double)matrixHeight - 32.0) / 32.0) * 0.2;
-		
-		
-		fontSize = fontSize * fontFactor;
 		
 		if (iterations == 0)
 			iterations = 1;
