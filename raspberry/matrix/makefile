@@ -1,5 +1,6 @@
 BINARIES         = run-text run-rain run-perlin run-gif run-clock run-static run-life run-twinkle run-hue-block run-static run-image run-circle run-wash run-clock
-INCLUDES         = matrix.h animation.h includes.h timer.h
+#INCLUDES         = include/matrix.h include/animation.h include/includes.h include/timer.h include/image-animation.h include/
+INCLUDES         = include/*.*
 CXXFLAGS         = -Wall -O3 -g
 
 RGB_INCDIR       = ../rpi-rgb-led-matrix/include

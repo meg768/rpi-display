@@ -2,19 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:include">
+   </FileRef>
+   <FileRef
       location = "group:makefile">
-   </FileRef>
-   <FileRef
-      location = "group:Timer.h">
-   </FileRef>
-   <FileRef
-      location = "group:includes.h">
-   </FileRef>
-   <FileRef
-      location = "group:Animation.h">
-   </FileRef>
-   <FileRef
-      location = "group:Matrix.h">
    </FileRef>
    <FileRef
       location = "group:run-gif.cpp">
@@ -47,18 +38,9 @@
       location = "group:run-text.cpp">
    </FileRef>
    <FileRef
-      location = "group:ImageAnimation.h">
-   </FileRef>
-   <FileRef
-      location = "group:TextAnimation.h">
-   </FileRef>
-   <FileRef
       location = "group:run-twinkle.cpp">
    </FileRef>
    <FileRef
       location = "group:run-wash.cpp">
-   </FileRef>
-   <FileRef
-      location = "group:run-wipe.cpp">
    </FileRef>
 </Workspace>
