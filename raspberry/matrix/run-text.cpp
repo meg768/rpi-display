@@ -140,7 +140,7 @@ public:
 		int matrixHeight = _matrix->height();
 		
 		
-		Magick::Image tmp(Magick::Geometry(matrixWidht, matrixHeight), "black");
+		Magick::Image tmp(Magick::Geometry(matrixWidth, matrixHeight), "black");
 		
 		tmp.font(_fontName);
 		tmp.strokeColor("transparent");
