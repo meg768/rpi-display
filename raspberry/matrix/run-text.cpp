@@ -144,8 +144,8 @@ public:
 		
 		tmp.font(_fontName);
 		tmp.strokeColor("transparent");
-		tmp.fillColor(_textColor);
-		tmp.fontPointsize(_fontSize);
+		tmp.fillColor(_textColor.c_str());
+		tmp.fontPointsize(_fontSize.c_str());
 		
 		Magick::TypeMetric metric;
 		tmp.fontTypeMetrics(_text, &metric);
