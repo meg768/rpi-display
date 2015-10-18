@@ -9,6 +9,7 @@ public:
 	GifAnimation(Matrix *matrix) : ImageAnimation(matrix) {
 		_iterations = -1;
 		_fileName   = "";
+		_duration   = 0;
 	}
 	
 	

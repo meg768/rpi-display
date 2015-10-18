@@ -25,7 +25,7 @@ module.exports = {
 	matrix: {
 		text: {
 			// The default font used when not specified
-			font  : './fonts/Arial-Bold.ttf',
+			font  : 'Arial-Bold',
 			
 			// ... and size
 			size  : 20,

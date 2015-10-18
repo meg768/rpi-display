@@ -236,7 +236,7 @@ function main() {
 
 				if (typeof msg.font == 'string') {
 					args.push('-f');
-					args.push(msg.font);			
+					args.push(sprintf('./fonts/%s.ttf', msg.font));			
 				}
 
 				if (msg.size != undefined) {
@@ -286,7 +286,7 @@ function main() {
 
 				if (msg.id != undefined) {
 					args.push('-f');
-					args.push('images/emojis/' + parseInt(msg.id) + '.png');
+					args.push('./images/emojis/' + parseInt(msg.id) + '.png');
 				}
 				
 				if (msg.hold != undefined) {
@@ -395,7 +395,7 @@ function main() {
 		if (wlan0 != '') {
 			messages.push({
 				type: 'image',
-				image: 'images/wifi.png'
+				image: './images/wifi.png'
 			});
 			messages.push({
 				type: 'text',
@@ -407,7 +407,7 @@ function main() {
 		if (eth0 != '') {
 			messages.push({
 				type: 'image',
-				image: 'images/internet.png'
+				image: './images/internet.png'
 			});
 			messages.push({
 				type: 'text',
