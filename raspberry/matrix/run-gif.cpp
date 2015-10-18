@@ -86,23 +86,22 @@ public:
 			Magick::coalesceImages(&images, frames.begin(), frames.end());
 
 			if (true) {
-				///std::vector<Magick::Image> overlayImages;
+				std::string _text = "23:15";
 				
 				Magick::Image overlayImage(Magick::Geometry(_matrix->width(), _matrix->height()), "transparent");
 				overlayImage.font("./fonts/Arial-Bold.ttf");
 				overlayImage.strokeColor("transparent");
 				overlayImage.fillColor("red");
 				overlayImage.fontPointsize(20);
-				overlayImage.draw(Magick::DrawableText(0, _matrix->height() / 2.0 , "XXX"));
-				
+
+				Magick::TypeMetric metric;
+				overlayImage.fontTypeMetrics(_text, &metric);
+
+				overlayImage.draw(Magick::DrawableText(_matrix->widht() / 2 - metric.textWidth() / 2, _matrix->height() / 2.0 + metric.textHeight() / 2.0 + metric.descent(), _text));
+
 				for (int i = 0; i < images.size(); i++) {
-					Magick::Image &image = images[i];
-					//tmp.composite(images[i], 0, 0, Magick::OverCompositeOp);
-					image.composite(overlayImage, 0, 0, Magick::OverCompositeOp);
-					//foo.push_back(tmp);
-					
+					images[i].composite(overlayImage, 0, 0, Magick::OverCompositeOp);
 				}
-				//images = overlayImages;
 			}
 
 			
