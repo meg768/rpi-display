@@ -84,6 +84,27 @@ public:
 			
 			std::vector<Magick::Image> images;
 			Magick::coalesceImages(&images, frames.begin(), frames.end());
+
+			if (true) {
+				///std::vector<Magick::Image> overlayImages;
+				
+				Magick::Image overlayImage(Magick::Geometry(matrixWidth, matrixHeight), "transparent");
+				overlayImage.font("./fonts/Arial-Bold.ttf");
+				overlayImage.strokeColor("transparent");
+				overlayImage.fillColor("red");
+				overlayImage.fontPointsize(20);
+				overlayImage.draw(Magick::DrawableText(0, matrixHeight / 2.0 , "XXX"));
+				
+				for (int i = 0; i < images.size(); i++) {
+					Magick::Image &image = images[i];
+					//tmp.composite(images[i], 0, 0, Magick::OverCompositeOp);
+					image.composite(overlayImage, 0, 0, Magick::OverCompositeOp);
+					//foo.push_back(tmp);
+					
+				}
+				//images = overlayImages;
+			}
+
 			
 			ImageAnimation::images(images);
 			ImageAnimation::run();
