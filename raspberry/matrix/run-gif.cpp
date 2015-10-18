@@ -91,7 +91,7 @@ public:
 				Magick::Image overlayImage(Magick::Geometry(_matrix->width(), _matrix->height()), "transparent");
 				overlayImage.font("./fonts/Arial-Bold.ttf");
 				overlayImage.strokeColor("transparent");
-				overlayImage.fillColor(Magick::Color(0, 0, 0, 128));
+				overlayImage.fillColor(Magick::Color(0, 0, 0, 64));
 				overlayImage.fontPointsize(20);
 
 				Magick::TypeMetric metric;
