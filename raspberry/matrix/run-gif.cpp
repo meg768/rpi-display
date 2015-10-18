@@ -88,12 +88,12 @@ public:
 			if (true) {
 				///std::vector<Magick::Image> overlayImages;
 				
-				Magick::Image overlayImage(Magick::Geometry(matrixWidth, matrixHeight), "transparent");
+				Magick::Image overlayImage(Magick::Geometry(_matrix->width(), _matrix->height()), "transparent");
 				overlayImage.font("./fonts/Arial-Bold.ttf");
 				overlayImage.strokeColor("transparent");
 				overlayImage.fillColor("red");
 				overlayImage.fontPointsize(20);
-				overlayImage.draw(Magick::DrawableText(0, matrixHeight / 2.0 , "XXX"));
+				overlayImage.draw(Magick::DrawableText(0, _matrix->height() / 2.0 , "XXX"));
 				
 				for (int i = 0; i < images.size(); i++) {
 					Magick::Image &image = images[i];
