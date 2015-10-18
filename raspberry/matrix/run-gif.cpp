@@ -97,7 +97,7 @@ public:
 				Magick::TypeMetric metric;
 				overlayImage.fontTypeMetrics(_text, &metric);
 
-				overlayImage.draw(Magick::DrawableText(_matrix->widht() / 2 - metric.textWidth() / 2, _matrix->height() / 2.0 + metric.textHeight() / 2.0 + metric.descent(), _text));
+				overlayImage.draw(Magick::DrawableText(_matrix->width() / 2 - metric.textWidth() / 2, _matrix->height() / 2.0 + metric.textHeight() / 2.0 + metric.descent(), _text));
 
 				for (int i = 0; i < images.size(); i++) {
 					images[i].composite(overlayImage, 0, 0, Magick::OverCompositeOp);
