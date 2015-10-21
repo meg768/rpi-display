@@ -1,12 +1,12 @@
 
-#include "include/image-animation.h"
+#include "include/frame-animation.h"
 
 
-class GifAnimation : public ImageAnimation {
+class GifAnimation : public FrameAnimation {
 	
 public:
 	
-	GifAnimation(Matrix *matrix) : ImageAnimation(matrix) {
+	GifAnimation(Matrix *matrix) : FrameAnimation(matrix) {
 		_iterations = -1;
 		_fileName   = "";
 		_duration   = 0;
@@ -105,7 +105,7 @@ public:
 			}
 
 			
-			ImageAnimation::images(images);
+			ImageAnimation::frames(images);
 			ImageAnimation::run();
 			
 			

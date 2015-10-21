@@ -1,12 +1,12 @@
 #include "animation.h"
 
 
-class ImageAnimation : public Animation {
+class FrameAnimation : public Animation {
 
 
 public:
 	
-	ImageAnimation(Matrix *matrix) : Animation(matrix) {
+	FrameAnimation(Matrix *matrix) : Animation(matrix) {
 		_iterations     = -1;
 		_animationDelay = 1;
 		
@@ -20,8 +20,8 @@ public:
 		_animationDelay = value;
 	}
 
-	void images(std::vector<Magick::Image> &value) {
-		_images = value;
+	void frames(std::vector<Magick::Image> &value) {
+		_frames = value;
 	}
 
 	
@@ -31,12 +31,12 @@ public:
 		try {
 			Matrix *matrix = Animation::matrix();
 
-			int imageIndex = 0, imageCount = _images.size();
+			int imageIndex = 0, imageCount = _frames.size();
 			
 			// Check if we have a first image
 			if (imageCount > 0) {
 				// If so, get the number of animation iterations
-				Magick::Image &image = _images[0];
+				Magick::Image &image = _frames[0];
 				
 				if (_iterations <= 0) {
 					_iterations = image.animationIterations();
@@ -64,7 +64,7 @@ public:
 					imageIndex = 0;
 				}
 				
-				Magick::Image &image = _images[imageIndex];
+				Magick::Image &image = _frames[imageIndex];
 				
 				// Draw the image
 				matrix->drawImage(image);
@@ -98,7 +98,7 @@ public:
 	
 	
 protected:
-	std::vector<Magick::Image> _images;
+	std::vector<Magick::Image> _frames;
 	double _animationDelay;
 	int _iterations;
 };
