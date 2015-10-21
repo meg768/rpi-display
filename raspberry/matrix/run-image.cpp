@@ -69,13 +69,13 @@ public:
 			imageHeight  = image.rows();
 			
 			if (_scroll != "none") {
-				if (scroll == "auto") {
+				if (_scroll == "auto") {
 					if (imageWidth > imageHeight)
-						scroll = "horizontal";
+						_scroll = "horizontal";
 					else if (imageWidth < imageHeight)
-						scroll = "vertical";
+						_scroll = "vertical";
 					else
-						scroll = "horizontal";
+						_scroll = "horizontal";
 				}
 			}
 			
