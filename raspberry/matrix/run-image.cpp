@@ -1,7 +1,8 @@
 
 #include "include/matrix.h"
 #include "include/timer.h"
-#include "include/animation.h"
+#include "include/animation.h" 
+#include "include/image-animation.h"
 
 
 
