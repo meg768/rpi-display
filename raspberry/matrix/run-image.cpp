@@ -68,8 +68,6 @@ public:
 			imageWidth   = image.columns();
 			imageHeight  = image.rows();
 			
-			double delay = delay();
-			
 			if (scroll != "none") {
 				if (scroll == "auto") {
 					if (imageWidth > imageHeight)
@@ -99,10 +97,10 @@ public:
 					matrix.drawImage(image, 0, 0, offsetX, 0);
 					matrix.refresh();
 					
-					usleep(1000.0 * delay);
+					sleep();
 					
-					if (duration > 0 && offsetX == (imageWidth - matrixWidth) / 2)
-						usleep(1000.0 * 1000.0 * double(duration));
+					//if (duration > 0 && offsetX == (imageWidth - matrixWidth) / 2)
+					//	usleep(1000.0 * 1000.0 * double(duration));
 					
 				}
 			}
@@ -124,10 +122,10 @@ public:
 					matrix->drawImage(image, 0, 0, 0, offsetY);
 					matrix->refresh();
 					
-					usleep(1000.0 * delay);
+					sleep();
 					
-					if (duration > 0 && offsetY == (imageHeight - matrixHeight) / 2)
-						usleep(1000.0 * 1000.0 * duration);
+					//if (duration > 0 && offsetY == (imageHeight - matrixHeight) / 2)
+					//	usleep(1000.0 * 1000.0 * duration);
 					
 				}
 			}
@@ -137,7 +135,7 @@ public:
 				matrix->drawImage(image);
 				matrix->refresh();
 				
-				usleep(1000.0 * 1000.0 * (double)duration);
+				usleep(1000.0 * 1000.0 * (double)_duration);
 				
 			}
 			
