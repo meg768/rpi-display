@@ -101,7 +101,7 @@ public:
 				imageWidth   = image.columns();
 				imageHeight  = image.rows();
 				
-				for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
+				for (int offsetX = 0; offsetX < imageWidth - matrixWidth; offsetX++) {
 					matrix->clear();
 					
 					matrix->drawImage(image, 0, 0, offsetX, 0);
