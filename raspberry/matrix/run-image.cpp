@@ -11,6 +11,7 @@ class ImageAnimation : public Animation {
 public:
 	
 	ImageAnimation(Matrix *matrix) : Animation(matrix) {
+		_scroll = "auto";
 	}
 	
 	void image(Magick::Image &value) {
@@ -170,6 +171,7 @@ int main (int argc, char *argv[])
 
 	animation.delay(18.0 * (32.0 * 32.0) / (double(matrix.width() * matrix.height())));
 	animation.scroll("auto");
+	animation.duration("auto");
 	
 	int option = 0;
 	
