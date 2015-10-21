@@ -1,10 +1,10 @@
-#include "image-animation.h"
+#include "frame-animation.h"
 
 
-class TextAnimation : public ImageAnimation {
+class TextAnimation : public FrameAnimation {
 	
 public:
-	TextAnimation(Matrix *matrix) : ImageAnimation(matrix) {
+	TextAnimation(Matrix *matrix) : FrameAnimation(matrix) {
 		
 		_textColor      = "red";
 		_fontName       = "./fonts/Arial-Bold.ttf";
@@ -89,7 +89,7 @@ public:
 			}
 		}
 		
-		images(frames);
+		frames(frames);
 
 		return ImageAnimation::run();
 	}
