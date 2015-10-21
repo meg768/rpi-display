@@ -117,7 +117,7 @@ public:
 				imageHeight  = image.rows();
 				
 				for (int offsetY = 0; offsetY < imageHeight; offsetY++) {
-					matrix.clear();
+					matrix->clear();
 					
 					matrix->drawImage(image, 0, 0, 0, offsetY);
 					matrix->refresh();
