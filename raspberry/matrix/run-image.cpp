@@ -45,8 +45,8 @@ public:
 		int matrixWidth  = matrix->width();
 		int matrixHeight = matrix->height();
 		
-		int imageWidth   = image.columns();
-		int imageHeight  = image.rows();
+		int imageWidth   = _image.columns();
+		int imageHeight  = _image.rows();
 		
 		
 		if (imageWidth > imageHeight) {
