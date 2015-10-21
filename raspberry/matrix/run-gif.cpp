@@ -105,8 +105,8 @@ public:
 			}
 
 			
-			ImageAnimation::frames(images);
-			ImageAnimation::run();
+			FramesAnimation::frames(images);
+			FramesAnimation::run();
 			
 			
 		}
