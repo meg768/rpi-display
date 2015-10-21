@@ -68,7 +68,7 @@ public:
 			imageWidth   = image.columns();
 			imageHeight  = image.rows();
 			
-			if (scroll != "none") {
+			if (_scroll != "none") {
 				if (scroll == "auto") {
 					if (imageWidth > imageHeight)
 						scroll = "horizontal";
@@ -79,7 +79,7 @@ public:
 				}
 			}
 			
-			if (scroll == "horizontal") {
+			if (_scroll == "horizontal") {
 				
 				if (true) {
 					Magick::Image img(Magick::Geometry(imageWidth + 2 * matrixWidth, imageHeight), "black");
@@ -104,7 +104,7 @@ public:
 					
 				}
 			}
-			else if (scroll == "vertical") {
+			else if (_scroll == "vertical") {
 				
 				if (true) {
 					Magick::Image img(Magick::Geometry(imageWidth, imageHeight + 2 * matrixHeight), "black");
