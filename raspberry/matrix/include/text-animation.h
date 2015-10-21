@@ -76,9 +76,8 @@ public:
 				for (int y = 0; y < matrixHeight; y++, p += imageWidth) {
 					const Magick::PixelPacket *pp = p;
 					
-					for (int x = 0; x < matrixWidth; x++, pp++) {
-						*framePixelPacket = *pp;
-						framePixelPacket++;
+					for (int x = 0; x < matrixWidth; x++) {
+						*framePixelPacket++ = *pp++;
 					}
 					
 				}

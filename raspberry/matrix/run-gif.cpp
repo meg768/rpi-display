@@ -85,7 +85,7 @@ public:
 			std::vector<Magick::Image> images;
 			Magick::coalesceImages(&images, frames.begin(), frames.end());
 
-			if (true) {
+			if (false) {
 				std::string _text = "23:15";
 				
 				Magick::Image overlayImage(Magick::Geometry(_matrix->width(), _matrix->height()), "transparent");
