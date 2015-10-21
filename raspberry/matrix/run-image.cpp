@@ -171,7 +171,7 @@ int main (int argc, char *argv[])
 
 	animation.delay(18.0 * (32.0 * 32.0) / (double(matrix.width() * matrix.height())));
 	animation.scroll("auto");
-	animation.duration("auto");
+	animation.duration(10);
 	
 	int option = 0;
 	
