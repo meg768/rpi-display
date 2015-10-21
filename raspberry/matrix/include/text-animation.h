@@ -91,7 +91,7 @@ public:
 		
 		frames(frames);
 
-		return ImageAnimation::run();
+		return FrameAnimation::run();
 	}
 	
 private:
