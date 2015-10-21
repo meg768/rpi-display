@@ -38,12 +38,38 @@ public:
 		_scroll = value;
 	}
 	
+	
+	void sample() {
+		Matrix *matrix = Animation::matrix();
+
+		int matrixWidth  = matrix->width();
+		int matrixHeight = matrix->height();
+		
+		int imageWidth   = image.columns();
+		int imageHeight  = image.rows();
+		
+		
+		if (imageWidth > imageHeight) {
+			_image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
+		}
+		else if (imageWidth < imageHeight) {
+			_image.sample(Magick::Geometry(matrixWidth, int(double(imageHeight) * double(imageWidth) / double(matrixWidth))));
+		}
+		else if (imageWidth != matrixWidth) {
+			_image.sample(Magick::Geometry(matrixWidth, matrixHeight));
+		}
+
+	}
 
 	
 	virtual int run() {
 		
 		
 		try {
+			
+			sample();
+			
+			
 			Matrix *matrix = Animation::matrix();
 			Magick::Image image = _image;
 			
@@ -56,18 +82,6 @@ public:
 			
 			int duration = Animation::duration();
 			
-			if (imageWidth > imageHeight) {
-				image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
-			}
-			else if (imageWidth < imageHeight) {
-				image.sample(Magick::Geometry(matrixWidth, int(double(imageHeight) * double(imageWidth) / double(matrixWidth))));
-			}
-			else if (imageWidth != matrixWidth) {
-				image.sample(Magick::Geometry(matrixWidth, matrixHeight));
-			}
-			
-			imageWidth   = image.columns();
-			imageHeight  = image.rows();
 			
 			if (_scroll != "none") {
 				if (_scroll == "auto") {
