@@ -168,7 +168,7 @@ int main (int argc, char *argv[])
 
 	ImageAnimation animation(&matrix);
 
-	animation.delay(18);
+	animation.delay(18.0 * (32.0 * 32.0) / (double(matrix.width() * matrix.height())));
 	animation.scroll("auto");
 	
 	int option = 0;
