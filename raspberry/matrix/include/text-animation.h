@@ -89,7 +89,7 @@ public:
 			}
 		}
 		
-		frames(frames);
+		FrameAnimation::frames(frames);
 
 		return FrameAnimation::run();
 	}
