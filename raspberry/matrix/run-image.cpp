@@ -92,10 +92,10 @@ public:
 				imageHeight  = image.rows();
 				
 				for (int offsetX = 0; offsetX < imageWidth; offsetX++) {
-					matrix.clear();
+					matrix->clear();
 					
-					matrix.drawImage(image, 0, 0, offsetX, 0);
-					matrix.refresh();
+					matrix->drawImage(image, 0, 0, offsetX, 0);
+					matrix->refresh();
 					
 					sleep();
 					
