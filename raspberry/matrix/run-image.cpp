@@ -19,7 +19,7 @@ public:
 	
 	void fileName(const char *value) {
 		Magick::Image image;
-		image.read(fileName);
+		image.read(value);
 		
 		// Convert transparent PNG:s
 		if (true) {
