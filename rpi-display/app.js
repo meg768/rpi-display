@@ -101,7 +101,10 @@ function main() {
 			
 		}
 		
-		matrix.sendRaw(cmd);
+		cmd = {};
+		cmd.type = 'text';
+		cmd.text = 'HEJ';
+		matrix.send(cmd);
 		
 		
 	}
