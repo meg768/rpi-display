@@ -102,9 +102,10 @@ function main() {
 		}
 		
 		cmd = {};
-		cmd.type = 'text';
-		cmd.text = 'HEJ';
-		matrix.send(cmd);
+		cmd.command = './run-text';
+		cmd.args    = ['-t', 'HEJX'];
+		cmd.options = {'cwd': 'matrix'};
+		matrix.sendRaw(cmd);
 		
 		
 	}
