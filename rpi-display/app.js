@@ -105,6 +105,12 @@ function main() {
 		cmd.command = './run-text';
 		cmd.args    = ['-t', 'HEJX'];
 		cmd.options = {'cwd': 'matrix'};
+
+		cmd = {};
+		cmd.command = './run-gif';
+		cmd.args    = ['-d', -1];
+
+
 		matrix.sendRaw(cmd);
 		
 		
