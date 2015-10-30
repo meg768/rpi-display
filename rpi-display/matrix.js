@@ -102,6 +102,10 @@ function spawn(commands) {
 	});		
 }
 
+function text(text, options) {
+	
+}
+
 function send(messages) {
 
 	if (!util.isArray(messages))
