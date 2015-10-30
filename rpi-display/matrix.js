@@ -7,7 +7,6 @@ var Queue = require('./runqueue.js');
 var _process = null;
 var _queue = new Queue();
 
-
 		
 _queue.on('idle', function() {
 
@@ -87,7 +86,6 @@ function startProcess(command, args, options, callback) {
 
 
 function spawn(commands) {
-	console.log("Got 'spawn' command from Heroku...", commands);
 
 	if (!util.isArray(commands))
 		commands = [commands];
@@ -104,7 +102,7 @@ function spawn(commands) {
 	});		
 }
 
-function message(messages) {
+function send(messages) {
 
 	if (!util.isArray(messages))
 		messages = [messages];
@@ -121,7 +119,7 @@ function message(messages) {
 
 			if (typeof msg.text == 'string') {
 				args.push('-t');
-				args.push('TEXT!' + msg.text);
+				args.push(msg.text);
 			}
 
 			if (typeof msg.color == 'string') {
@@ -203,23 +201,6 @@ function message(messages) {
 							
 		}
 
-		/*
-		if (msg.type == 'audio') {
-			var command   = 'omxplayer';
-			var args      = [];
-			var options   = {cwd: 'python'};
-	
-			if (typeof msg.sound == 'string') {
-				args.push('--no-keys');
-				args.push('--no-osd');
-				args.push('audio/' + msg.sound);
-			}
-			
-			if (args.length > 0)
-				commands.push({command:command, args:args, options:options, priority:msg.priority});
-		}
-		*/
-
 		
 	});
 	
@@ -227,9 +208,13 @@ function message(messages) {
 		spawn(commands);
 }
 	 	
+
+
 	 	
 module.exports = {};
-module.exports.message = message;
+module.exports.send = send;
+
+
 
 
 
