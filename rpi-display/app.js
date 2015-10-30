@@ -75,6 +75,7 @@ function main() {
 		
 		var cmd = {};
 		cmd.options = {cwd: 'matrix'}
+		cmd.priority = 'low';
 		
 		if (now.getHours() >= 0 && now.getHours() <= 7) {
 			cmd.command = './run-rain';
