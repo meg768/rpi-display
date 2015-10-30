@@ -98,7 +98,12 @@ var Module = module.exports = function() {
 		var idle = _queue.empty();
 		
 		commands.forEach(function(cmd) {
-			if (typeof cmd.priority == 'string' && cmd.priority == 'low') {
+			var priority = cmd.priority;
+			
+			if (typeof priority != 'string')
+				priority = 'low';
+				
+			if (priority == 'low') {
 				if (idle)	
 					_queue.push(cmd);
 			}
