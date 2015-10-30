@@ -20,7 +20,7 @@ var Module = module.exports = function() {
 	});
 	
 	_queue.on('process', function(item, callback) {
-		console.log('Processing:', item);
+		console.log('Processing:************************************************************************************', item);
 		startProcess(item.command, item.args, item.options, callback);
 	});
 	
