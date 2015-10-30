@@ -95,6 +95,8 @@ var Module = module.exports = function() {
 	
 	function spawn(commands) {
 	
+		console.log('***************spawning', commands);
+		
 		if (!util.isArray(commands))
 			commands = [commands];
 			
