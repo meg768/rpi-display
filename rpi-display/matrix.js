@@ -27,6 +27,7 @@ var Module = module.exports = function() {
 	
 	function stopProcess() {
 		if (_process != null) {
+			console.log('Stopping process.');
 			var process = _process;
 			
 			_process = null;
@@ -34,6 +35,8 @@ var Module = module.exports = function() {
 			process.kill('SIGINT');
 	
 		}
+		else	
+			console.log('No processs to be stopped');
 	}	
 	
 	function startProcess(command, args, options, callback) {
