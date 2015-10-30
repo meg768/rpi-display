@@ -107,10 +107,6 @@ function main() {
 	}
 	
 
-	function message(messages) {
-
-		matrix.send(messages);
-	}
 	
 	 
 	function sayHello() {
