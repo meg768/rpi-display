@@ -43,6 +43,7 @@ var Module = module.exports = function() {
 	function startProcess(command, args, options, callback) {
 	
 		try {
+			console.log('Starting process', command, '!!!!');
 			stopProcess();
 			
 			if (callback == undefined) {
