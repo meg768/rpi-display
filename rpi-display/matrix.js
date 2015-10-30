@@ -1,5 +1,5 @@
 
-module.exports = function() {
+var Module = module.exports = function() {
 	var util     = require('util');
 	var events   = require('events');
 	var sprintf  = require('./sprintf.js');
@@ -223,5 +223,6 @@ module.exports = function() {
 };
 
 
+util.inherits(Module, events.EventEmitter);
 
 
