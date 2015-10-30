@@ -88,6 +88,7 @@ var Module = module.exports = function() {
 			return _process = process;
 		}
 		catch (error) {
+			console.log(error);
 			NO(error);
 		}
 		
