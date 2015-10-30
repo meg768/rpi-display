@@ -217,6 +217,9 @@ function main() {
 			spawn(commands);
 	}
 		 	
+	module.exports = {};
+	module.exports.send = send;
+	
 
 	
 	
@@ -225,9 +228,6 @@ function main() {
 
 main();
 	 	
-module.exports = {};
-module.exports.send = send;
-
 
 
 
