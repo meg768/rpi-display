@@ -121,7 +121,7 @@ function message(messages) {
 
 			if (typeof msg.text == 'string') {
 				args.push('-t');
-				args.push(msg.text);
+				args.push('TEXT!' + msg.text);
 			}
 
 			if (typeof msg.color == 'string') {
