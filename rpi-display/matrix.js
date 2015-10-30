@@ -107,11 +107,8 @@ var Module = module.exports = function() {
 		});		
 	}
 	
-	function text(text, options) {
-		
-	}
-	
-	function send(messages) {
+
+	_this.send = function(messages) {
 	
 		if (!util.isArray(messages))
 			messages = [messages];
