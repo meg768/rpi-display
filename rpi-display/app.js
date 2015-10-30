@@ -2,6 +2,7 @@ var schedule = require('node-schedule');
 var util     = require('util');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
+var matrix   = require('./matrix.js');
 
 
 // { "command": "python", "options": {"cwd":"python"}, "args": ["run-text.py", "-t", "HEJ", "-c", "blue"]}
@@ -206,7 +207,6 @@ function main() {
 	
 	function message(messages) {
 
-		var matrix = require('./matrix.js');
 		matrix.send(messages);
 	}
 	
