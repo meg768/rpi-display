@@ -206,6 +206,9 @@ function main() {
 	
 	function message(messages) {
 
+		var matrix = require('./matrix.js');
+		matrix.message(messages);
+		return;
 		if (!util.isArray(messages))
 			messages = [messages];
 
