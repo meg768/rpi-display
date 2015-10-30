@@ -27,7 +27,7 @@ var Module = module.exports = function() {
 	
 	function stopProcess() {
 		if (_process != null) {
-			console.log('Stopping process.', _process);
+			console.log('Stopping process.');
 			var process = _process;
 			
 			_process = null;
