@@ -50,6 +50,7 @@ function main() {
 				
 			_queue.push(item);
 					
+			console.log('The queue is niw', _queue.length);
 			work();
 			
 		}
