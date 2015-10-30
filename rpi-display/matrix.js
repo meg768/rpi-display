@@ -108,6 +108,11 @@ var Module = module.exports = function() {
 	}
 	
 
+	_this.sendRaw = function(commands) {
+		if (commands.length > 0)
+			spawn(commands);	
+	};
+	
 	_this.send = function(messages) {
 	
 		if (!util.isArray(messages))
