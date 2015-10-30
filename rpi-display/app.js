@@ -2,8 +2,9 @@ var schedule = require('node-schedule');
 var util     = require('util');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
-var matrix   = require('./matrix.js');
+var Matrix   = require('./matrix.js');
 
+var matrix = new Matrix();
 
 // { "command": "python", "options": {"cwd":"python"}, "args": ["run-text.py", "-t", "HEJ", "-c", "blue"]}
 

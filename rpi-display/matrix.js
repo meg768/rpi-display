@@ -1,15 +1,15 @@
-var util     = require('util');
-var events   = require('events');
-var sprintf  = require('./sprintf.js');
-var random   = require('./random.js');
 
-var Queue = require('./runqueue.js');
-
-function main() {
+module.exports = function() {
+	var util     = require('util');
+	var events   = require('events');
+	var sprintf  = require('./sprintf.js');
+	var random   = require('./random.js');
 	
+	var Queue    = require('./runqueue.js');
+
 	var _process = null;
-	var _queue = new Queue();
-	var _this = this;
+	var _queue   = new Queue();
+	var _this    = this;
 			
 	_queue.on('idle', function() {
 	
@@ -216,18 +216,11 @@ function main() {
 		if (commands.length > 0)
 			spawn(commands);
 	}
-		 	
-	module.exports = {};
-	module.exports.send = send;
 	
+	util.inherits(_this, events.EventEmitter);
 
-	
-	
-}
-
-
-main();
-	 	
+		
+};
 
 
 
