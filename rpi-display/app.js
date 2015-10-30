@@ -18,6 +18,9 @@ function main() {
 	var _queue = new Queue();
 
 
+	matrix.on('idle', function(){
+		console.log('YEEEEEEEEEES IDLE');
+	});
 		
 	function enableClock() {
 		var rule = new schedule.RecurrenceRule();
