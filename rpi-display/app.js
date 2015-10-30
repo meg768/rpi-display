@@ -107,6 +107,7 @@ function main() {
 		cmd.options = {'cwd': 'matrix'};
 
 		cmd = {};
+		cmd.options = {cwd: 'matrix'}
 		cmd.command = './run-gif';
 		cmd.args    = ['-d', -1];
 
