@@ -59,7 +59,7 @@ function main() {
 			
 			var msg = {};
 			msg.type     = 'text';
-			msg.priority = 'low';
+			msg.priority = 'high';
 			msg.delay    = 30;
 			msg.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 			msg.text     = sprintf('%02d:%02d', now.getHours(), now.getMinutes());
