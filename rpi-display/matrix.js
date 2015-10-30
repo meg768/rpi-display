@@ -109,7 +109,10 @@ var Module = module.exports = function() {
 	
 
 	_this.sendRaw = function(commands) {
-		console.log('Sending raw', commands);
+
+		if (!util.isArray(commands))
+			commands = [commands];
+
 		if (commands.length > 0)
 			spawn(commands);	
 	};
