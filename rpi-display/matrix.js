@@ -1,7 +1,7 @@
+var util     = require('util');
+var events   = require('events');
 
 var Module = module.exports = function() {
-	var util     = require('util');
-	var events   = require('events');
 	var sprintf  = require('./sprintf.js');
 	var random   = require('./random.js');
 	
