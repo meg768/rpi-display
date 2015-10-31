@@ -58,12 +58,7 @@ function main() {
 				display.text(sprintf('%s %.2f', quote.name, quote.price), options);
 	
 				options.color = quote.change >= 0 ? 'rgb(0,255,0)' : 'rgb(255,0,0)';
-				
-				var strg = sprintf('%s%.1f', quote.change >= 0 ? '+' : '', quote.change) + '%';
-				console.log('****************************');
-				console.log(strg);
-				console.log('****************************');
-				display.text(strg, options);
+				display.text(sprintf('%s%.1f%% ', quote.change >= 0 ? '+' : '', quote.change), options);
 	
 			});
 				
