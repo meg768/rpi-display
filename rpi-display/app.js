@@ -60,6 +60,9 @@ function main() {
 				options.color = quote.change >= 0 ? 'rgb(0,255,0)' : 'rgb(255,0,0)';
 				
 				var strg = sprintf('%s%.1f', quote.change >= 0 ? '+' : '', quote.change) + '%';
+				console.log('****************************');
+				console.log(strg);
+				console.log('****************************');
 				display.text(strg, options);
 	
 			});
