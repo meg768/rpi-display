@@ -28,11 +28,12 @@ function main() {
 	}
 	
 	function enableQuotes() {
-		
+
+
 		var config = {
 			schedule: {
-				hour   : range(8, 21),
-				minute : range(0, 59)
+				minute : range(0, 59),
+				second : [0, 30]
 			},
 			
 			quotes : [
@@ -64,6 +65,7 @@ function main() {
 			
 			
 		});
+		
 	}
 		
 	function enableClock() {
@@ -107,7 +109,7 @@ function main() {
 			
 			var options = {};
 			options.type     = 'text';
-			options.priority = 'high';
+			//options.priority = 'low';
 			options.delay    = 30;
 			options.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
@@ -131,7 +133,6 @@ function main() {
 		
 			var iface = ifaces[device];
 			
-			console.log(ifaces);
 			if (iface != undefined) {
 			
 				for (var i in iface) {
