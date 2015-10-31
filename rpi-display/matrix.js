@@ -15,8 +15,8 @@ var Module = module.exports = function() {
 	
 	
 		console.log('Idle...');
-		_this.emit('idle');
-	
+		//_this.emit('idle');
+		startIdleProcess();		
 	});
 	
 	_queue.on('process', function(item, callback) {
@@ -24,7 +24,44 @@ var Module = module.exports = function() {
 		startProcess(item.command, item.args, item.options, callback);
 	});
 	
-	
+	function startIdleProcess() {
+
+		var now = new Date();
+		
+		if (_queue.empty()) {
+			var cmd = {};
+			cmd.options = {cwd: 'matrix'}
+			
+			if (now.getHours() >= 0 && now.getHours() <= 7) {
+				cmd.command = './run-rain';
+				cmd.args    = ['-d', -1];
+				
+			}
+			else {
+				switch (random.rand(0, 15)) {
+					case 0:
+					case 1:
+						cmd.command = './run-rain';
+						cmd.args    = ['-d', -1];
+						break;
+					case 2: 
+						cmd.command = './run-perlin';
+						cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
+						break;
+					default: 	
+						cmd.command = './run-gif';
+						cmd.args    = ['-d', -1];
+						break;
+				}
+				
+			}
+			
+			startProcess(cmd.command, cmd.args, cmd.options);
+		}
+
+		
+		
+	}	
 	
 	function stopProcess() {
 		if (_process != null) {
@@ -121,15 +158,6 @@ var Module = module.exports = function() {
 	}
 	
 
-	_this.sendRaw = function(commands) {
-
-		if (!util.isArray(commands))
-			commands = [commands];
-
-		if (commands.length > 0)
-			spawn(commands);	
-	};
-	
 	_this.send = function(messages) {
 	
 		if (!util.isArray(messages))

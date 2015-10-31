@@ -59,7 +59,7 @@ function main() {
 			
 			var msg = {};
 			msg.type     = 'text';
-			msg.priority = 'low';
+			msg.priority = 'high';
 			msg.delay    = 30;
 			msg.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 			msg.text     = sprintf('%02d:%02d', now.getHours(), now.getMinutes());
@@ -69,53 +69,7 @@ function main() {
 		});
 	}
 	
-	function startBackgroundProcess() {
 
-		var now = new Date();
-		
-		var cmd = {};
-		cmd.options = {cwd: 'matrix'}
-		cmd.priority = 'low';
-		
-		if (now.getHours() >= 0 && now.getHours() <= 7) {
-			cmd.command = './run-rain';
-			cmd.args    = ['-d', -1];
-			
-		}
-		else {
-			switch (random.rand(0, 15)) {
-				case 0:
-				case 1:
-					cmd.command = './run-rain';
-					cmd.args    = ['-d', -1];
-					break;
-				case 2: 
-					cmd.command = './run-perlin';
-					cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
-					break;
-				default: 	
-					cmd.command = './run-gif';
-					cmd.args    = ['-d', -1];
-					break;
-			}
-			
-		}
-		
-		cmd = {};
-		cmd.command = './run-text';
-		cmd.args    = ['-t', 'HEJX'];
-		cmd.options = {'cwd': 'matrix'};
-
-		cmd = {};
-		cmd.options = {cwd: 'matrix'}
-		cmd.command = './run-gif';
-		cmd.args    = ['-d', -1];
-
-
-		matrix.sendRaw(cmd);
-		
-		
-	}
 	
 
 	
