@@ -96,11 +96,11 @@ function main() {
 			
 			data.forEach(function(quote) {
 				if (quote.change == 0)
-					options.color = 'rgb(0,0,255');
+					options.color = 'rgb(0,0,255)';
 				if (quote.change < 0)
-					options.color = 'rgb(255,0,0');
+					options.color = 'rgb(255,0,0)';
 				if (quote.change > 0)
-					options.color = 'rgb(0,255,0');
+					options.color = 'rgb(0,255,0)';
 
 				display.text(sprintf('%s - %.2f %s%.1f%% ', quote.name, quote.price, quote.change >= 0 ? '+' : '', quote.change), options);
 	
