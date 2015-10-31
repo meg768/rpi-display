@@ -45,8 +45,6 @@ function main() {
 		var quotes = new Quotes(config);
 	
 		quotes.on('quotes', function(data) {
-			console.log('Got quotes!!!!!!!!!!!!!!!!');
-			console.log(data);
 			var display = new matrix.Display();
 			var now = new Date();
 			
@@ -58,7 +56,7 @@ function main() {
 				display.text(sprintf('%s %.2f', quote.name, quote.price), options);
 	
 				options.color = quote.change >= 0 ? 'rgb(0,255,0)' : 'rgb(255,0,0)';
-				display.text(sprintf('%s%.1f%% ', quote.change >= 0 ? '+' : '', quote.change), options);
+				display.text(sprintf('%s%.1f', quote.change >= 0 ? '+' : '', quote.change) + '% ', options);
 	
 			});
 				
@@ -111,6 +109,7 @@ function main() {
 			var options = {};
 			options.type     = 'text';
 			//options.priority = 'low';
+			options.size     = 30;
 			options.delay    = 30;
 			options.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
@@ -138,7 +137,6 @@ function main() {
 			
 				for (var i in iface) {
 					var item = iface[i];
-					console.log(item);
 			
 					if (item.family == 'IPv4')
 						return item.address;
