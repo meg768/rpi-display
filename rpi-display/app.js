@@ -11,7 +11,60 @@ function main() {
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
 	
-
+	
+	// Function to generate an array of integers between a range...	
+	function range(start, stop, step) {
+		
+		var values = [];
+		
+		if (step == undefined)
+			step = 1;
+			
+		for (var i = start; i <= stop; i += step)
+			values.push(i);
+			
+		return values;
+		
+	}
+	
+	function enableQuotes() {
+		
+		var config = {
+			schedule: {
+				hour   : range(8, 21),
+				minute : range(0, 59)
+			},
+			
+			quotes : [
+				{ name:'Phase', symbol:'PHI.ST'}
+			]
+		};
+		
+		var Quotes = require('./quotes.js');
+		var quotes = new Quotes(config);
+	
+		quotes.on('quotes', function(data) {
+			console.log('Got quotes!!!!!!!!!!!!!!!!');
+			console.log(data);
+			var display = new matrix.Display();
+			var now = new Date();
+			
+			var options = {};
+			
+			data.forEach(function(quote) {
+				options.color = 'rgb(0,0,255)';
+				display.text(sprintf('%s %.2f', quote.name, quote.price), options);
+	
+				options.color = quote.change >= 0 ? 'rgb(0,255,0)' : 'rgb(255,0,0)';
+				display.text(sprintf('%s%.1f%%', quote.change >= 0 ? '+' : '', quote.change), options);
+	
+			});
+				
+			display.send();
+			
+			
+		});
+	}
 		
 	function enableClock() {
 		var rule = new schedule.RecurrenceRule();
@@ -118,6 +171,7 @@ function main() {
 
 	sayHello();
 	enableClock();
+	enableQuotes();
 	
 	 	
 }
