@@ -40,7 +40,7 @@ function main() {
 			],
 			
 			schedule: {
-				hour   : range(7, 23),
+				//hour   : range(7, 23),
 				
 				// Display RSS news every 20 minutes
 				minute : range(0, 59, 20)
