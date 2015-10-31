@@ -27,6 +27,46 @@ function main() {
 		
 	}
 	
+	
+	
+	function enableRSS() {
+	
+		var config = {
+			feeds: [
+				{name: 'SvD',    url: 'http://www.svd.se/?service=rss&type=senastenytt'}, 
+				{name: 'SDS',    url: 'http://www.sydsvenskan.se/rss.xml'}, 
+				{name: 'Di',     url: 'http://www.di.se/rss'}, 
+				{name: 'Google', url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss'}
+			],
+			
+			schedule: {
+				// Display from 8-21
+				hour : range(8, 21),
+	
+				// Display RSS news every 20 minutes
+				minute : range(0, 59, 20)
+			}
+			
+		}	
+
+		var RSS = require('./rss.js');
+		var rss = new RSS(config);
+	
+		rss.on('feed', function(rss) {
+			var display = new matrix.Display();
+			var options = {};
+			
+			options.color = 'rgb(0,0,255)';
+			options.size  = 24;
+			
+			display.text(sprintf('%s - %s - %s', rss.name, rss.category, rss.text), options);
+			display.send();
+
+		});
+
+	
+	}
+	
 	function enableQuotes() {
 
 
@@ -37,7 +77,8 @@ function main() {
 			},
 			
 			quotes : [
-				{ name:'Phase', symbol:'PHI.ST'}
+				{ name:'Phase', symbol:'PHI.ST'},
+				{ name:'H&M', symbol:'HM-B.ST'}
 			]
 		};
 		
@@ -172,6 +213,7 @@ function main() {
 	sayHello();
 	enableClock();
 	enableQuotes();
+	enableRSS();
 	
 	 	
 }
