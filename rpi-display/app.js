@@ -51,13 +51,14 @@ function main() {
 			var now = new Date();
 			
 			var options = {};
+			options.size = 24;
 			
 			data.forEach(function(quote) {
 				options.color = 'rgb(0,0,255)';
 				display.text(sprintf('%s %.2f', quote.name, quote.price), options);
 	
 				options.color = quote.change >= 0 ? 'rgb(0,255,0)' : 'rgb(255,0,0)';
-				display.text(sprintf('%s%.1f%%', quote.change >= 0 ? '+' : '', quote.change), options);
+				display.text(sprintf('%s%.1f', quote.change >= 0 ? '+' : '', quote.change) + '%', options);
 	
 			});
 				
