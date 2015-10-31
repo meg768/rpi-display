@@ -72,8 +72,8 @@ function main() {
 
 		var config = {
 			schedule: {
-				minute : range(0, 59),
-				second : [0, 30]
+				hour   : range(8, 21),
+				minute : range(2, 59, 10)
 			},
 			
 			quotes : [
@@ -102,7 +102,7 @@ function main() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 
-				display.text(sprintf('%s - %.2f %s%.1f%% ', quote.name, quote.price, quote.change >= 0 ? '+' : '', quote.change), options);
+				display.text(sprintf('%s   %.2f   %s%.1f%% ', quote.name, quote.price, quote.change >= 0 ? '+' : '', quote.change), options);
 	
 			});
 				
@@ -156,7 +156,7 @@ function main() {
 			options.type     = 'text';
 			//options.priority = 'low';
 			options.size     = 30;
-			options.delay    = 30;
+			options.delay    = 25;
 			options.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
 			display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
