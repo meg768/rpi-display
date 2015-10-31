@@ -2,9 +2,7 @@ var schedule = require('node-schedule');
 var util     = require('util');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
-var Matrix   = require('./matrix.js');
-
-var matrix = new Matrix();
+var matrix   = require('./matrix.js');
 
 // { "command": "python", "options": {"cwd":"python"}, "args": ["run-text.py", "-t", "HEJ", "-c", "blue"]}
 
@@ -14,10 +12,6 @@ function main() {
 	process.env.TZ = 'Europe/Stockholm';
 	
 
-	matrix.on('idle', function() {
-		console.log('YEEEEEEEEEES IDLE');
-		startBackgroundProcess()
-	});
 		
 	function enableClock() {
 		var rule = new schedule.RecurrenceRule();
@@ -53,19 +47,19 @@ function main() {
 		}	
 		
 		schedule.scheduleJob(rule, function() {
+			var display = new matrix.Display();
 			var now = new Date();
 			var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;			
 			var color = hslToRgb(hue / 360, 1, 0.5);
 			
-			var msg = {};
-			msg.type     = 'text';
-			msg.priority = 'high';
-			msg.delay    = 30;
-			msg.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
-			msg.text     = sprintf('%02d:%02d', now.getHours(), now.getMinutes());
-			console.log(msg);
+			var options = {};
+			options.type     = 'text';
+			options.priority = 'high';
+			options.delay    = 30;
+			options.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
-			matrix.send(msg);	
+			display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
+			display.send();	
 		});
 	}
 	
@@ -76,6 +70,8 @@ function main() {
 	 
 	function sayHello() {
 	
+		var display = new matrix.Display();
+		
 		function getIP(device) {
 			var os = require('os');
 			var ifaces = os.networkInterfaces();
@@ -99,42 +95,24 @@ function main() {
 		
 		var wlan0 = getIP('wlan0');
 		var eth0 = getIP('eth0');
-		
+
 		var messages = [];
 		
 		if (wlan0 != '') {
-			messages.push({
-				type: 'image',
-				image: './images/wifi.png'
-			});
-			messages.push({
-				type: 'text',
-				text: wlan0,
-				color: 'blue'
-			});
+			display.image('./images/wifi.png');
+			display.text(wlan0, {color:'blue'});
 		}
 			
 		if (eth0 != '') {
-			messages.push({
-				type: 'image',
-				image: './images/internet.png'
-			});
-			messages.push({
-				type: 'text',
-				text: eth0,
-				color: 'blue'
-			});
-			
+			display.image('./images/internet.png');
+			display.text(eth0, {color:'blue'});
 		}
 		
-		if (messages.length == 0) {
-			messages.push({
-				type: 'emoji',
-				id: '733'
-			});
+		if (wlan0 != '' || eth0 != '') {
+			display.emoji(733);
 		}
 
-		matrix.send(messages);		
+		display.send();		
 	}
 	  
 

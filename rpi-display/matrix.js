@@ -3,7 +3,6 @@ var events   = require('events');
 var extend   = require('extend');
 
 
-var Matrix = module.exports = {};
 
 
 
@@ -268,6 +267,7 @@ function send(messages) {
 		spawn(commands);
 }
 
+var Matrix = {};
 
 
 Matrix.Display = function() {
@@ -355,4 +355,4 @@ Matrix.Display = function() {
 }
 
 
-
+module.exports = Matrix;
