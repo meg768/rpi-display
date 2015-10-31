@@ -40,9 +40,8 @@ function main() {
 			],
 			
 			schedule: {
-				// Display from 8-21
-				hour : range(8, 21),
-	
+				hour   : range(7, 23),
+				
 				// Display RSS news every 20 minutes
 				minute : range(0, 59, 20)
 			}
@@ -72,7 +71,7 @@ function main() {
 
 		var config = {
 			schedule: {
-				hour   : range(8, 21),
+				hour   : range(7, 23),
 				minute : range(2, 59, 10)
 			},
 			
