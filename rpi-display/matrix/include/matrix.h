@@ -25,6 +25,7 @@ class Matrix {
 	public:
 	
 	Matrix() {
+		srand(time(NULL));
 		
 		__matrix = this;
 		

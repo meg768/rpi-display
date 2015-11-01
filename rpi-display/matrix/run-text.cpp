@@ -4,38 +4,35 @@
 
 int main (int argc, char *argv[])
 {
-	srand(time(NULL));
-	
-	Magick::InitializeMagick(*argv);
-	
-	Matrix matrix;
-	TextAnimation animation(&matrix);
-	
 	static struct option options[] = {
-		{"config",     1, 0, 'm'},
+		{"config",     1, 0, 'x'},
 		{"duration",   1, 0, 'd'},
 		{"iterations", 1, 0, 'i'},
 		{"text",       1, 0, 't'},
 		{"size",       1, 0, 's'},
-		{"delay",      1, 0, 'x'},
+		{"delay",      1, 0, 'z'},
 		{"font",       1, 0, 'f'},
 		{"color",      1, 0, 'c'},
 		{0, 0, 0, 0}
 	};
 	
 	
+	Magick::InitializeMagick(*argv);
+	
+	Matrix matrix;
+	TextAnimation animation(&matrix);
+	
 	int option = 0, index = 0;
 	
-	
-	while ((option = getopt_long_only(argc, argv,"m:d:x:i:f:t:c:s:", options, &index)) != -1) {
+	while ((option = getopt_long_only(argc, argv,"z:d:x:i:f:t:c:s:", options, &index)) != -1) {
 		switch (option) {
-			case 'm':
+			case 'x':
 				matrix.config(optarg);
 				break;
 			case 'd':
 				animation.duration(atoi(optarg));
 				break;
-			case 'x':
+			case 'z':
 				animation.delay(atof(optarg));
 				break;
 			case 'i':
