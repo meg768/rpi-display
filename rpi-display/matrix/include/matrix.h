@@ -37,7 +37,7 @@ class Matrix {
 		if (!_io->Init()) {
 			exit(-1);
 		}
-		
+
 		_matrix = new rgb_matrix::RGBMatrix(_io, 32, 3, 3);
 		_canvas = _matrix->CreateFrameCanvas();
 	}
@@ -56,7 +56,21 @@ class Matrix {
 		
 		exit(-1);
 	}
-		
+	
+	void config(const char *layout) {
+		int width = 0, height = 0;
+		int result = sscanf(layout, "%dx%d", &width, &height);
+
+		if (result == 2) {
+			delete _matrix;
+			delete _io;
+			
+			_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
+			_canvas = _matrix->CreateFrameCanvas();
+		}
+	}
+	
+	
 	inline int width() {
 		return _canvas->width();
 	}
