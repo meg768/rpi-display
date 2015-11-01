@@ -43,7 +43,7 @@ function main() {
 				//hour   : range(7, 23),
 				
 				// Display RSS news every 20 minutes
-				minute : range(0, 59, 20)
+				minute : range(0, 59, 1)
 			}
 			
 		}	
@@ -214,8 +214,8 @@ function main() {
 	  
 
 	sayHello();
-	enableClock();
-	enableQuotes();
+	//enableClock();
+	//enableQuotes();
 	enableRSS();
 	
 	 	
