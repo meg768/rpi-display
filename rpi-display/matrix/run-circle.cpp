@@ -297,22 +297,31 @@ void Circle::calculateDistanceLut (void)
 
 int main (int argc, char *argv[])
 {
+	static struct option options[] = {
+		{"config",     1, 0, 'x'},
+		{"duration",   1, 0, 'd'},
+		{0, 0, 0, 0}
+	};
+
 	Magick::InitializeMagick(*argv);
 	Matrix matrix;
 	Timer timer;
 	
-	
-	gLevels = new uint32_t[matrix.width() * matrix.height()];
 
-	int option = 0;
+	int option = 0, index = 0;
 	
-	while ((option = getopt(argc, argv, "d:")) != -1) {
+	while ((option = getopt_long_only(argc, argv, "x:d:", options, &index)) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
+			case 'x':
+				matrix.config(optarg);
+				break;
 		}
 	}
+	
+	gLevels = new uint32_t[matrix.width() * matrix.height()];
 	
 	
 	Pattern *pattern = new Circle (matrix.width(), matrix.height(),
