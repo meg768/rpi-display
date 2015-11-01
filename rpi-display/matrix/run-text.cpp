@@ -13,8 +13,11 @@ int main (int argc, char *argv[])
 	
 	int option = 0;
 	
-	while ((option = getopt(argc, argv, "d:x:i:f:t:c:f:s:")) != -1) {
+	while ((option = getopt(argc, argv, "m:d:x:i:f:t:c:f:s:")) != -1) {
 		switch (option) {
+			case 'm':
+				matrix.config(optarg);
+				break;
 			case 'd':
 				animation.duration(atoi(optarg));
 				break;
