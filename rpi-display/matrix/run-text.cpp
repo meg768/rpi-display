@@ -28,7 +28,7 @@ int main (int argc, char *argv[])
 	
 	
 	while ((option = getopt_long(argc, argv,"m:d:x:i:f:t:c:s:", options, &index)) != -1) {
-		switch (opt) {
+		switch (option) {
 			case 'm':
 				matrix.config(optarg);
 				break;
