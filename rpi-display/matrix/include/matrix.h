@@ -33,15 +33,15 @@ class Matrix {
 		signal(SIGINT, Matrix::quit);
 		signal(SIGKILL, Matrix::quit);
 		
-		_io = new rgb_matrix::GPIO();
+		_io     = new rgb_matrix::GPIO();
+		_matrix = 0;
+		_canvas = 0;
 		
 		if (!_io->Init()) {
 			exit(-1);
 		}
 
-		_matrix = new rgb_matrix::RGBMatrix(_io, 32, 1, 1);
-		_canvas = _matrix->CreateFrameCanvas();
-		_config = "32x32";
+		config("32x32");
 	}
 
 	virtual ~Matrix() {
