@@ -32,7 +32,7 @@ function translateMessage(message) {
 		
 		'text': {
 			'color': 'blue',
-			'size' : 20
+			'size' : 30
 		}
 	};
 
@@ -125,6 +125,8 @@ function translateMessage(message) {
 		args.push(key);
 		args.push(params[key]);
 	}
+	
+	console.log(args);
 
 	return {command:command, args:args, options:options};
 }
