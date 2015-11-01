@@ -8,8 +8,7 @@ module.exports = {
 		
 		'text': {
 			'color' : 'blue',
-			'size'  : 24,
-			'font'  : 'Impact'
+			'size'  : 24
 		}
 	}
 	
