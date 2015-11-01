@@ -3,7 +3,7 @@ module.exports = {
 	defaultArguments: {
 		
 		'*': {
-			'config': '96x96';
+			'config': '96x96'
 		},
 		
 		'text': {
