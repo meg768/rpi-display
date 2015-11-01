@@ -11,8 +11,52 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 	TextAnimation animation(&matrix);
 	
-	int option = 0;
+	static struct option options[] = {
+		{"config", required_argument, 0, 'm'},
+		{"duration", required_argument, 0, 'd'},
+		{"iterations", required_argument, 0, 'i'},
+		{"text", required_argument, 0, 't'},
+		{"size", required_argument, 0, 's'},
+		{"delay", required_argument, 0, 'x'},
+		{"font", required_argument, 0, 'f'},
+		{"color", required_argument, 0, 'c'},
+		{0, 0, 0, 0}
+	};
 	
+	
+	int option = 0, index = 0;
+	
+	
+	while ((option = getopt_long(argc, argv,"m:d:x:i:f:t:c:s:", options, &index)) != -1) {
+		switch (opt) {
+			case 'm':
+				matrix.config(optarg);
+				break;
+			case 'd':
+				animation.duration(atoi(optarg));
+				break;
+			case 'x':
+				animation.delay(atof(optarg));
+				break;
+			case 'i':
+				animation.iterations(atoi(optarg));
+				break;
+			case 't':
+				animation.text(optarg);
+				break;
+			case 'c':
+				animation.textColor(optarg);
+				break;
+			case 'f':
+				animation.fontName(optarg);
+				break;
+			case 's':
+				animation.fontSize(atof(optarg));
+				break;
+		}
+	}
+	
+	/*
 	while ((option = getopt(argc, argv, "m:d:x:i:f:t:c:f:s:")) != -1) {
 		switch (option) {
 			case 'm':
@@ -41,6 +85,7 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+	 */
 	
 	return animation.run();
 	
