@@ -49,6 +49,8 @@ function translateMessage(message) {
 	
 	extend(msg, message);
 
+	params['--config'] = '96x96';
+
 	if (msg.delay != undefined) {
 		params['--delay'] = msg.delay;
 	}
