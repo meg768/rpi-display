@@ -23,8 +23,8 @@ int main (int argc, char *argv[])
 	TextAnimation animation(&matrix);
 	
 	int option = 0, index = 0;
-	
-	while ((option = getopt_long_only(argc, argv,"z:d:x:i:f:t:c:s:", options, &index)) != -1) {
+
+	while ((option = getopt_long_only(argc, argv, "z:d:x:i:f:t:c:s:", options, &index)) != -1) {
 		switch (option) {
 			case 'x':
 				matrix.config(optarg);

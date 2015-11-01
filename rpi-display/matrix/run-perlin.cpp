@@ -474,28 +474,36 @@ float Perlin::noise (float x, float y, float z)
 
 int main (int argc, char *argv[])
 {
+	static struct option options[] = {
+		{"config",     1, 0, 'x'},
+		{"duration",   1, 0, 'd'},
+		{"delay",      1, 0, 'z'},
+		{"mode",       1, 0, 'm'},
+		{0, 0, 0, 0}
+	};
+	
 	Magick::InitializeMagick(*argv);
 
-	int option = 0;
+	int option = 0, index = 0;
 	int mode = 2;
 
 	
 	Timer timer;
 	timer.delay(10.0);
 	
-	while ((option = getopt(argc, argv, "d:m:x:b:")) != -1) {
+	while ((option = getopt_long_only(argc, argv, "x:d:z:m", options, &index)) != -1) {
 		switch (option) {
+			case 'x':
+				matrix.config(optarg);
+				break;
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
 			case 'm':
 				mode = atoi(optarg);
 				break;
-			case 'x':
+			case 'z':
 				timer.delay(atof(optarg));
-				break;
-			case 'b':
-				matrix.setBrightness(atoi(optarg));
 				break;
 		}
 	}

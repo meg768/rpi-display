@@ -9,20 +9,32 @@
 
 int main (int argc, char *argv[])
 {
+	static struct option options[] = {
+		{"config",     1, 0, 'x'},
+		{"duration",   1, 0, 'd'},
+		{"delay",      1, 0, 'z'},
+		{"file",       1, 0, 'f'},
+		{"scroll",     1, 0, 's'},
+		{0, 0, 0, 0}
+	};
+	
 	Magick::InitializeMagick(*argv);
 	
 	Matrix matrix;
 
 	ImageAnimation animation(&matrix);
 
-	animation.delay(18.0 * (32.0 * 32.0) / (double(matrix.width() * matrix.height())));
+	animation.delay(18.0);
 	animation.scroll("auto");
 	animation.duration(10);
 	
-	int option = 0;
+	int option = 0, index = 0;
 	
-	while ((option = getopt(argc, argv, "x:f:i:d:h:s:")) != -1) {
+	while ((option = getopt_long_only(argc, argv, "z:x:f:d:s:", options, &index)) != -1) {
 		switch (option) {
+			case 'x':
+				matrix.config(optarg);
+				break;
 			case 'd':
 				animation.duration(atoi(optarg));
 				break;
@@ -32,7 +44,7 @@ int main (int argc, char *argv[])
 			case 's':
 				animation.scroll(optarg);
 				break;
-			case 'x':
+			case 'z':
 				animation.delay(atof(optarg));
 				break;
 		}

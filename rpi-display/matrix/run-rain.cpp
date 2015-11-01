@@ -145,22 +145,33 @@ protected:
 
 int main (int argc, char *argv[])
 {
+	static struct option options[] = {
+		{"config",     1, 0, 'x'},
+		{"duration",   1, 0, 'd'},
+		{"delay",      1, 0, 'z'},
+		{"hue",        1, 0, 'h'},
+		{0, 0, 0, 0}
+	};
+	
 	Magick::InitializeMagick(*argv);
 	
 	Matrix matrix;
 	MatrixAnimation animation(&matrix);
 
 	animation.duration(60);
-	animation.delay((double)(matrix.width() * matrix.height()) / 10000000.0);
+	animation.delay(10);
 	
-	int option;
+	int option = 0, index = 0;
 	
-	while ((option = getopt(argc, argv, "d:x:h:")) != -1) {
+	while ((option = getopt_long_only(argc, argv, "z:d:x:h:", options, &index)) != -1) {
 		switch (option) {
+			case 'x':
+				matrix.config(optarg);
+				break;
 			case 'd':
 				animation.duration(atoi(optarg));
 				break;
-			case 'x':
+			case 'z':
 				animation.delay(atof(optarg));
 				break;
 			case 'h':
