@@ -12,14 +12,14 @@ int main (int argc, char *argv[])
 	TextAnimation animation(&matrix);
 	
 	static struct option options[] = {
-		{"config", required_argument, 0, 'm'},
-		{"duration", required_argument, 0, 'd'},
-		{"iterations", required_argument, 0, 'i'},
-		{"text", required_argument, 0, 't'},
-		{"size", required_argument, 0, 's'},
-		{"delay", required_argument, 0, 'x'},
-		{"font", required_argument, 0, 'f'},
-		{"color", required_argument, 0, 'c'},
+		{"config",     1, 0, 'm'},
+		{"duration",   1, 0, 'd'},
+		{"iterations", 1, 0, 'i'},
+		{"text",       1, 0, 't'},
+		{"size",       1, 0, 's'},
+		{"delay",      1, 0, 'x'},
+		{"font",       1, 0, 'f'},
+		{"color",      1, 0, 'c'},
 		{0, 0, 0, 0}
 	};
 	
