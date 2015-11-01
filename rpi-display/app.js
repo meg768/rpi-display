@@ -116,7 +116,7 @@ function main() {
 		var rule = new schedule.RecurrenceRule();
 	
 		//rule.hour   = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-		rule.minute = new schedule.Range(0, 59, 5);
+		rule.minute = new schedule.Range(0, 59, 1);
 			
 		function hslToRgb(h, s, l){
 		    
@@ -151,8 +151,6 @@ function main() {
 			var color = hslToRgb(hue / 360, 1, 0.5);
 			
 			var options = {};
-			options.type     = 'text';
-			//options.priority = 'low';
 			options.size     = 30;
 			options.delay    = 25;
 			options.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
