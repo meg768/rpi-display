@@ -50,7 +50,7 @@ function main() {
 				
 			_queue.push(item);
 					
-			console.log('The queue is niw', _queue.length);
+			console.log('Size of queue is now', _queue.length);
 			work();
 			
 		}

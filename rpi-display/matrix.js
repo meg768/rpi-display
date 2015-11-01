@@ -2,10 +2,6 @@ var util     = require('util');
 var events   = require('events');
 var extend   = require('extend');
 
-
-
-
-
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
 
@@ -17,8 +13,6 @@ var _this    = this;
 
 		
 _queue.on('idle', function() {
-
-	console.log('Idle...');
 	startIdleProcess();		
 });
 
@@ -68,7 +62,6 @@ function startIdleProcess() {
 
 function stopProcess() {
 	if (_process != null) {
-		console.log('Stopping process.');
 		var process = _process;
 		
 		_process = null;
@@ -82,23 +75,23 @@ function stopProcess() {
 
 function startProcess(command, args, options, callback) {
 
+	if (callback == undefined) {
+		callback = function() {
+		};
+	}
+
+	function NO(error) {
+		console.log("Failed to spawn...", error == undefined ? '' : error);
+		callback();				
+	}
+
+	function YES() {
+		callback();				
+	}
+
 	try {
-		console.log('Starting process', command, '!!!!');
 		stopProcess();
 		
-		if (callback == undefined) {
-			callback = function() {
-			};
-		}
-
-		function NO(error) {
-			console.log("Failed to spawn...", error == undefined ? '' : error);
-			callback();				
-		}
-
-		function YES() {
-			callback();				
-		}
 
 		console.log('Spawning: %s', command, args, options);					
 
