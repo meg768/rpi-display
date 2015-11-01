@@ -271,6 +271,11 @@ function send(messages) {
 	
 	messages.forEach(function(msg) {
 
+		var command = translateMessage(msg);
+		
+		if (command != undefined)
+			commands.push(command);
+/*
 		if (msg.type == 'text') {
 			var command = './run-text';
 			var args    = [];
@@ -368,7 +373,7 @@ function send(messages) {
 			commands.push({command:command, args:args, options:options, priority:msg.priority});
 							
 		}
-
+*/
 		
 	});
 	
