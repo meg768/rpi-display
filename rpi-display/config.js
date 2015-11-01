@@ -7,7 +7,7 @@ module.exports = {
 		},
 		
 		'text': {
-			'color' : 'red',
+			'color' : 'blue',
 			'size'  : 24,
 			'font'  : 'Impact'
 		}

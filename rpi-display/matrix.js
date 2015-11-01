@@ -146,25 +146,18 @@ function startIdleProcess() {
 		var msg = {};
 
 		if (now.getHours() >= 0 && now.getHours() <= 7) {
-			msg.type = 'rain';
-			msg.duration = -1;
+			msg = {type: 'rain', duration: -1};
 		}
 		else {
 			switch (random.rand(0, 15)) {
 				case 0:
-				case 1:
-					msg.type = 'rain';
-					msg.duration = -1;
+					msg = {type: 'rain', duration: -1};
 					break;
-				case 2: 
-					msg.type = 'perlin';
-					msg.duration = -1;
-					msg.delay = 40;
-					msg.mode = 3;
+				case 1: 
+					msg = {type: 'perlin', duration: -1, delay: 40, mode: 3};
 					break;
 				default: 	
-					msg.type = 'gif';
-					msg.duration = -1;
+					msg = {type: 'gif', duration: -1};
 					break;
 			}
 			
