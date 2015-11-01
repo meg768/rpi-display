@@ -62,7 +62,7 @@ public:
 		if (true) {
 			const Magick::PixelPacket *pixels = image.getConstPixels(0, 0, imageWidth, imageHeight);
 			
-			for (int offsetX = 0, offsetY = 0; offsetX < imageWidth - matrixWidth; offsetX++) {
+			for (int offsetX = 0; offsetX < imageWidth - matrixWidth; offsetX++) {
 				
 				Magick::Image frame(Magick::Geometry(matrixWidth, matrixHeight), "black");
 				

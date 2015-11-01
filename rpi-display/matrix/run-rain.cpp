@@ -98,28 +98,30 @@ class MatrixAnimation : public Animation {
 	
 public:
 	MatrixAnimation(Matrix *matrix) : Animation(matrix) {
-
-		int size = _matrix->width();
-		
-		_worms.resize(size);
-		
-		for (int i = 0; i < size; i++) {
-			_worms[i].column(i);
-			_worms[i].height(matrix->height());
-			_worms[i].reset();
-		}
+		_hue = -1;
 	}
 	
 	~MatrixAnimation() {
 	}
 	
 	void hue(int value) {
-		for (int i = 0; i < (int)_worms.size(); i++) {
-			_worms[i].hue(value);
-		}
-		
+		_hue = value;
 	}
 
+	virtual int run() {
+		int size = _matrix->width();
+		
+		_worms.resize(size);
+		
+		for (int i = 0; i < size; i++) {
+			_worms[i].hue(_hue);
+			_worms[i].column(i);
+			_worms[i].height(matrix->height());
+			_worms[i].reset();
+		}
+
+		return Animation::run();
+	}
 	
 	virtual void loop() {
 		_matrix->clear();
@@ -137,6 +139,7 @@ public:
 
 protected:
 	std::vector <Worm> _worms;
+	int _hue;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
