@@ -33,7 +33,7 @@ function translateMessage(message) {
 		
 	extend(msg, config.defaults['*']);
 	
-	if (config.defaultArguments[message.type] != undefined)
+	if (config.defaults[message.type] != undefined)
 		extend(msg, config.defaults[message.type]);
 	
 	extend(msg, message);
