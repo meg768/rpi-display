@@ -116,7 +116,7 @@ public:
 		for (int i = 0; i < size; i++) {
 			_worms[i].hue(_hue);
 			_worms[i].column(i);
-			_worms[i].height(matrix->height());
+			_worms[i].height(_matrix->height());
 			_worms[i].reset();
 		}
 
