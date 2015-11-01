@@ -144,7 +144,7 @@ int main (int argc, char *argv[])
 	animation.delay(10);
 
 	
-	int option = 0, int index;
+	int option = 0, index = 0;
 	
 	while ((option = getopt_long_only(argc, argv,"z:d:x:i:f:", options, &index)) != -1) {
 		switch (option) {
