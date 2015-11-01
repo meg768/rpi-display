@@ -3,7 +3,7 @@ module.exports = {
 	defaults: {
 		
 		'*': {
-			'config': '32x32'
+			'config': '96x96'
 		},
 		
 		'text': {
