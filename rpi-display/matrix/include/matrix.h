@@ -38,7 +38,7 @@ class Matrix {
 			exit(-1);
 		}
 
-		_matrix = new rgb_matrix::RGBMatrix(_io, 32, 3, 3);
+		_matrix = new rgb_matrix::RGBMatrix(_io, 32, 1, 1);
 		_canvas = _matrix->CreateFrameCanvas();
 	}
 
@@ -61,11 +61,8 @@ class Matrix {
 		int width = 0, height = 0;
 		int result = sscanf(layout, "%dx%d", &width, &height);
 		
-		printf("layour: %s, width:%d, height:%d\n", layout, width, height);
-		
-		if (result == 2) {
+		if (result == 2 && width > 0 && height > 0) {
 			delete _matrix;
-			delete _io;
 			
 			_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
 			_canvas = _matrix->CreateFrameCanvas();
