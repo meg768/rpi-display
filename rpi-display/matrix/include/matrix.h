@@ -61,7 +61,7 @@ class Matrix {
 		int width = 0, height = 0;
 		int result = sscanf(layout, "%dx%d", &width, &height);
 		
-		printf("layour: %s, width:%d, height:%d\n");
+		printf("layour: %s, width:%d, height:%d\n", layout, width, height);
 		
 		if (result == 2) {
 			delete _matrix;
