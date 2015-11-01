@@ -31,10 +31,10 @@ function translateMessage(message) {
 	var options = {cwd: 'matrix'};	
 	var msg     = {};
 		
-	extend(msg, config.defaultArguments['*']);
+	extend(msg, config.defaults['*']);
 	
 	if (config.defaultArguments[message.type] != undefined)
-		extend(msg, config.defaultArguments[message.type]);
+		extend(msg, config.defaults[message.type]);
 	
 	extend(msg, message);
 
