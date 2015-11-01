@@ -1,7 +1,7 @@
 var util     = require('util');
 var events   = require('events');
 var extend   = require('extend');
-
+var config   = require('./config.js');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
 
@@ -25,27 +25,16 @@ _queue.on('process', function(item, callback) {
 
 function translateMessage(message) {
 
-	var defaultArgs = {
-		'*': {
-			'config': '96x96'
-		},
-		
-		'text': {
-			'color': 'blue',
-			'size' : 30
-		}
-	};
-
 	var params  = {};
 	var command = undefined;
 	var args    = [];
 	var options = {cwd: 'matrix'};	
 	var msg     = {};
 		
-	extend(msg, defaultArgs['*']);
+	extend(msg, config.defaultArguments['*']);
 	
-	if (defaultArgs[message.type] != undefined)
-		extend(msg, defaultArgs[message.type]);
+	if (config.defaultArguments[message.type] != undefined)
+		extend(msg, config.defaultArguments[message.type]);
 	
 	extend(msg, message);
 
@@ -82,10 +71,6 @@ function translateMessage(message) {
 		params['--color'] = msg.color;
 	}
 
-	if (msg.font != undefined) {
-		params['--font'] = sprintf('./fonts/%s.ttf', msg.font);
-	}
-
 	if (msg.size != undefined) {
 		params['--size'] = msg.size;
 	}
@@ -99,6 +84,12 @@ function translateMessage(message) {
 
 	if (msg.type == 'text') {
 		command = './run-text';
+
+		if (msg.font != undefined) {
+			params['--font'] = sprintf('./fonts/%s.ttf', msg.font);
+		}
+	
+
 	}
 
 	if (msg.type == 'rain') {
@@ -143,7 +134,6 @@ function translateMessage(message) {
 		args.push(params[key]);
 	}
 	
-	console.log(args);
 
 	return {command:command, args:args, options:options};
 }
