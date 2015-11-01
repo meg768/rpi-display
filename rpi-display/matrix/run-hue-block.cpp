@@ -104,10 +104,10 @@ int main (int argc, char *argv[])
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
-			case 'x':
+			case 'z':
 				timer.delay(atof(optarg));
 				break;
-			case 'z':
+			case 'x':
 				matrix.config(optarg);
 				break;
 		}
