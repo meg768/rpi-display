@@ -6,10 +6,9 @@
 
 using namespace std;
 
-#define DISPLAY_WIDTH 32
-#define DISPLAY_HEIGHT 32
 
-uint32_t gLevels[DISPLAY_HEIGHT][DISPLAY_WIDTH];
+uint32_t *gLevels;
+
 
 
 class Pattern
@@ -241,6 +240,13 @@ bool Wash::next (void)
 
 int main (int argc, char *argv[])
 {
+	static struct option options[] = {
+		{"config",     1, 0, 'x'},
+		{"duration",   1, 0, 'd'},
+		{"delay",      1, 0, 'z'},
+		{0, 0, 0, 0}
+	};
+	
 	Magick::InitializeMagick(*argv);
 
 	Matrix matrix;
@@ -248,20 +254,25 @@ int main (int argc, char *argv[])
 	
 	timer.delay(18);
 	
-	int option = 0;
+	int option = 0, index = 0;
 		
-	while ((option = getopt(argc, argv, "d:")) != -1) {
+	while ((option = getopt_long_only(argc, argv, "d:x:z:", options, &index)) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
-			case 'x':
+			case 'z':
 				timer.delay(atof(optarg));
+				break;
+			case 'x':
+				matrix.config(optarg);
 				break;
 		}
 	}
+	
+	gLevels = new uint32_t[matrix.width() * matrix.height()];
 
-	Pattern *pattern = new Wash (DISPLAY_WIDTH, DISPLAY_HEIGHT, 1.0, 1.0, 0);
+	Pattern *pattern = new Wash (matrix.width(), matrix.height(), 1.0, 1.0, 0);
 	pattern->init ();
 	
 
@@ -274,7 +285,9 @@ int main (int argc, char *argv[])
 	
 	matrix.clear();
 	matrix.refresh();
-	
+
+	delete [] gLevels;
+
     return 0;
 }
 

@@ -82,6 +82,13 @@ private:
 
 int main (int argc, char *argv[])
 {
+	static struct option options[] = {
+		{"config",     1, 0, 'x'},
+		{"duration",   1, 0, 'd'},
+		{"delay",      1, 0, 'z'},
+		{0, 0, 0, 0}
+	};
+	
 	Magick::InitializeMagick(*argv);
 
 	Matrix matrix;
@@ -89,16 +96,19 @@ int main (int argc, char *argv[])
 
 	timer.delay(10.0);
 
-	int option = 0;
+	int option = 0, index = 0;
 	int duration = -1;
 	
-	while ((option = getopt(argc, argv, "x:d:")) != -1) {
+	while ((option = getopt_long_only(argc, argv, "z:x:d:", options, &index)) != -1) {
 		switch (option) {
 			case 'd':
 				timer.duration(atoi(optarg));
 				break;
 			case 'x':
 				timer.delay(atof(optarg));
+				break;
+			case 'z':
+				matrix.config(optarg);
 				break;
 		}
 	}
