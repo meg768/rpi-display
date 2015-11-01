@@ -3,7 +3,6 @@ module.exports = {
 	defaults: {
 		
 		'*': {
-			'config': '96x96'
 		},
 		
 		'text': {

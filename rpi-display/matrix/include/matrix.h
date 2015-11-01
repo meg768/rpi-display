@@ -41,7 +41,7 @@ class Matrix {
 			exit(-1);
 		}
 
-		config("32x32");
+		config("96x96");
 	}
 
 	virtual ~Matrix() {
