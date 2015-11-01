@@ -118,6 +118,13 @@ function translateMessage(message) {
 		
 	}
 
+	if (msg.type == 'emoji') {
+		command = './run-image';
+		
+		if (msg.id != undefined)
+			params['--file'] = sprintf('./images/%s/%d.png', msg.config, msg.id);
+	}
+
 	if (msg.type == 'image') {
 		command = './run-image';
 
