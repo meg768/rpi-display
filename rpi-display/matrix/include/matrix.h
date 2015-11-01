@@ -41,6 +41,7 @@ class Matrix {
 
 		_matrix = new rgb_matrix::RGBMatrix(_io, 32, 1, 1);
 		_canvas = _matrix->CreateFrameCanvas();
+		_config = "32x32";
 	}
 
 	virtual ~Matrix() {
@@ -58,15 +59,20 @@ class Matrix {
 		exit(-1);
 	}
 	
-	void config(const char *layout) {
+	const char *config() {
+		return _config;
+	}
+	
+	void config(const char *value) {
 		int width = 0, height = 0;
-		int result = sscanf(layout, "%dx%d", &width, &height);
+		int result = sscanf(value, "%dx%d", &width, &height);
 		
 		if (result == 2 && width > 0 && height > 0) {
 			delete _matrix;
 			
 			_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
 			_canvas = _matrix->CreateFrameCanvas();
+			_config = value;
 		}
 	}
 	
@@ -218,6 +224,7 @@ protected:
 	rgb_matrix::RGBMatrix *_matrix;
 	rgb_matrix::GPIO *_io;
 	rgb_matrix::FrameCanvas *_canvas;
+	std::string _config;
 };
 
 
