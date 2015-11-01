@@ -60,7 +60,7 @@ class Matrix {
 	}
 	
 	const char *config() {
-		return _config;
+		return _config.c_str();
 	}
 	
 	void config(const char *value) {
