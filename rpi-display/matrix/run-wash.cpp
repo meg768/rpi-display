@@ -227,7 +227,7 @@ bool Wash::next (void)
 			hue = m_state + m_scale * xp + 0.5;
 			while (hue < 0) hue += 96;
 			while (hue >= 96) hue -= 96;
-			gLevels[row][col] = translateHue (hue);
+			gLevels[row * m_width + col] = translateHue (hue);
 		}
 	}
 	
