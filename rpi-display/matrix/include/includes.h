@@ -19,6 +19,7 @@
 #include <math.h>
 #include <vector>
 #include <dirent.h>
+#include <getopt.h>
 #include <Magick++.h>
 #include <magick/image.h>
 
