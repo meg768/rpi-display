@@ -60,7 +60,9 @@ class Matrix {
 	void config(const char *layout) {
 		int width = 0, height = 0;
 		int result = sscanf(layout, "%dx%d", &width, &height);
-
+		
+		printf("layour: %s, width:%d, height:%d\n");
+		
 		if (result == 2) {
 			delete _matrix;
 			delete _io;
