@@ -11,6 +11,7 @@ var _process = null;
 var _queue   = new Queue();
 var _this    = this;
 
+
 		
 _queue.on('idle', function() {
 	startIdleProcess();		
@@ -39,15 +40,15 @@ function startIdleProcess() {
 				case 0:
 				case 1:
 					cmd.command = './run-rain';
-					cmd.args    = ['-d', -1];
+					cmd.args    = ['--duration', -1, '--config', '96x96'];
 					break;
 				case 2: 
 					cmd.command = './run-perlin';
-					cmd.args    = ['-d', -1, '-m', 3, '-x', 40];
+					cmd.args    = ['--duration', -1, '--mode', 3, '--delay', 40, '--config', '96x96'];
 					break;
 				default: 	
 					cmd.command = './run-gif';
-					cmd.args    = ['-d', -1];
+					cmd.args    = ['--duration', -1, '--config', '96x96'];
 					break;
 			}
 			
@@ -167,10 +168,13 @@ function send(messages) {
 			var command = './run-text';
 			var args    = [];
 			var options = {cwd: 'matrix'};
-	
+
+			args.push('--config');
+			args.push('96x96');
+
 
 			if (typeof msg.text == 'string') {
-				args.push('-t');
+				args.push('--text');
 				args.push(msg.text);
 			}
 
@@ -180,22 +184,22 @@ function send(messages) {
 					msg.color = sprintf('hsl(%d,%d%%,%d%%)', random.rand(0, 360), 100, 50);
 				}		
 
-				args.push('-c');
+				args.push('--color');
 				args.push(msg.color);			
 			}
 
 			if (typeof msg.font == 'string') {
-				args.push('-f');
+				args.push('--font');
 				args.push(sprintf('./fonts/%s.ttf', msg.font));			
 			}
 
 			if (msg.size != undefined) {
-				args.push('-s');
+				args.push('--size');
 				args.push(msg.size);			
 			}
 
 			if (msg.delay != undefined) {
-				args.push('-x');
+				args.push('--delay');
 				args.push(msg.delay);			
 			}
 			
@@ -207,20 +211,23 @@ function send(messages) {
 			var command = './run-image';
 			var args    = [];
 			var options = {cwd: 'matrix'};
+
+			args.push('--config');
+			args.push('96x96');
 	
 
 			if (msg.image != undefined) {
-				args.push('-f');
+				args.push('--file');
 				args.push(msg.image);
 			}
 			
 			if (msg.hold != undefined) {
-				args.push('-h');
+				args.push('--hold');
 				args.push(msg.hold);
 			}
 
 			if (msg.delay != undefined) {
-				args.push('-x');
+				args.push('--delay');
 				args.push(msg.delay);			
 			}
 			
@@ -233,19 +240,21 @@ function send(messages) {
 			var args    = [];
 			var options = {cwd: 'matrix'};
 	
+			args.push('--config');
+			args.push('96x96');
 
 			if (msg.id != undefined) {
-				args.push('-f');
+				args.push('--file');
 				args.push('./images/emojis/' + parseInt(msg.id) + '.png');
 			}
 			
 			if (msg.hold != undefined) {
-				args.push('-h');
+				args.push('--hold');
 				args.push(msg.hold);
 			}
 
 			if (msg.delay != undefined) {
-				args.push('-x');
+				args.push('--delay');
 				args.push(msg.delay);			
 			}
 			
