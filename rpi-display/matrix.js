@@ -12,6 +12,7 @@ var _queue   = new Queue();
 var _this    = this;
 
 
+
 		
 _queue.on('idle', function() {
 	startIdleProcess();		
@@ -21,6 +22,112 @@ _queue.on('process', function(item, callback) {
 	startProcess(item.command, item.args, item.options, callback);
 });
 
+
+function translateMessage(message) {
+
+	var defaultArgs = {
+		'*': {
+			'config': '96x96'
+		},
+		
+		'text': {
+			'color': 'blue',
+			'size' : 20
+		}
+	};
+
+	var params  = {};
+	var command = undefined;
+	var args    = [];
+	var options = {cwd: 'matrix'};	
+	var msg     = {};
+		
+	extend(msg, defaultArgs['*']);
+	
+	if (defaultArgs[message.type] != undefined)
+		extend(msg, defaultArgs[message.type]);
+	
+	extend(msg, message);
+
+	if (msg.type == 'text') {
+		command = './run-text';
+		
+		if (msg.text != undefined) {
+			params['--text'] = msg.text;
+		}
+
+		if (msg.color != undefined) {
+			params['--color'] = msg.color;
+		}
+
+		if (msg.font != undefined) {
+			params['--font'] = sprintf('./fonts/%s.ttf', msg.font);
+		}
+
+		if (msg.size != undefined) {
+			params['--size'] = msg.size;
+		}
+
+		if (msg.delay != undefined) {
+			params['--delay'] = msg.delay;
+		}
+		
+	}
+
+	if (msg.type == 'rain') {
+		command = './run-rain';
+		
+		if (msg.duration != undefined) {
+			params['--duration'] = msg.duration;
+		}
+
+		if (msg.hue != undefined) {
+			params['--hue'] = msg.hue;
+		}
+	}
+	
+	if (msg.type == 'gif') {
+		command = './run-gif';
+		
+		
+		if (msg.duration != undefined) {
+			params['--duration'] = msg.duration;
+		}
+
+		if (msg.file != undefined) {
+			params['--file'] = msg.file;
+		}
+
+		if (msg.delay != undefined) {
+			params['--delay'] = msg.delay;
+		}
+
+	}
+
+	if (msg.type == 'image') {
+		command = './run-image';
+
+		if (msg.image != undefined) {
+			params['--file'] = msg.image;
+		}
+
+		if (msg.delay != undefined) {
+			params['--delay'] = msg.delay;
+		}
+		
+	}
+
+	if (command == undefined)
+		return undefined;
+
+			
+	for (var key in params) {
+		args.push(key);
+		args.push(params[key]);
+	}
+
+	return {command:command, args:args, options:options};
+}
 
 function startIdleProcess() {
 
@@ -32,7 +139,7 @@ function startIdleProcess() {
 		
 		if (now.getHours() >= 0 && now.getHours() <= 7) {
 			cmd.command = './run-rain';
-			cmd.args    = ['-d', -1];
+			cmd.args    = ['--duration', -1, '--config', '96x96'];
 			
 		}
 		else {
