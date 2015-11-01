@@ -254,7 +254,7 @@ int main (int argc, char *argv[])
 	timer.duration(60);
 	timer.delay(50.0);
 	
-	int option = 0;
+	int option = 0, index = 0;
 	
 	while ((option = getopt_long_only(argc, argv, "d:x:z:", options, &index)) != -1) {
 		switch (option) {
