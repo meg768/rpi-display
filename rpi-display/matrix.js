@@ -122,7 +122,7 @@ function translateMessage(message) {
 		command = './run-image';
 		
 		if (msg.id != undefined)
-			params['--file'] = sprintf('./images/%s/%d.png', msg.config, msg.id);
+			params['--file'] = sprintf('./images/%s/emojis/%d.png', msg.config, msg.id);
 	}
 
 	if (msg.type == 'image') {
