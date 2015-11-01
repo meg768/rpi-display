@@ -204,7 +204,7 @@ function main() {
 		}
 		
 		if (wlan0 != '' || eth0 != '') {
-			display.emoji(733);
+			display.emoji(729);
 		}
 
 		display.send();		
