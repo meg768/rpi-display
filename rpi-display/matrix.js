@@ -104,6 +104,24 @@ function translateMessage(message) {
 
 	}
 
+	if (msg.type == 'perlin') {
+		command = './run-perlin';
+		
+		
+		if (msg.duration != undefined) {
+			params['--duration'] = msg.duration;
+		}
+
+		if (msg.mode != undefined) {
+			params['--mode'] = msg.mode;
+		}
+
+		if (msg.delay != undefined) {
+			params['--delay'] = msg.delay;
+		}
+
+	}
+
 	if (msg.type == 'image') {
 		command = './run-image';
 
@@ -136,34 +154,37 @@ function startIdleProcess() {
 	var now = new Date();
 	
 	if (_queue.empty()) {
-		var cmd = {};
-		cmd.options = {cwd: 'matrix'}
-		
+		var msg = {};
+
 		if (now.getHours() >= 0 && now.getHours() <= 7) {
-			cmd.command = './run-rain';
-			cmd.args    = ['--duration', -1, '--config', '96x96'];
-			
+			msg.type = 'rain';
+			msg.duration = -1;
 		}
 		else {
 			switch (random.rand(0, 15)) {
 				case 0:
 				case 1:
-					cmd.command = './run-rain';
-					cmd.args    = ['--duration', -1, '--config', '96x96'];
+					msg.type = 'rain';
+					msg.duration = -1;
 					break;
 				case 2: 
-					cmd.command = './run-perlin';
-					cmd.args    = ['--duration', -1, '--mode', 3, '--delay', 40, '--config', '96x96'];
+					msg.type = 'perlin';
+					msg.duration = -1;
+					msg.delay = 40;
+					msg.mode = 3;
 					break;
 				default: 	
-					cmd.command = './run-gif';
-					cmd.args    = ['--duration', -1, '--config', '96x96'];
+					msg.type = 'gif';
+					msg.duration = -1;
 					break;
 			}
 			
 		}
+
+		var cmd = translateMessage(msg);
 		
-		startProcess(cmd.command, cmd.args, cmd.options);
+		if (cmd != undefined)			
+			startProcess(cmd.command, cmd.args, cmd.options);
 	}
 
 	
