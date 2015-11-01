@@ -49,77 +49,68 @@ function translateMessage(message) {
 	
 	extend(msg, message);
 
+	if (msg.delay != undefined) {
+		params['--delay'] = msg.delay;
+	}
+
+	if (msg.iterations != undefined) {
+		params['--iterations'] = msg.iterations;
+	}
+
+	if (msg.duration != undefined) {
+		params['--duration'] = msg.duration;
+	}
+
+	if (msg.file != undefined) {
+		params['--file'] = msg.file;
+	}
+
+	if (msg.hue != undefined) {
+		params['--hue'] = msg.hue;
+	}
+
+	if (msg.text != undefined) {
+		params['--text'] = msg.text;
+	}
+
+	if (msg.color != undefined) {
+		params['--color'] = msg.color;
+	}
+
+	if (msg.font != undefined) {
+		params['--font'] = sprintf('./fonts/%s.ttf', msg.font);
+	}
+
+	if (msg.size != undefined) {
+		params['--size'] = msg.size;
+	}
+
+
+	if (msg.mode != undefined) {
+		params['--mode'] = msg.mode;
+	}
+	
+	//////////////////
+
 	if (msg.type == 'text') {
 		command = './run-text';
-		
-		if (msg.text != undefined) {
-			params['--text'] = msg.text;
-		}
-
-		if (msg.color != undefined) {
-			params['--color'] = msg.color;
-		}
-
-		if (msg.font != undefined) {
-			params['--font'] = sprintf('./fonts/%s.ttf', msg.font);
-		}
-
-		if (msg.size != undefined) {
-			params['--size'] = msg.size;
-		}
-
-		if (msg.delay != undefined) {
-			params['--delay'] = msg.delay;
-		}
-		
 	}
 
 	if (msg.type == 'rain') {
 		command = './run-rain';
-		
-		if (msg.duration != undefined) {
-			params['--duration'] = msg.duration;
-		}
 
-		if (msg.hue != undefined) {
-			params['--hue'] = msg.hue;
-		}
 	}
 	
 	if (msg.type == 'gif') {
 		command = './run-gif';
 		
 		
-		if (msg.duration != undefined) {
-			params['--duration'] = msg.duration;
-		}
-
-		if (msg.file != undefined) {
-			params['--file'] = msg.file;
-		}
-
-		if (msg.delay != undefined) {
-			params['--delay'] = msg.delay;
-		}
 
 	}
 
 	if (msg.type == 'perlin') {
 		command = './run-perlin';
 		
-		
-		if (msg.duration != undefined) {
-			params['--duration'] = msg.duration;
-		}
-
-		if (msg.mode != undefined) {
-			params['--mode'] = msg.mode;
-		}
-
-		if (msg.delay != undefined) {
-			params['--delay'] = msg.delay;
-		}
-
 	}
 
 	if (msg.type == 'image') {
@@ -127,10 +118,6 @@ function translateMessage(message) {
 
 		if (msg.image != undefined) {
 			params['--file'] = msg.image;
-		}
-
-		if (msg.delay != undefined) {
-			params['--delay'] = msg.delay;
 		}
 		
 	}
