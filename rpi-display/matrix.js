@@ -149,7 +149,7 @@ function spawn(commands) {
 		var priority = cmd.priority;
 		
 		if (typeof priority != 'string')
-			priority = 'low';
+			priority = 'normal';
 			
 		if (priority == 'low') {
 			if (idle)	
