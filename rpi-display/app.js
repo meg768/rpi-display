@@ -64,7 +64,7 @@ function main() {
 			quotes : [
 				
 				{ name:'OMX Index', symbol:'^OMX'},
-				{ name:'PHI',       symbol:'PHI.ST'},
+				{ name:'PHI',     symbol:'PHI.ST'},
 				{ name:'H&M',       symbol:'HM-B.ST'}
 			]
 		};

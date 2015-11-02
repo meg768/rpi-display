@@ -2,8 +2,8 @@ BINARIES         = run-text run-rain run-perlin run-gif run-clock run-static run
 INCLUDES         = include/*.*
 CXXFLAGS         = -Wall -O3 -g
 
-RGB_INCDIR       = ../rpi-rgb-led-matrix/include
-RGB_LIBDIR       = ../rpi-rgb-led-matrix/lib
+RGB_INCDIR       = ../hzeller/include
+RGB_LIBDIR       = ../hzeller/lib
 RGB_LIBRARY_NAME = rgbmatrix
 RGB_LIBRARY      = $(RGB_LIBDIR)/lib$(RGB_LIBRARY_NAME).a
 
