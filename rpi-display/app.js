@@ -1,8 +1,8 @@
 var schedule = require('node-schedule');
 var util     = require('util');
-var sprintf  = require('./scrips/sprintf.js');
-var random   = require('./scrips/random.js');
-var matrix   = require('./scrips/matrix.js');
+var sprintf  = require('./scripts/sprintf.js');
+var random   = require('./scripts/random.js');
+var matrix   = require('./scripts/matrix.js');
 
 
 
