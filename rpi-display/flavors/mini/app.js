@@ -12,6 +12,8 @@ function main() {
 	matrix.options.config = '32x32';
 	matrix.options.paths.animations = './flavors/mini/animations';
 	matrix.options.paths.emojis = './emojis/32x32';
+	matrix.options.defaults.text.delay = 18;
+	matrix.options.defaults.image.delay = 18;
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
