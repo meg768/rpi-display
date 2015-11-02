@@ -18,7 +18,9 @@ Matrix.options = {
 	config: '96x96',
 	
 	paths: {
-		fonts: './matrix/fonts'	
+		fonts: './fonts',	
+		animations: './animations/96x96',
+		emojis: './images/96x96/emojis'	
 	},
 	
 	defaults: {
@@ -28,8 +30,7 @@ Matrix.options = {
 			size : 24,
 			color: 'blue'
 		},
-		
-		
+				
 		image: {
 		},
 		
@@ -105,7 +106,12 @@ Matrix.image = function(file, options) {
 		args.push(options.delay);			
 	}	
 
-	return {command:'./run-image', args:args, options:{cwd:'./matrix'}};
+	if (options.scroll != undefined) {
+		args.push('--scroll');
+		args.push(options.scroll);			
+	}	
+
+	return {command:'./matrix/run-image', args:args, options:{}};
 }
 
 
@@ -117,15 +123,19 @@ Matrix.animation = function(options) {
 
 	args.push('--config');
 	args.push(Matrix.options.config);
+
+	if (options.file == undefined) {
+		options.file = Matrix.options.paths.animations;
+	}
+
+	if (options.file != undefined) {
+		args.push('--file');
+		args.push(options.file);			
+	}		
 	
 	if (options.duration != undefined) {
 		args.push('--duration');
 		args.push(options.duration);			
-	}		
-
-	if (options.hue != undefined) {
-		args.push('--hue');
-		args.push(options.hue);			
 	}		
 
 	if (options.delay != undefined) {
@@ -133,7 +143,12 @@ Matrix.animation = function(options) {
 		args.push(options.delay);			
 	}		
 
-	return {command:'./run-gif', args:args, options:{cwd:'./matrix'}};
+	if (options.iterations != undefined) {
+		args.push('--iterations');
+		args.push(options.iterations);			
+	}		
+
+	return {command:'./matrix/run-gif', args:args, options:{}};
 }
 
 Matrix.rain = function(options) {
@@ -160,7 +175,7 @@ Matrix.rain = function(options) {
 		args.push(options.delay);			
 	}		
 
-	return {command:'./run-rain', args:args, options:{cwd:'./matrix'}};
+	return {command:'./matrix/run-rain', args:args, options:{}};
 }
 
 
@@ -188,7 +203,7 @@ Matrix.perlin = function(options) {
 		args.push(options.delay);			
 	}		
 
-	return {command:'./run-perlin', args:args, options:{cwd:'./matrix'}};
+	return {command:'./matrix/run-perlin', args:args, options:{}};
 }
 
 		
@@ -240,7 +255,7 @@ Matrix.Display = function() {
 	}
 
 	self.emoji = function(id, options) {
-		this.image(sprintf('./images/%s/emojis/%d.png', Matrix.options.config, parseInt(id)), options);			
+		this.image(sprintf('%s/%d.png', Matrix.options.paths.emojis, Matrix.options.config, parseInt(id)), options);			
 	}
 	
 	self.perlin = function(options) {
