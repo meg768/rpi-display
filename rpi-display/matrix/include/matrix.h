@@ -33,7 +33,7 @@ class Matrix {
 		signal(SIGINT, Matrix::quit);
 		signal(SIGKILL, Matrix::quit);
 		
-		_io     = new rgb_matrix::GPIO();
+		_io     = 0;
 		_matrix = 0;
 		_canvas = 0;
 		
@@ -69,7 +69,9 @@ class Matrix {
 		
 		if (result == 2 && width > 0 && height > 0) {
 			delete _matrix;
+			delete _io;
 			
+			_io     = new rgb_matrix::GPIO();
 			_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
 			_canvas = _matrix->CreateFrameCanvas();
 			_config = value;
