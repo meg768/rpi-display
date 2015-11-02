@@ -33,7 +33,7 @@ Matrix.options = {
 		},
 				
 		image: {
-			delay    : 10.0,
+			delay    : 6.0,
 			duration : 60,
 			scroll   : 'none'
 		},
