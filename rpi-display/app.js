@@ -207,13 +207,9 @@ function main() {
 	  
 
 	sayHello();
-	//enableClock();
-	//enableQuotes();
-	//enableRSS();
-	var display = new matrix.Display();
-	display.perlin({duration:10});
-	display.send();
-	
+	enableClock();
+	enableQuotes();
+	enableRSS();
 	 	
 }
 
