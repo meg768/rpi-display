@@ -24,7 +24,14 @@ public:
 			
 			image = tmp;
 		}
+
+		if (true) {
+			Magick::Image tmp;
+			tmp.read("./A.png");
+			tmp.composite(image, 0, 0, Magick::OverCompositeOp);
 		
+			image = tmp;
+		}
 		_image = image;
 		
 	}
