@@ -18,7 +18,7 @@ Matrix.options = {
 	config: '96x96',
 	
 	paths: {
-		fonts: './fonts'	
+		fonts: './matrix/fonts'	
 	},
 	
 	defaults: {
