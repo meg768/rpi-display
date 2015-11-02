@@ -16,7 +16,15 @@ public:
 	void fileName(const char *value) {
 		Magick::Image image;
 		image.read(value);
-		
+
+		if (true) {
+			Magick::Image tmp;
+			tmp.read("./A.png");
+			tmp.composite(image, 0, 0, Magick::OverCompositeOp);
+			
+			image = tmp;
+		}
+
 		// Convert transparent PNG:s
 		if (true) {
 			Magick::Image tmp(Magick::Geometry(image.columns(), image.rows()), "black");
@@ -25,13 +33,6 @@ public:
 			image = tmp;
 		}
 
-		if (true) {
-			Magick::Image tmp;
-			tmp.read("./A.png");
-			tmp.composite(image, 0, 0, Magick::OverCompositeOp);
-		
-			image = tmp;
-		}
 		_image = image;
 		
 	}
