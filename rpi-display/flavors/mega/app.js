@@ -10,6 +10,8 @@ function main() {
 
 	// Make sure we configure the size of the display 
 	matrix.options.config = '96x96';
+	matrix.options.paths.animations = './flavors/mega/animations';
+	matrix.options.paths.emojis = './emojis/96x96';
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
