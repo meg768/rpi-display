@@ -20,6 +20,7 @@ public:
 		if (true) {
 			Magick::Image tmp;
 			tmp.read("./A.png");
+			image.rotate(45);
 			tmp.composite(image, 0, 0, Magick::OverCompositeOp);
 			
 			image = tmp;
