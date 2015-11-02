@@ -6,11 +6,6 @@ var matrix   = require('./matrix.js');
 
 
 function main() {
-
-	var display = new matrix.Display();
-	display.perlin({duration:10});
-
-	return;
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
@@ -212,9 +207,12 @@ function main() {
 	  
 
 	sayHello();
-	enableClock();
-	enableQuotes();
-	enableRSS();
+	//enableClock();
+	//enableQuotes();
+	//enableRSS();
+	var display = new matrix.Display();
+	display.perlin({duration:10});
+	display.send();
 	
 	 	
 }
