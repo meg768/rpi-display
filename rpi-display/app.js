@@ -5,7 +5,10 @@ var random   = require('./random.js');
 var matrix   = require('./matrix.js');
 
 
+
 function main() {
+
+	matrix.config = '96x96';
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';

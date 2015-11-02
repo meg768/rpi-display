@@ -1,7 +1,6 @@
 var util     = require('util');
 var events   = require('events');
 var extend   = require('extend');
-var config   = require('./config.js');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
 
@@ -13,9 +12,42 @@ var _queue   = new Queue();
 
 var Matrix = module.exports = {};
 
-function runText(text, opts) {
 
-	var options = extend({}, config.matrix.defaults.text, opts);
+Matrix.options = {
+
+	config: '96x96',
+	
+	defaults: {
+		
+		text: {
+			font : 'Verdana',
+			size : 24,
+			color: 'blue'
+		},
+		
+		
+		image: {
+		},
+		
+		perlin: {
+		}
+	}	
+};
+
+Matrix.defaultOptions = function(name, opts) {
+	
+	var options = {};
+	
+	if (Matrix.options != undefined && Matrix.options.defaults != undefined)
+		extend(options, Matrix.options.defaults[text]);
+
+	return extend(options, opts);
+}
+
+
+Matrix.text = function(text, options) {
+
+	options = Matrix.defaultOptions('text');
 
 	if (text == '')
 		text = 'ABC 123';
@@ -23,7 +55,7 @@ function runText(text, opts) {
 	var args = [];
 
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(Matrix.options.config);
 
 	args.push('--text');
 	args.push(text);
@@ -52,14 +84,14 @@ function runText(text, opts) {
 }
 
 
-function runImage(file, options) {
-	if (options == undefined)
-		options = {};
+Matrix.image = function(file, options) {
+
+	options = Matrix.defaultOptions('image');
 	
 	var args = [];
 	
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(Matrix.options.config);
 
 	args.push('--file');
 	args.push(file);
@@ -72,15 +104,15 @@ function runImage(file, options) {
 	return {command:'./run-image', args:args, options:{cwd:'./matrix'}};
 }
 
-function runGif(options) {
+
+Matrix.animation = function(options) {
 	
-	if (options == undefined)
-		options = {};
+	options = Matrix.defaultOptions('animation');
 
 	var args = [];
 
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(Matrix.options.config);
 	
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -100,15 +132,14 @@ function runGif(options) {
 	return {command:'./run-gif', args:args, options:{cwd:'./matrix'}};
 }
 
-function runRain(options) {
+Matrix.rain = function(options) {
 	
-	if (options == undefined)
-		options = {};
+	options = Matrix.defaultOptions('rain');
 
 	var args = [];
 	
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(Matrix.options.config);
 
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -129,15 +160,14 @@ function runRain(options) {
 }
 
 
-function runPerlin(options) {
+Matrix.perlin = function(options) {
 	
-	if (options == undefined)
-		options = {};
+	options = Matrix.defaultOptions('perlin');
 
 	var args = [];
 	
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(Matrix.options.config);
 
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -158,42 +188,6 @@ function runPerlin(options) {
 }
 
 		
-_queue.on('idle', function() {
-
-	var now = new Date();
-	
-	if (_queue.empty()) {
-
-		var cmd = undefined;
-
-		if (now.getHours() >= 0 && now.getHours() <= 7) {
-			cmd = runRain({duration: -1});
-		}
-		else {
-			switch (random.rand(0, 15)) {
-				case 0:
-					cmd = runRain({duration: -1});
-					break;
-				case 1: 
-					cmd = runPerlin({duration: -1, delay: 40, mode: 3});
-					break;
-				default: 	
-					cmd = runGif({duration: -1});
-					break;
-			}
-			
-		}
-
-		if (cmd != undefined)			
-			_process.start(cmd.command, cmd.args, cmd.options);
-	}
-
-
-});
-
-_queue.on('process', function(cmd, callback) {
-	_process.start(cmd.command, cmd.args, cmd.options, callback);
-});
 
 
 Matrix.Display = function() {
@@ -223,30 +217,30 @@ Matrix.Display = function() {
 			var text = texts[i].trim();
 			 
 			if (text.length > 0) {
-				_commands.push(runText(text, options));
+				_commands.push(Matrix.text(text, options));
 			}
 		}
 	}
 	
 	self.rain = function(options) {
-		_commands.push(runRain(options));
+		_commands.push(Matrix.rain(options));
 
 	}
 
 	self.animation = function(options) {
-		_commands.push(runGif(options));
+		_commands.push(Matrix.animation(options));
 	}
 	
 	self.image = function(image, options) {
-		_commands.push(runImage(image, options));
+		_commands.push(Matrix.image(image, options));
 	}
 
 	self.emoji = function(id, options) {
-		this.image(sprintf('./images/%s/emojis/%d.png', config.matrix.config, parseInt(id)), options);			
+		this.image(sprintf('./images/%s/emojis/%d.png', Matrix.options.config, parseInt(id)), options);			
 	}
 	
 	self.perlin = function(options) {
-		_commands.push(runPerlin(options));
+		_commands.push(Matrix.perlin(options));
 	}
 
 	self.send = function(options) {
@@ -262,5 +256,42 @@ Matrix.Display = function() {
 	
 }
 
+
+_queue.on('idle', function() {
+
+	var now = new Date();
+	
+	if (_queue.empty()) {
+
+		var cmd = undefined;
+
+		if (now.getHours() >= 0 && now.getHours() <= 7) {
+			cmd = Matrix.rain({duration: -1});
+		}
+		else {
+			switch (random.rand(0, 15)) {
+				case 0:
+					cmd = Matrix.rain({duration: -1});
+					break;
+				case 1: 
+					cmd = Matrix.perlin({duration: -1, delay: 40, mode: 3});
+					break;
+				default: 	
+					cmd = Matrix.animation({duration: -1});
+					break;
+			}
+			
+		}
+
+		if (cmd != undefined)			
+			_process.start(cmd.command, cmd.args, cmd.options);
+	}
+
+
+});
+
+_queue.on('process', function(cmd, callback) {
+	_process.start(cmd.command, cmd.args, cmd.options, callback);
+});
 
 
