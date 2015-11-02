@@ -7,7 +7,7 @@ public:
 	TextAnimation(Matrix *matrix) : FrameAnimation(matrix) {
 		
 		_textColor      = "red";
-		_fontName       = "./fonts/Arial-Bold.ttf";
+		_fontName       = "";
 		_fontSize       = 18;
 		_iterations     = 1;
 		_duration       = 120;
@@ -40,7 +40,9 @@ public:
 		
 		Magick::Image tmp(Magick::Geometry(matrixWidth, matrixHeight), "black");
 		
-		tmp.font(_fontName);
+		if (_fontName.length() > 0)
+			tmp.font(_fontName);
+		
 		tmp.strokeColor("transparent");
 		tmp.fillColor(_textColor);
 		tmp.fontPointsize(_fontSize);
@@ -49,7 +51,10 @@ public:
 		tmp.fontTypeMetrics(_text, &metric);
 		
 		Magick::Image image(Magick::Geometry(metric.textWidth() + 2 * matrixWidth, matrixHeight), "black");
-		image.font(_fontName);
+		
+		if (_fontName.length() > 0)
+			image.font(_fontName);
+		
 		image.strokeColor("transparent");
 		image.fillColor(_textColor);
 		image.fontPointsize(_fontSize);

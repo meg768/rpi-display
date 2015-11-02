@@ -17,6 +17,10 @@ Matrix.options = {
 
 	config: '96x96',
 	
+	paths: {
+		fonts: './fonts'	
+	},
+	
 	defaults: {
 		
 		text: {
@@ -67,7 +71,7 @@ Matrix.text = function(text, options) {
 
 	if (options.font != undefined) {
 		args.push('--font');
-		args.push(options.font);			
+		args.push(sprintf('./%s/%s.ttf', Matrix.options.paths.fonts, options.font);			
 	}	
 
 	if (options.size != undefined) {
@@ -80,7 +84,7 @@ Matrix.text = function(text, options) {
 		args.push(options.delay);			
 	}	
 	
-	return {command:'./run-text', args:args, options:{cwd:'./matrix'}};
+	return {command:'./matrix/run-text', args:args, options:{}};
 }
 
 
