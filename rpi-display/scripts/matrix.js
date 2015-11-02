@@ -20,6 +20,7 @@ Matrix.options = {
 	paths: {
 		fonts: './fonts',	
 		animations: './animations/96x96',
+		images: './images',
 		emojis: './images/96x96/emojis'	
 	},
 	

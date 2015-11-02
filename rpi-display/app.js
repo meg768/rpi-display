@@ -15,21 +15,6 @@ function main() {
 	process.env.TZ = 'Europe/Stockholm';
 	
 	
-	// Function to generate an array of integers between a range...	
-	function range(start, stop, step) {
-		
-		var values = [];
-		
-		if (step == undefined)
-			step = 1;
-			
-		for (var i = start; i <= stop; i += step)
-			values.push(i);
-			
-		return values;
-		
-	}
-	
 	function enableRSS() {
 	
 		var config = {
@@ -41,10 +26,10 @@ function main() {
 			],
 			
 			schedule: {
-				hour   : range(7, 23),
-				
+				hour   : new schedule.Range(7, 23),
+
 				// Display RSS news every 20 minutes
-				minute : range(7, 59, 20)
+				minute : new schedule.Range(7, 59, 20)
 			}
 			
 		}	
@@ -72,15 +57,15 @@ function main() {
 
 		var config = {
 			schedule: {
-				//hour   : range(7, 23),
-				minute : range(2, 59, 13)
+				hour   : new schedule.Range(7, 23),
+				minute : new schedule.Range(2, 59, 13)
 			},
 			
 			quotes : [
 				
-				{ name:'OMXS30', symbol:'^OMX'},
-				{ name:'PHI', symbol:'PHI.ST'},
-				{ name:'H&M', symbol:'HM-B.ST'}
+				{ name:'OMX Index', symbol:'^OMX'},
+				{ name:'PHI',       symbol:'PHI.ST'},
+				{ name:'H&M',       symbol:'HM-B.ST'}
 			]
 		};
 		
@@ -92,7 +77,7 @@ function main() {
 			var now = new Date();
 			
 			var options = {};
-			options.size = 24;
+			options.size = 30;
 			
 			data.forEach(function(quote) {
 				if (quote.change == 0)
@@ -192,8 +177,6 @@ function main() {
 		var wlan0 = getIP('wlan0');
 		var eth0 = getIP('eth0');
 
-		var messages = [];
-		
 		if (wlan0 != '') {
 			display.text(wlan0, {color:'blue'});
 		}
@@ -202,9 +185,8 @@ function main() {
 			display.text(eth0, {color:'blue'});
 		}
 		
-		if (wlan0 != '' || eth0 != '') {
+		if (wlan0 != '' || eth0 != '')
 			display.emoji(435);
-		}
 
 		display.send();		
 	}
