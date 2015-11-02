@@ -246,7 +246,7 @@ Matrix.Display = function() {
 	}
 	
 	self.perlin = function(options) {
-		_commands.push(runPerlin(image, options));
+		_commands.push(runPerlin(options));
 	}
 
 	self.send = function(options) {
