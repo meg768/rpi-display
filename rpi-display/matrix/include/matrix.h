@@ -37,7 +37,7 @@ class Matrix {
 		_matrix = 0;
 		_canvas = 0;
 
-		config("32x32");
+		config("96x96");
 	}
 
 	virtual ~Matrix() {
