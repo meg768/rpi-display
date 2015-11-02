@@ -255,7 +255,7 @@ Matrix.Display = function() {
 	}
 
 	self.emoji = function(id, options) {
-		this.image(sprintf('%s/%d.png', Matrix.options.paths.emojis, Matrix.options.config, parseInt(id)), options);			
+		this.image(sprintf('%s/%d.png', Matrix.options.paths.emojis, parseInt(id)), options);			
 	}
 	
 	self.perlin = function(options) {
