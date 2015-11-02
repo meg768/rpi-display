@@ -71,7 +71,7 @@ Matrix.text = function(text, options) {
 
 	if (options.font != undefined) {
 		args.push('--font');
-		args.push(sprintf('./%s/%s.ttf', Matrix.options.paths.fonts, options.font);			
+		args.push(sprintf('./%s/%s.ttf', Matrix.options.paths.fonts, options.font));			
 	}	
 
 	if (options.size != undefined) {
