@@ -47,7 +47,7 @@ Matrix.defaultOptions = function(name, opts) {
 
 Matrix.text = function(text, options) {
 
-	options = Matrix.defaultOptions('text');
+	options = Matrix.defaultOptions('text', options);
 
 	if (text == '')
 		text = 'ABC 123';
@@ -86,7 +86,7 @@ Matrix.text = function(text, options) {
 
 Matrix.image = function(file, options) {
 
-	options = Matrix.defaultOptions('image');
+	options = Matrix.defaultOptions('image', options);
 	
 	var args = [];
 	
@@ -107,7 +107,7 @@ Matrix.image = function(file, options) {
 
 Matrix.animation = function(options) {
 	
-	options = Matrix.defaultOptions('animation');
+	options = Matrix.defaultOptions('animation', options);
 
 	var args = [];
 
@@ -134,7 +134,7 @@ Matrix.animation = function(options) {
 
 Matrix.rain = function(options) {
 	
-	options = Matrix.defaultOptions('rain');
+	options = Matrix.defaultOptions('rain', options);
 
 	var args = [];
 	
@@ -162,7 +162,7 @@ Matrix.rain = function(options) {
 
 Matrix.perlin = function(options) {
 	
-	options = Matrix.defaultOptions('perlin');
+	options = Matrix.defaultOptions('perlin', options);
 
 	var args = [];
 	
