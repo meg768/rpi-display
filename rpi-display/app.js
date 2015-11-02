@@ -186,7 +186,7 @@ function main() {
 		}
 		
 		if (wlan0 != '' || eth0 != '')
-			display.emoji(435, {scroll:'left'});
+			display.emoji(435, {scroll:'horizontal'});
 
 		display.send();		
 	}
