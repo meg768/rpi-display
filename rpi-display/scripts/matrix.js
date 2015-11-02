@@ -27,7 +27,7 @@ Matrix.options = {
 	defaults: {
 		
 		text: {
-			font : 'Verdana',
+			font : 'Arial-Bold',
 			size : 24,
 			color: 'blue'
 		},
