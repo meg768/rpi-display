@@ -41,7 +41,7 @@ module.exports = function(config) {
 		url += 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20IN%20(';
 		url += encodeURIComponent(pluck(symbols));
 		url += ')&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=';
-		console.log('requesting', url);
+
 		request(url, function (error, response, body) {
 			try {
 				if (error)
@@ -66,8 +66,7 @@ module.exports = function(config) {
 							
 						};
 						
-						item = extend(item, info[result.symbol]);
-						data.push(item);
+						data.push(extend(item, info[result.symbol]));
 
 					});
 					
