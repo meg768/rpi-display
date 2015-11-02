@@ -5,7 +5,7 @@ var config   = require('./config.js');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
 
-var Queue    = require('./runqueue.js');
+var Queue    = require('./queue.js');
 
 var _process = null;
 var _queue   = new Queue();

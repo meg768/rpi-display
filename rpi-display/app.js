@@ -4,7 +4,6 @@ var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
 var matrix   = require('./matrix.js');
 
-// { "command": "python", "options": {"cwd":"python"}, "args": ["run-text.py", "-t", "HEJ", "-c", "blue"]}
 
 function main() {
 
@@ -40,7 +39,7 @@ function main() {
 			],
 			
 			schedule: {
-				//hour   : range(7, 23),
+				hour   : range(7, 23),
 				
 				// Display RSS news every 20 minutes
 				minute : range(7, 59, 20)
@@ -194,17 +193,15 @@ function main() {
 		var messages = [];
 		
 		if (wlan0 != '') {
-			display.image('./images/wifi.png');
 			display.text(wlan0, {color:'blue'});
 		}
 			
 		if (eth0 != '') {
-			display.image('./images/internet.png');
 			display.text(eth0, {color:'blue'});
 		}
 		
 		if (wlan0 != '' || eth0 != '') {
-			display.emoji(729);
+			display.emoji(435);
 		}
 
 		display.send();		
