@@ -18,18 +18,18 @@ Matrix.options = {
 	config: '96x96',
 	
 	paths: {
-		fonts: './fonts',	
-		animations: './animations/96x96',
-		images: './images',
-		emojis: './images/96x96/emojis'	
+		fonts       : './fonts',	
+		animations  : './animations/96x96',
+		images      : './images',
+		emojis      : './images/96x96/emojis'	
 	},
 	
 	defaults: {
 		
 		text: {
-			font : 'Arial-Bold',
-			size : 24,
-			color: 'blue'
+			font  : 'Arial-Bold',
+			size  : 24,
+			color : 'blue'
 		},
 				
 		image: {
