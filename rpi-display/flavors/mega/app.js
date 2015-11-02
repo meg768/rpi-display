@@ -34,7 +34,7 @@ function main() {
 			
 		}	
 
-		var RSS = require('./scripts/rss.js');
+		var RSS = require('../../scripts/rss.js');
 		var rss = new RSS(config);
 	
 		rss.on('feed', function(rss) {
@@ -69,7 +69,7 @@ function main() {
 			]
 		};
 		
-		var Quotes = require('./scripts/quotes.js');
+		var Quotes = require('../../scripts/quotes.js');
 		var quotes = new Quotes(config);
 	
 		quotes.on('quotes', function(data) {
