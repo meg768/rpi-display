@@ -196,6 +196,8 @@ int main (int argc, char *argv[])
 		}
 	}
 	
+	matrix.init();
+	
 	GameLife animation(&matrix);
 	animation.run(timer);
 

@@ -165,6 +165,8 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+
+	matrix.init();
 	
 	return animation.run();
 	

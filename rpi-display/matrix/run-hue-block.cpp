@@ -113,6 +113,8 @@ int main (int argc, char *argv[])
 		}
 	}
 	
+	matrix.init();
+	
 	RotatingBlockGenerator animation(&matrix);
 	animation.run(timer);
 

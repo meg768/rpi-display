@@ -228,6 +228,7 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+	matrix.init();
 	
 	Clock clock(&matrix);
 	

@@ -109,6 +109,8 @@ public:
 	}
 
 	virtual int run() {
+		_matrix->init();
+		
 		int size = _matrix->width();
 		
 		_worms.resize(size);
@@ -182,7 +184,6 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
-	
 	
 	animation.run();
 	

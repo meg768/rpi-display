@@ -52,6 +52,7 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+
 	
 	/*
 	while ((option = getopt(argc, argv, "m:d:x:i:f:t:c:f:s:")) != -1) {

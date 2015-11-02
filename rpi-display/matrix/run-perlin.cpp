@@ -507,6 +507,9 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+	
+	matrix.init();
+	
 	gLevels = new uint32_t[matrix.width() * matrix.height()];
 
 	pattern = new Perlin (matrix.width(), matrix.height(), mode); //, 8.0/64.0, 0.0125, 512.0, 0.005);

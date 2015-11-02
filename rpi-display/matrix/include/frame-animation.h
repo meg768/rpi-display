@@ -30,7 +30,8 @@ public:
 
 		try {
 			Matrix *matrix = Animation::matrix();
-
+			matrix->init();
+			
 			int imageIndex = 0, imageCount = _frames.size();
 			
 			// Check if we have a first image

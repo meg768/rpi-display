@@ -56,6 +56,7 @@ public:
 	}
 	
 	virtual int run() {
+		_matrix->init();
 		_matrix->clear();
 		_matrix->refresh();
 		

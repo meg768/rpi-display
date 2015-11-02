@@ -33,6 +33,7 @@ public:
 	}
 	
 	virtual int run() {
+		_matrix->init();
 
 		int matrixWidth  = _matrix->width();
 		int matrixHeight = _matrix->height();

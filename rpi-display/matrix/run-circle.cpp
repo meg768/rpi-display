@@ -320,6 +320,7 @@ int main (int argc, char *argv[])
 				break;
 		}
 	}
+	matrix.init();
 	
 	gLevels = new uint32_t[matrix.width() * matrix.height()];
 	

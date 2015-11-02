@@ -61,11 +61,12 @@ public:
 		
 		
 		try {
+			Matrix *matrix = Animation::matrix();
+			matrix->init();
 			
 			sample();
 			
 			
-			Matrix *matrix = Animation::matrix();
 			Magick::Image image = _image;
 			
 			int matrixWidth  = matrix->width();
