@@ -39,7 +39,7 @@ Matrix.defaultOptions = function(name, opts) {
 	var options = {};
 	
 	if (Matrix.options != undefined && Matrix.options.defaults != undefined)
-		extend(options, Matrix.options.defaults[text]);
+		extend(options, Matrix.options.defaults[name]);
 
 	return extend(options, opts);
 }
