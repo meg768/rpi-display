@@ -244,7 +244,7 @@ Matrix.Display = function() {
 	}
 
 	self.emoji = function(id, options) {
-		this.image(sprintf('./images/%s/emojis/%d', _config, parseInt(id)), options);			
+		this.image(sprintf('./images/%s/emojis/%d.png', _config, parseInt(id)), options);			
 	}
 	
 
