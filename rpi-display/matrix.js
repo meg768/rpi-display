@@ -6,20 +6,48 @@ var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
 
 var Queue    = require('./queue.js');
+var Process  = require('./process.js');
 
-var _process = null;
+var _process = new Process();
 var _queue   = new Queue();
-var _this    = this;
-
-
 
 		
 _queue.on('idle', function() {
-	startIdleProcess();		
+
+	var now = new Date();
+	
+	if (_queue.empty()) {
+		var msg = {};
+
+		if (now.getHours() >= 0 && now.getHours() <= 7) {
+			msg = {type: 'rain', duration: -1};
+		}
+		else {
+			switch (random.rand(0, 15)) {
+				case 0:
+					msg = {type: 'rain', duration: -1};
+					break;
+				case 1: 
+					msg = {type: 'perlin', duration: -1, delay: 40, mode: 3};
+					break;
+				default: 	
+					msg = {type: 'gif', duration: -1};
+					break;
+			}
+			
+		}
+
+		var cmd = translateMessage(msg);
+		
+		if (cmd != undefined)			
+			_process.start(cmd.command, cmd.args, cmd.options);
+	}
+
+
 });
 
 _queue.on('process', function(item, callback) {
-	startProcess(item.command, item.args, item.options, callback);
+	_process.start(item.command, item.args, item.options, callback);
 });
 
 
@@ -137,110 +165,6 @@ function translateMessage(message) {
 
 	return {command:command, args:args, options:options};
 }
-
-function startIdleProcess() {
-
-	var now = new Date();
-	
-	if (_queue.empty()) {
-		var msg = {};
-
-		if (now.getHours() >= 0 && now.getHours() <= 7) {
-			msg = {type: 'rain', duration: -1};
-		}
-		else {
-			switch (random.rand(0, 15)) {
-				case 0:
-					msg = {type: 'rain', duration: -1};
-					break;
-				case 1: 
-					msg = {type: 'perlin', duration: -1, delay: 40, mode: 3};
-					break;
-				default: 	
-					msg = {type: 'gif', duration: -1};
-					break;
-			}
-			
-		}
-
-		var cmd = translateMessage(msg);
-		
-		if (cmd != undefined)			
-			startProcess(cmd.command, cmd.args, cmd.options);
-	}
-
-	
-	
-}	
-
-function stopProcess() {
-	if (_process != null) {
-		var process = _process;
-		
-		_process = null;
-
-		process.kill('SIGINT');
-
-	}
-	else	
-		console.log('No processs to be stopped');
-}	
-
-function startProcess(command, args, options, callback) {
-
-	if (callback == undefined) {
-		callback = function() {
-		};
-	}
-
-	function NO(error) {
-		console.log("Failed to spawn...", error == undefined ? '' : error);
-		callback();				
-	}
-
-	function YES() {
-		callback();				
-	}
-
-	try {
-		stopProcess();
-		
-
-		console.log('Spawning: %s', command, args, options);					
-
-		var spawn = require('child_process').spawn;
-		var process = spawn(command, args, options);
-
-		process.stderr.on('data', function (data) {
-			console.log('stderr: ' + data);
-		});
-
-		process.stdout.on('data', function (data) {
-			console.log('stdout: ' + data);
-		});
-		
-		if (process == null) {
-			NO();
-		}
-		else {
-			process.on('error', function() {
-				NO();
-			});
-
-			process.on('close', function() {
-				YES();
-			});		
-		}
-		
-		return _process = process;
-	}
-	catch (error) {
-		console.log(error);
-		NO(error);
-	}
-	
-}
-
 
 function spawn(commands) {
 

@@ -4,6 +4,19 @@ var Module = module.exports = function() {
 
 	var _process = null;
 
+		
+	this.stop = function() {
+		if (_process != null) {
+			var process = _process;
+			
+			_process = null;
+	
+			process.kill('SIGINT');
+	
+		}
+		else	
+			console.log('No processs to be stopped');
+	}	
 	
 	this.start = function(command, args, options, callback) {
 	
@@ -22,7 +35,7 @@ var Module = module.exports = function() {
 		}
 	
 		try {
-			stopProcess();
+			this.stop();
 			
 	
 			console.log('Spawning: %s', command, args, options);					
@@ -60,19 +73,6 @@ var Module = module.exports = function() {
 		
 	}
 	
-		
-	this.stop = function() {
-		if (_process != null) {
-			var process = _process;
-			
-			_process = null;
-	
-			process.kill('SIGINT');
-	
-		}
-		else	
-			console.log('No processs to be stopped');
-	}	
 
 
 }
