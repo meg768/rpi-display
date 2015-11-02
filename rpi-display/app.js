@@ -1,14 +1,15 @@
 var schedule = require('node-schedule');
 var util     = require('util');
-var sprintf  = require('./sprintf.js');
-var random   = require('./random.js');
-var matrix   = require('./matrix.js');
+var sprintf  = require('./scrips/sprintf.js');
+var random   = require('./scrips/random.js');
+var matrix   = require('./scrips/matrix.js');
 
 
 
 function main() {
 
-	matrix.config = '96x96';
+	// Make sure we configure the size of the display 
+	matrix.options.config = '96x96';
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
