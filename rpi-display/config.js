@@ -1,15 +1,15 @@
 module.exports = {
 	
-	defaults: {
+	matrix: {
+		config: '96x96',
 		
-		'*': {
-			'config': '96x96'
-		},
-		
-		'text': {
-			'color' : 'blue',
-			'size'  : 24
+		defaults: {
+			'text': {
+				'font': 'Verdana',
+				'size': 30
+			}
 		}
 	}
+	
 	
 };

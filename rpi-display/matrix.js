@@ -10,14 +10,12 @@ var Process  = require('./process.js');
 
 var _process = new Process();
 var _queue   = new Queue();
-var _config  = '96x96';
 
 var Matrix = module.exports = {};
 
-function runText(text, options) {
+function runText(text, opts) {
 
-	if (options == undefined)
-		options = {};
+	var options = extend({}, config.matrix.defaults.text, opts);
 
 	if (text == '')
 		text = 'ABC 123';
@@ -25,7 +23,7 @@ function runText(text, options) {
 	var args = [];
 
 	args.push('--config');
-	args.push(_config);
+	args.push(config.matrix.config);
 
 	args.push('--text');
 	args.push(text);
@@ -61,7 +59,7 @@ function runImage(file, options) {
 	var args = [];
 	
 	args.push('--config');
-	args.push(_config);
+	args.push(config.matrix.config);
 
 	args.push('--file');
 	args.push(file);
@@ -82,7 +80,7 @@ function runGif(options) {
 	var args = [];
 
 	args.push('--config');
-	args.push(_config);
+	args.push(config.matrix.config);
 	
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -110,7 +108,7 @@ function runRain(options) {
 	var args = [];
 	
 	args.push('--config');
-	args.push(_config);
+	args.push(config.matrix.config);
 
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -139,7 +137,7 @@ function runPerlin(options) {
 	var args = [];
 	
 	args.push('--config');
-	args.push(_config);
+	args.push(config.matrix.config);
 
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -244,9 +242,12 @@ Matrix.Display = function() {
 	}
 
 	self.emoji = function(id, options) {
-		this.image(sprintf('./images/%s/emojis/%d.png', _config, parseInt(id)), options);			
+		this.image(sprintf('./images/%s/emojis/%d.png', config.matrix.config, parseInt(id)), options);			
 	}
 	
+	self.perlin = function(options) {
+		_commands.push(runPerlin(image, options));
+	}
 
 	self.send = function(options) {
 
