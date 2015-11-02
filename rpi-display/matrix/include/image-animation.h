@@ -17,7 +17,7 @@ public:
 		Magick::Image image;
 		image.read(value);
 
-		if (true) {
+		if (false) {
 			Magick::Image tmp;
 			tmp.read("./A.png");
 			image.rotate(45);
