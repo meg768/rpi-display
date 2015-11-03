@@ -66,8 +66,8 @@ function main() {
 			quotes : [
 				
 				{ name:'OMX',  symbol:'^OMX'},
-				{ name:'PHI',  symbol:'PHI.ST'},
-				{ name:'H&M',  symbol:'HM-B.ST'}
+				{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
+				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'}
 			]
 		};
 		
@@ -97,6 +97,9 @@ function main() {
 				else
 					price = numeral(price).format('0,000.0[0]');
 					
+				if (quote.currency != undefined)
+					price += ' ' + quote.currency;
+					 
 				change  = numeral(change).format('+0,000.0');
 				volume  = sprintf('(%s)', numeral(volume).format('0,000'));
 
