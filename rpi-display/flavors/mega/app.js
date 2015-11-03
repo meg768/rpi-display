@@ -82,26 +82,6 @@ function main() {
 			options.size = 30;
 			
 			data.forEach(function(quote) {
-				var price  = quote.price;
-				var change = quote.change;
-				var volume = quote.volume;
-				
-				// Remove some precision
-				price   = parseFloat(price.toPrecision(4));
-				change  = parseFloat(change.toPrecision(3));
-				volume  = parseFloat(volume.toPrecision(4));
-
-				// Format
-				if (price >= 1000)
-					price = numeral(price).format('0,000');
-				else
-					price = numeral(price).format('0,000.0[0]');
-					
-				if (quote.currency != undefined)
-					price += ' ' + quote.currency;
-					 
-				change  = numeral(change).format('+0,000.0');
-				volume  = sprintf('(%s)', numeral(volume).format('0,000'));
 
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
@@ -109,10 +89,17 @@ function main() {
 					options.color = 'rgb(255,0,0)';
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
-				if (quote.volume == 0)
-					volume = '';
-					
-				display.text(sprintf('%s   %s%%   %s   %s', quote.name, change, price, volume), options);
+				
+				var text = '';
+				
+				text += quote.name + ' ';
+				text += quote.formatted.change + ' ';
+				text += quote.formatted.price + ' ';
+
+				if (quote.volume > 0)
+					text += quote.formatted.volume  + ' ';
+	
+				display.text(text, options);
 	
 			});
 				
