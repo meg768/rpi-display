@@ -55,7 +55,7 @@ function main() {
 	}
 	
 	function enableQuotes() {
-
+		var numeral = require('numeral');
 
 		var config = {
 			schedule: {
@@ -82,8 +82,19 @@ function main() {
 			options.size = 30;
 			
 			data.forEach(function(quote) {
-				quote.price  = parseFloat(quote.price.toPrecision(4));
-				quote.volume = parseFloat(quote.volume.toPrecision(4));
+				var price  = quote.price;
+				var change = quote.change;
+				var volume = quote.volume;
+				
+				// Remove some precision
+				price   = parseFloat(price.toPrecision(4));
+				change  = parseFloat(change.toPrecision(4));
+				volume  = parseFloat(volume.toPrecision(4));
+
+				// Format
+				price   = numeral(price).format('0,000.[00]')
+				change  = numeral(change).format('+0,000.[00]');
+				volume  = numeral(volume).format('0,000');
 
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
@@ -92,7 +103,7 @@ function main() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 
-				display.text(sprintf('%s  %.2f  %s%.1f%%  (%.2f)', quote.name, quote.price, quote.change >= 0 ? '+' : '', quote.change, quote.volume), options);
+				display.text(sprintf('%s  %s  %s%%  (%s)', quote.name, price, change, volume), options);
 	
 			});
 				
