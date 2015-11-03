@@ -58,8 +58,6 @@ module.exports = function(config) {
 					
 					results.forEach(function(result) {
 						var item  = {
-							//name   : names[result.symbol], 
-							//symbol : result.symbol, 
 							price  : parseFloat(result.LastTradePriceOnly), 
 							change : parseFloat(result.PercentChange), 
 							volume : parseInt(result.Volume)

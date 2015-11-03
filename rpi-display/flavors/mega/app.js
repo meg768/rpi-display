@@ -60,7 +60,7 @@ function main() {
 		var config = {
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(2, 59, 13)
+				minute : new schedule.Range(2, 59, 2)
 			},
 			
 			quotes : [
@@ -82,6 +82,9 @@ function main() {
 			options.size = 30;
 			
 			data.forEach(function(quote) {
+				quote.price  = parseFloat(quote.price.toPrecision(4));
+				quote.volume = parseFloat(quote.volume.toPrecision(4));
+
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
 				if (quote.change < 0)
@@ -89,7 +92,7 @@ function main() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 
-				display.text(sprintf('%s   %.2f   %s%.1f%% ', quote.name, quote.price, quote.change >= 0 ? '+' : '', quote.change), options);
+				display.text(sprintf('%s  %.2f  %s%.1f%%  (%.2f)', quote.name, quote.price, quote.change >= 0 ? '+' : '', quote.change, quote.volume), options);
 	
 			});
 				
@@ -101,42 +104,18 @@ function main() {
 	}
 		
 	function enableClock() {
+		var colors = require('../../scripts/colors.js');
 		var rule = new schedule.RecurrenceRule();
 	
 		//rule.hour   = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 		rule.minute = new schedule.Range(0, 59, 5);
 			
-		function hslToRgb(h, s, l){
-		    
-		    var r, g, b;
-		
-		    if (s == 0){
-		        r = g = b = l; // achromatic
-		    } else{
-		        var hue2rgb = function hue2rgb(p, q, t){
-		            if(t < 0) t += 1;
-		            if(t > 1) t -= 1;
-		            if(t < 1/6) return p + (q - p) * 6 * t;
-		            if(t < 1/2) return q;
-		            if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-		            return p;
-		        }
-		
-		        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-		        var p = 2 * l - q;
-		        r = hue2rgb(p, q, h + 1/3);
-		        g = hue2rgb(p, q, h);
-		        b = hue2rgb(p, q, h - 1/3);
-		    }
-		
-		    return {red:Math.round(r * 255), green:Math.round(g * 255), blue:Math.round(b * 255)};
-		}	
 		
 		schedule.scheduleJob(rule, function() {
 			var display = new matrix.Display();
 			var now = new Date();
 			var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;			
-			var color = hslToRgb(hue / 360, 1, 0.5);
+			var color = colors.hslToRgb(hue / 360, 1, 0.5);
 			
 			var options = {};
 			options.size     = 30;

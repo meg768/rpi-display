@@ -27,4 +27,5 @@ Module.hslToRgb = function(h, s, l) {
     }
 
     return {red:Math.round(r * 255), green:Math.round(g * 255), blue:Math.round(b * 255)};
+
 }	
