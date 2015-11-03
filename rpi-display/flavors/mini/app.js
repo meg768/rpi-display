@@ -82,7 +82,7 @@ function main() {
 			var now = new Date();
 			
 			var options = {};
-			options.size = 30;
+			options.size = 24;
 			
 			data.forEach(function(quote) {
 
