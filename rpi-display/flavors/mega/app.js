@@ -105,7 +105,7 @@ function main() {
 				if (quote.volume == 0)
 					volume = '';
 					
-				display.text(sprintf('%s   %s   %s%%   %s', quote.name, change, price, volume), options);
+				display.text(sprintf('%s   %s%%   %s   %s', quote.name, change, price, volume), options);
 	
 			});
 				
