@@ -4,6 +4,7 @@ var request  = require('request');
 var events   = require('events');
 var extend   = require('extend');
 var numeral  = require('numeral');
+var sprintf
 
 module.exports = function(config) {
 
@@ -83,7 +84,7 @@ module.exports = function(config) {
 							quote.formatted.price += ' ' + quote.currency;
 							 
 						quote.formatted.change  = numeral(quote.formatted.change).format('+0,000.0') + '%';
-						quote.formatted.volume  = sprintf('%s', numeral(quote.formatted.volume).format('0,000'));
+						quote.formatted.volume  = numeral(quote.formatted.volume).format('0,000');
 
 						data.push(quote);
 
