@@ -60,7 +60,7 @@ function main() {
 		var config = {
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(2, 59, 2)
+				minute : new schedule.Range(2, 59, 1)
 			},
 			
 			quotes : [
@@ -88,12 +88,12 @@ function main() {
 				
 				// Remove some precision
 				price   = parseFloat(price.toPrecision(4));
-				change  = parseFloat(change.toPrecision(4));
+				change  = parseFloat(change.toPrecision(3));
 				volume  = parseFloat(volume.toPrecision(4));
 
 				// Format
 				price   = numeral(price).format('0,000.[00]')
-				change  = numeral(change).format('+0,000.[00]');
+				change  = numeral(change).format('+0,000.0[0]');
 				volume  = numeral(volume).format('0,000');
 
 				if (quote.change == 0)
@@ -103,7 +103,7 @@ function main() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 
-				display.text(sprintf('%s  %s  %s%%  (%s)', quote.name, price, change, volume), options);
+				display.text(sprintf('%s %s %s%% (%s)', quote.name, price, change, volume), options);
 	
 			});
 				
