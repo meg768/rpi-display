@@ -58,19 +58,19 @@ function main() {
 	}
 	
 	function enableQuotes() {
-
+		var numeral = require('numeral');
 
 		var config = {
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(2, 59, 13)
+				minute : new schedule.Range(2, 59, 1)
 			},
 			
 			quotes : [
 				
-				{ name:'OMX Index', symbol:'^OMX'},
-				{ name:'PHI',     symbol:'PHI.ST'},
-				{ name:'H&M',       symbol:'HM-B.ST'}
+				{ name:'OMX',  symbol:'^OMX'},
+				{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
+				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'}
 			]
 		};
 		
@@ -85,14 +85,24 @@ function main() {
 			options.size = 30;
 			
 			data.forEach(function(quote) {
+
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
 				if (quote.change < 0)
 					options.color = 'rgb(255,0,0)';
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
+				
+				var text = '';
+				
+				text += quote.name + '   ';
+				text += quote.formatted.change + '   ';
+				text += quote.formatted.price + '   ';
 
-				display.text(sprintf('%s   %.2f   %s%.1f%% ', quote.name, quote.price, quote.change >= 0 ? '+' : '', quote.change), options);
+				if (quote.volume > 0)
+					text += '(' + quote.formatted.volume  + ')';
+	
+				display.text(text, options);
 	
 			});
 				
