@@ -92,7 +92,11 @@ function main() {
 				volume  = parseFloat(volume.toPrecision(4));
 
 				// Format
-				price   = numeral(price).format('0,000.0[0]')
+				if (price >= 1000)
+					price = numeral(price).format('0,000');
+				else
+					price = numeral(price).format('0,000.0[0]');
+					
 				change  = numeral(change).format('+0,000.0');
 				volume  = sprintf('(%s)', numeral(volume).format('0,000'));
 
