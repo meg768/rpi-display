@@ -92,9 +92,9 @@ function main() {
 				
 				var text = '';
 				
-				text += quote.name + '  ';
-				text += quote.formatted.change + '  ';
-				text += quote.formatted.price + '  ';
+				text += quote.name + '   ';
+				text += quote.formatted.change + '   ';
+				text += quote.formatted.price + '   ';
 
 				if (quote.volume > 0)
 					text += '(' + quote.formatted.volume  + ')';
