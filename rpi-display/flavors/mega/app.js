@@ -93,7 +93,7 @@ function main() {
 
 				// Format
 				price   = numeral(price).format('0,000.[00]')
-				change  = numeral(change).format('+0,000.0[0]');
+				change  = numeral(change).format('+0,000.0');
 				volume  = numeral(volume).format('0,000');
 
 				if (quote.change == 0)
@@ -102,8 +102,10 @@ function main() {
 					options.color = 'rgb(255,0,0)';
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
-
-				display.text(sprintf('%s %s %s%% (%s)', quote.name, price, change, volume), options);
+				if (quote.volume == 0)
+					volume = '';
+					
+				display.text(sprintf('%s  %s  %s%%  %s', quote.name, price, change, volume), options);
 	
 			});
 				
