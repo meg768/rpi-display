@@ -65,9 +65,9 @@ function main() {
 			
 			quotes : [
 				
-				{ name:'OMX Index', symbol:'^OMX'},
-				{ name:'PHI',     symbol:'PHI.ST'},
-				{ name:'H&M',       symbol:'HM-B.ST'}
+				{ name:'OMX',  symbol:'^OMX'},
+				{ name:'PHI',  symbol:'PHI.ST'},
+				{ name:'H&M',  symbol:'HM-B.ST'}
 			]
 		};
 		
@@ -94,7 +94,7 @@ function main() {
 				// Format
 				price   = numeral(price).format('0,000.[00]')
 				change  = numeral(change).format('+0,000.0');
-				volume  = numeral(volume).format('0,000');
+				volume  = sprintf('(%s)', numeral(volume).format('0,000'));
 
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
@@ -105,7 +105,7 @@ function main() {
 				if (quote.volume == 0)
 					volume = '';
 					
-				display.text(sprintf('%s  %s  %s%%  %s', quote.name, price, change, volume), options);
+				display.text(sprintf('%s   %s   %s%%   %s', quote.name, price, change, volume), options);
 	
 			});
 				
