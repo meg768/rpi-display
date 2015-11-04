@@ -60,7 +60,7 @@ function main() {
 		var config = {
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(2, 59, 1)
+				minute : new schedule.Range(2, 59, 13)
 			},
 			
 			quotes : [
@@ -102,7 +102,7 @@ function main() {
 				text += numeral(quote.change).format('+0.0') + '%' + space;
 
 				if (quote.currency != undefined) {
-					text += numeral(quote.price).format('0,000.00') + ' ' + quote.currency + '   ';
+					text += numeral(quote.price).format('0,000.00') + space;
 				}
 
 	
