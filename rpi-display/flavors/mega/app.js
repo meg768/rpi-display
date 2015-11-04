@@ -95,13 +95,15 @@ function main() {
 				text += quote.name + '   ';
 				
 				if (quote.change > 0)
-					text += sprintf('+%s', quote.change.toPrecision(3));
+					text += sprintf('+%s', quote.change.toPrecision(2));
 				else if (quote.change < 0)
-					text += sprintf('-%s', Math.abs(quote.change).toPrecision(3));
+					text += sprintf('-%s', Math.abs(quote.change).toPrecision(2));
 				else
 					text += '0.0';
 
 				text += '%   ';
+				
+				text += quote.price.toPrecision(4) + '   ';
 				
 				if (quote.volume > 0)
 					text += '(' + numeral(quote.volume).format('0,000')  + ')';
