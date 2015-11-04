@@ -66,10 +66,11 @@ function main() {
 			quotes : [
 				
 				{ name:'OMX',  symbol:'^OMX'},
+				{ symbol: '^GSPC', name: 'S&P 500'},
+				{ symbol: '^IXIC', name: 'NASDAQ'},
 				{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
-				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'},
-				{ symbol: '^DJI', name:'Dow Jones' },
-				{ symbol: '^GSPC', name: 'S&P 500'}
+				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'}
+				
 			]
 		};
 		
@@ -86,7 +87,7 @@ function main() {
 			
 			data.forEach(function(quote) {
 
-				console.log(quote);
+
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
 				if (quote.change < 0)
