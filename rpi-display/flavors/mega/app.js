@@ -79,6 +79,7 @@ function main() {
 		quotes.on('quotes', function(data) {
 			var display = new matrix.Display();
 			var now = new Date();
+			var space = '   ';
 			
 			var options = {};
 			options.size = 30;
@@ -94,23 +95,20 @@ function main() {
 				
 				var text = '';
 
-				text += quote.name + '   ';
-				
-				if (quote.change > 0)
-					text += sprintf('+%s', quote.change.toPrecision(2));
-				else if (quote.change < 0)
-					text += sprintf('-%s', Math.abs(quote.change).toPrecision(2));
-				else
-					text += '0.0';
+				text += quote.name + space;
+				text += numeral(quote.change).format('+0.0') + '%' + space;
 
-				text += '%   ';
+				if (quote.price >= 100)
+					text += numeral(quote.price).format('0,000.0');
+				else
+					text += numeral(quote.price).format('0,000.00');
 				
-				text += quote.price.toPrecision(4);
 				
 				if (quote.currency != undefined)
 					text += ' ' + quote.currency;
-
-				text += '   ';
+					
+					
+				text += space;
 				
 				if (quote.volume > 0)
 					text += '(' + numeral(quote.volume).format('0,000')  + ')';
