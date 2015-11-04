@@ -68,7 +68,7 @@ function main() {
 				{ name:'OMX',  symbol:'^OMX'},
 				{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
 				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'},
-				//{ symbol: '^DJA', name:'Dow Jones' },
+				{ symbol: '^DJI', name:'Dow Jones' },
 				{ symbol: '^GSPC', name: 'S&P 500'}
 			]
 		};
@@ -93,22 +93,19 @@ function main() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 				
-				console.log(quote);
+
 				var text = '';
 
 				text += quote.name + space;
 				text += numeral(quote.change).format('+0.0') + '%' + space;
 
-				if (quote.price >= 100)
-					text += numeral(quote.price).format('0,000.0');
-				else
-					text += numeral(quote.price).format('0,000.00');
+				if (quote.currency != undefined) {
+					text += numeral(quote.price).format('0,000.00') + ' ' + quote.currency;
+				}
+				else {
+					text += numeral(quote.price).format('0,000.0[0]');
+				}
 				
-				
-				if (quote.currency != undefined)
-					text += ' ' + quote.currency;
-					
-					
 				text += space;
 				
 				if (quote.volume > 0)
