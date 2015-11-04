@@ -68,7 +68,7 @@ function main() {
 				{ name:'OMX',  symbol:'^OMX'},
 				{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
 				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'},
-				{ symbol: '^DJA', name:'Dow Jones' },
+				//{ symbol: '^DJA', name:'Dow Jones' },
 				{ symbol: '^GSPC', name: 'S&P 500'}
 			]
 		};
@@ -93,6 +93,7 @@ function main() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 				
+				console.log(quote);
 				var text = '';
 
 				text += quote.name + space;
