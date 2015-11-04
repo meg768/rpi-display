@@ -67,7 +67,9 @@ function main() {
 				
 				{ name:'OMX',  symbol:'^OMX'},
 				{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
-				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'}
+				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'},
+				{ symbol: '^DJA', name:'Dow Jones' },
+				{ symbol: '^GSPC', name: 'S&P 500'}
 			]
 		};
 		
@@ -103,7 +105,12 @@ function main() {
 
 				text += '%   ';
 				
-				text += quote.price.toPrecision(4) + '   ';
+				text += quote.price.toPrecision(4);
+				
+				if (quote.currency != undefined)
+					text += ' ' + quote.currency;
+
+				text += '   ';
 				
 				if (quote.volume > 0)
 					text += '(' + numeral(quote.volume).format('0,000')  + ')';
