@@ -86,6 +86,7 @@ function main() {
 			
 			data.forEach(function(quote) {
 
+				console.log(quote);
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
 				if (quote.change < 0)
