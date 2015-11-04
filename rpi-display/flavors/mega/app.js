@@ -102,16 +102,9 @@ function main() {
 				text += numeral(quote.change).format('+0.0') + '%' + space;
 
 				if (quote.currency != undefined) {
-					text += numeral(quote.price).format('0,000.00') + ' ' + quote.currency;
+					text += numeral(quote.price).format('0,000.00') + ' ' + quote.currency + '   ';
 				}
-				else {
-					text += numeral(quote.price).format('0,000.0[0]');
-				}
-				
-				text += space;
-				
-				if (quote.volume > 0)
-					text += '(' + numeral(quote.volume).format('0,000')  + ')';
+
 	
 				display.text(text, options);
 	
