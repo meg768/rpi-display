@@ -60,7 +60,7 @@ function main() {
 		var config = {
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(2, 59, 10)
+				minute : new schedule.Range(2, 59, 1)
 			},
 			
 			quotes : [
@@ -91,13 +91,20 @@ function main() {
 					options.color = 'rgb(0,255,0)';
 				
 				var text = '';
-				
-				text += quote.name + '   ';
-				text += quote.formatted.change + '   ';
-				text += quote.formatted.price + '   ';
 
+				text += quote.name + '   ';
+				
+				if (quote.change > 0)
+					text += sprintf('+%s', quote.change.toPrecision(3));
+				else if (quote.change < 0)
+					text += sprintf('-%s', Math.abs(quote.change).toPrecision(3));
+				else
+					text += '0.0';
+
+				text += '%   ';
+				
 				if (quote.volume > 0)
-					text += '(' + quote.formatted.volume  + ')';
+					text += '(' + numeral(quote.volume).format('0,000')  + ')';
 	
 				display.text(text, options);
 	

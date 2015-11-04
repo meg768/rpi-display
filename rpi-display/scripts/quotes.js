@@ -3,8 +3,6 @@ var util     = require('util');
 var request  = require('request');
 var events   = require('events');
 var extend   = require('extend');
-var numeral  = require('numeral');
-var sprintf
 
 module.exports = function(config) {
 
@@ -66,25 +64,6 @@ module.exports = function(config) {
 						quote.price     = parseFloat(result.LastTradePriceOnly);
 						quote.change    = parseFloat(result.PercentChange);
 						quote.volume    = parseInt(result.Volume);
-						quote.formatted = {};
-						
-						// Remove some precision
-						quote.formatted.price   = parseFloat(quote.price.toPrecision(4));
-						quote.formatted.change  = parseFloat(quote.change.toPrecision(3));
-						quote.formatted.volume  = parseFloat(quote.volume.toPrecision(4));
-		
-						// Format
-						if (quote.formatted.price >= 1000)
-							quote.formatted.price = numeral(quote.formatted.price).format('0,000');
-						else
-							quote.formatted.price = numeral(quote.formatted.price).format('0,000.0[0]');
-							
-						// Add currency if specified
-						if (quote.currency != undefined)
-							quote.formatted.price += ' ' + quote.currency;
-							 
-						quote.formatted.change  = numeral(quote.formatted.change).format('+0,000.0') + '%';
-						quote.formatted.volume  = numeral(quote.formatted.volume).format('0,000');
 
 						data.push(quote);
 
