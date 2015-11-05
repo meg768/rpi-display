@@ -17,9 +17,10 @@ function enableWeather() {
 	weather.on('forecast', function(forecast) {
 		console.log(forecast);
 		
+		var display = new matrix.Display();
+		
 		forecast.forEach(function(day) {
 
-			var display = new matrix.Display();
 			display.text(day.day);
 			display.text(day.condition);
 			display.image('./images/rain.png', {scroll:'horizontal'});
