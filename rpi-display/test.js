@@ -24,10 +24,11 @@ function enableWeather() {
 			display.text(day.condition);
 			display.image('./images/rain.png', {scroll:'horizontal'});
 
-			display.send({priority:'low'});
 			
 			console.log(day.condition);
 		});
+		
+		display.send({priority:'low'});
 	});
 
 	var rule = new schedule.RecurrenceRule();
