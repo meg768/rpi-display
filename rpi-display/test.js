@@ -18,14 +18,15 @@ function enableWeather() {
 		console.log(forecast);
 		
 		forecast.forEach(function(day) {
-			
+
 			var display = new matrix.Display();
 			display.text(day.day);
 			display.text(day.condition);
 			display.image('./images/rain.png', {scroll:'horizontal'});
 
 			display.send({priority:'low'});
-			console.log(day.image);
+			
+			console.log(day.condition);
 		});
 	});
 
