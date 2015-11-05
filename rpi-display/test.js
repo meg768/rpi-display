@@ -2,6 +2,7 @@ var schedule = require('node-schedule');
 var util     = require('util');
 var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
+var matrix   = require('./scripts/matrix.js');
 
 // Set the time zone according to config settings
 process.env.TZ = 'Europe/Stockholm';
@@ -15,6 +16,14 @@ function enableWeather() {
 
 	weather.on('forecast', function(forecast) {
 		console.log(forecast);
+		
+		forecast.forEach(function(day) {
+			
+			var display = new matrix.Display();
+			display.text(day.condition);
+			display.image('./images/rain.png');
+			console.log(day.image);
+		});
 	});
 
 	var rule = new schedule.RecurrenceRule();
