@@ -271,6 +271,11 @@ Matrix.Display = function() {
 		if (options == undefined)
 			options = {};
 
+		if (typeof options.priority == 'string' && options.priority == 'low') {
+			if (!_queue.empty())
+				return;
+		}
+		
 		_commands.forEach(function(cmd) {
 			_queue.push({command:cmd.command, args:cmd.args, options:cmd.options});				
 		});		

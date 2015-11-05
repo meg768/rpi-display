@@ -21,8 +21,8 @@ function enableWeather() {
 			
 			var display = new matrix.Display();
 			display.text(day.condition);
-			display.image('./images/rain.png');
-			display.send();
+			display.image('./images/rain.png', {scroll:'left'});
+			display.send({priority:'low'});
 			console.log(day.image);
 		});
 	});
