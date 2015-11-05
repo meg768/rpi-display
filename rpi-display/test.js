@@ -20,6 +20,7 @@ function enableWeather() {
 		forecast.forEach(function(day) {
 			
 			var display = new matrix.Display();
+			display.text(day.day);
 			display.text(day.condition);
 			display.image('./images/rain.png', {scroll:'horizontal'});
 
