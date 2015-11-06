@@ -16,6 +16,7 @@ function main() {
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
 	
+	
 	function enableRSS() {
 	
 		var config = {
@@ -25,20 +26,33 @@ function main() {
 					tags: { name: 'Di' },
 					
 					schedule: {
-						minute: new schedule.Range(0, 59, 1)
+						minute: new schedule.Range(3, 59, 15)
 					}
-					
-					
 				},
 				{
 					url: 'http://www.svd.se/?service=rss&type=senastenytt',
 					tags: {name: 'SvD' },
 	
 					schedule: {
-						minute: new schedule.Range(0, 59, 1)
+						minute: new schedule.Range(6, 59, 15)
+					}
+				},
+				{
+					url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss',
+					tags: {name: 'Google' },
+	
+					schedule: {
+						minute: new schedule.Range(9, 59, 15)
+					}
+				},
+				{
+					url: 'http://www.sydsvenskan.se/rss.xml',
+					tags: {name: 'Sydsvenskan' },
+	
+					schedule: {
+						minute: new schedule.Range(12, 59, 15)
 					}
 				}
-				
 			]
 		};
 		
@@ -54,7 +68,7 @@ function main() {
 			options.color = 'rgb(0,0,255)';
 			options.size  = 24;
 			
-			display.text(rss.name);
+			display.text(sprintf('Nyheter från %s', rss.name));
 			
 			rss.messages.forEach(function(message) {
 				var text = '';
