@@ -136,7 +136,7 @@ function main() {
 				}	
 	
 				display.text(sprintf('%s - %s, %d°', capitalizeFirstLetter(day.day), day.condition.toLowerCase(), Math.round(day.high)));
-				display.image(sprintf('./flavors/mega/images/weather/%s.png', day.image), {scroll:'horizontal'});
+				display.image(sprintf('./flavors/mega/weather/%s.png', day.image), {scroll:'horizontal'});
 
 			});
 			
