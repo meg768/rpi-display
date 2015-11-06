@@ -225,7 +225,7 @@ function main() {
 	enableClock();
 	enableQuotes();
 	enableRSS();
-	enable
+	enableWeather();
 	 	
 }
 
