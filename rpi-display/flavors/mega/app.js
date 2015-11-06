@@ -123,15 +123,20 @@ function main() {
 	
 		var weather = new yahoo.Weather('12883682');
 	
+
 		weather.on('forecast', function(forecast) {
 			console.log(forecast);
 			
 			var display = new matrix.Display();
 			
 			forecast.forEach(function(day) {
+
+				function capitalizeFirstLetter(string) {
+				    return string.charAt(0).toUpperCase() + string.slice(1);
+				}	
 	
-				display.text(sprintf('%s %s %d°', day.day, day.condition, Math.round(day.high)));
-				display.image(sprintf('./images/weather/%s.png', day.image), {scroll:'horizontal'});
+				display.text(sprintf('%s - %s, %d°', capitalizeFirstLetter(day.day), day.condition.toLowerCase(), Math.round(day.high)));
+				display.image(sprintf('./flavors/mega/images/weather/%s.png', day.image), {scroll:'horizontal'});
 
 			});
 			
