@@ -137,7 +137,7 @@ function main() {
 		var config = {
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(2, 59, 13)
+				minute : new schedule.Range(2, 59, 1)
 			},
 			
 			tickers : [
