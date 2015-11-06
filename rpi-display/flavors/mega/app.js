@@ -140,13 +140,13 @@ function main() {
 				minute : new schedule.Range(2, 59, 13)
 			},
 			
-			quotes : [
+			tickers : [
 				
-				{ name:'OMX',  symbol:'^OMX'},
-				{ symbol: '^GSPC', name: 'S&P 500'},
-				{ symbol: '^IXIC', name: 'NASDAQ'},
-				{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
-				{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'}
+				{ name:'OMX',  id:'^OMX'},
+				{ symbol: '^GSPC', id: 'S&P 500'},
+				{ symbol: '^IXIC', id: 'NASDAQ'},
+				{ name:'PHI',  id:'PHI.ST', currency: 'SEK'},
+				{ name:'H&M',  id:'HM-B.ST', currency: 'SEK'}
 				
 			]
 		};
