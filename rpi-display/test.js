@@ -23,7 +23,7 @@ function enableWeather() {
 
 			display.text(day.day);
 			display.text(day.condition);
-			display.image('./images/rain.png', {scroll:'horizontal'});
+			display.image(sprintf('./images/weather/%s.png', day.image), {scroll:'horizontal'});
 
 			
 			console.log(day.condition);
