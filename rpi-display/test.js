@@ -8,6 +8,44 @@ var matrix   = require('./scripts/matrix.js');
 process.env.TZ = 'Europe/Stockholm';
 
 
+
+function enableRSS() {
+
+	var config = {
+		feed: {
+			name: 'Di',
+			url:  'http://www.di.se/rss'
+		},
+		schedule: {
+			minute: new schedule.Range(0, 59, 1)
+		}
+	};
+	
+	var yahoo = require('./scripts/yahoo.js');
+	var rss = new yahoo.RSS(config);
+
+	rss.on('feed', function(rss) {
+		console.log(rss);
+		/*
+		var display = new matrix.Display();
+		
+		forecast.forEach(function(day) {
+
+			display.text(day.day);
+			display.text(day.condition);
+			display.image(sprintf('./images/weather/%s.png', day.image), {scroll:'horizontal'});
+
+			
+			console.log(day.condition);
+		});
+		
+		display.send({priority:'low'});
+		*/
+	});
+
+
+}
+
 function enableWeather() {
 
 	var yahoo = require('./scripts/yahoo.js');
@@ -101,7 +139,8 @@ function enableRates() {
 
 }
 
-enableWeather();
+enableRSS();
+//enableWeather();
 //enableRates();
 //enableQuotes();
  	

@@ -9,6 +9,15 @@ var sprintf  = require('./sprintf.js');
 
 var yahoo = module.exports;
 
+/*
+
+select  title, pubDate, category from rss where url="http://www.svd.se/?service=rss&type=senastenytt" | sort(field="pubDate", descending="true") 
+
+select  * from rss where url="http://www.svd.se/?service=rss&type=senastenytt" | sort(field="pubDate", descending="true") | truncate(count=5) 
+
+select title from rss where url="http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&output=rss" | sort(field="pubDate", descending="true") | truncate(count=5)
+*/
+
 function YQL(query, callback) {
 
 	var options = {};
@@ -224,6 +233,71 @@ yahoo.Quotes = function(symbols) {
 	}
 };
 
+
+yahoo.RSS = function(config) {
+
+	var _this = this;
+
+	if (config.count == undefined)
+		config.count = 3;
+		
+	_this.fetch = function() {
+		
+		var query = '';
+
+		query += sprintf('SELECT title, category FROM rss WHERE url="%s"', config.feed.url);
+		query += sprintf(' | sort(field="pubDate", descending="true")');
+		query += sprintf(' | truncate(count=%d)', config.count);
+
+
+		YQL(query, function(data){
+			if (data != undefined) {
+				var items = data.query.results.item;
+	
+				if (!util.isArray(items))
+					items = [items];
+	
+				var feeds = [];
+				
+				items.forEach(function(item) {
+
+					var feed = {};
+
+					extend(feed, config.feed);
+					
+					feed.title = item.title;
+					feed.category = item.category;
+
+					feeds.push(feed);
+				});
+				
+				_this.emit('feed', feeds);
+				
+			}
+			
+		});
+	}
+	
+	if (config.schedule != undefined) {
+		var rule = new schedule.RecurrenceRule();
+	
+		if (config.schedule.hour != undefined)
+			rule.hour = config.schedule.hour;
+	
+		if (config.schedule.minute != undefined)
+			rule.minute = config.schedule.minute;
+	
+		if (config.schedule.second != undefined)
+			rule.second = config.schedule.second;
+			
+		schedule.scheduleJob(rule, function() {
+			_this.fetch();
+		});	
+		
+	}
+};
+
+util.inherits(yahoo.RSS, events.EventEmitter);
 
 yahoo.Rates = function(symbols) {
 
