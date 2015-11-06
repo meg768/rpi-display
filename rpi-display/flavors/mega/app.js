@@ -131,7 +131,6 @@ function main() {
 			forecast.forEach(function(day) {
 	
 				display.text(sprintf('%s %s %d°', day.day, day.condition, Math.round(day.high)));
-				day.day + ' ' + day.condition);
 				display.image(sprintf('./images/weather/%s.png', day.image), {scroll:'horizontal'});
 
 			});
