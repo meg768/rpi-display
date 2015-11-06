@@ -116,6 +116,40 @@ function main() {
 		});
 		
 	}
+	
+	function enableWeather() {
+	
+		var yahoo = require('./../../scripts/yahoo.js');
+	
+		var weather = new yahoo.Weather('12883682');
+	
+		weather.on('forecast', function(forecast) {
+			console.log(forecast);
+			
+			var display = new matrix.Display();
+			
+			forecast.forEach(function(day) {
+	
+				display.text(day.day);
+				display.text(day.condition);
+				display.image(sprintf('./images/weather/%s.png', day.image), {scroll:'horizontal'});
+	
+				console.log(day.condition);
+			});
+			
+			display.send({priority:'low'});
+		});
+	
+		var rule = new schedule.RecurrenceRule();
+		rule.second = new schedule.Range(0, 59, 1);
+			
+		schedule.scheduleJob(rule, function() {
+			weather.fetch();
+		});
+	
+	
+	}	
+	
 		
 	function enableClock() {
 		var colors = require('../../scripts/colors.js');
@@ -191,6 +225,7 @@ function main() {
 	enableClock();
 	enableQuotes();
 	enableRSS();
+	enable
 	 	
 }
 
