@@ -160,7 +160,7 @@ function main() {
 			var space = '   ';
 			
 			var options = {};
-			options.size = 30;
+			options.size = 26;
 			
 			data.forEach(function(quote) {
 
