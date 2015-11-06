@@ -142,11 +142,11 @@ function main() {
 			
 			tickers : [
 				
-				{ name:'OMX',  id:'^OMX'},
-				{ symbol: '^GSPC', id: 'S&P 500'},
-				{ symbol: '^IXIC', id: 'NASDAQ'},
-				{ name:'PHI',  id:'PHI.ST', currency: 'SEK'},
-				{ name:'H&M',  id:'HM-B.ST', currency: 'SEK'}
+				{ id: '^OMX',    tags: {name: 'OMX'}},
+				{ id: '^GSPC',   tags: {name: 'S&P 500'}},
+				{ id: '^IXIC',   tags: {name: 'NASDAQ'}},
+				{ id: 'PHI.ST',  tags: {name: 'PHI', currency: 'SEK'}},
+				{ id: 'HM-B.ST', tags: {name: 'H&M', currency: 'SEK'}}
 				
 			]
 		};
