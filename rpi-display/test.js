@@ -3,29 +3,50 @@ var util     = require('util');
 var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
+var extend   = require('extend');
 
 // Set the time zone according to config settings
 process.env.TZ = 'Europe/Stockholm';
 
-
+/*
+	
+			{name: 'SvD',    url: 'http://www.svd.se/?service=rss&type=senastenytt'}, 
+			{name: 'SDS',    url: 'http://www.sydsvenskan.se/rss.xml'}, 
+			{name: 'Di',     url: 'http://www.di.se/rss'}, 
+			{name: 'Google', url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss'}
+*/
 
 function enableRSS() {
 
 	var config = {
-		feed: {
-			name: 'Di',
-			url:  'http://www.di.se/rss'
-		},
-		schedule: {
-			minute: new schedule.Range(0, 59, 1)
-		}
+		feeds: [
+			{
+				url: 'http://www.di.se/rss', 
+				tags: { name: 'Di' },
+				
+				schedule: {
+					minute: new schedule.Range(0, 59, 1)
+				}
+				
+				
+			},
+			{
+				url: 'http://www.svd.se/?service=rss&type=senastenytt',
+				tags: {name: 'SvD' },
+
+				schedule: {
+					minute: new schedule.Range(0, 59, 1)
+				}
+			}
+			
+		]
 	};
 	
-	var yahoo = require('./scripts/yahoo.js');
-	var rss = new yahoo.RSS(config);
+	var RSS = require('./scripts/rss.js');
+	var rss = new RSS(config);
 
-	rss.on('feed', function(rss) {
-		console.log(rss);
+	rss.on('rss', function(rss) {
+		console.log('RSS:', rss);
 		/*
 		var display = new matrix.Display();
 		
@@ -82,30 +103,28 @@ function enableWeather() {
 
 function enableQuotes() {
 
-	var symbols = [
+	var config = {
+		tickers: [
+			{ id:'^OMX',    tags:{name: 'OMX Index'}},
+			{ id:'^GSPC',   tags:{name: 'S&P 500'}},
+			{ id:'^IXIC',   tags:{name: 'NASDAQ'}},
+			{ id:'PHI.ST',  tags:{name: 'PHI', currency: 'SEK'}},
+			{ id:'HM-B.ST', tags:{name: 'H&M', currency: 'SEK'}}
+			
+		],
 		
-		{ name:'OMX',  symbol:'^OMX'},
-		{ symbol: '^GSPC', name: 'S&P 500'},
-		{ symbol: '^IXIC', name: 'NASDAQ'},
-		{ name:'PHI',  symbol:'PHI.ST', currency: 'SEK'},
-		{ name:'H&M',  symbol:'HM-B.ST', currency: 'SEK'}
+		schedule: {
+			minute: new schedule.Range(0, 59, 1)
+		}
 		
-	];
+	};
 		
 
-	var yahoo = require('./scripts/yahoo.js');
-
-	var quotes = new yahoo.Quotes(symbols);
+	var Quotes = require('./scripts/quotes.js');
+	var quotes = new Quotes(config);
 
 	quotes.on('quotes', function(quotes) {
 		console.log(quotes);
-	});
-
-	var rule = new schedule.RecurrenceRule();
-	rule.second = new schedule.Range(0, 59, 15);
-		
-	schedule.scheduleJob(rule, function() {
-		quotes.fetch();
 	});
 
 
@@ -114,27 +133,26 @@ function enableQuotes() {
 
 function enableRates() {
 
-	var symbols = [
-		{ name:'USD/SEK', symbol:'USDSEK' },
-		{ name:'EUR/SEK', symbol:'EURSEK' },
-		{ name:'EUR/USD', symbol:'EURUSD' },
-	];
+	var config = {
+		tickers: [
+			{ id:'USDSEK', tags: {name: 'USD/SEK'} },
+			{ id:'EURSEK', tags: {name: 'EUR/SEK'} },
+			{ id:'EURUSD', tags: {name: 'UER/USD'} },
+			
+		],
 		
+		schedule: {
+			minute: new schedule.Range(0, 59, 1)
+		}
+		
+	};
+	var Rates = require('./scripts/xchange.js');
+	var rates = new Rates(config);
 
-	var yahoo = require('./scripts/yahoo.js');
-
-	var rates = new yahoo.Rates(symbols);
-
-	rates.on('rates', function(rates) {
-		console.log(rates);
+	rates.on('xchange', function(xchange) {
+		console.log(xchange);
 	});
 
-	var rule = new schedule.RecurrenceRule();
-	rule.second = new schedule.Range(0, 59, 15);
-		
-	schedule.scheduleJob(rule, function() {
-		rates.fetch();
-	});
 
 
 }

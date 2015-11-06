@@ -16,8 +16,71 @@ function main() {
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
 	
-	
 	function enableRSS() {
+	
+		var config = {
+			feeds: [
+				{
+					url: 'http://www.di.se/rss', 
+					tags: { name: 'Di' },
+					
+					schedule: {
+						minute: new schedule.Range(0, 59, 1)
+					}
+					
+					
+				},
+				{
+					url: 'http://www.svd.se/?service=rss&type=senastenytt',
+					tags: {name: 'SvD' },
+	
+					schedule: {
+						minute: new schedule.Range(0, 59, 1)
+					}
+				}
+				
+			]
+		};
+		
+		var RSS = require('./../../scripts/rss.js');
+		var rss = new RSS(config);
+	
+		rss.on('rss', function(rss) {
+			console.log('RSS:', rss);
+			
+			var display = new matrix.Display();
+			var options = {};
+			
+			options.color = 'rgb(0,0,255)';
+			options.size  = 24;
+			
+			display.text(rss.name);
+			
+			rss.messages.forEach(function(message) {
+				var text = '';
+				
+				if (message.category != undefined)
+					text += message.category;
+					
+				if (text != '')
+					text += ' - ';
+					
+				if (message.title != undefined)
+					text += message.title; 
+					
+				display.text(text, options);
+						
+			});
+			
+			display.send();
+
+
+		});
+	
+	
+	}		
+
+	function enableRSSXX() {
 	
 		var config = {
 			feeds: [
