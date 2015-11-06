@@ -130,18 +130,16 @@ function main() {
 			
 			forecast.forEach(function(day) {
 	
-				display.text(day.day);
-				display.text(day.condition);
+				display.text(day.day + ' ' + day.condition);
 				display.image(sprintf('./images/weather/%s.png', day.image), {scroll:'horizontal'});
 	
 				console.log(day.condition);
 			});
 			
-			display.send({priority:'low'});
 		});
 	
 		var rule = new schedule.RecurrenceRule();
-		rule.second = new schedule.Range(0, 59, 1);
+		rule.minute = new schedule.Range(0, 59, 2);
 			
 		schedule.scheduleJob(rule, function() {
 			weather.fetch();
