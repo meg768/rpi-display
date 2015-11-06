@@ -131,11 +131,7 @@ function main() {
 			
 			forecast.forEach(function(day) {
 
-				function capitalizeFirstLetter(string) {
-				    return string.charAt(0).toUpperCase() + string.slice(1);
-				}	
-	
-				display.text(sprintf('%s - %s, %d°', capitalizeFirstLetter(day.day), day.condition.toLowerCase(), Math.round(day.high)));
+				display.text(sprintf('%s - %s, %d°', day.day, day.condition.toLowerCase(), Math.round(day.high)));
 				display.image(sprintf('./flavors/mega/weather/%s.png', day.image), {scroll:'horizontal'});
 
 			});

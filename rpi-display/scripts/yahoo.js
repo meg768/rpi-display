@@ -64,6 +64,11 @@ yahoo.Weather = function(woeid) {
 	function toCelsius(fahrenheit) {
 	    return (5 / 9) * (fahrenheit - 32);
 	}
+
+	function toCapitalize(string) {
+	    return string.charAt(0).toUpperCase() + string.slice(1);
+	}	
+
 	
 	function getConditionFromCode(code) {
 	
@@ -145,7 +150,7 @@ yahoo.Weather = function(woeid) {
 					item.high      = toCelsius(day.high);
 					item.low       = toCelsius(day.low);
 					item.date      = date;
-					item.day       = moment(date).format("dddd");
+					item.day       = toCapitalize(moment(date).format("dddd"));
 					item.condition = lookup.text;
 					item.image     = lookup.image;
 					item.code      = day.code;
