@@ -181,8 +181,8 @@ function main() {
 			
 			forecast.forEach(function(day) {
 
-				display.text(sprintf('%s - %s, %d°', day.day, day.condition.toLowerCase(), Math.round(day.high)), {delay:10});
-				display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:10, scroll:'horizontal'});
+				display.text(sprintf('%s - %s, %d°', day.day, day.condition.toLowerCase(), Math.round(day.high)), {delay:15});
+				display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:15, scroll:'horizontal'});
 
 			});
 			
