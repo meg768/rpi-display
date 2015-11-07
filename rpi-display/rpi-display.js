@@ -19,6 +19,10 @@ function main() {
 	matrix.options.config = args.config;
 	matrix.options.paths.animations = sprintf('./animations/%s', args.config);
 	matrix.options.paths.emojis = sprintf('./images/emojis/%s', args.config);
+
+	if (args.config == '32x32') {
+		matrix.options.image.delay = 20;
+	}
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
