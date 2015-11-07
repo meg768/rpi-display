@@ -161,10 +161,18 @@ function main() {
 	
 	function enableWeather() {
 	
-		var yahoo = require('./scripts/yahoo.js');
 	
-		var weather = new yahoo.Weather('12883682');
+		var config = {
+			woeid: '12883682',
+			
+			schedule: {
+				hour   : new schedule.Range(7, 23),
+				minute : new schedule.Range(13, 59, 1)
+			}
+		};	
 	
+		var Weather = require('./scripts/weather.js');
+		var weather = new Weather(config);
 
 		weather.on('forecast', function(forecast) {
 			console.log(forecast);
@@ -182,13 +190,6 @@ function main() {
 			
 		});
 	
-		var rule = new schedule.RecurrenceRule();
-		rule.hour = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-		rule.minute = new schedule.Range(7, 59, 13);
-			
-		schedule.scheduleJob(rule, function() {
-			weather.fetch();
-		});
 	
 	
 	}	
@@ -265,9 +266,9 @@ function main() {
 	  
 
 	sayHello();
-	enableClock();
-	enableQuotes();
-	enableRSS();
+	//enableClock();
+	//enableQuotes();
+	//enableRSS();
 	enableWeather();
 	 	
 }
