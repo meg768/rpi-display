@@ -43,6 +43,7 @@ Matrix.options = {
 	}	
 };
 
+
 Matrix.defaultOptions = function(name, opts) {
 	
 	var options = {};
@@ -51,6 +52,21 @@ Matrix.defaultOptions = function(name, opts) {
 		extend(options, Matrix.options.defaults[name]);
 
 	return extend(options, opts);
+}
+
+
+Matrix.start = function(cmd, callback) {
+	if (cmd != undefined)			
+		_process.start(cmd.command, cmd.args, cmd.options, callback);	
+
+	else if (callback != undefined)
+		callback();
+}
+
+
+Matrix.stop = function() {
+	if (cmd != undefined)			
+		_process.start(cmd.command, cmd.args, cmd.options, callback);	
 }
 
 
@@ -222,8 +238,6 @@ Matrix.Display = function() {
 
 	
 	self.play = function(sound, options) {
-		
-
 	}	
 	
 	self.text = function(text, options) {
@@ -310,16 +324,16 @@ _queue.on('idle', function() {
 			}
 			
 		}
-
-		if (cmd != undefined)			
-			_process.start(cmd.command, cmd.args, cmd.options);
+		
+		Matrix.start(cmd);
 	}
 
 
 });
 
+
 _queue.on('process', function(cmd, callback) {
-	_process.start(cmd.command, cmd.args, cmd.options, callback);
+	Matrix.start(cmd, callback);
 });
 
 
