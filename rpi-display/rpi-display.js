@@ -24,8 +24,8 @@ function main() {
 	matrix.options.paths.emojis = sprintf('./images/emojis/%s', args.config);
 
 	if (args.config == '32x32') {
-		matrix.options.defaults.image.delay = 24;
-		matrix.options.defaults.text.delay = 24;
+		matrix.options.defaults.image.delay = 30;
+		matrix.options.defaults.text.delay = 30;
 		matrix.options.defaults.text.size = 20;
 	}
 
