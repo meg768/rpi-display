@@ -9,12 +9,51 @@ var matrix   = require('./scripts/matrix.js');
 function main() {
 
 	// Make sure we configure the size of the display 
-	matrix.options.config = '32x32';
+	matrix.options.config = '96x96';
 	matrix.options.paths.animations = sprintf('./animations/%s', matrix.options.config);
 	matrix.options.paths.emojis = sprintf('./images/emojis/%s', matrix.options.config);
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
+		
+		
+	function enableRates() {
+	
+		var config = {
+			tickers: [
+				{ id:'USDSEK', tags: {name: 'USD/SEK'} },
+				{ id:'EURSEK', tags: {name: 'EUR/SEK'} },
+				{ id:'EURUSD', tags: {name: 'UER/USD'} },
+				
+			],
+			
+			schedule: {
+				minute: new schedule.Range(0, 59, 1)
+			}
+			
+		};
+		var Rates = require('./scripts/xchange.js');
+		var rates = new Rates(config);
+	
+		rates.on('xchange', function(xchange) {
+			console.log(xchange);
+
+			var display = new matrix.Display();
+			var options = {};
+			
+			options.color = 'rgb(0,0,255)';
+			options.size  = 24;
+			
+			xchange.forEach(function(rate) {
+				display.text(sprintf('%s - %.2f', rate.name, rate.value));
+			});
+
+			display.send();
+		});
+	
+	
+	
+	}	
 	
 	
 	function enableRSS() {
@@ -266,11 +305,13 @@ function main() {
 	  
 
 	sayHello();
-	//enableClock();
-	//enableQuotes();
-	//enableRSS();
+	enableRates();
+	/*
+	enableClock();
+	enableQuotes();
+	enableRSS();
 	enableWeather();
-	 	
+	 */	
 }
 
 main();
