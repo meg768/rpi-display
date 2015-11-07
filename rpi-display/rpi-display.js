@@ -3,14 +3,15 @@ var util     = require('util');
 var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
+var minimist = require('minimist');
 
 
 function main() {
 
-	var args = require('minimist')(process.argv.slice(2));
+	var args = minimist(process.argv.slice(2));
 
 	if (args.config == undefined) {
-		console.log('Need configuration needed. Use the --config option.');
+		console.log('No configuration speciefied. Use the --config option.');
 		process.exit(-1);
 	}
 
