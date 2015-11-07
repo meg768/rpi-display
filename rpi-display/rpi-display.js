@@ -16,7 +16,6 @@ function main() {
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
 		
-		
 	function enableRates() {
 	
 		var config = {
@@ -28,7 +27,8 @@ function main() {
 			],
 			
 			schedule: {
-				minute: new schedule.Range(0, 59, 1)
+				hour:   new schedule.Range(7, 23),
+				minute: new schedule.Range(8, 59, 20)
 			}
 			
 		};
@@ -45,7 +45,7 @@ function main() {
 			options.size  = 24;
 			
 			xchange.forEach(function(rate) {
-				display.text(sprintf('%s - %.2f', rate.name, rate.value));
+				display.text(sprintf('%s   %.2f', rate.name, rate.value));
 			});
 
 			display.send();
@@ -65,6 +65,7 @@ function main() {
 					tags: { name: 'Di' },
 					
 					schedule: {
+						hour:   new schedule.Range(7, 23),
 						minute: new schedule.Range(3, 59, 15)
 					}
 				},
@@ -73,6 +74,7 @@ function main() {
 					tags: {name: 'SvD' },
 	
 					schedule: {
+						hour:   new schedule.Range(7, 23),
 						minute: new schedule.Range(6, 59, 15)
 					}
 				},
@@ -81,6 +83,7 @@ function main() {
 					tags: {name: 'Google' },
 	
 					schedule: {
+						hour:   new schedule.Range(7, 23),
 						minute: new schedule.Range(9, 59, 15)
 					}
 				},
@@ -306,12 +309,11 @@ function main() {
 
 	sayHello();
 	enableRates();
-	/*
 	enableClock();
 	enableQuotes();
 	enableRSS();
 	enableWeather();
-	 */	
+
 }
 
 main();
