@@ -66,7 +66,7 @@ function main() {
 					
 					schedule: {
 						hour:   new schedule.Range(7, 23),
-						minute: new schedule.Range(3, 59, 15)
+						minute: new schedule.Range(3, 59, 20)
 					}
 				},
 				{
@@ -75,7 +75,7 @@ function main() {
 	
 					schedule: {
 						hour:   new schedule.Range(7, 23),
-						minute: new schedule.Range(6, 59, 15)
+						minute: new schedule.Range(6, 59, 20)
 					}
 				},
 				{
@@ -84,7 +84,7 @@ function main() {
 	
 					schedule: {
 						hour:   new schedule.Range(7, 23),
-						minute: new schedule.Range(9, 59, 15)
+						minute: new schedule.Range(9, 59, 20)
 					}
 				},
 				{
@@ -92,7 +92,7 @@ function main() {
 					tags: {name: 'Sydsvenskan' },
 	
 					schedule: {
-						minute: new schedule.Range(12, 59, 15)
+						minute: new schedule.Range(12, 59, 20)
 					}
 				}
 			]
@@ -209,7 +209,7 @@ function main() {
 			
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(0, 59, 1)
+				minute : [10, 40]
 			}
 		};	
 	
