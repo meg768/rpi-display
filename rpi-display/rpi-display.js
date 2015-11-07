@@ -23,6 +23,13 @@ function main() {
 	if (args.config == '32x32') {
 		matrix.options.defaults.image.delay = 20;
 		matrix.options.defaults.text.delay = 20;
+		matrix.options.defaults.text.size = 20;
+	}
+
+	if (args.config == '96x96') {
+		matrix.options.defaults.image.delay = 20;
+		matrix.options.defaults.text.delay = 20;
+		matrix.options.defaults.text.size = 24;
 	}
 	
 	// Set the time zone according to config settings
@@ -54,7 +61,6 @@ function main() {
 			var options = {};
 			
 			options.color = 'rgb(0,0,255)';
-			options.size  = 24;
 			
 			xchange.forEach(function(rate) {
 				display.text(sprintf('%s   %.2f', rate.name, rate.value));
@@ -120,7 +126,6 @@ function main() {
 			var options = {};
 			
 			options.color = 'rgb(0,0,255)';
-			options.size  = 24;
 			
 			display.text(sprintf('Nyheter från %s', rss.name));
 			
@@ -179,7 +184,6 @@ function main() {
 			var space = '   ';
 			
 			var options = {};
-			options.size = 26;
 			
 			data.forEach(function(quote) {
 
@@ -264,9 +268,7 @@ function main() {
 			var color = colors.hslToRgb(hue / 360, 1, 0.5);
 			
 			var options = {};
-			options.size     = 30;
-			options.delay    = 25;
-			options.color    = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
+			options.color = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
 			display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
 			display.send();	
