@@ -1,8 +1,8 @@
 var schedule = require('node-schedule');
 var util     = require('util');
-var sprintf  = require('./../../scripts/sprintf.js');
-var random   = require('./../../scripts/random.js');
-var matrix   = require('./../../scripts/matrix.js');
+var sprintf  = require('./scripts/sprintf.js');
+var random   = require('./scripts/random.js');
+var matrix   = require('./scripts/matrix.js');
 
 
 
@@ -10,8 +10,8 @@ function main() {
 
 	// Make sure we configure the size of the display 
 	matrix.options.config = '96x96';
-	matrix.options.paths.animations = './flavors/mega/animations';
-	matrix.options.paths.emojis = './emojis/96x96';
+	matrix.options.paths.animations = './animations/96x96';
+	matrix.options.paths.emojis = './images/emojis/96x96';
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
@@ -56,7 +56,7 @@ function main() {
 			]
 		};
 		
-		var RSS = require('./../../scripts/rss.js');
+		var RSS = require('./scripts/rss.js');
 		var rss = new RSS(config);
 	
 		rss.on('rss', function(rss) {
@@ -94,42 +94,7 @@ function main() {
 	
 	}		
 
-	function enableRSSXX() {
-	
-		var config = {
-			feeds: [
-				{name: 'SvD',    url: 'http://www.svd.se/?service=rss&type=senastenytt'}, 
-				{name: 'SDS',    url: 'http://www.sydsvenskan.se/rss.xml'}, 
-				{name: 'Di',     url: 'http://www.di.se/rss'}, 
-				{name: 'Google', url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss'}
-			],
-			
-			schedule: {
-				hour   : new schedule.Range(7, 23),
 
-				// Display RSS news every 20 minutes
-				minute : new schedule.Range(7, 59, 20)
-			}
-			
-		}	
-
-		var RSS = require('../../scripts/rss.js');
-		var rss = new RSS(config);
-	
-		rss.on('feed', function(rss) {
-			var display = new matrix.Display();
-			var options = {};
-			
-			options.color = 'rgb(0,0,255)';
-			options.size  = 24;
-			
-			display.text(sprintf('%s - %s - %s', rss.name, rss.category, rss.text), options);
-			display.send();
-
-		});
-
-	
-	}
 	
 	function enableQuotes() {
 		var numeral = require('numeral');
@@ -151,7 +116,7 @@ function main() {
 			]
 		};
 		
-		var Quotes = require('../../scripts/quotes.js');
+		var Quotes = require('./scripts/quotes.js');
 		var quotes = new Quotes(config);
 	
 		quotes.on('quotes', function(data) {
@@ -196,7 +161,7 @@ function main() {
 	
 	function enableWeather() {
 	
-		var yahoo = require('./../../scripts/yahoo.js');
+		var yahoo = require('./scripts/yahoo.js');
 	
 		var weather = new yahoo.Weather('12883682');
 	
@@ -209,7 +174,7 @@ function main() {
 			forecast.forEach(function(day) {
 
 				display.text(sprintf('%s - %s, %d°', day.day, day.condition.toLowerCase(), Math.round(day.high)));
-				display.image(sprintf('./flavors/mega/weather/%s.png', day.image), {scroll:'horizontal'});
+				display.image(sprintf('./images/weather/96x96/%s.png', day.image), {scroll:'horizontal'});
 
 			});
 			
@@ -230,7 +195,7 @@ function main() {
 	
 		
 	function enableClock() {
-		var colors = require('../../scripts/colors.js');
+		var colors = require('./scripts/colors.js');
 		var rule = new schedule.RecurrenceRule();
 	
 		//rule.hour   = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
