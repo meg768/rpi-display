@@ -9,7 +9,7 @@ var YQL      = require('./yql.js');
 var sprintf  = require('./sprintf.js');
 
 
-var Weather = function(config) {
+var Weather = module.exports = function(config) {
 
 	var _this = this;
 
