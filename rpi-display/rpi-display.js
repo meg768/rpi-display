@@ -21,7 +21,8 @@ function main() {
 	matrix.options.paths.emojis = sprintf('./images/emojis/%s', args.config);
 
 	if (args.config == '32x32') {
-		matrix.options.image.delay = 20;
+		matrix.options.defaults.image.delay = 20;
+		matrix.options.defaults.text.delay = 20;
 	}
 	
 	// Set the time zone according to config settings
