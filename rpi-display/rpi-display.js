@@ -1,9 +1,10 @@
 var schedule = require('node-schedule');
 var util     = require('util');
+var minimist = require('minimist');
+
 var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
-var minimist = require('minimist');
 
 
 function main() {
@@ -19,20 +20,28 @@ function main() {
 	}
 
 	// Make sure we configure the size of the display 
-	matrix.options.config = args.config;
 	matrix.options.paths.animations = sprintf('./animations/%s', args.config);
 	matrix.options.paths.emojis = sprintf('./images/emojis/%s', args.config);
 
 	if (args.config == '32x32') {
+		matrix.options.config = '32x32';
 		matrix.options.defaults.image.delay = 30;
 		matrix.options.defaults.text.delay = 30;
 		matrix.options.defaults.text.size = 20;
 	}
 
 	if (args.config == '96x96') {
+		matrix.options.config = '96x96';
 		matrix.options.defaults.image.delay = 20;
 		matrix.options.defaults.text.delay = 20;
 		matrix.options.defaults.text.size = 24;
+	}
+
+	if (args.config == 'phi') {
+		matrix.options.config = '32x32';
+		matrix.options.defaults.image.delay = 30;
+		matrix.options.defaults.text.delay = 30;
+		matrix.options.defaults.text.size = 20;
 	}
 	
 	function enableRates() {
