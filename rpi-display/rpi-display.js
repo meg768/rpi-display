@@ -5,13 +5,19 @@ var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
 
 
-
 function main() {
 
+	var args = require('minimist')(process.argv.slice(2));
+
+	if (args.config == undefined) {
+		console.log('Need configuration needed. Use the --config option.');
+		process.exit(-1);
+	}
+
 	// Make sure we configure the size of the display 
-	matrix.options.config = '96x96';
-	matrix.options.paths.animations = sprintf('./animations/%s', matrix.options.config);
-	matrix.options.paths.emojis = sprintf('./images/emojis/%s', matrix.options.config);
+	matrix.options.config = args.config;
+	matrix.options.paths.animations = sprintf('./animations/%s', args.config);
+	matrix.options.paths.emojis = sprintf('./images/emojis/%s', args.config);
 	
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
@@ -224,7 +230,7 @@ function main() {
 			forecast.forEach(function(day) {
 
 				display.text(sprintf('%s - %s, %d°', day.day, day.condition.toLowerCase(), Math.round(day.high)), {delay:15});
-				display.image(sprintf('./images/weather/%s/%s.png', matrix.options.config, day.image), {delay:15, scroll:'horizontal'});
+				display.image(sprintf('./images/weather/%s/%s.png', args.config, day.image), {delay:15, scroll:'horizontal'});
 
 			});
 			
