@@ -167,7 +167,7 @@ function main() {
 			
 			schedule: {
 				hour   : new schedule.Range(7, 23),
-				minute : new schedule.Range(13, 59, 1)
+				minute : new schedule.Range(0, 59, 1)
 			}
 		};	
 	
