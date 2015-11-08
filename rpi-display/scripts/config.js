@@ -1,5 +1,5 @@
 var minimist = require('minimist');
-
+var sprintf  = require('./sprintf.js');
 
 
 var Config = {
@@ -83,10 +83,9 @@ function main() {
 		console.log('No configuration speciefied. Use the --config option.');
 		process.exit(-1);
 	}
-	console.log('config:', args.config);
-	
+
 	if (Config[args.config] == undefined) {
-		console.log('Specified configuration not defined.');
+		console.log(sprintf('Configuration "%s" not defined.'), args.config);
 		process.exit(-1);
 		
 	}
