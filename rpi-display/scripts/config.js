@@ -2,7 +2,7 @@ var minimist = require('minimist');
 
 
 
-var config = {
+var Config = {
 	
 	'96x96': {
 		matrix: {
@@ -83,16 +83,17 @@ function main() {
 		console.log('No configuration speciefied. Use the --config option.');
 		process.exit(-1);
 	}
+	console.log('config:', args.config);
 	
-	if (config[args.config] == undefined) {
+	if (Config[args.config] == undefined) {
 		console.log('Specified configuration not defined.');
 		process.exit(-1);
 		
 	}
 	
-	console.log(config[args.config]);
+	console.log(Config[args.config]);
 	
-	module.exports = config[args.config];
+	module.exports = Config[args.config];
 	
 	
 };
