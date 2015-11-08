@@ -52,7 +52,7 @@ var config = {
 					font  : 'Arial-Bold',
 					size  : 20,
 					color : 'blue',
-					delay : 20
+					delay : 24
 				},
 						
 				image: {
