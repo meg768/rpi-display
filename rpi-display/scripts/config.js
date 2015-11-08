@@ -90,6 +90,8 @@ function main() {
 		
 	}
 	
+	console.log(config[args.config]);
+	
 	module.exports = config[args.config];
 	
 	
