@@ -3,9 +3,10 @@ var events   = require('events');
 var extend   = require('extend');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
-var config   = require('./config.js').matrix;
+
 var Queue    = require('./queue.js');
 var Process  = require('./process.js');
+var config   = require('./config.js');
 
 var _process = new Process();
 var _queue   = new Queue();
@@ -13,43 +14,12 @@ var _queue   = new Queue();
 var Matrix = module.exports = {};
 
 
-Matrix.options = {
-
-	config: '96x96',
-	
-	paths: {
-		fonts       : './fonts',	
-		animations  : './animations/96x96',
-		images      : './images',
-		emojis      : './images/96x96/emojis'	
-	},
-	
-	defaults: {
-		
-		text: {
-			font  : 'Arial-Bold',
-			size  : 24,
-			color : 'blue'
-		},
-				
-		image: {
-			delay    : 6.0,
-			duration : 60,
-			scroll   : 'none'
-		},
-		
-		perlin: {
-		}
-	}	
-};
-
-
 Matrix.defaultOptions = function(name, opts) {
 	
 	var options = {};
 	
-	if (Matrix.options != undefined && Matrix.options.defaults != undefined)
-		extend(options, Matrix.options.defaults[name]);
+	if (config.matrix.defaults != undefined)
+		extend(options, config.matrix.defaults[name]);
 
 	return extend(options, opts);
 }
@@ -81,7 +51,7 @@ Matrix.text = function(text, options) {
 	var args = [];
 
 	args.push('--config');
-	args.push(Matrix.options.config);
+	args.push(config.matrix.config);
 
 	args.push('--text');
 	args.push(text);
@@ -116,8 +86,8 @@ Matrix.image = function(file, options) {
 	
 	var args = [];
 	
-	args.push('--config');
-	args.push(Matrix.options.config);
+	args.push('--g');
+	args.push(config.matrix.config);
 
 	args.push('--file');
 	args.push(file);
@@ -143,7 +113,7 @@ Matrix.animation = function(options) {
 	var args = [];
 
 	args.push('--config');
-	args.push(Matrix.options.config);
+	args.push(config.matrix.config);
 
 	if (options.file == undefined) {
 		options.file = Matrix.options.paths.animations;
@@ -179,7 +149,7 @@ Matrix.rain = function(options) {
 	var args = [];
 	
 	args.push('--config');
-	args.push(Matrix.options.config);
+	args.push(config.matrix.config);
 
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -207,7 +177,7 @@ Matrix.perlin = function(options) {
 	var args = [];
 	
 	args.push('--config');
-	args.push(Matrix.options.config);
+	args.push(config.matrix.config);
 
 	if (options.duration != undefined) {
 		args.push('--duration');

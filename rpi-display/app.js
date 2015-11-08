@@ -252,41 +252,10 @@ function loop() {
 
 function main() {
 
-	var args = minimist(process.argv.slice(2));
-
 	// Set the time zone according to config settings
 	process.env.TZ = 'Europe/Stockholm';
 
-	if (args.config == undefined) {
-		console.log('No configuration speciefied. Use the --config option.');
-		process.exit(-1);
-	}
 
-	// Make sure we configure the size of the display 
-	matrix.options.paths.animations = sprintf('./animations/%s', args.config);
-	matrix.options.paths.emojis = sprintf('./images/emojis/%s', args.config);
-
-	if (args.config == '32x32') {
-		matrix.options.config = '32x32';
-		matrix.options.defaults.image.delay = 30;
-		matrix.options.defaults.text.delay = 30;
-		matrix.options.defaults.text.size = 20;
-	}
-
-	if (args.config == '96x96') {
-		matrix.options.config = '96x96';
-		matrix.options.defaults.image.delay = 20;
-		matrix.options.defaults.text.delay = 20;
-		matrix.options.defaults.text.size = 24;
-	}
-
-	if (args.config == 'phi') {
-		matrix.options.config = '32x32';
-		matrix.options.defaults.image.delay = 30;
-		matrix.options.defaults.text.delay = 30;
-		matrix.options.defaults.text.size = 20;
-	}
-	
 		
 	 
 	function sayHello() {

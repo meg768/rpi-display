@@ -35,7 +35,6 @@ var config = {
 		}
 	},
 
-
 	'mini': {
 		matrix: {
 			config: '32x32',
