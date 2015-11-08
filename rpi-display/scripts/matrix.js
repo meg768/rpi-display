@@ -116,7 +116,7 @@ Matrix.animation = function(options) {
 	args.push(config.matrix.config);
 
 	if (options.file == undefined) {
-		options.file = Matrix.options.paths.animations;
+		options.file = config.matrix.paths.animations;
 	}
 
 	if (options.file != undefined) {
@@ -244,7 +244,7 @@ Matrix.Display = function() {
 	}
 
 	self.emoji = function(id, options) {
-		this.image(sprintf('%s/%d.png', Matrix.options.paths.emojis, parseInt(id)), options);			
+		this.image(sprintf('%s/%d.png', config.matrix.paths.emojis, parseInt(id)), options);			
 	}
 	
 	self.perlin = function(options) {
