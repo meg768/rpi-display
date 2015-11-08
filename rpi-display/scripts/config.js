@@ -85,7 +85,7 @@ function main() {
 	}
 
 	if (config[args.config] == undefined) {
-		console.log(sprintf('Configuration "%s" not defined.'), args.config);
+		console.log(sprintf('Configuration "%s" not defined.', args.config));
 		process.exit(-1);
 		
 	}
