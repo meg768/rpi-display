@@ -50,9 +50,9 @@ var config = {
 				
 				text: {
 					font  : 'Arial-Bold',
-					size  : 24,
+					size  : 22,
 					color : 'blue',
-					delay : 16
+					delay : 18
 				},
 						
 				image: {
