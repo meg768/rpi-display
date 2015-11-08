@@ -65,6 +65,7 @@ Matrix.start = function(cmd, callback) {
 
 
 Matrix.stop = function() {
+
 	if (cmd != undefined)			
 		_process.start(cmd.command, cmd.args, cmd.options, callback);	
 }

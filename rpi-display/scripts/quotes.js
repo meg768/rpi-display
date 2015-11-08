@@ -20,7 +20,7 @@ var Quotes = module.exports = function(config) {
 		
 		config.tickers.forEach(function(ticker) {
 			symbols.push('"' + ticker.id + '"');
-			map[ticker.id] = ticker.tags;
+			map[ticker.id] = ticker;
 		});
 		
 		var query = sprintf('SELECT * FROM yahoo.finance.quotes WHERE symbol IN(%s)', symbols.join(','));

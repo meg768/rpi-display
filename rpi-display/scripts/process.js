@@ -26,7 +26,7 @@ var Module = module.exports = function() {
 		}
 	
 		function NO(error) {
-			console.log("Failed to spawn...", error == undefined ? '' : error);
+			console.log('Failed to spawn:', command, args);
 			callback();				
 		}
 	
@@ -36,7 +36,6 @@ var Module = module.exports = function() {
 	
 		try {
 			this.stop();
-			
 	
 			console.log('Spawning: %s', command, args, options);					
 	
@@ -44,11 +43,9 @@ var Module = module.exports = function() {
 			var process = spawn(command, args, options);
 	
 			process.stderr.on('data', function (data) {
-				console.log('stderr: ' + data);
 			});
 	
 			process.stdout.on('data', function (data) {
-				console.log('stdout: ' + data);
 			});
 			
 			if (process == null) {
