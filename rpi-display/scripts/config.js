@@ -2,7 +2,7 @@ var minimist = require('minimist');
 var sprintf  = require('./sprintf.js');
 
 
-var Config = {
+var config = {
 	
 	'96x96': {
 		matrix: {
@@ -84,15 +84,15 @@ function main() {
 		process.exit(-1);
 	}
 
-	if (Config[args.config] == undefined) {
+	if (config[args.config] == undefined) {
 		console.log(sprintf('Configuration "%s" not defined.'), args.config);
 		process.exit(-1);
 		
 	}
 	
-	console.log(Config[args.config]);
+	console.log(config[args.config]);
 	
-	module.exports = Config[args.config];
+	module.exports = config[args.config];
 	
 	
 };
