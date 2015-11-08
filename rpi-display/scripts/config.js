@@ -36,7 +36,7 @@ var config = {
 	},
 
 
-	'32x32': {
+	'mini': {
 		matrix: {
 			config: '32x32',
 			
@@ -76,6 +76,7 @@ var config = {
 	
 };
 
+
 function main() {
 	var args = minimist(process.argv.slice(2));
 	
@@ -89,8 +90,6 @@ function main() {
 		process.exit(-1);
 		
 	}
-	
-	console.log(config[args.config]);
 	
 	module.exports = config[args.config];
 	
