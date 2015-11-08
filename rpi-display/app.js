@@ -7,6 +7,29 @@ var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
 
 
+function clock() {
+	var colors = require('./scripts/colors.js');
+	var rule = new schedule.RecurrenceRule();
+
+	rule.minute = new schedule.Range(0, 59, 5);
+		
+	
+	schedule.scheduleJob(rule, function() {
+		var display = new matrix.Display();
+		var now = new Date();
+		var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;			
+		var color = colors.hslToRgb(hue / 360, 1, 0.5);
+		
+		var options = {};
+		options.color = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
+
+		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
+		display.send();	
+	});
+}
+
+
+
 function loop() {
 	var rule = new schedule.RecurrenceRule();
 
@@ -308,6 +331,7 @@ function main() {
 
 	sayHello();
 	loop();
+	clock();
 }
 
 main();
