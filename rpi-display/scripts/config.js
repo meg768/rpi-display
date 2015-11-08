@@ -51,7 +51,8 @@ var config = {
 				text: {
 					font  : 'Arial-Bold',
 					size  : 24,
-					color : 'blue'
+					color : 'blue',
+					delay : 16
 				},
 						
 				image: {
@@ -68,7 +69,32 @@ var config = {
 	
 	'phi': {
 		matrix: {
-			config: '96x32'
+			config: '64x32',
+			
+			paths: {
+				fonts       : './fonts',	
+				animations  : './animations/32x32',
+				images      : './images',
+				emojis      : './images/32x32/emojis'	
+			},
+			
+			defaults: {
+				
+				text: {
+					font  : 'Arial-Bold',
+					size  : 24,
+					color : 'blue'
+				},
+						
+				image: {
+					delay    : 6.0,
+					duration : 60,
+					scroll   : 'none'
+				},
+				
+				perlin: {
+				}
+			}	
 		}
 		
 	}
