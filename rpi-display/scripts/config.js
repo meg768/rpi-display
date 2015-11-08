@@ -4,7 +4,7 @@ var sprintf  = require('./sprintf.js');
 
 var config = {
 	
-	'96x96': {
+	'maxi': {
 		matrix: {
 			config: '96x96',
 			
