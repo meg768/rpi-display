@@ -11,65 +11,49 @@ var RSS = module.exports = function(config) {
 
 	var _this = this;
 
-	_this.fetch = function(feed) {
+	_this.fetch = function() {
 		
-		var query = '';
+		config.feeds.forEach(function(feed) {
 
-		query += sprintf('SELECT title, category FROM rss WHERE url="%s"', feed.url);
-		query += sprintf(' | sort(field="pubDate", descending="true")');
-		query += sprintf(' | truncate(count=%d)', 3);
-
-		var yql = new YQL();
+			var query = '';
+	
+			query += sprintf('SELECT title, category FROM rss WHERE url="%s"', feed.url);
+			query += sprintf(' | sort(field="pubDate", descending="true")');
+			query += sprintf(' | truncate(count=%d)', 3);
+	
+			var yql = new YQL();
+			
+			yql.request(query, function(data){
+				if (data != undefined) {
+					var items = data.query.results.item;
 		
-		yql.request(query, function(data){
-			if (data != undefined) {
-				var items = data.query.results.item;
+					if (!util.isArray(items))
+						items = [items];
+		
+					var rss = [];
+					
+					items.forEach(function(item) {
 	
-				if (!util.isArray(items))
-					items = [items];
+						var message = {};
 	
-				var rss = {};
-				extend(rss, feed.tags, {messages:[]});
+						extend(message, feed);
+						
+						message.title    = item.title;
+						message.category = item.category;
+	
+						rss.push(message);
+					});
+					
+					_this.emit('rss', rss);
+					
+				}
 				
-				items.forEach(function(item) {
-
-					var message = {};
-
-					message.title    = item.title;
-					message.category = item.category;
-
-					rss.messages.push(message);
-				});
-				
-				_this.emit('rss', rss);
-				
-			}
+			});
 			
 		});
 	}
 	
-	config.feeds.forEach(function(feed) {
 
-		var rule = new schedule.RecurrenceRule();
-
-		if (feed.schedule != undefined) {
-		
-			if (feed.schedule.hour != undefined)
-				rule.hour = feed.schedule.hour;
-		
-			if (feed.schedule.minute != undefined)
-				rule.minute = feed.schedule.minute;
-		
-			if (feed.schedule.second != undefined)
-				rule.second = feed.schedule.second;
-		}
-				
-		schedule.scheduleJob(rule, function() {
-			_this.fetch(feed);
-		});	
-		
-	});
-	
 };
 
 util.inherits(RSS, events.EventEmitter);
