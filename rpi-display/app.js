@@ -1,6 +1,7 @@
 var schedule = require('node-schedule');
 var util     = require('util');
 var minimist = require('minimist');
+var config   = require('./config.js');
 
 var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');

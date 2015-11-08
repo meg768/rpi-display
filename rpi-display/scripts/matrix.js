@@ -3,7 +3,7 @@ var events   = require('events');
 var extend   = require('extend');
 var sprintf  = require('./sprintf.js');
 var random   = require('./random.js');
-
+var config   = require('./config.js').matrix;
 var Queue    = require('./queue.js');
 var Process  = require('./process.js');
 
