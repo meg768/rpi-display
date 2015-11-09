@@ -33,6 +33,7 @@ function App() {
 		display.send();
 	}
 	
+	
 	function displayRSS(feed) {
 		
 		var RSS = require('./scripts/rss.js');
@@ -69,17 +70,6 @@ function App() {
 
 	}
 	
-	function displayIdle() {
-		var now = new Date();
-
-		var hours   = now.getHours();
-		var minutes = now.getMinutes();
-		
-		if (hours == 18 && minutes > 31 && minutes < 33)
-			displayFika();
-		else
-			displayQuotes(_quotes)
-	}
 
 	function displayFika() {
 		
@@ -91,6 +81,7 @@ function App() {
 		display.send();
 		
 	}
+	
 	
 	function displayQuotes(quotes) {
 		
@@ -126,6 +117,20 @@ function App() {
 		
 	}
 	
+	
+	function displayIdle() {
+		var now = new Date();
+
+		var hours   = now.getHours();
+		var minutes = now.getMinutes();
+		
+		if (hours == 15 && minutes >= 0 && minutes < 30)
+			displayFika();
+		else
+			displayQuotes(_quotes)
+	}
+	
+	
 	function displayClock() {
 		var display = new matrix.Display();
 		var now = new Date();
@@ -138,6 +143,7 @@ function App() {
 		display.send();	
 		
 	}
+
 
 	function scheduleInterrupts() {
 		var rule = new schedule.RecurrenceRule();
@@ -173,7 +179,6 @@ function App() {
 		});
 	}
 
-
 		
 	function scheduleClock() {
 		var rule = new schedule.RecurrenceRule();	
@@ -184,8 +189,8 @@ function App() {
 		});
 	}
 	
-	function scheduleQuotes() {
 	
+	function scheduleQuotes() {
 	
 		function fetchQuotes() {
 		
@@ -236,7 +241,6 @@ function App() {
 	}
 	
 }
-
 
 
 var app = new App();
