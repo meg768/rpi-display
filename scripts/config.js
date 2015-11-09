@@ -10,7 +10,6 @@ var config = module.exports = {
 	matrix: {
 		width  : 32,
 		height : 32,
-		config : '32x32',
 		
 		paths: {
 			fonts       : './fonts',	

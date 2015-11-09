@@ -98,7 +98,7 @@ Matrix.text = function(text, options) {
 	var args = [];
 
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(sprintf('%dx%d', config.matrix.width, config.matrix.height));
 
 	args.push('--text');
 	args.push(text);
@@ -133,8 +133,8 @@ Matrix.image = function(file, options) {
 	
 	var args = [];
 	
-	args.push('--g');
-	args.push(config.matrix.config);
+	args.push('--config');
+	args.push(sprintf('%dx%d', config.matrix.width, config.matrix.height));
 
 	args.push('--file');
 	args.push(file);
@@ -160,7 +160,8 @@ Matrix.animation = function(options) {
 	var args = [];
 
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(sprintf('%dx%d', config.matrix.width, config.matrix.height));
+
 
 	if (options.file == undefined) {
 		options.file = config.matrix.paths.animations;
@@ -196,7 +197,7 @@ Matrix.rain = function(options) {
 	var args = [];
 	
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(sprintf('%dx%d', config.matrix.width, config.matrix.height));
 
 	if (options.duration != undefined) {
 		args.push('--duration');
@@ -224,7 +225,7 @@ Matrix.perlin = function(options) {
 	var args = [];
 	
 	args.push('--config');
-	args.push(config.matrix.config);
+	args.push(sprintf('%dx%d', config.matrix.width, config.matrix.height));
 
 	if (options.duration != undefined) {
 		args.push('--duration');
