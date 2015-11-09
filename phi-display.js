@@ -16,6 +16,17 @@ function App() {
 	var _quotes = [];	
 
 
+	function displayAnimation() {
+		var display = new matrix.Display();
+
+		var options = {};
+		options.file = sprintf('./animations/32x32/pong.gif');
+		options.iterations = 1;
+		
+		display.animation(options);
+		display.send();
+	}
+	
 	function displayRSS(feed) {
 		
 		var RSS = require('./scripts/rss.js');
@@ -106,7 +117,7 @@ function App() {
 		rule.minute = new schedule.Range(0, 59, 1);
 		
 		schedule.scheduleJob(rule, function() {
-			switch(index % 4) {
+			switch(4) {
 				case 0: {
 					displayRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'});
 					break;
@@ -121,6 +132,10 @@ function App() {
 				}
 				case 3: {
 					displayRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'});
+					break;
+				}
+				case 4: {
+					displayAnimation();
 					break;
 				}
 			}
@@ -174,7 +189,8 @@ function App() {
 		// Use swedish settings
 		moment.locale(config.locale);
 
-		config.matrix.config = '32x32';
+		config.matrix.width = 32;
+		config.matrix.height = 32;
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
 
 		matrix.init();
@@ -182,7 +198,6 @@ function App() {
 		matrix.idle(function() {
 			displayQuotes(_quotes);
 		});
-		
 		
 		scheduleQuotes();
 		scheduleClock();
