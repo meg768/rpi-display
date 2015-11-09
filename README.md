@@ -96,12 +96,12 @@ is really a good test to see if all your circuitry is done right.
 This test below is for a 96x96 square matrix. See https://github.com/hzeller/rpi-rgb-led-matrix 
 for more information about parameters.
 
-	$ cd ~/rpi-display/hzeller/rpi-rgb-led-matrix
+	$ cd ~/rpi-display/hzeller
 	$ sudo ./led-matrix -P3 -c3 -D4
 
 For a single 32x32 LED matrix, do this:
 
-	$ cd ~/rpi-display/hzeller/rpi-rgb-led-matrix
+	$ cd ~/rpi-display/hzeller
 	$ sudo ./led-matrix -D4
 
 
