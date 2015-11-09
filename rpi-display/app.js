@@ -8,6 +8,41 @@ var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
 
 
+Matrix.idle = function() {
+
+	cmd = Matrix.text('HEJ');
+	Matrix.start(cmd);
+	
+}	
+
+/*
+Matrix.idle(function() {
+	var cmd = undefined;
+
+	if (now.getHours() >= 0 && now.getHours() <= 7) {
+		cmd = Matrix.rain({duration: -1});
+	}
+	else {
+		switch (random.rand(0, 15)) {
+			case 0:
+				cmd = Matrix.rain({duration: -1});
+				break;
+			case 1: 
+				cmd = Matrix.perlin({duration: -1, delay: 40, mode: 3});
+				break;
+			default: 	
+				cmd = Matrix.animation({duration: -1});
+				break;
+		}
+		
+	}
+	
+	Matrix.start(cmd);
+	
+});
+*/
+
+
 function clock() {
 	var colors = require('./scripts/colors.js');
 	var rule = new schedule.RecurrenceRule();
@@ -231,17 +266,16 @@ function loop() {
 	
 	rule.hour   = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 	rule.minute = new schedule.Range(0, 59, 3);
-	//rule.second = new schedule.Range(0, 59, 3);
-		
-
 	
 	schedule.scheduleJob(rule, function() {
-		
-		
+
+		// Pick an activity
 		var activity = activities[index]; //random.choose(activities);
 		
+		// Fetch it!
 		activity.fetch();
-		
+
+		// Move to next		
 		index = (index + 1) % activities.length;
 	});
 	

@@ -198,6 +198,32 @@ Matrix.perlin = function(options) {
 }
 
 		
+Matrix.idle = function() {
+
+	var now = new Date();
+	var cmd = undefined;
+
+	if (now.getHours() >= 0 && now.getHours() <= 7) {
+		cmd = Matrix.rain({duration: -1});
+	}
+	else {
+		switch (random.rand(0, 15)) {
+			case 0:
+				cmd = Matrix.rain({duration: -1});
+				break;
+			case 1: 
+				cmd = Matrix.perlin({duration: -1, delay: 40, mode: 3});
+				break;
+			default: 	
+				cmd = Matrix.animation({duration: -1});
+				break;
+		}
+		
+	}
+	
+	Matrix.start(cmd);
+	
+}	
 
 
 Matrix.Display = function() {
@@ -272,31 +298,9 @@ Matrix.Display = function() {
 
 _queue.on('idle', function() {
 
-	var now = new Date();
 	
 	if (_queue.empty()) {
-
-		var cmd = undefined;
-
-		if (now.getHours() >= 0 && now.getHours() <= 7) {
-			cmd = Matrix.rain({duration: -1});
-		}
-		else {
-			switch (random.rand(0, 15)) {
-				case 0:
-					cmd = Matrix.rain({duration: -1});
-					break;
-				case 1: 
-					cmd = Matrix.perlin({duration: -1, delay: 40, mode: 3});
-					break;
-				default: 	
-					cmd = Matrix.animation({duration: -1});
-					break;
-			}
-			
-		}
-		
-		Matrix.start(cmd);
+		Matrix.idle();
 	}
 
 
