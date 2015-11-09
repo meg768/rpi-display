@@ -10,16 +10,16 @@ var sprintf  = require('./sprintf.js');
 
 
 
-var Rates = module.exports = function(config) {
+var Rates = module.exports = function(tickers) {
 
 	var _this = this;
 
-	_this.fetch = function() {
+	_this.fetch = function(callback) {
 		
 		var pairs = [];
 		var map = {};
 		
-		config.tickers.forEach(function(ticker) {
+		tickers.forEach(function(ticker) {
 			pairs.push('"' + ticker.id + '"');
 			map[ticker.id] = ticker.tags;
 		});
@@ -43,106 +43,13 @@ var Rates = module.exports = function(config) {
 					rates.push(rate);
 				});
 				
-				_this.emit('xchange', rates);
+				callback(rates);
 				
 			}
 			
 		});
 	}
 	
-	
-	if (config.schedule != undefined) {
-		var rule = new schedule.RecurrenceRule();
-	
-		if (config.schedule.hour != undefined)
-			rule.hour = config.schedule.hour;
-	
-		if (config.schedule.minute != undefined)
-			rule.minute = config.schedule.minute;
-	
-		if (config.schedule.second != undefined)
-			rule.second = config.schedule.second;
-
-		schedule.scheduleJob(rule, function() {
-			_this.fetch();
-		});		
-		
-	}
 				
 	
 };
-
-util.inherits(Rates, events.EventEmitter);
-/*
-	
-var Quotes = module.exports = function(config) {
-
-	var _this = this;
-
-	_this.fetch = function() {
-		
-		var symbols = [];
-		var map = {};
-		
-		config.tickers.forEach(function(ticker) {
-			symbols.push('"' + ticker.id + '"');
-			map[ticker.id] = ticker.tags;
-		});
-		
-		var query = sprintf('SELECT * FROM yahoo.finance.quotes WHERE symbol IN(%s)', symbols.join(','));
-		var yql = new YQL();
-		
-		yql.request(query, function(data){
-			if (data != undefined) {
-				var items = data.query.results.quote;
-	
-				if (!util.isArray(items))
-					items = [items];
-	
-				var quotes = [];
-				
-				items.forEach(function(item) {
-
-					var quote = {};
-
-					extend(quote, map[item.symbol]);
-					
-					quote.price     = item.LastTradePriceOnly != null ? parseFloat(item.LastTradePriceOnly) : null;
-					quote.change    = item.PercentChange != null ? parseFloat(item.PercentChange) : null;
-					quote.volume    = item.Volume != null ? parseInt(item.Volume) : null;
-
-					quotes.push(quote);
-				});
-				
-				_this.emit('quotes', quotes);
-				
-			}
-			
-		});
-	}
-	
-
-	if (config.schedule != undefined) {
-		var rule = new schedule.RecurrenceRule();
-	
-		if (config.schedule.hour != undefined)
-			rule.hour = config.schedule.hour;
-	
-		if (config.schedule.minute != undefined)
-			rule.minute = config.schedule.minute;
-	
-		if (config.schedule.second != undefined)
-			rule.second = config.schedule.second;
-
-		schedule.scheduleJob(rule, function() {
-			_this.fetch();
-		});		
-		
-	}
-			
-
-};
-*/
-
-
-

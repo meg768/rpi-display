@@ -16,6 +16,28 @@ function App() {
 	var _quotes = [];	
 
 
+	function displayRates(tickers) {
+
+		var Rates = require('./scripts/xchange.js');
+		var rates = new Rates(tickers);
+	
+		rates.fetch(function(xchange) {
+			console.log('XCHANGE', xchange);
+
+			var display = new matrix.Display();
+			var options = {};
+			
+			options.color = 'rgb(0,0,255)';
+			
+			xchange.forEach(function(rate) {
+				display.text(sprintf('%s   %.2f', rate.name, rate.value));
+			});
+
+			display.send();
+		});
+	}	
+		
+
 	function displayAnimation() {
 		var display = new matrix.Display();
 
@@ -150,10 +172,10 @@ function App() {
 		var index = 0;
 		
 		//rule.hour = new schedule.Range(9, 17, 2);
-		rule.minute = new schedule.Range(3, 59, 15);
+		rule.minute = new schedule.Range(3, 59, 1);
 		
 		schedule.scheduleJob(rule, function() {
-			switch(index % 5) {
+			switch(5) {
 				case 0: {
 					displayRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'});
 					break;
@@ -173,6 +195,13 @@ function App() {
 				case 4: {
 					displayAnimation();
 					break;
+				}
+				case 5: {
+					displayRates([
+						{ id:'USDSEK', tags: {name: 'USD/SEK'} },
+						{ id:'EURSEK', tags: {name: 'EUR/SEK'} },
+						{ id:'EURUSD', tags: {name: 'UER/USD'} }						
+					]);
 				}
 			}
 			
