@@ -106,10 +106,8 @@ function App() {
 			_quotes.forEach(function(quote) { 
 				var options = {};
 				options.color = 'rgb(255, 255, 255';
-				options.delay = 18;
-				options.size  = 24;
 
-				display.image(quote.logo, {scroll:'horizontal', delay:18});
+				display.image(quote.logo, {scroll:'horizontal'});
 				display.text(numeral(quote.price).format('0,000.00') + ' SEK', options);
 				
 				if (quote.change == 0)
@@ -157,7 +155,6 @@ function App() {
 
 		var options = {};
 		options.color = 'rgb(255, 0, 0)';
-		options.size = 24; 
 
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
 		display.send();	
@@ -189,14 +186,11 @@ function App() {
 	}
 	
 	
-
-
 	function scheduleGuestStars() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		//rule.hour = new schedule.Range(8, 18, 2);
-		rule.minute = new schedule.Range(3, 59, 2);
+		rule.minute = new schedule.Range(3, 59, 20);
 		
 		schedule.scheduleJob(rule, function() {
 			switch(index % 5) {
@@ -281,6 +275,9 @@ function App() {
 		config.matrix.width = 32;
 		config.matrix.height = 32;
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
+		config.matrix.defaults.text.delay = 20;
+		config.matrix.defaults.text.size = 24;
+		config.matrix.defaults.image.delay = 20;
 
 		matrix.init();
 
