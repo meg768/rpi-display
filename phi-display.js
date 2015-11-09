@@ -69,6 +69,17 @@ function App() {
 
 	}
 	
+	function displayFika() {
+		
+		var display = new matrix.Display();
+
+		display.text('Fika', {color:'white'});
+		display.emoji(48, {scroll:'horizontal'});
+			
+		display.send();
+		
+	}
+	
 	function displayQuotes(quotes) {
 		
 		if (quotes.length > 0) {
@@ -120,10 +131,10 @@ function App() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		rule.minute = new schedule.Range(0, 59, 2);
+		rule.minute = new schedule.Range(3, 59, 15);
 		
 		schedule.scheduleJob(rule, function() {
-			switch(4) {
+			switch(index % 5) {
 				case 0: {
 					displayRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'});
 					break;
@@ -149,6 +160,7 @@ function App() {
 			index = (index + 1) % 1000;
 		});
 	}
+
 
 		
 	function scheduleClock() {
@@ -202,7 +214,8 @@ function App() {
 		matrix.init();
 
 		matrix.idle(function() {
-			displayQuotes(_quotes);
+			//displayQuotes(_quotes);
+			displayFika();
 		});
 		
 		scheduleQuotes();
