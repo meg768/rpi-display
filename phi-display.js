@@ -107,7 +107,7 @@ function App() {
 				display.text(numeral(quote.change).format('+0.0') + '%%', options);
 
 				options.color = 'rgb(0,0,255)';
-				display.text(sprintf('%d', quote.volume), options);
+				display.text(sprintf('%d', Math.round(quote.volume / 100) * 100), options);
 				
 			});
 
