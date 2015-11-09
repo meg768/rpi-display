@@ -57,9 +57,12 @@ function clock() {
 		var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;			
 		var color = colors.hslToRgb(hue / 360, 1, 0.5);
 		
+		color.red = 255;
+		color.green = 0;
+		color.blue = 0;
 		var options = {};
 		options.font = 'Digital';
-		options.size = 30;
+		options.size = 40;
 		options.color = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
