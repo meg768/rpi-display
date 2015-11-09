@@ -5,7 +5,9 @@ var sprintf  = require('./sprintf.js');
 var config = module.exports = {
 
 	matrix: {
-		config: '32x32',
+		width  : 32,
+		height : 32,
+		config : '32x32',
 		
 		paths: {
 			fonts       : './fonts',	

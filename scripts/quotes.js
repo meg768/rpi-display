@@ -9,7 +9,7 @@ var YQL      = require('./yql.js');
 var sprintf  = require('./sprintf.js');
 
 
-var Quotes = module.exports = function(config) {
+var Quotes = module.exports = function(tickers) {
 
 	var _this = this;
 
@@ -18,7 +18,7 @@ var Quotes = module.exports = function(config) {
 		var symbols = [];
 		var map = {};
 		
-		config.tickers.forEach(function(ticker) {
+		tickers.forEach(function(ticker) {
 			symbols.push('"' + ticker.id + '"');
 			map[ticker.id] = ticker;
 		});
@@ -56,23 +56,6 @@ var Quotes = module.exports = function(config) {
 	}
 	
 
-	if (config.schedule != undefined) {
-		var rule = new schedule.RecurrenceRule();
-	
-		if (config.schedule.hour != undefined)
-			rule.hour = config.schedule.hour;
-	
-		if (config.schedule.minute != undefined)
-			rule.minute = config.schedule.minute;
-	
-		if (config.schedule.second != undefined)
-			rule.second = config.schedule.second;
-
-		schedule.scheduleJob(rule, function() {
-			_this.fetch();
-		});		
-		
-	}
 			
 
 };

@@ -14,6 +14,47 @@ var _queue   = new Queue();
 var Matrix = module.exports = {};
 
 
+Matrix.init = function() {
+
+	var display = new Matrix.Display();
+	
+	function getIP(device) {
+		var os = require('os');
+		var ifaces = os.networkInterfaces();
+	
+		var iface = ifaces[device];
+		
+		if (iface != undefined) {
+		
+			for (var i in iface) {
+				var item = iface[i];
+		
+				if (item.family == 'IPv4')
+					return item.address;
+			}
+		}
+	
+		return '';
+	}
+	
+	var wlan0 = getIP('wlan0');
+	var eth0 = getIP('eth0');
+
+	if (wlan0 != '') {
+		display.text(wlan0, {color:'blue'});
+	}
+		
+	if (eth0 != '') {
+		display.text(eth0, {color:'blue'});
+	}
+	
+	if (wlan0 != '' || eth0 != '')
+		display.emoji(435, {scroll:'horizontal'});
+
+	display.send();		
+}
+
+
 Matrix.defaultOptions = function(name, opts) {
 	
 	var options = {};
