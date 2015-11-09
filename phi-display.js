@@ -15,9 +15,9 @@ function App() {
 	var _quotes = [];	
 
 
-	function displayQuotes() {
+	function displayQuotes(quotes) {
 		
-		if (_quotes.length > 0) {
+		if (quotes.length > 0) {
 			var display = new matrix.Display();
 			
 			_quotes.forEach(function(quote) { 
@@ -49,6 +49,56 @@ function App() {
 		
 	}
 	
+
+	function displayRSS(messages) {
+		console.log('RSS:', messages);
+
+		var display = new matrix.Display();
+		var options = {};
+		
+		options.color = 'rgb(0,0,255)';
+		
+		display.text(sprintf('Nyheter från %s', messages[0].name));
+		
+		messages.forEach(function(message) {
+			var text = '';
+			
+			if (message.category != undefined)
+				text += message.category;
+				
+			if (text != '')
+				text += ' - ';
+				
+			if (message.title != undefined)
+				text += message.title; 
+				
+			display.text(text, options);
+					
+		});
+		
+		display.send();
+		
+	}
+
+	function scheduleJobs() {
+		var rule = new schedule.RecurrenceRule();
+	
+		rule.minute = new schedule.Range(0, 59, 1);
+		
+		schedule.scheduleJob(rule, function() {
+			var display = new matrix.Display();
+			var now = new Date();
+
+			var options = {};
+			options.color = 'rgb(255, 0, 0)';
+			options.size = 24; //
+	
+			display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
+			display.send();	
+		});
+	}
+
+		
 	function scheduleClock() {
 		var rule = new schedule.RecurrenceRule();
 	
@@ -107,7 +157,10 @@ function App() {
 		config.matrix.config = '32x32';
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
 
-		matrix.idle = displayQuotes;
+		matrix.idle = function() {
+			displayQuotes(_quotes);
+		};
+		
 		matrix.init();
 		
 		scheduleQuotes();
