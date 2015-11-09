@@ -47,7 +47,8 @@ function clock() {
 	var colors = require('./scripts/colors.js');
 	var rule = new schedule.RecurrenceRule();
 
-	rule.minute = new schedule.Range(0, 59, 5);
+	rule.minute = new schedule.Range(0, 59, 1);
+	rule.second = [0, 30];
 		
 	
 	schedule.scheduleJob(rule, function() {
@@ -57,6 +58,8 @@ function clock() {
 		var color = colors.hslToRgb(hue / 360, 1, 0.5);
 		
 		var options = {};
+		options.font = 'Digital';
+		options.size = 30;
 		options.color = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
