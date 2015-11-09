@@ -145,10 +145,11 @@ function App() {
 	}
 
 
-	function scheduleInterrupts() {
+	function scheduleGuestStars() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
+		//rule.hour = new schedule.Range(9, 17, 2);
 		rule.minute = new schedule.Range(3, 59, 15);
 		
 		schedule.scheduleJob(rule, function() {
@@ -236,7 +237,7 @@ function App() {
 		
 		scheduleQuotes();
 		scheduleClock();
-		scheduleInterrupts();
+		scheduleGuestStars();
 		
 	}
 	
