@@ -10,8 +10,8 @@ var matrix   = require('./scripts/matrix.js');
 
 matrix.idle = function() {
 
-	cmd = Matrix.text('HEJ');
-	Matrix.start(cmd);
+	cmd = matrix.text('HEJ');
+	matrix.start(cmd);
 	
 }	
 
