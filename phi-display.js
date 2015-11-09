@@ -75,7 +75,7 @@ function App() {
 				display.text(numeral(quote.change).format('+0.0') + '%%', options);
 
 				options.color = 'rgb(0,0,255)';
-				display.text(quote.volume, options);
+				display.text(sprintf('%d', quote.volume), options);
 				
 			});
 
