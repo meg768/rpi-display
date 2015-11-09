@@ -14,8 +14,8 @@ matrix.idle = function() {
 	//matrix.start(cmd);
 	
 	var display = new matrix.Display();
-	matrix.text('XXX');
-	matrix.send();
+	display.text('XXX');
+	display.send();
 	
 }	
 
