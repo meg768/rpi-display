@@ -22,7 +22,7 @@ function App() {
 	
 		rss.fetch();
 		
-		rss.on('rss', function(rss) {
+		rss.on('rss', function(messages) {
 			console.log('RSS:', messages);
 
 			var display = new matrix.Display();
@@ -87,7 +87,18 @@ function App() {
 		
 	}
 	
+	function displayClock() {
+		var display = new matrix.Display();
+		var now = new Date();
 
+		var options = {};
+		options.color = 'rgb(255, 0, 0)';
+		options.size = 24; 
+
+		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
+		display.send();	
+		
+	}
 
 	function scheduleInterrupts() {
 		var rule = new schedule.RecurrenceRule();
@@ -101,20 +112,11 @@ function App() {
 
 		
 	function scheduleClock() {
-		var rule = new schedule.RecurrenceRule();
-	
+		var rule = new schedule.RecurrenceRule();	
 		rule.minute = new schedule.Range(0, 59, 5);
 		
 		schedule.scheduleJob(rule, function() {
-			var display = new matrix.Display();
-			var now = new Date();
-
-			var options = {};
-			options.color = 'rgb(255, 0, 0)';
-			options.size = 24; 
-	
-			display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
-			display.send();	
+			displayClock();
 		});
 	}
 	
