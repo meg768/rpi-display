@@ -15,7 +15,7 @@ var config = module.exports = {
 			fonts       : './fonts',	
 			animations  : './animations/32x32',
 			images      : './images',
-			emojis      : './images/emojis/emojis/32x32'	
+			emojis      : './images/emojis/32x32'	
 		},
 		
 		defaults: {
