@@ -73,8 +73,10 @@ function App() {
 		
 		var display = new matrix.Display();
 
-		display.text('Fika', {color:'white'});
-		display.emoji(48, {scroll:'horizontal'});
+		display.text('Fika', {color:'white', delay:30});
+		display.emoji(48, {scroll:'horizontal', delay:30});
+		display.emoji(268, {scroll:'horizontal', delay:30});
+		display.emoji(262, {scroll:'horizontal', delay:30});
 			
 		display.send();
 		
