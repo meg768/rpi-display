@@ -105,9 +105,4 @@ For a single 32x32 LED matrix, do this:
 	$ sudo ./led-matrix -D4
 
 
-## Build the matrix binaries
-
-	$ cd ~/rpi-display/hzeller/matrix
-	$ make
-	
 
