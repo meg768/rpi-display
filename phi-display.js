@@ -22,11 +22,10 @@ function App() {
 			
 			_quotes.forEach(function(quote) { 
 				var options = {};
-
 				options.color = 'rgb(255, 255, 255';
-				display.text(quote.name, options);
 
-				display.text(numeral(quote.price).format('0,000.00'), options);
+				display.image(quote.logo, {scroll:'horizontal'});
+				display.text(numeral(quote.price).format('0,000.00') + ' SEK', options);
 				
 				if (quote.change == 0)
 					options.color = 'rgb(0,0,255)';
@@ -35,7 +34,7 @@ function App() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 		
-				display.text(numeral(quote.change).format('+0.0') + '% ', options);
+				display.text(numeral(quote.change).format('+0.0') + '%  ', options);
 
 				options.color = 'rgb(0,0,255)';
 				display.text(numeral(quote.volume).format('0,000'), options);
@@ -55,7 +54,7 @@ function App() {
 		function fetchQuotes() {
 		
 			var Quotes = require('./scripts/quotes.js');
-			var quotes = new Quotes([{ id: 'PHI.ST',  name: 'PHI', currency: 'SEK'}]);
+			var quotes = new Quotes([{ id: 'PHI.ST',  name: 'PHI', currency: 'SEK', logo:'./images/phi/logo.png'}]);
 
 			quotes.fetch();
 
