@@ -196,7 +196,7 @@ function App() {
 		var index = 0;
 		
 		//rule.hour = new schedule.Range(8, 18, 2);
-		rule.minute = new schedule.Range(3, 59, 20);
+		rule.minute = new schedule.Range(3, 59, 2);
 		
 		schedule.scheduleJob(rule, function() {
 			switch(index % 5) {
