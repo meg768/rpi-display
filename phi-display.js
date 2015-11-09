@@ -89,7 +89,8 @@ function App() {
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
 
 		matrix.idle = displayQuotes;
-
+		matrix.init();
+		
 		scheduleQuotes();
 		
 	}
