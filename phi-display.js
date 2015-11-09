@@ -266,7 +266,7 @@ function App() {
 		
 		scheduleQuotes();
 		scheduleClock();
-		scheduleGuestStars();
+		//scheduleGuestStars();
 		
 	}
 	
