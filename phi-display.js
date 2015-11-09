@@ -75,7 +75,7 @@ function App() {
 		var hours   = now.getHours();
 		var minutes = now.getMinutes();
 		
-		if (hours == 18 && minutes > 31 && minutes < 40)
+		if (hours == 18 && minutes > 31 && minutes < 33)
 			displayFika();
 		else
 			displayQuotes(_quotes)
