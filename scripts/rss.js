@@ -7,13 +7,13 @@ var YQL      = require('./yql.js');
 var sprintf  = require('./sprintf.js');
 
 
-var RSS = module.exports = function(config) {
+var RSS = module.exports = function(feeds) {
 
 	var _this = this;
 
 	_this.fetch = function() {
 		
-		config.feeds.forEach(function(feed) {
+		feeds.forEach(function(feed) {
 
 			var query = '';
 	
