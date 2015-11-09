@@ -15,6 +15,42 @@ function App() {
 	var _quotes = [];	
 
 
+	function displayRSS(feed) {
+		
+		var RSS = require('./scripts/rss.js');
+		var rss = new RSS([feed]);
+	
+		rss.on('rss', function(rss) {
+			console.log('RSS:', messages);
+
+			var display = new matrix.Display();
+			var options = {};
+			
+			options.color = 'rgb(0,0,255)';
+			
+			display.text(sprintf('Nyheter från %s', messages[0].name));
+			
+			messages.forEach(function(message) {
+				var text = '';
+				
+				if (message.category != undefined)
+					text += message.category;
+					
+				if (text != '')
+					text += ' - ';
+					
+				if (message.title != undefined)
+					text += message.title; 
+					
+				display.text(text, options);
+						
+			});
+			
+			display.send();
+		});
+
+	}
+	
 	function displayQuotes(quotes) {
 		
 		if (quotes.length > 0) {
@@ -39,7 +75,7 @@ function App() {
 				display.text(numeral(quote.change).format('+0.0') + '%%', options);
 
 				options.color = 'rgb(0,0,255)';
-				display.text('(' + numeral(quote.volume).format('0,000') + ')', options);
+				display.text(quote.volume, options);
 				
 			});
 
@@ -50,51 +86,14 @@ function App() {
 	}
 	
 
-	function displayRSS(messages) {
-		console.log('RSS:', messages);
 
-		var display = new matrix.Display();
-		var options = {};
-		
-		options.color = 'rgb(0,0,255)';
-		
-		display.text(sprintf('Nyheter från %s', messages[0].name));
-		
-		messages.forEach(function(message) {
-			var text = '';
-			
-			if (message.category != undefined)
-				text += message.category;
-				
-			if (text != '')
-				text += ' - ';
-				
-			if (message.title != undefined)
-				text += message.title; 
-				
-			display.text(text, options);
-					
-		});
-		
-		display.send();
-		
-	}
-
-	function scheduleJobs() {
+	function scheduleInterrupts() {
 		var rule = new schedule.RecurrenceRule();
 	
 		rule.minute = new schedule.Range(0, 59, 1);
 		
 		schedule.scheduleJob(rule, function() {
-			var display = new matrix.Display();
-			var now = new Date();
-
-			var options = {};
-			options.color = 'rgb(255, 0, 0)';
-			options.size = 24; //
-	
-			display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
-			display.send();	
+			displayRSS({url: 'http://www.di.se/rss', name:'Di'});
 		});
 	}
 
@@ -110,7 +109,7 @@ function App() {
 
 			var options = {};
 			options.color = 'rgb(255, 0, 0)';
-			options.size = 24; //
+			options.size = 24; 
 	
 			display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
 			display.send();	
@@ -165,6 +164,7 @@ function App() {
 		
 		scheduleQuotes();
 		scheduleClock();
+		scheduleInterrupts();
 		
 	}
 	
