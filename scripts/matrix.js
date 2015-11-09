@@ -56,7 +56,7 @@ Matrix.init = function() {
 }
 
 
-Matrix.idle(idle) {	
+Matrix.idle = function(idle) {	
 	_idle = idle;
 }
 
