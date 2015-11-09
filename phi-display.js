@@ -275,9 +275,9 @@ function App() {
 		config.matrix.width = 32;
 		config.matrix.height = 32;
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
-		config.matrix.defaults.text.delay = 30;
+		config.matrix.defaults.text.delay = 25;
 		config.matrix.defaults.text.size = 24;
-		config.matrix.defaults.image.delay = 30;
+		config.matrix.defaults.image.delay = 25;
 
 		matrix.init();
 
