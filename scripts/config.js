@@ -4,6 +4,9 @@ var sprintf  = require('./sprintf.js');
 
 var config = module.exports = {
 
+	timezone: 'Europe/Stockholm',
+	locale: 'sv',
+	
 	matrix: {
 		width  : 32,
 		height : 32,

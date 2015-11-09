@@ -2,6 +2,7 @@ var schedule = require('node-schedule');
 var util     = require('util');
 var minimist = require('minimist');
 var numeral  = require('numeral');
+var moment   = require('moment');
 
 var config   = require('./scripts/config.js');
 var sprintf  = require('./scripts/sprintf.js');
@@ -102,11 +103,31 @@ function App() {
 
 	function scheduleInterrupts() {
 		var rule = new schedule.RecurrenceRule();
-	
+		var index = 0;
+		
 		rule.minute = new schedule.Range(0, 59, 1);
 		
 		schedule.scheduleJob(rule, function() {
-			displayRSS({url: 'http://www.di.se/rss', name:'Di'});
+			switch(index % 4) {
+				case 0: {
+					displayRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'});
+					break;
+				}
+				case 1: {
+					displayRSS({url: 'http://www.sydsvenskan.se/rss.xml', name:'Sydsvenskan'});
+					break;
+				}
+				case 2: {
+					displayRSS({url: 'http://www.svd.se/?service=rss&type=senastenytt', name:'SvD'});
+					break;
+				}
+				case 3: {
+					displayRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'});
+					break;
+				}
+			}
+			
+			index = (index + 1) % 1000;
 		});
 	}
 
@@ -154,8 +175,10 @@ function App() {
 
 	_this.run = function() {
 		// Set the time zone according to config settings
-		process.env.TZ = 'Europe/Stockholm';
+		process.env.TZ = config.timezone;
 	
+		// Use swedish settings
+		moment.locale(config.locale);
 
 		config.matrix.config = '32x32';
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
