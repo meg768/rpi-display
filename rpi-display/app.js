@@ -8,7 +8,7 @@ var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
 
 
-Matrix.idle = function() {
+matrix.idle = function() {
 
 	cmd = Matrix.text('HEJ');
 	Matrix.start(cmd);
