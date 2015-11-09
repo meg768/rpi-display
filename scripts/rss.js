@@ -11,6 +11,9 @@ var RSS = module.exports = function(feeds) {
 
 	var _this = this;
 
+	if (!util.isArray(feeds))
+		feeds = [feeds];
+		
 	_this.fetch = function(callback) {
 		
 		feeds.forEach(function(feed) {

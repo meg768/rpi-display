@@ -16,94 +16,87 @@ function App() {
 	var _quotes = [];	
 
 
-	function displayRates(tickers) {
+	function fetchRates(tickers, callback) {
 
 		var Rates = require('./scripts/xchange.js');
 		var rates = new Rates(tickers);
 	
-		rates.fetch(function(xchange) {
-			console.log('XCHANGE', xchange);
-
-			var display = new matrix.Display();
-			var options = {};
-			
-			options.color = 'rgb(0,0,255)';
-			
-			xchange.forEach(function(rate) {
-				display.text(sprintf('%s   %.2f', rate.name, rate.value));
-			});
-
-			display.send();
+		rates.fetch(function(rates) {
+			console.log('XCHANGE', rates);
+			callback(rates);
 		});
 	}	
-		
+	
+	function displayRates(rates) {
 
-	function displayAnimation() {
 		var display = new matrix.Display();
+		var options = {};
+		
+		options.color = 'rgb(0,0,255)';
+		
+		rates.forEach(function(rate) {
+			display.text(sprintf('%s   %.2f', rate.name, rate.value));
+		});
 
-		var pong = {};
-		pong.file = sprintf('./animations/32x32/pong.gif');
-		pong.duration = 60;
-		pong.iterations = 1000; // Bug! Had to set this, fix it...
-
-		var pacman = {};
-		pacman.file = sprintf('./animations/32x32/pacman.gif');
-		pacman.duration = 60;
-		pacman.iterations = 1000;
-
-		display.animation(random.choose([pong, pacman]));
 		display.send();
+		
 	}
-	
-	
-	function displayRSS(feed) {
+
+
+	function fetchRSS(feeds, callback) {
 		
 		var RSS = require('./scripts/rss.js');
-		var rss = new RSS([feed]);
+		var rss = new RSS(feeds);
 	
 		rss.fetch(function(messages) {
 			console.log('RSS:', messages);
-
-			var display = new matrix.Display();
-			var options = {};
-			
-			options.color = 'rgb(0,0,255)';
-			
-			display.text(sprintf('Nyheter från %s', messages[0].name));
-			
-			messages.forEach(function(message) {
-				var text = '';
-				
-				if (message.category != undefined)
-					text += message.category;
-					
-				if (text != '')
-					text += ' - ';
-					
-				if (message.title != undefined)
-					text += message.title; 
-					
-				display.text(text, options);
-						
-			});
-			
-			display.send();
+			callback(messages);
 		});
 
 	}
 	
+	
+	function displayRSS(messages) {
 
-	function displayFika() {
-		
 		var display = new matrix.Display();
-
-		display.emoji(48, {scroll:'horizontal', delay:30});
-		display.emoji(268, {scroll:'horizontal', delay:30});
+		var options = {};
+		
+		options.color = 'rgb(0,0,255)';
+		
+		display.text(sprintf('Nyheter från %s', messages[0].name));
+		
+		messages.forEach(function(message) {
+			var text = '';
 			
+			if (message.category != undefined)
+				text += message.category;
+				
+			if (text != '')
+				text += ' - ';
+				
+			if (message.title != undefined)
+				text += message.title; 
+				
+			display.text(text, options);
+					
+		});
+		
 		display.send();
 		
 	}
+		
+
+	function fetchQuotes(tickers, callback) {
 	
+		var Quotes = require('./scripts/quotes.js');
+		var quotes = new Quotes(tickers);
+
+		quotes.fetch(function(quotes) {
+			console.log('QUOTES:', quotes);
+			callback(quotes);
+		});
+		
+	}
 	
 	function displayQuotes(quotes) {
 		
@@ -139,6 +132,49 @@ function App() {
 		
 	}
 	
+	function displayAnimation() {
+		var display = new matrix.Display();
+
+		var pong = {};
+		pong.file = sprintf('./animations/32x32/pong.gif');
+		pong.duration = 60;
+		pong.iterations = 1000; // Bug! Had to set this, fix it...
+
+		var pacman = {};
+		pacman.file = sprintf('./animations/32x32/pacman.gif');
+		pacman.duration = 60;
+		pacman.iterations = 1000;
+
+		display.animation(random.choose([pong, pacman]));
+		display.send();
+	}
+	
+	
+
+	function displayClock() {
+		var display = new matrix.Display();
+		var now = new Date();
+
+		var options = {};
+		options.color = 'rgb(255, 0, 0)';
+		options.size = 24; 
+
+		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
+		display.send();	
+		
+	}
+	
+
+	function displayFika() {
+		
+		var display = new matrix.Display();
+
+		display.emoji(48, {scroll:'horizontal', delay:30});
+		display.emoji(268, {scroll:'horizontal', delay:30});
+			
+		display.send();
+		
+	}
 	
 	function displayIdle() {
 		var now = new Date();
@@ -153,43 +189,31 @@ function App() {
 	}
 	
 	
-	function displayClock() {
-		var display = new matrix.Display();
-		var now = new Date();
-
-		var options = {};
-		options.color = 'rgb(255, 0, 0)';
-		options.size = 24; 
-
-		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
-		display.send();	
-		
-	}
 
 
 	function scheduleGuestStars() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		//rule.hour = new schedule.Range(9, 17, 2);
-		rule.minute = new schedule.Range(3, 59, 1);
+		//rule.hour = new schedule.Range(8, 18, 2);
+		rule.minute = new schedule.Range(3, 59, 20);
 		
 		schedule.scheduleJob(rule, function() {
-			switch(5) {
+			switch(index % 5) {
 				case 0: {
-					displayRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'});
+					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
 					break;
 				}
 				case 1: {
-					displayRSS({url: 'http://www.sydsvenskan.se/rss.xml', name:'Sydsvenskan'});
+					fetchRSS({url: 'http://www.sydsvenskan.se/rss.xml', name:'Sydsvenskan'}, displayRSS);
 					break;
 				}
 				case 2: {
-					displayRSS({url: 'http://www.svd.se/?service=rss&type=senastenytt', name:'SvD'});
+					fetchRSS({url: 'http://www.svd.se/?service=rss&type=senastenytt', name:'SvD'}, displayRSS);
 					break;
 				}
 				case 3: {
-					displayRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'});
+					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 					break;
 				}
 				case 4: {
@@ -197,11 +221,13 @@ function App() {
 					break;
 				}
 				case 5: {
-					displayRates([
+					var rates = [
 						{ id:'USDSEK', tags: {name: 'USD/SEK'} },
 						{ id:'EURSEK', tags: {name: 'EUR/SEK'} },
-						{ id:'EURUSD', tags: {name: 'UER/USD'} }						
-					]);
+						{ id:'EURUSD', tags: {name: 'UER/USD'} }												
+					];
+					
+					fetchRates(rates, displayRates);
 				}
 			}
 			
@@ -222,13 +248,11 @@ function App() {
 	
 	function scheduleQuotes() {
 	
-		function fetchQuotes() {
+		function fetchMyQuotes() {
 		
-			var Quotes = require('./scripts/quotes.js');
-			var quotes = new Quotes([{ id: 'PHI.ST',  name: 'PHI', currency: 'SEK', logo:'./images/phi/logo.png'}]);
-
-			quotes.fetch(function(quotes) {
-				console.log(quotes);
+			var tickers = [{ id: 'PHI.ST',  name: 'PHI', currency: 'SEK', logo:'./images/phi/logo.png'}];
+		
+			fetchQuotes(tickers, function(quotes) {
 				_quotes = quotes;
 			});
 			
@@ -239,11 +263,11 @@ function App() {
 		rule.minute = new schedule.Range(0, 59, 1);
 			
 		schedule.scheduleJob(rule, function() {
-			fetchQuotes();
+			fetchMyQuotes();
 		});
 		
 		// Get quote now
-		fetchQuotes();
+		fetchMyQuotes();
 		
 	}
 
