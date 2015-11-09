@@ -20,6 +20,8 @@ function App() {
 		var RSS = require('./scripts/rss.js');
 		var rss = new RSS([feed]);
 	
+		rss.fetch();
+		
 		rss.on('rss', function(rss) {
 			console.log('RSS:', messages);
 
