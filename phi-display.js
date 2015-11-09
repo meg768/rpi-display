@@ -21,9 +21,7 @@ function App() {
 		var RSS = require('./scripts/rss.js');
 		var rss = new RSS([feed]);
 	
-		rss.fetch();
-		
-		rss.on('rss', function(messages) {
+		rss.fetch(function(messages) {
 			console.log('RSS:', messages);
 
 			var display = new matrix.Display();
@@ -149,9 +147,7 @@ function App() {
 			var Quotes = require('./scripts/quotes.js');
 			var quotes = new Quotes([{ id: 'PHI.ST',  name: 'PHI', currency: 'SEK', logo:'./images/phi/logo.png'}]);
 
-			quotes.fetch();
-
-			quotes.on('quotes', function(quotes) {
+			quotes.fetch(function(quotes) {
 				console.log(quotes);
 				_quotes = quotes;
 			});
@@ -170,8 +166,6 @@ function App() {
 		fetchQuotes();
 		
 	}
-	
-	
 
 	_this.run = function() {
 		// Set the time zone according to config settings
@@ -183,11 +177,12 @@ function App() {
 		config.matrix.config = '32x32';
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
 
-		matrix.idle = function() {
-			displayQuotes(_quotes);
-		};
-		
 		matrix.init();
+
+		matrix.idle(function() {
+			displayQuotes(_quotes);
+		});
+		
 		
 		scheduleQuotes();
 		scheduleClock();

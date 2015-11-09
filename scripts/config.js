@@ -16,7 +16,7 @@ var config = module.exports = {
 			fonts       : './fonts',	
 			animations  : './animations/32x32',
 			images      : './images',
-			emojis      : './images/32x32/emojis'	
+			emojis      : './images/emojis/emojis/32x32'	
 		},
 		
 		defaults: {
@@ -25,11 +25,10 @@ var config = module.exports = {
 				font  : 'Arial-Bold',
 				size  : 18,
 				color : 'blue',
-				delay : 26
+				delay : 20
 			},
 					
 			image: {
-				delay    : 6.0,
 				duration : 60,
 				scroll   : 'none'
 			}

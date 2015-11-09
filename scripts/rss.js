@@ -11,7 +11,7 @@ var RSS = module.exports = function(feeds) {
 
 	var _this = this;
 
-	_this.fetch = function() {
+	_this.fetch = function(callback) {
 		
 		feeds.forEach(function(feed) {
 
@@ -44,7 +44,7 @@ var RSS = module.exports = function(feeds) {
 						rss.push(message);
 					});
 					
-					_this.emit('rss', rss);
+					callback(rss);
 					
 				}
 				
@@ -56,4 +56,3 @@ var RSS = module.exports = function(feeds) {
 
 };
 
-util.inherits(RSS, events.EventEmitter);

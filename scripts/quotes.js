@@ -13,7 +13,7 @@ var Quotes = module.exports = function(tickers) {
 
 	var _this = this;
 
-	_this.fetch = function() {
+	_this.fetch = function(callback) {
 		
 		var symbols = [];
 		var map = {};
@@ -48,7 +48,7 @@ var Quotes = module.exports = function(tickers) {
 					quotes.push(quote);
 				});
 				
-				_this.emit('quotes', quotes);
+				callback(quotes);
 				
 			}
 			
@@ -60,6 +60,6 @@ var Quotes = module.exports = function(tickers) {
 
 };
 
-util.inherits(Quotes, events.EventEmitter);
+
 
 
