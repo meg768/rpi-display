@@ -24,6 +24,7 @@ function App() {
 				var options = {};
 				options.color = 'rgb(255, 255, 255';
 				options.delay = 18;
+				options.size  = 20;
 
 				display.image(quote.logo, {scroll:'horizontal', delay:18});
 				display.text(numeral(quote.price).format('0,000.00') + ' SEK', options);
