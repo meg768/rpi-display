@@ -23,6 +23,7 @@ function App() {
 			_quotes.forEach(function(quote) { 
 				var options = {};
 				options.color = 'rgb(255, 255, 255';
+				options.delay = 18;
 
 				display.image(quote.logo, {scroll:'horizontal'});
 				display.text(numeral(quote.price).format('0,000.00') + ' SEK', options);
@@ -34,7 +35,7 @@ function App() {
 				if (quote.change > 0)
 					options.color = 'rgb(0,255,0)';
 		
-				display.text(numeral(quote.change).format('+0.0') + '%  ', options);
+				display.text(numeral(quote.change).format('+0.0') + '%%', options);
 
 				options.color = 'rgb(0,0,255)';
 				display.text(numeral(quote.volume).format('0,000'), options);
