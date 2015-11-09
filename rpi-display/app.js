@@ -10,8 +10,12 @@ var matrix   = require('./scripts/matrix.js');
 
 matrix.idle = function() {
 
-	cmd = matrix.text('HEJ');
-	matrix.start(cmd);
+	//cmd = matrix.text('HEJ');
+	//matrix.start(cmd);
+	
+	var display = new matrix.Display();
+	matrix.text('XXX');
+	matrix.send();
 	
 }	
 
@@ -62,7 +66,7 @@ function clock() {
 		color.blue = 0;
 		var options = {};
 		options.font = 'Digital';
-		options.size = 40;
+		options.size = 40; //
 		options.color = sprintf('rgb(%d,%d,%d)', color.red, color.green, color.blue);
 
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
