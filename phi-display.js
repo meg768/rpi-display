@@ -21,7 +21,8 @@ function App() {
 
 		var options = {};
 		options.file = sprintf('./animations/32x32/pong.gif');
-		options.duration = 20;
+		options.duration = 30;
+		options.iterations = 1000; // Bug! Had to set this, fix it...
 		
 		display.animation(options);
 		display.send();
