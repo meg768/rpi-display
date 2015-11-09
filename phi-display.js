@@ -200,8 +200,8 @@ function App() {
 		});
 		
 		scheduleQuotes();
-		//scheduleClock();
-		//scheduleInterrupts();
+		scheduleClock();
+		scheduleInterrupts();
 		
 	}
 	
