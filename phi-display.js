@@ -300,6 +300,9 @@ function main() {
 	process.env.TZ = 'Europe/Stockholm';
 
 
+
+	config.matrix.config = '64x32';
+	config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
 		
 	 
 	function sayHello() {
@@ -344,8 +347,8 @@ function main() {
 	  
 
 	sayHello();
-	loop();
-	clock();
+	//loop();
+	//clock();
 }
 
 main();
