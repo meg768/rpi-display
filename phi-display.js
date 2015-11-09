@@ -21,7 +21,7 @@ function App() {
 
 		var options = {};
 		options.file = sprintf('./animations/32x32/pong.gif');
-		options.iterations = 1;
+		options.duration = 60;
 		
 		display.animation(options);
 		display.send();
