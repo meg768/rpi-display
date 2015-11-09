@@ -19,12 +19,17 @@ function App() {
 	function displayAnimation() {
 		var display = new matrix.Display();
 
-		var options = {};
-		options.file = sprintf('./animations/32x32/pong.gif');
-		options.duration = 30;
-		options.iterations = 1000; // Bug! Had to set this, fix it...
-		
-		display.animation(options);
+		var pong = {};
+		pong.file = sprintf('./animations/32x32/pong.gif');
+		pong.duration = 60;
+		pong.iterations = 1000; // Bug! Had to set this, fix it...
+
+		var pacman = {};
+		pacman.file = sprintf('./animations/32x32/pacman.gif');
+		pacman.duration = 60;
+		pacman.iterations = 1000;
+
+		display.animation(random.choose([pong, pacman]));
 		display.send();
 	}
 	
@@ -115,7 +120,7 @@ function App() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		rule.minute = new schedule.Range(0, 59, 1);
+		rule.minute = new schedule.Range(0, 59, 2);
 		
 		schedule.scheduleJob(rule, function() {
 			switch(4) {
