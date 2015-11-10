@@ -170,6 +170,7 @@ function App() {
 
 		display.emoji(48, {scroll:'horizontal', delay:30, hold:1});
 		display.emoji(268, {scroll:'horizontal', delay:30, hold:1});
+		display.emoji(262, {scroll:'horizontal', delay:30, hold:1});
 			
 		display.send();
 		
