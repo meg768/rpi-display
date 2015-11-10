@@ -281,7 +281,7 @@ function App() {
 		matrix.init();
 
 		matrix.idle(function() {
-			displayFika();
+			displayIdle();
 		});
 		
 		scheduleQuotes();
