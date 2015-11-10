@@ -169,6 +169,11 @@ Matrix.image = function(file, options) {
 		args.push(options.scroll);			
 	}	
 
+	if (options.hold != undefined) {
+		args.push('--hold');
+		args.push(options.hold);			
+	}	
+
 	return {command:'./matrix/run-image', args:args, options:{}};
 }
 
