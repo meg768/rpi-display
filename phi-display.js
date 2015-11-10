@@ -280,7 +280,7 @@ function App() {
 		matrix.init();
 
 		matrix.idle(function() {
-			displayAnimation();
+			displayIdle();
 		});
 		
 		scheduleQuotes();
