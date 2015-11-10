@@ -50,7 +50,7 @@ Matrix.init = function() {
 	}
 	
 	if (wlan0 != '' || eth0 != '')
-		display.emoji(435, {scroll:'horizontal'});
+		display.emoji(435, {scroll:'horizontal', hold: 1});
 	else
 		display.text('Network connection missing.');
 
