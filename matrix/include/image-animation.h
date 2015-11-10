@@ -126,7 +126,7 @@ public:
 					
 					if (_hold > 0) {
 						if (duration > 0 && offsetX == (imageWidth - matrixWidth) / 2)
-							usleep(1000.0 * 1000.0 * hold);
+							usleep(1000.0 * 1000.0 * _hold);
 					}
 					
 				}
