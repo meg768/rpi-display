@@ -10,7 +10,7 @@ var config   = require('./config.js');
 
 var _process = new Process();
 var _queue   = new Queue();
-var _idle    = function(){};
+var _idle    = undefined;
 
 var Matrix = module.exports = {};
 
@@ -51,12 +51,15 @@ Matrix.init = function() {
 	
 	if (wlan0 != '' || eth0 != '')
 		display.emoji(435, {scroll:'horizontal'});
+	else
+		display.text('Network connection missing.');
 
 	display.send();		
 }
 
 
-Matrix.idle = function(idle) {	
+Matrix.idle = function(idle) {
+
 	_idle = idle;
 }
 
@@ -73,18 +76,35 @@ Matrix.defaultOptions = function(name, opts) {
 
 
 Matrix.start = function(cmd, callback) {
-	if (cmd != undefined)			
-		_process.start(cmd.command, cmd.args, cmd.options, callback);	
 
-	else if (callback != undefined)
-		callback();
+	if (callback == undefined) {
+		callback = function() {
+		};
+	}
+		
+	if (config.matrix.debug) {
+		//console.log('Executing:' , cmd);
+		setTimeout(function() {
+			callback();
+		}, 1);
+		
+	}
+	else {
+		if (cmd != undefined)			
+			_process.start(cmd.command, cmd.args, cmd.options, callback);	
+		else
+			callback();
+	}
 }
 
 
 Matrix.stop = function() {
 
-	if (cmd != undefined)			
-		_process.start(cmd.command, cmd.args, cmd.options, callback);	
+	if (config.matrix.debug) {
+	}
+	else {
+		_process.stop();	
+	}
 }
 
 
@@ -122,7 +142,7 @@ Matrix.text = function(text, options) {
 		args.push('--delay');
 		args.push(options.delay);			
 	}	
-	
+
 	return {command:'./matrix/run-text', args:args, options:{}};
 }
 
@@ -304,13 +324,14 @@ Matrix.Display = function() {
 		if (options == undefined)
 			options = {};
 
+
 		if (typeof options.priority == 'string' && options.priority == 'low') {
 			if (!_queue.empty())
 				return;
 		}
-		
+
 		_commands.forEach(function(cmd) {
-			_queue.push({command:cmd.command, args:cmd.args, options:cmd.options});				
+			_queue.push({command:cmd.command, args:cmd.args, options:cmd.options});		
 		});		
 				
 	}
@@ -320,13 +341,22 @@ Matrix.Display = function() {
 
 _queue.on('idle', function() {
 
-	if (_queue.empty()) 
-		_idle();
+	
+	if (util.isFunction(_idle)) {
+		
+		if (_queue.empty()) 
+			_idle();
+	}
+	else {
+		console.log('Nothing to do. No idle function set.');
+		
+	}
 
 });
 
 
 _queue.on('process', function(cmd, callback) {
+
 	Matrix.start(cmd, callback);
 });
 

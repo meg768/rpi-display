@@ -26,6 +26,7 @@ function App() {
 			callback(rates);
 		});
 	}	
+
 	
 	function displayRates(rates) {
 
@@ -85,7 +86,7 @@ function App() {
 		
 	}
 		
-
+		
 	function fetchQuotes(tickers, callback) {
 	
 		var Quotes = require('./scripts/quotes.js');
@@ -97,6 +98,7 @@ function App() {
 		});
 		
 	}
+	
 	
 	function displayQuotes(quotes) {
 		
@@ -130,6 +132,7 @@ function App() {
 		
 	}
 	
+	
 	function displayAnimation() {
 		var display = new matrix.Display();
 
@@ -146,7 +149,6 @@ function App() {
 		display.animation(random.choose([pong, pacman]));
 		display.send();
 	}
-	
 	
 
 	function displayClock() {
@@ -286,7 +288,7 @@ function App() {
 		});
 		
 		scheduleQuotes();
-		//scheduleClock();
+		scheduleClock();
 		scheduleGuestStars();
 		
 	}

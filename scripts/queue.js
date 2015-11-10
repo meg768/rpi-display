@@ -19,11 +19,11 @@ function main() {
 					var item = _queue[0];
 	
 					_working = true;
-	
 					_this.emit('process', item, function() {
 						// Remove current job
 						_queue.shift();					
 						_working = false;
+
 						
 						// And continue with the next, when finished
 						work();
