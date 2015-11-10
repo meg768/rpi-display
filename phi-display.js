@@ -168,8 +168,8 @@ function App() {
 		
 		var display = new matrix.Display();
 
-		display.emoji(48, {scroll:'horizontal', delay:30});
-		display.emoji(268, {scroll:'horizontal', delay:30});
+		display.emoji(48, {scroll:'horizontal', delay:30, hold:1});
+		display.emoji(268, {scroll:'horizontal', delay:30, hold:1});
 			
 		display.send();
 		
@@ -280,7 +280,7 @@ function App() {
 		matrix.init();
 
 		matrix.idle(function() {
-			displayIdle();
+			displayFika();
 		});
 		
 		scheduleQuotes();
