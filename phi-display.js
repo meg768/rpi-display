@@ -274,7 +274,7 @@ function App() {
 		// Use swedish settings
 		moment.locale(config.locale);
 
-		config.matrix.width = 32;
+		config.matrix.width = 64;
 		config.matrix.height = 32;
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
 		config.matrix.defaults.text.delay = 25;
