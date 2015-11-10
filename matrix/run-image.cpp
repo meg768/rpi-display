@@ -4,9 +4,6 @@
 #include "include/animation.h" 
 #include "include/image-animation.h"
 
-
-
-
 int main (int argc, char *argv[])
 {
 	static struct option options[] = {
