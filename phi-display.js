@@ -193,7 +193,7 @@ function App() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		rule.minute = new schedule.Range(3, 59, 20);
+		rule.minute = new schedule.Range(3, 59, 16);
 		
 		schedule.scheduleJob(rule, function() {
 			switch(index % 4) {
