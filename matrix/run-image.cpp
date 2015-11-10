@@ -15,6 +15,7 @@ int main (int argc, char *argv[])
 		{"delay",      1, 0, 'z'},
 		{"file",       1, 0, 'f'},
 		{"scroll",     1, 0, 's'},
+		{"hold",       1, 0, 'h'},
 		{0, 0, 0, 0}
 	};
 	
@@ -30,7 +31,7 @@ int main (int argc, char *argv[])
 	
 	int option = 0, index = 0;
 	
-	while ((option = getopt_long_only(argc, argv, "z:x:f:d:s:", options, &index)) != -1) {
+	while ((option = getopt_long_only(argc, argv, "z:x:f:d:s:h:", options, &index)) != -1) {
 		switch (option) {
 			case 'x':
 				matrix.config(optarg);
@@ -46,6 +47,9 @@ int main (int argc, char *argv[])
 				break;
 			case 'z':
 				animation.delay(atof(optarg));
+				break;
+			case 'h':
+				animation.hold(atof(optarg));
 				break;
 		}
 	}

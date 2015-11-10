@@ -7,6 +7,7 @@ public:
 	
 	ImageAnimation(Matrix *matrix) : Animation(matrix) {
 		_scroll = "auto";
+		_hold = 0;
 	}
 	
 	void image(Magick::Image &value) {
@@ -40,6 +41,10 @@ public:
 	
 	void scroll(const char *value) {
 		_scroll = value;
+	}
+	
+	void hold(double value) {
+		_hold = value;
 	}
 	
 	
@@ -119,8 +124,10 @@ public:
 					
 					sleep();
 					
-					//if (duration > 0 && offsetX == (imageWidth - matrixWidth) / 2)
-					//	usleep(1000.0 * 1000.0 * double(duration));
+					if (_hold > 0) {
+						if (duration > 0 && offsetX == (imageWidth - matrixWidth) / 2)
+							usleep(1000.0 * 1000.0 * hold);
+					}
 					
 				}
 			}
@@ -177,4 +184,5 @@ public:
 protected:
 	Magick::Image _image;
 	std::string _scroll;
+	double _hold;
 };

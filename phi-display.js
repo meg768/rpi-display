@@ -195,7 +195,7 @@ function App() {
 		rule.minute = new schedule.Range(3, 59, 20);
 		
 		schedule.scheduleJob(rule, function() {
-			switch(index % 5) {
+			switch(index % 4) {
 				case 0: {
 					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
 					break;
@@ -210,10 +210,6 @@ function App() {
 				}
 				case 3: {
 					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
-					break;
-				}
-				case 4: {
-					displayAnimation();
 					break;
 				}
 				case 5: {
