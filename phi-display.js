@@ -285,7 +285,6 @@ function App() {
 		});
 		
 		scheduleQuotes();
-		scheduleClock();
 		scheduleGuestStars();
 		
 	}
