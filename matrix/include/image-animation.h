@@ -151,8 +151,10 @@ public:
 					
 					sleep();
 					
-					//if (duration > 0 && offsetY == (imageHeight - matrixHeight) / 2)
-					//	usleep(1000.0 * 1000.0 * duration);
+					if (_hold > 0) {
+						if (duration > 0 && offsetY == (imageHeight - matrixHeight) / 2)
+							usleep(1000.0 * 1000.0 * _hold);
+					}
 					
 				}
 			}
