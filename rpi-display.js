@@ -205,8 +205,8 @@ function App() {
 				}
 				case 5: {
 					var tickers = [
-						{id: 'USDSEK', name: 'USD/SEK'},
-						{id: 'EURSEK', name: 'EUR/SEK'},
+						{id: 'USDSEK', name: 'USD/SEK'}
+						{id: 'EURSEK', name: 'EUR/SEK'}
 						{id: 'USDEUR', name: 'USD/EUR'}
 					];
 					
