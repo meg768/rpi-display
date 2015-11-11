@@ -227,22 +227,6 @@ function App() {
 	}
 	
 	
-	function scheduleQuotes() {
-	
-	
-		var rule = new schedule.RecurrenceRule();
-		rule.hour = new schedule.Range(8, 18, 1);
-		rule.minute = new schedule.Range(0, 59, 1);
-			
-		schedule.scheduleJob(rule, function() {
-			fetchMyQuotes();
-		});
-		
-		// Get quote now
-		fetchMyQuotes();
-		
-	}
-
 	_this.run = function() {
 		// Set the time zone according to config settings
 		process.env.TZ = config.timezone;
@@ -263,7 +247,6 @@ function App() {
 			displayIdle();
 		});
 		
-		scheduleQuotes();
 		scheduleRecurrences();
 		
 	}
