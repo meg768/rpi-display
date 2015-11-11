@@ -280,8 +280,7 @@ function App() {
 		matrix.init();
 
 		matrix.idle(function() {
-			//displayIdle();
-			displayFika();
+			displayIdle();
 		});
 		
 		scheduleQuotes();
