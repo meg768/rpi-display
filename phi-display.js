@@ -195,6 +195,7 @@ function App() {
 		rule.hour = new schedule.Range(7, 18, 1);
 		
 		schedule.scheduleJob(rule, function() {
+			console.log('fetching***********');
 			switch(index % 4) {
 				case 0: {
 					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
@@ -220,6 +221,7 @@ function App() {
 					];
 					
 					fetchRates(rates, displayRates);
+					break;
 				}
 			}
 			
