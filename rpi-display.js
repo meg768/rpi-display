@@ -129,47 +129,32 @@ function App() {
 	}
 	
 	
-	function displayAnimation() {
-		var display = new matrix.Display();
-
-		var pong = {};
-		pong.file = sprintf('./animations/96x96');
-		pong.duration = 60;
-		pong.iterations = 1000; // Bug! Had to set this, fix it...
-
-		var pacman = {};
-		pacman.file = sprintf('./animations/32x32/pacman.gif');
-		pacman.duration = 60;
-		pacman.iterations = 1000;
-
-		display.animation(random.choose([pong, pacman]));
-		display.send();
-	}
-	
-
 	function displayClock() {
+			
 		var display = new matrix.Display();
 		var now = new Date();
 
 		var options = {};
 		options.color = 'rgb(255, 0, 0)';
-
+		options.font  = 'Digital';
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
 		display.send();	
 		
 	}
-	
 
-	function displayFika() {
-		
-		var display = new matrix.Display();
 
-		display.emoji(48, {scroll:'horizontal', delay:30});
-		display.emoji(268, {scroll:'horizontal', delay:30});
-			
-		display.send();
+	function scheduleClock(callback) {
+		var rule = new schedule.RecurrenceRule();	
+		rule.minute = new schedule.Range(0, 59, 1);
 		
+		if (callback == undefined)
+			callback = displayClock;
+
+		schedule.scheduleJob(rule, function() {
+			callback();
+		});
 	}
+	
 	
 	function displayIdle() {
 		var now = new Date();
@@ -217,15 +202,6 @@ function App() {
 	}
 
 		
-	function scheduleClock() {
-		var rule = new schedule.RecurrenceRule();	
-		rule.minute = new schedule.Range(0, 59, 5);
-		
-		schedule.scheduleJob(rule, function() {
-			displayClock();
-		});
-	}
-	
 	
 	_this.run = function() {
 		// Set the time zone according to config settings
@@ -253,6 +229,7 @@ function App() {
 		});
 		
 		scheduleRecurrences();
+		scheduleClock();
 		
 	}
 	
