@@ -13,6 +13,8 @@ var matrix   = require('./scripts/matrix.js');
 function App() {
 
 	var _this = this;
+	var _counter = 0;
+	
 
 	function fetchRates(tickers, callback) {
 
@@ -180,8 +182,7 @@ function App() {
 		
 		schedule.scheduleJob(rule, function() {
 
-			console.log('sdfoiasdoijasodijasofigjaslkgjsfk');
-			switch(5) {
+			switch(index % 6) {
 				case 0: {
 					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
 					break;
