@@ -193,6 +193,7 @@ function App() {
 		var index = 0;
 		
 		rule.hour = new schedule.Range(7, 18, 1);
+		rule.minute = [9];
 		
 		schedule.scheduleJob(rule, function() {
 			console.log('fetching***********');
