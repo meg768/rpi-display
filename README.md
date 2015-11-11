@@ -104,5 +104,9 @@ For a single 32x32 LED matrix, do this:
 	$ cd ~/rpi-display/hzeller
 	$ sudo ./led-matrix -D4
 
+## Running the matrix
+
+	$ cd ~/rpi-display
+	$ sudo node rpi-display.js
 
 
