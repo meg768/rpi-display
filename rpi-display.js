@@ -230,7 +230,7 @@ function App() {
 		config.matrix.width = 96;
 		config.matrix.height = 96;
 		
-		config.matrix.defaults.text.font = 'Arial-Bold';
+		config.matrix.defaults.text.font = 'Tahoma-Bold';
 		config.matrix.defaults.text.delay = 20;
 		config.matrix.defaults.text.size = 32;
 		config.matrix.defaults.image.delay = 20;
