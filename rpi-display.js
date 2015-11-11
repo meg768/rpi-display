@@ -31,7 +31,7 @@ function App() {
 		var display = new matrix.Display();
 		var options = {};
 		
-		console.log('fdkjsdfglkjdfghklsjdfghksjdfhskdjhskdfjhksldfghlksdjgh');
+		console.log('fdkjsdfglkjdfghklsjdfghksjdfhskdjhskdfjhksldfghlksdjgh', rates);
 		options.color = 'rgb(0,0,255)';
 		
 		rates.forEach(function(rate) {
