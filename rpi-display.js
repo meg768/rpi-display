@@ -35,6 +35,8 @@ function App() {
 		options.color = 'rgb(0,0,255)';
 		
 		rates.forEach(function(rate) {
+				
+			console.log(rate);
 			display.text(sprintf('%s   %.2f', rate.name, rate.value));
 		});
 
