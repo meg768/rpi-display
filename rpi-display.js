@@ -174,11 +174,11 @@ function App() {
 		var index = 0;
 		
 		rule.hour = new schedule.Range(7, 21, 1);
-		rule.minute = new schedule.Range(0, 59, 3);
+		rule.minute = new schedule.Range(0, 59, 1);
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(index % 4) {
+			switch(5) {
 				case 0: {
 					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
 					break;
@@ -197,6 +197,14 @@ function App() {
 				}
 				case 4: {
 					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
+					break;
+				}
+				case 5: {
+					var xchange = {
+						{id: 'USDSEK', name: 'USD/SEK'}
+					};
+					
+					fetchRates(xchange, displayRates);
 					break;
 				}
 			}
