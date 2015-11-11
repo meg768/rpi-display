@@ -236,10 +236,15 @@ function App() {
 
 		config.matrix.width = 96;
 		config.matrix.height = 96;
+		
 		config.matrix.defaults.text.font = 'Arial-Bold';
 		config.matrix.defaults.text.delay = 20;
 		config.matrix.defaults.text.size = 24;
 		config.matrix.defaults.image.delay = 20;
+
+		config.paths.animations = './animations/96x96';
+		config.paths.emojis = './emojis/96x96';
+
 
 		matrix.init();
 
