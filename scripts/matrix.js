@@ -83,7 +83,6 @@ Matrix.start = function(cmd, callback) {
 	}
 		
 	if (config.matrix.debug) {
-		//console.log('Executing:' , cmd);
 		setTimeout(function() {
 			callback();
 		}, 1);

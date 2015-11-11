@@ -178,6 +178,7 @@ function App() {
 		
 		schedule.scheduleJob(rule, function() {
 
+			console.log('sdfoiasdoijasodijasofigjaslkgjsfk');
 			switch(5) {
 				case 0: {
 					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
@@ -200,11 +201,11 @@ function App() {
 					break;
 				}
 				case 5: {
-					var xchange = [
+					var tickers = [
 						{id: 'USDSEK', name: 'USD/SEK'}
 					];
 					
-					fetchRates(xchange, displayRates);
+					fetchRates(tickers, displayRates);
 					break;
 				}
 			}

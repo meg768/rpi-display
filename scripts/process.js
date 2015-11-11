@@ -37,8 +37,6 @@ var Module = module.exports = function() {
 		try {
 			this.stop();
 	
-			console.log('Spawning: %s', command, args, options);					
-	
 			var spawn = require('child_process').spawn;
 			var process = spawn(command, args, options);
 	
