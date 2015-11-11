@@ -232,7 +232,7 @@ function App() {
 		
 		config.matrix.defaults.text.font = 'Arial-Bold';
 		config.matrix.defaults.text.delay = 20;
-		config.matrix.defaults.text.size = 36;
+		config.matrix.defaults.text.size = 32;
 		config.matrix.defaults.image.delay = 20;
 
 		config.matrix.paths.animations = './animations/96x96';
