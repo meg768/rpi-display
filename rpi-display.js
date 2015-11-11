@@ -242,8 +242,8 @@ function App() {
 		config.matrix.defaults.text.size = 24;
 		config.matrix.defaults.image.delay = 20;
 
-		config.paths.defaults.animations = './animations/96x96';
-		config.paths.defaults.emojis = './emojis/96x96';
+		config.matrix.paths.animations = './animations/96x96';
+		config.matrix.paths.emojis = './emojis/96x96';
 
 
 		matrix.init();
