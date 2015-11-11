@@ -31,7 +31,6 @@ function App() {
 		var display = new matrix.Display();
 		var options = {};
 		
-		console.log('fdkjsdfglkjdfghklsjdfghksjdfhskdjhskdfjhksldfghlksdjgh', rates);
 		options.color = 'rgb(0,0,255)';
 		
 		rates.forEach(function(rate) {
@@ -233,7 +232,7 @@ function App() {
 		
 		config.matrix.defaults.text.font = 'Arial-Bold';
 		config.matrix.defaults.text.delay = 20;
-		config.matrix.defaults.text.size = 24;
+		config.matrix.defaults.text.size = 36;
 		config.matrix.defaults.image.delay = 20;
 
 		config.matrix.paths.animations = './animations/96x96';
