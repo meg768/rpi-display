@@ -150,7 +150,7 @@ function App() {
 
 	function scheduleClock(callback) {
 		var rule = new schedule.RecurrenceRule();	
-		rule.minute = new schedule.Range(0, 59, 1);
+		rule.minute = new schedule.Range(0, 59, 5);
 		
 		if (callback == undefined)
 			callback = displayClock;
@@ -177,8 +177,8 @@ function App() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		rule.hour = new schedule.Range(7, 21, 1);
-		rule.minute = new schedule.Range(0, 59, 1);
+		rule.hour = new schedule.Range(7, 22, 1);
+		rule.minute = new schedule.Range(0, 59, 5);
 		
 		schedule.scheduleJob(rule, function() {
 
