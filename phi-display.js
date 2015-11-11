@@ -193,10 +193,10 @@ function App() {
 		var index = 0;
 		
 		rule.hour = new schedule.Range(7, 18, 1);
-		rule.minute = [9];
+		rule.minute = [15, 45];
 		
 		schedule.scheduleJob(rule, function() {
-			console.log('fetching***********');
+
 			switch(index % 4) {
 				case 0: {
 					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
@@ -212,16 +212,6 @@ function App() {
 				}
 				case 3: {
 					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
-					break;
-				}
-				case 4: {
-					var rates = [
-						{ id:'USDSEK', tags: {name: 'USD/SEK'} },
-						{ id:'EURSEK', tags: {name: 'EUR/SEK'} },
-						{ id:'EURUSD', tags: {name: 'UER/USD'} }												
-					];
-					
-					fetchRates(rates, displayRates);
 					break;
 				}
 			}
