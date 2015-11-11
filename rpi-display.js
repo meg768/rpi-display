@@ -137,6 +137,7 @@ function App() {
 		var options = {};
 		options.color = 'rgb(255, 0, 0)';
 		options.font  = 'Digital';
+		options.size  = 50;
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
 		display.send();	
 		
@@ -173,7 +174,7 @@ function App() {
 		var index = 0;
 		
 		rule.hour = new schedule.Range(7, 21, 1);
-		rule.minute = [15, 45];
+		rule.minute = new schedule.Range(0, 59, 3);
 		
 		schedule.scheduleJob(rule, function() {
 
@@ -191,6 +192,10 @@ function App() {
 					break;
 				}
 				case 3: {
+					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
+					break;
+				}
+				case 4: {
 					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 					break;
 				}
