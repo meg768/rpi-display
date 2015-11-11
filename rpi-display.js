@@ -207,7 +207,7 @@ function App() {
 					var tickers = [
 						{id: 'USDSEK', name: 'USD/SEK'},
 						{id: 'EURSEK', name: 'EUR/SEK'},
-						{id: 'USDEUR', name: 'USD/EUR'}
+						{id: 'EURUSD', name: 'EUR/USD'}
 					];
 					
 					fetchRates(tickers, displayRates);
