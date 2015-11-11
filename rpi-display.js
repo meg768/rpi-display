@@ -164,8 +164,7 @@ function App() {
 		options.file = sprintf('./animations/96x96');
 		options.duration = -1;
 
-		display.animation(options);
-		display.send();	
+		matrix.start(matrix.animation(options));
 	}
 	
 	
