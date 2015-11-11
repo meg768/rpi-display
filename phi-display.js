@@ -168,9 +168,8 @@ function App() {
 		
 		var display = new matrix.Display();
 
-		display.emoji(48, {scroll:'horizontal', delay:30, hold:2});
-		display.emoji(268, {scroll:'horizontal', delay:30, hold:2});
-		display.emoji(262, {scroll:'horizontal', delay:30, hold:2});
+		display.emoji(48, {scroll:'horizontal', delay:30});
+		display.emoji(268, {scroll:'horizontal', delay:30});
 			
 		display.send();
 		
@@ -189,11 +188,11 @@ function App() {
 	}
 	
 	
-	function scheduleGuestStars() {
+	function scheduleRecurrences() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		rule.minute = new schedule.Range(3, 59, 16);
+		rule.minute = [0];
 		
 		schedule.scheduleJob(rule, function() {
 			switch(index % 4) {
@@ -213,7 +212,7 @@ function App() {
 					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 					break;
 				}
-				case 5: {
+				case 4: {
 					var rates = [
 						{ id:'USDSEK', tags: {name: 'USD/SEK'} },
 						{ id:'EURSEK', tags: {name: 'EUR/SEK'} },
@@ -274,9 +273,9 @@ function App() {
 		config.matrix.width = 64;
 		config.matrix.height = 32;
 		config.matrix.defaults.text.font = 'Century-Gothic-Bold-Italic';
-		config.matrix.defaults.text.delay = 25;
+		config.matrix.defaults.text.delay = 20;
 		config.matrix.defaults.text.size = 24;
-		config.matrix.defaults.image.delay = 25;
+		config.matrix.defaults.image.delay = 20;
 
 		matrix.init();
 
@@ -285,7 +284,7 @@ function App() {
 		});
 		
 		scheduleQuotes();
-		scheduleGuestStars();
+		scheduleRecurrences();
 		
 	}
 	
