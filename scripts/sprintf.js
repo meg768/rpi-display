@@ -19,6 +19,7 @@ function sprintf() {
 				throw('Too few arguments.');
 			}
 			if (/[^s]/.test(m[7]) && (typeof(a) != 'number')) {
+				kalle();
 				throw('Expecting number but found ' + typeof(a));
 			}
 			switch (m[7]) {
