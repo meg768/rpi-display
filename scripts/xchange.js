@@ -21,9 +21,9 @@ var Rates = module.exports = function(tickers) {
 		
 		tickers.forEach(function(ticker) {
 			pairs.push('"' + ticker.id + '"');
-			map[ticker.id] = ticker.tags;
+			map[ticker.id] = ticker;
 		});
-
+		
 		var query = sprintf('SELECT * FROM yahoo.finance.xchange WHERE pair IN(%s)', pairs.join(','));
 		var yql = new YQL();
 		
