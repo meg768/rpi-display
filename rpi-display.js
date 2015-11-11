@@ -200,9 +200,9 @@ function App() {
 					break;
 				}
 				case 5: {
-					var xchange = {
+					var xchange = [
 						{id: 'USDSEK', name: 'USD/SEK'}
-					};
+					];
 					
 					fetchRates(xchange, displayRates);
 					break;
