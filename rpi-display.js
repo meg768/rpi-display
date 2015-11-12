@@ -65,7 +65,6 @@ function App() {
 		var options = {};
 		
 		options.color = 'rgb(0,0,255)';
-		options.font = 'Century-Gothic-Bold-Italic';
 		options.delay = 8;
 		options.size = 20;
 		
