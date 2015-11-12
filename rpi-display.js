@@ -36,6 +36,8 @@ function App() {
 		var delay   = 8;
 		var color   = 'rgb(0,0,255)';
 		var size    = 24;
+
+		display.text('Väder', {delay:delay, color:color, size:size});
 		
 		forecast.forEach(function(day) {
 			display.text(sprintf('%s', day.day), {delay:delay, color:color, size:size});
@@ -68,7 +70,7 @@ function App() {
 		var color   = 'rgb(0,0,255)';
 		var size    = 24;
 		
-		display.emoji(539, {scroll:'horizontal', delay:delay * 1.5});
+		display.text('Valutor', {delay:delay, color:color, size:size});
 
 		rates.forEach(function(rate) {
 				
@@ -102,7 +104,6 @@ function App() {
 		var color   = 'rgb(0,0,255)';
 		var size    = 24;
 		
-		display.emoji(188, {scroll:'horizontal', delay:delay * 1.5});
 		display.text(sprintf('Nyheter från %s', messages[0].name), {delay:delay, color:color, size:size});
 		
 		messages.forEach(function(message) {
