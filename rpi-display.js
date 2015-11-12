@@ -66,8 +66,9 @@ function App() {
 		
 		options.color = 'rgb(0,0,255)';
 		options.delay = 15;
+		options.size = 20;
 		
-		display.text(sprintf('Nyheter från %s', messages[0].name));
+		display.text(sprintf('Nyheter från %s', messages[0].name), options);
 		
 		messages.forEach(function(message) {
 			var text = '';
