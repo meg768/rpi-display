@@ -33,18 +33,17 @@ function App() {
 	function displayRates(rates) {
 
 		var display = new matrix.Display();
-		var options = {};
+
+		var delay   = 8;
+		var color   = 'rgb(0,0,255)';
+		var size    = 24;
 		
-		options.color = 'rgb(0,0,255)';
-		options.delay = 8;
-		options.size  = 24;
-		
-		display.emoji(539, {scroll:'horizontal', delay:12});
+		display.emoji(539, {scroll:'horizontal', delay:delay * 1.5});
 
 		rates.forEach(function(rate) {
 				
 			console.log(rate);
-			display.text(sprintf('%s   %.2f', rate.name, rate.value));
+			display.text(sprintf('%s   %.2f', rate.name, rate.value), {delay:delay, color:color, size:size});
 		});
 
 		display.send();
@@ -68,14 +67,13 @@ function App() {
 	function displayRSS(messages) {
 
 		var display = new matrix.Display();
-		var options = {};
 		
-		options.color = 'rgb(0,0,255)';
-		options.delay = 8;
-		options.size  = 24;
+		var delay   = 8;
+		var color   = 'rgb(0,0,255)';
+		var size    = 24;
 		
-		display.emoji(188, {scroll:'horizontal', delay:12});
-		display.text(sprintf('Nyheter från %s', messages[0].name), options);
+		display.emoji(188, {scroll:'horizontal', delay:delay * 1.5});
+		display.text(sprintf('Nyheter från %s', messages[0].name), {delay:delay, color:color, size:size});
 		
 		messages.forEach(function(message) {
 			var text = '';
@@ -89,7 +87,7 @@ function App() {
 			if (message.title != undefined)
 				text += message.title; 
 				
-			display.text(text, options);
+			display.text(text, {delay:delay, color:color, size:size});
 					
 		});
 		
