@@ -9,6 +9,8 @@ var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
 
+var argv     = minimist(process.argv.slice(2));
+
 
 function App() {
 
@@ -34,7 +36,11 @@ function App() {
 		var options = {};
 		
 		options.color = 'rgb(0,0,255)';
+		options.delay = 8;
+		options.size  = 24;
 		
+		display.text(sprintf('Valutor'), options);
+
 		rates.forEach(function(rate) {
 				
 			console.log(rate);
@@ -66,8 +72,9 @@ function App() {
 		
 		options.color = 'rgb(0,0,255)';
 		options.delay = 8;
-		options.size = 24;
+		options.size  = 24;
 		
+		display.emoji(188);
 		display.text(sprintf('Nyheter från %s', messages[0].name), options);
 		
 		messages.forEach(function(message) {
@@ -224,7 +231,6 @@ function App() {
 		
 	
 	_this.run = function() {
-		var argv = minimist(process.argv.slice(2));
 		
 		if (argv.config == '32x32') {
 			
