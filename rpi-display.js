@@ -39,7 +39,7 @@ function App() {
 		
 		forecast.forEach(function(day) {
 			display.text(sprintf('%s', day.day), {delay:delay, color:color, size:size});
-			display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:delay});
+			display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:delay, scroll:'horizontal'});
 			
 		});
 
