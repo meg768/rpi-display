@@ -33,15 +33,13 @@ function App() {
 
 		var display = new matrix.Display();
 
-		var delay   = 8;
-		var color   = 'rgb(0,0,255)';
-		var size    = 24;
+		var color = 'rgb(0,0,255)';
 
-		display.text('Väder', {delay:delay, color:color, size:size});
+		display.text('Väder', {color:color});
 		
 		forecast.forEach(function(day) {
-			display.text(sprintf('%s', day.day), {delay:delay, color:color, size:size});
-			display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:delay, scroll:'horizontal'});
+			display.text(sprintf('%s', day.day), {color:color});
+			display.image(sprintf('./images/weather/96x96/%s.png', day.image), {scroll:'horizontal'});
 			
 		});
 
@@ -66,16 +64,14 @@ function App() {
 
 		var display = new matrix.Display();
 
-		var delay   = 8;
-		var color   = 'rgb(0,0,255)';
-		var size    = 24;
+		var color = 'rgb(0,0,255)';
 		
-		display.text('Valutor', {delay:delay, color:color, size:size});
+		display.text('Valutor', {color:color});
 
 		rates.forEach(function(rate) {
 				
 			console.log(rate);
-			display.text(sprintf('%s   %.2f', rate.name, rate.value), {delay:delay, color:color, size:size});
+			display.text(sprintf('%s  %.2f', rate.name, rate.value), {color:color});
 		});
 
 		display.send();
@@ -100,11 +96,9 @@ function App() {
 
 		var display = new matrix.Display();
 		
-		var delay   = 8;
-		var color   = 'rgb(0,0,255)';
-		var size    = 24;
+		var color = 'rgb(0,0,255)';
 		
-		display.text(sprintf('Nyheter från %s', messages[0].name), {delay:delay, color:color, size:size});
+		display.text(sprintf('Nyheter från %s', messages[0].name), {color:color});
 		
 		messages.forEach(function(message) {
 			var text = '';
@@ -118,7 +112,7 @@ function App() {
 			if (message.title != undefined)
 				text += message.title; 
 				
-			display.text(text, {delay:delay, color:color, size:size});
+			display.text(text, {color:color});
 					
 		});
 		
@@ -262,6 +256,14 @@ function App() {
 	_this.run = function() {
 		
 		if (argv.config == '32x32') {
+			config.matrix.width = 32;
+			config.matrix.height = 32;
+			config.matrix.paths.animations = './animations/32x32';
+			config.matrix.paths.emojis = './images/emojis/32x32';
+
+			config.matrix.defaults.text.delay = 10;
+			config.matrix.defaults.text.size = 20;
+			config.matrix.defaults.image.delay = 10;
 			
 		}	
 
@@ -270,9 +272,9 @@ function App() {
 			config.matrix.height = 96;
 			
 			config.matrix.defaults.text.font = 'Century-Gothic-Bold';
-			config.matrix.defaults.text.delay = 20;
+			config.matrix.defaults.text.delay = 10;
 			config.matrix.defaults.text.size = 32;
-			config.matrix.defaults.image.delay = 20;
+			config.matrix.defaults.image.delay = 10;
 	
 			config.matrix.paths.animations = './animations/96x96';
 			config.matrix.paths.emojis = './images/emojis/96x96';
