@@ -203,10 +203,10 @@ function App() {
 
 		var options = {};
 		options.file = sprintf('./animations/%s', args.config);
-		options.duration = 60;
+		options.duration = -1;
 		options.iterations = 10000;
 
-		matrix.start(matrix.animation(options), displayIdle);
+		matrix.start(matrix.animation(options));
 	}
 	
 	
@@ -215,7 +215,7 @@ function App() {
 		var index = 0;
 		
 		rule.hour = new schedule.Range(7, 22, 1);
-		rule.minute = new schedule.Range(0, 59, 5);
+		rule.minute = new schedule.Range(0, 59, 1);
 		
 		schedule.scheduleJob(rule, function() {
 
