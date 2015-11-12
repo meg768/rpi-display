@@ -261,9 +261,9 @@ function App() {
 			config.matrix.paths.animations = './animations/32x32';
 			config.matrix.paths.emojis = './images/emojis/32x32';
 
-			config.matrix.defaults.text.delay = 10;
+			config.matrix.defaults.text.delay = 20;
 			config.matrix.defaults.text.size = 20;
-			config.matrix.defaults.image.delay = 10;
+			config.matrix.defaults.image.delay = 20;
 			
 		}	
 
@@ -297,8 +297,8 @@ function App() {
 						{id: 'EURUSD', name: 'EUR/USD'}
 					];
 					
-					//fetchRates(tickers, displayRates);
-//fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
+					fetchRates(tickers, displayRates);
+fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 fetchWeather('12883682', displayWeather);
 /*
 		matrix.init();
