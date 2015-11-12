@@ -254,6 +254,8 @@ function App() {
 		
 	
 	_this.run = function() {
+
+		// config.matrix.defaults.text.font = 'Century-Gothic-Bold';
 		
 		if (argv.config == '32x32') {
 			config.matrix.width = 32;
@@ -271,7 +273,6 @@ function App() {
 			config.matrix.width = 96;
 			config.matrix.height = 96;
 			
-			config.matrix.defaults.text.font = 'Century-Gothic-Bold';
 			config.matrix.defaults.text.delay = 10;
 			config.matrix.defaults.text.size = 32;
 			config.matrix.defaults.image.delay = 10;
@@ -297,7 +298,7 @@ function App() {
 						{id: 'EURUSD', name: 'EUR/USD'}
 					];
 					
-					fetchRates(tickers, displayRates);
+fetchRates(tickers, displayRates);
 fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 fetchWeather('12883682', displayWeather);
 /*
