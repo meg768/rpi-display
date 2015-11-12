@@ -66,7 +66,7 @@ function App() {
 		
 		options.color = 'rgb(0,0,255)';
 		options.delay = 8;
-		options.size = 20;
+		options.size = 24;
 		
 		display.text(sprintf('Nyheter från %s', messages[0].name), options);
 		
