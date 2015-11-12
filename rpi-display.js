@@ -51,10 +51,10 @@ function App() {
 		
 		var Weather = require('./scripts/weather.js');
 		var weather = new Weather(woeid);
-	
+		
 		weather.fetch(function(forecast) {
 			console.log('Weather:', forecast);
-			callback(forecast);
+			callback([forecast[1], forecast[2], forecast[3]]);
 		});
 
 	}
@@ -219,7 +219,7 @@ function App() {
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(index % 6) {
+			switch(index % 7) {
 				case 0: {
 					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
 					break;
@@ -237,10 +237,6 @@ function App() {
 					break;
 				}
 				case 4: {
-					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
-					break;
-				}
-				case 5: {
 					var tickers = [
 						{id: 'USDSEK', name: 'USD/SEK'},
 						{id: 'EURSEK', name: 'EUR/SEK'},
@@ -248,6 +244,10 @@ function App() {
 					];
 					
 					fetchRates(tickers, displayRates);
+					break;
+				}
+				case 5: {
+					fetchWeather('12883682', displayWeather);
 					break;
 				}
 			}
