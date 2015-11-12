@@ -37,13 +37,10 @@ function App() {
 		var color   = 'rgb(0,0,255)';
 		var size    = 24;
 		
-		forecast.forEach(function(day) {});
-		display.emoji(539, {scroll:'horizontal', delay:delay * 1.5});
-
-		rates.forEach(function(rate) {
-				
+		forecast.forEach(function(day) {
 			display.text(sprintf('%s', day.day), {delay:delay, color:color, size:size});
-			display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:delay, color:color, size:size});
+			display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:delay});
+			
 		});
 
 		display.send();
@@ -297,7 +294,7 @@ function App() {
 						{id: 'EURUSD', name: 'EUR/USD'}
 					];
 					
-					fetchRates(tickers, displayRates);
+					//fetchRates(tickers, displayRates);
 //fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 fetchWeather('12883682', displayWeather);
 /*
