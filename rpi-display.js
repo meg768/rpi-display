@@ -74,7 +74,7 @@ function App() {
 		options.delay = 8;
 		options.size  = 24;
 		
-		display.emoji(188, {scroll:'horizontal'});
+		display.emoji(188, {scroll:'horizontal', delay:12});
 		display.text(sprintf('Nyheter från %s', messages[0].name), options);
 		
 		messages.forEach(function(message) {
