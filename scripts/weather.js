@@ -9,13 +9,13 @@ var YQL      = require('./yql.js');
 var sprintf  = require('./sprintf.js');
 
 
-var Weather = module.exports = function(config) {
+var Weather = module.exports = function(woeid) {
 
 	var _this = this;
 
 	// Default LUND
-	if (config.woeid == undefined)
-		config.woeid = '12883682';
+	if (woeid == undefined)
+		woeid = '12883682';
 
 	function toCelsius(fahrenheit) {
 	    return (5 / 9) * (fahrenheit - 32);
@@ -90,7 +90,7 @@ var Weather = module.exports = function(config) {
 	
 	_this.fetch = function() {
 		
-		var query = sprintf('SELECT * FROM weather.forecast WHERE woeid = %s', config.woeid);
+		var query = sprintf('SELECT * FROM weather.forecast WHERE woeid = %s', woeid);
 		var yql = new YQL();
 	
 		yql.request(query, function(data){
@@ -119,7 +119,7 @@ var Weather = module.exports = function(config) {
 				items[0].day = 'Idag';
 				items[1].day = 'I morgon';
 				
-				_this.emit('forecast', items);			
+				callback(items);			
 			}
 			
 		});
@@ -127,23 +127,7 @@ var Weather = module.exports = function(config) {
 	
 	moment.locale('sv');
 
-	if (config.schedule != undefined) {
-		var rule = new schedule.RecurrenceRule();
-	
-		if (config.schedule.hour != undefined)
-			rule.hour = config.schedule.hour;
-	
-		if (config.schedule.minute != undefined)
-			rule.minute = config.schedule.minute;
-	
-		if (config.schedule.second != undefined)
-			rule.second = config.schedule.second;
 
-		schedule.scheduleJob(rule, function() {
-			_this.fetch();
-		});		
-		
-	}
 
 };
 

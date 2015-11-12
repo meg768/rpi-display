@@ -29,6 +29,39 @@ function App() {
 		});
 	}	
 
+	function displayWeather(forecast) {
+
+		var display = new matrix.Display();
+
+		var delay   = 8;
+		var color   = 'rgb(0,0,255)';
+		var size    = 24;
+		
+		forecast.forEach(function(day) {});
+		display.emoji(539, {scroll:'horizontal', delay:delay * 1.5});
+
+		rates.forEach(function(rate) {
+				
+			display.text(sprintf('%s', day.day), {delay:delay, color:color, size:size});
+			display.image(sprintf('./images/weather/96x96/%s.png', day.image), {delay:delay, color:color, size:size});
+		});
+
+		display.send();
+		
+	}
+
+	function fetchWeather(woeid, callback) {
+		
+		var Weather = require('./scripts/weather.js');
+		var weather = new Weather(woeid);
+	
+		weather.fetch(function(forecast) {
+			console.log('Weather:', forecast);
+			callback(forecast);
+		});
+
+	}
+	
 	
 	function displayRates(rates) {
 
@@ -265,7 +298,8 @@ function App() {
 					];
 					
 					fetchRates(tickers, displayRates);
-fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
+//fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
+fetchWeather('12883682', displayWeather);
 /*
 		matrix.init();
 
