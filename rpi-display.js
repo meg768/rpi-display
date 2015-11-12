@@ -172,8 +172,12 @@ function App() {
 
 		var options = {};
 		options.color = 'rgb(255, 0, 0)';
-		options.font  = 'Digital';
-		options.size  = 50;
+
+		if (args.config == '96x96') {
+			options.font  = 'Digital';
+			options.size  = 50;
+		}
+
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
 		display.send();	
 		
@@ -198,7 +202,7 @@ function App() {
 		var display = new matrix.Display();
 
 		var options = {};
-		options.file = sprintf('./animations/96x96');
+		options.file = sprintf('./animations/%s', args.config);
 		options.duration = -1;
 
 		matrix.start(matrix.animation(options));
@@ -292,16 +296,7 @@ function App() {
 		// Use swedish settings
 		moment.locale(config.locale);
 
-					var tickers = [
-						{id: 'USDSEK', name: 'USD/SEK'},
-						{id: 'EURSEK', name: 'EUR/SEK'},
-						{id: 'EURUSD', name: 'EUR/USD'}
-					];
-					
-fetchRates(tickers, displayRates);
-fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
-fetchWeather('12883682', displayWeather);
-/*
+
 		matrix.init();
 
 		matrix.idle(function() {
@@ -310,7 +305,7 @@ fetchWeather('12883682', displayWeather);
 		
 		scheduleRecurrences();
 		scheduleClock();
-*/		
+	
 	}
 	
 }
