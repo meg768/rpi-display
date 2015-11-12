@@ -75,7 +75,7 @@ function App() {
 		options.size  = 24;
 		
 		display.emoji(188);
-		display.text(sprintf('Nyheter från %s', messages[0].name), options);
+		//display.text(sprintf('Nyheter från %s', messages[0].name), options);
 		
 		messages.forEach(function(message) {
 			var text = '';
