@@ -224,22 +224,36 @@ function App() {
 		
 	
 	_this.run = function() {
+		var argv = minimist(process.argv.slice(2));
+		
+		if (argv.config == '32x32') {
+			
+		}	
+
+		else if (argv.config == '96x96') {
+			config.matrix.width = 96;
+			config.matrix.height = 96;
+			
+			config.matrix.defaults.text.font = 'Century-Gothic-Bold';
+			config.matrix.defaults.text.delay = 20;
+			config.matrix.defaults.text.size = 32;
+			config.matrix.defaults.image.delay = 20;
+	
+			config.matrix.paths.animations = './animations/96x96';
+			config.matrix.paths.emojis = './emojis/96x96';
+			
+		}	
+		else {
+			console.log('No configuration specified. Use the --config option.');
+			process.exit(-1);
+		}
+		
 		// Set the time zone according to config settings
 		process.env.TZ = config.timezone;
 	
 		// Use swedish settings
 		moment.locale(config.locale);
 
-		config.matrix.width = 96;
-		config.matrix.height = 96;
-		
-		config.matrix.defaults.text.font = 'Century-Gothic-Bold';
-		config.matrix.defaults.text.delay = 20;
-		config.matrix.defaults.text.size = 32;
-		config.matrix.defaults.image.delay = 20;
-
-		config.matrix.paths.animations = './animations/96x96';
-		config.matrix.paths.emojis = './emojis/96x96';
 
 fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 /*

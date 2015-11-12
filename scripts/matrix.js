@@ -346,7 +346,7 @@ Matrix.Display = function() {
 _queue.on('idle', function() {
 
 	
-	if (util.isFunction(_idle)) {
+	if (_idle != undefined) {
 		
 		if (_queue.empty()) 
 			_idle();

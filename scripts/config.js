@@ -1,6 +1,3 @@
-var minimist = require('minimist');
-var sprintf  = require('./sprintf.js');
-
 
 var config = module.exports = {
 
