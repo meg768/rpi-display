@@ -9,7 +9,7 @@ var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
 
-var argv     = minimist(process.argv.slice(2));
+var args     = minimist(process.argv.slice(2));
 
 
 function App() {
@@ -261,7 +261,7 @@ function App() {
 
 		// config.matrix.defaults.text.font = 'Century-Gothic-Bold';
 		
-		if (argv.config == '32x32') {
+		if (args.config == '32x32') {
 			config.matrix.width = 32;
 			config.matrix.height = 32;
 			config.matrix.paths.animations = './animations/32x32';
@@ -273,7 +273,7 @@ function App() {
 			
 		}	
 
-		else if (argv.config == '96x96') {
+		else if (args.config == '96x96') {
 			config.matrix.width = 96;
 			config.matrix.height = 96;
 			
