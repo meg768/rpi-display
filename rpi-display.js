@@ -75,7 +75,7 @@ function App() {
 		options.size  = 24;
 		
 		display.emoji(188);
-		//display.text(sprintf('Nyheter från %s', messages[0].name), options);
+		display.text(sprintf('Nyheter från %s', messages[0].name), options);
 		
 		messages.forEach(function(message) {
 			var text = '';
@@ -246,7 +246,7 @@ function App() {
 			config.matrix.defaults.image.delay = 20;
 	
 			config.matrix.paths.animations = './animations/96x96';
-			config.matrix.paths.emojis = './emojis/96x96';
+			config.matrix.paths.emojis = './images/emojis/96x96';
 			
 		}	
 		else {
