@@ -203,7 +203,8 @@ function App() {
 
 		var options = {};
 		options.file = sprintf('./animations/%s', args.config);
-		options.duration = 20;
+		options.duration = 60;
+		options.iterations = 10000;
 
 		matrix.start(matrix.animation(options), displayIdle);
 	}
