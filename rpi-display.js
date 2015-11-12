@@ -39,7 +39,7 @@ function App() {
 		options.delay = 8;
 		options.size  = 24;
 		
-		display.text(sprintf('Valutor'), options);
+		display.emoji(539, {scroll:'horizontal', delay:12});
 
 		rates.forEach(function(rate) {
 				
@@ -260,7 +260,13 @@ function App() {
 		// Use swedish settings
 		moment.locale(config.locale);
 
-
+					var tickers = [
+						{id: 'USDSEK', name: 'USD/SEK'},
+						{id: 'EURSEK', name: 'EUR/SEK'},
+						{id: 'EURUSD', name: 'EUR/USD'}
+					];
+					
+					fetchRates(tickers, displayRates);
 fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
 /*
 		matrix.init();
