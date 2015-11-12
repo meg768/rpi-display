@@ -65,6 +65,7 @@ function App() {
 		var options = {};
 		
 		options.color = 'rgb(0,0,255)';
+		options.delay = 15;
 		
 		display.text(sprintf('Nyheter från %s', messages[0].name));
 		
@@ -239,7 +240,8 @@ function App() {
 		config.matrix.paths.animations = './animations/96x96';
 		config.matrix.paths.emojis = './emojis/96x96';
 
-
+fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
+/*
 		matrix.init();
 
 		matrix.idle(function() {
@@ -248,7 +250,7 @@ function App() {
 		
 		scheduleRecurrences();
 		scheduleClock();
-		
+*/		
 	}
 	
 }
