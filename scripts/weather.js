@@ -88,7 +88,7 @@ var Weather = module.exports = function(woeid) {
 		
 	
 	
-	_this.fetch = function() {
+	_this.fetch = function(callback) {
 		
 		var query = sprintf('SELECT * FROM weather.forecast WHERE woeid = %s', woeid);
 		var yql = new YQL();
