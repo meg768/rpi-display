@@ -172,6 +172,7 @@ function App() {
 
 		var options = {};
 		options.color = 'rgb(255, 0, 0)';
+		options.delay = config.matrix.defaults.text.delay * 2.0;
 
 		if (args.config == '96x96') {
 			options.font  = 'Digital';
