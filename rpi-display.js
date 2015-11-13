@@ -140,14 +140,13 @@ function App() {
 			quotes.forEach(function(quote) { 
 
 				var color = 'rgb(0,0,255)';
-				var delay = 20;
 				
 				if (quote.logo)
-					display.image(quote.logo, {scroll:'horizontal', delay:delay});
+					display.image(quote.logo, {scroll:'horizontal'});
 				else
-					display.text(quote.name, {color:color, delay:delay});
+					display.text(quote.name, {color:color});
 				
-				display.text(numeral(quote.price).format('0,000.00') + ' SEK', {color:color, delay:delay});
+				display.text(numeral(quote.price).format('0,000.00') + ' SEK', {color:color});
 				
 				if (quote.change == 0)
 					color = 'rgb(0,0,255)';
@@ -156,10 +155,10 @@ function App() {
 				if (quote.change > 0)
 					color = 'rgb(0,255,0)';
 		
-				display.text(numeral(quote.change).format('+0.0') + '%%', {delay:delay, color:color});
+				display.text(numeral(quote.change).format('+0.0') + '%%', {color:color});
 
 				color = 'rgb(0,0,255)';
-				display.text(sprintf('%d', Math.round(quote.volume / 100) * 100), {delay:delay, color:color});
+				display.text(sprintf('%d', Math.round(quote.volume / 100) * 100), {color:color});
 				
 			});
 
@@ -260,6 +259,7 @@ function App() {
 		
 		
 		config.quotes.tickers = [
+			{ id: '^OMX',   name: 'OMX Index'},
 			{ id: 'PHI.ST', name: 'PHI', currency: 'SEK'}
 		];
 
@@ -297,6 +297,7 @@ function App() {
 			
 			config.matrix.defaults.text.delay = 10;
 			config.matrix.defaults.text.size = 32;
+			
 			config.matrix.defaults.image.delay = 10;
 	
 			config.matrix.paths.animations = './animations/96x96';
