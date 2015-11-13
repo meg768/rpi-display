@@ -146,7 +146,7 @@ function App() {
 				else
 					display.text(quote.name, {color:color});
 				
-				display.text(sprintf('%s%s', numeral(quote.price).format('0,000.00'), quote.currency ? ' ' + quote.currency : '', {color:color});
+				display.text(sprintf('%s%s', numeral(quote.price).format('0,000.00'), quote.currency ? ' ' + quote.currency : '', {color:color}));
 				
 				if (quote.change == 0)
 					color = 'rgb(0,0,255)';
