@@ -208,9 +208,13 @@ function App() {
 		var now = new Date();
 		var hours = now.getHours();
 		var minutes = now.getMinutes();
-		
+		var index = 0;
+				
 		if (hours >= 0 && hours <= 7) {
-			matrix.start(matrix.perlin({mode:3, delay:25}));
+			if (index % 1)
+				matrix.start(matrix.perlin({mode:3, duration:-1}));
+			else
+				matrix.start(matrix.rain({duration:-1}));
 		}
 		else {
 			var options = {};
@@ -221,6 +225,8 @@ function App() {
 			matrix.start(matrix.animation(options));
 			
 		}
+		
+		index = (index % 10000) + 1;
 	}
 	
 	
@@ -309,6 +315,8 @@ function App() {
 			config.matrix.defaults.text.size = 32;
 			
 			config.matrix.defaults.image.delay = 10;
+			config.matrix.defaults.rain.delay = 0;
+			config.matrix.defaults.perlin.delay = 25;
 	
 			config.matrix.paths.animations = './animations/96x96';
 			config.matrix.paths.emojis = './images/emojis/96x96';
