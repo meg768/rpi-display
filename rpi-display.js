@@ -138,23 +138,28 @@ function App() {
 			var display = new matrix.Display();
 			
 			quotes.forEach(function(quote) { 
-				var options = {};
-				options.color = 'rgb(255, 255, 255';
 
-				display.image(quote.logo, {scroll:'horizontal'});
-				display.text(numeral(quote.price).format('0,000.00') + ' SEK', options);
+				var color = 'rgb(0,0,255)';
+				var delay = 20;
+				
+				if (quote.logo)
+					display.image(quote.logo, {scroll:'horizontal', delay:delay});
+				else
+					display.text(quote.name, {color:color, delay:delay});
+				
+				display.text(numeral(quote.price).format('0,000.00') + ' SEK', {color:color, delay:delay});
 				
 				if (quote.change == 0)
-					options.color = 'rgb(0,0,255)';
+					color = 'rgb(0,0,255)';
 				if (quote.change < 0)
-					options.color = 'rgb(255,0,0)';
+					color = 'rgb(255,0,0)';
 				if (quote.change > 0)
-					options.color = 'rgb(0,255,0)';
+					color = 'rgb(0,255,0)';
 		
-				display.text(numeral(quote.change).format('+0.0') + '%%', options);
+				display.text(numeral(quote.change).format('+0.0') + '%%', {delay:delay, color:color});
 
-				options.color = 'rgb(0,0,255)';
-				display.text(sprintf('%d', Math.round(quote.volume / 100) * 100), options);
+				color = 'rgb(0,0,255)';
+				display.text(sprintf('%d', Math.round(quote.volume / 100) * 100), {delay:delay, color:color});
 				
 			});
 
@@ -221,28 +226,20 @@ function App() {
 
 			switch(index % 3) {
 				case 0: {
-					var feeds = [
-						{url: 'http://www.di.se/rss', name: 'Dagens Industri'},
-						{url: 'http://www.sydsvenskan.se/rss.xml', name: 'Sydsvenskan'},
-						{url: 'http://www.svd.se/?service=rss&type=senastenytt', name: 'SvD'},
-						{url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name: 'Google'}
-					];
-					
-					fetchRSS(feeds[index % 4], displayRSS);
+					fetchRSS(config.rss.feeds[index % 4], displayRSS);
 					break;
 				}
 				case 1: {
-					var tickers = [
-						{id: 'USDSEK', name: 'USD/SEK'},
-						{id: 'EURSEK', name: 'EUR/SEK'},
-						{id: 'EURUSD', name: 'EUR/USD'}
-					];
-					
-					fetchRates(tickers, displayRates);
+					fetchRates(config.xchange.tickers, displayRates);
 					break;
 				}
 				case 2: {
 					fetchWeather('12883682', displayWeather);
+					break;
+				}
+				case 3: {
+					fetchQuotes(onfig.quotes.tickers, displayQuotes);
+
 					break;
 				}
 			}
@@ -256,6 +253,31 @@ function App() {
 	_this.run = function() {
 
 		// config.matrix.defaults.text.font = 'Century-Gothic-Bold';
+
+		config.quotes   = config.quotes  || {};
+		config.xchange  = config.xchange || {};
+		config.rss      = config.xchange || {};
+		
+		
+		config.quotes.tickers = [
+			{ id: 'PHI.ST', name: 'PHI', currency: 'SEK'}
+		];
+
+
+		config.xchange.tickers = [
+			{id: 'USDSEK', name: 'USD/SEK'},
+			{id: 'EURSEK', name: 'EUR/SEK'},
+			{id: 'EURUSD', name: 'EUR/USD'}
+		];
+		
+
+		config.rss.feeds = [
+			{url: 'http://www.di.se/rss', name: 'Dagens Industri'},
+			{url: 'http://www.sydsvenskan.se/rss.xml', name: 'Sydsvenskan'},
+			{url: 'http://www.svd.se/?service=rss&type=senastenytt', name: 'SvD'},
+			{url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name: 'Google'}
+		];
+		
 		
 		if (args.config == '32x32') {
 			config.matrix.width = 32;
@@ -301,6 +323,7 @@ function App() {
 		
 		scheduleRecurrences();
 		scheduleClock();
+		
 	
 	}
 	

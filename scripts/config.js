@@ -4,6 +4,18 @@ var config = module.exports = {
 	timezone: 'Europe/Stockholm',
 	locale: 'sv',
 	
+	quotes: {
+		
+	},
+	
+	xchange: {
+		
+	},
+	
+	rss: {
+		
+	},
+	
 	matrix: {
 		width  : 32,
 		height : 32,
