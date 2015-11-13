@@ -39,23 +39,22 @@ Matrix.init = function() {
 	}
 	
 	var color = 'blue';
-	var delay = 30;
 	
 	var wlan0 = getIP('wlan0');
 	var eth0 = getIP('eth0');
 
 	if (wlan0 != '') {
-		display.text(wlan0, {color:color, delay:delay});
+		display.text(wlan0, {color:color});
 	}
 		
 	if (eth0 != '') {
-		display.text(eth0, {color:color, delay:delay});
+		display.text(eth0, {color:color});
 	}
 	
 	if (wlan0 != '' || eth0 != '')
-		display.emoji(435, {scroll:'horizontal', hold: 1, delay:delay});
+		display.emoji(435, {scroll:'horizontal', hold: 1});
 	else
-		display.text('Network connection missing.', {color:color, delay:delay});
+		display.text('Network connection missing.', {color:color});
 
 	display.send();		
 }
