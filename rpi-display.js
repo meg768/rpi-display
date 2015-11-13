@@ -223,7 +223,7 @@ function App() {
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(index % 3) {
+			switch(index % 4) {
 				case 0: {
 					fetchRSS(config.rss.feeds[index % 4], displayRSS);
 					break;
@@ -238,7 +238,6 @@ function App() {
 				}
 				case 3: {
 					fetchQuotes(config.quotes.tickers, displayQuotes);
-
 					break;
 				}
 			}
@@ -260,7 +259,7 @@ function App() {
 		
 		config.quotes.tickers = [
 			{ id: '^OMX',   name: 'OMX Index'},
-			{ id: 'PHI.ST', name: 'PHI', currency: 'SEK'}
+			{ id: 'PHI.ST', name: 'Phase', currency: 'SEK'}
 		];
 
 
@@ -324,7 +323,10 @@ function App() {
 		
 		scheduleRecurrences();
 		scheduleClock();
-							fetchQuotes(config.quotes.tickers, displayQuotes);
+		
+		fetchQuotes(config.quotes.tickers, displayQuotes);
+		fetchRSS(config.rss.feeds[0], displayRSS);
+		fetchRates(config.xchange.tickers, displayRates);
 
 	
 	}
