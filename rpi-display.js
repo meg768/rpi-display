@@ -211,10 +211,16 @@ function App() {
 		var index = 0;
 				
 		if (hours >= 0 && hours <= 7) {
-			if (index % 1)
-				matrix.start(matrix.perlin({mode:3, duration:-1}));
-			else
-				matrix.start(matrix.rain({duration:-1}));
+			switch (index % 2) {
+				case 0: {
+					matrix.start(matrix.perlin({mode:3, duration:-1}));
+					break;
+				};
+				case 1: {
+					matrix.start(matrix.rain({duration:-1}));
+					break;
+				};
+			}
 		}
 		else {
 			var options = {};
@@ -223,7 +229,6 @@ function App() {
 			options.iterations = 10000;
 	
 			matrix.start(matrix.animation(options));
-			
 		}
 		
 		index = (index % 10000) + 1;
@@ -267,7 +272,12 @@ function App() {
 	
 	_this.run = function() {
 
-		// config.matrix.defaults.text.font = 'Century-Gothic-Bold';
+		// Set the time zone according to config settings
+		process.env.TZ = config.timezone;
+	
+		// Use swedish settings
+		moment.locale(config.locale);
+
 
 		config.quotes   = config.quotes  || {};
 		config.xchange  = config.xchange || {};
@@ -327,12 +337,6 @@ function App() {
 			process.exit(-1);
 		}
 		
-		// Set the time zone according to config settings
-		process.env.TZ = config.timezone;
-	
-		// Use swedish settings
-		moment.locale(config.locale);
-
 
 		matrix.init();
 
