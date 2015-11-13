@@ -38,21 +38,24 @@ Matrix.init = function() {
 		return '';
 	}
 	
+	var color = 'blue';
+	var delay = 25:
+	
 	var wlan0 = getIP('wlan0');
 	var eth0 = getIP('eth0');
 
 	if (wlan0 != '') {
-		display.text(wlan0, {color:'blue'});
+		display.text(wlan0, {color:color, delay:delay});
 	}
 		
 	if (eth0 != '') {
-		display.text(eth0, {color:'blue'});
+		display.text(eth0, {color:color, delay:delay});
 	}
 	
 	if (wlan0 != '' || eth0 != '')
-		display.emoji(435, {scroll:'horizontal', hold: 1});
+		display.emoji(435, {scroll:'horizontal', hold: 1, delay:delay});
 	else
-		display.text('Network connection missing.');
+		display.text('Network connection missing.', {color:color, delay:delay});
 
 	display.send();		
 }
