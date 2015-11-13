@@ -39,7 +39,7 @@ Matrix.init = function() {
 	}
 	
 	var color = 'blue';
-	var delay = 30:
+	var delay = 30;
 	
 	var wlan0 = getIP('wlan0');
 	var eth0 = getIP('eth0');
