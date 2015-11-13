@@ -221,8 +221,8 @@ function App() {
 		var rule = new schedule.RecurrenceRule();
 		var index = 0;
 		
-		rule.hour = new schedule.Range(7, 23, 1);
-		rule.minute = new schedule.Range(3, 59, 15);
+		//rule.hour = new schedule.Range(7, 23, 1);
+		rule.minute = new schedule.Range(3, 59, 5);
 		
 		schedule.scheduleJob(rule, function() {
 
@@ -257,7 +257,7 @@ function App() {
 
 		config.quotes   = config.quotes  || {};
 		config.xchange  = config.xchange || {};
-		config.rss      = config.xchange || {};
+		config.rss      = config.rss     || {};
 		
 		
 		config.quotes.tickers = [
