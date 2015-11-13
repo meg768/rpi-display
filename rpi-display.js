@@ -238,7 +238,7 @@ function App() {
 					break;
 				}
 				case 3: {
-					fetchQuotes(onfig.quotes.tickers, displayQuotes);
+					fetchQuotes(config.quotes.tickers, displayQuotes);
 
 					break;
 				}
@@ -323,7 +323,8 @@ function App() {
 		
 		scheduleRecurrences();
 		scheduleClock();
-		
+							fetchQuotes(config.quotes.tickers, displayQuotes);
+
 	
 	}
 	
