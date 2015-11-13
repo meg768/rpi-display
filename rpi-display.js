@@ -15,7 +15,11 @@ var args     = minimist(process.argv.slice(2));
 function App() {
 
 	var _this = this;
+	var _counter = 0;
 	
+	function next() {
+		return (_counter + 1) % 100000;
+	}
 
 	function fetchRates(tickers, callback) {
 
@@ -208,10 +212,10 @@ function App() {
 		var now = new Date();
 		var hours = now.getHours();
 		var minutes = now.getMinutes();
-		var index = 0;
+
 				
 		if (hours >= 0 && hours <= 7) {
-			switch (index % 2) {
+			switch (next() % 2) {
 				case 0: {
 					matrix.start(matrix.perlin({mode:3, duration:-1}));
 					break;
@@ -230,21 +234,18 @@ function App() {
 	
 			matrix.start(matrix.animation(options));
 		}
-		
-		index = (index % 10000) + 1;
 	}
 	
 	
 	function scheduleRecurrences() {
 		var rule = new schedule.RecurrenceRule();
-		var index = 0;
 		
 		//rule.hour = new schedule.Range(7, 23, 1);
 		rule.minute = new schedule.Range(3, 59, 5);
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(index % 4) {
+			switch(next() % 4) {
 				case 0: {
 					fetchRSS(config.rss.feeds[0], displayRSS);
 					config.rss.feeds.push(config.rss.feeds.shift());
@@ -264,7 +265,6 @@ function App() {
 				}
 			}
 			
-			index = (index + 1) % 10000;
 		});
 	}
 
