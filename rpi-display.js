@@ -146,7 +146,7 @@ function App() {
 				else
 					display.text(quote.name, {color:color});
 				
-				display.text(numeral(quote.price).format('0,000.00') + ' SEK', {color:color});
+				display.text(sprintf('%s%s', numeral(quote.price).format('0,000.00'), quote.currency ? ' ' + quote.currency : '', {color:color});
 				
 				if (quote.change == 0)
 					color = 'rgb(0,0,255)';
@@ -157,8 +157,11 @@ function App() {
 		
 				display.text(numeral(quote.change).format('+0.0') + '%%', {color:color});
 
-				color = 'rgb(0,0,255)';
-				display.text(sprintf('%d', Math.round(quote.volume / 100) * 100), {color:color});
+				if (quote.volume > 0) {
+					color = 'rgb(0,0,255)';
+					display.text(sprintf('%d', Math.round(quote.volume / 100) * 100), {color:color});
+					
+				}
 				
 			});
 
@@ -325,8 +328,8 @@ function App() {
 		scheduleClock();
 		
 		fetchQuotes(config.quotes.tickers, displayQuotes);
-		fetchRSS(config.rss.feeds[0], displayRSS);
-		fetchRates(config.xchange.tickers, displayRates);
+		//fetchRSS(config.rss.feeds[0], displayRSS);
+		//fetchRates(config.xchange.tickers, displayRates);
 
 	
 	}
