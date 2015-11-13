@@ -228,7 +228,8 @@ function App() {
 
 			switch(index % 4) {
 				case 0: {
-					fetchRSS(config.rss.feeds[index % 4], displayRSS);
+					fetchRSS(config.rss.feeds[0], displayRSS);
+					config.rss.feeds.push(config.rss.feeds.shift());
 					break;
 				}
 				case 1: {
@@ -324,12 +325,13 @@ function App() {
 			displayIdle();
 		});
 		
-		scheduleRecurrences();
-		scheduleClock();
-		
-		fetchQuotes(config.quotes.tickers, displayQuotes);
-		//fetchRSS(config.rss.feeds[0], displayRSS);
-		//fetchRates(config.xchange.tickers, displayRates);
+		//scheduleRecurrences();
+		//scheduleClock();
+
+		fetchRSS(config.rss.feeds[0], displayRSS);
+		config.rss.feeds.push(config.rss.feeds.shift());
+		fetchRSS(config.rss.feeds[0], displayRSS);
+		config.rss.feeds.push(config.rss.feeds.shift());
 
 	
 	}
