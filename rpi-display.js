@@ -199,7 +199,6 @@ function App() {
 	
 	function displayIdle() {
 		var now = new Date();
-		var display = new matrix.Display();
 
 		var options = {};
 		options.file = sprintf('./animations/%s', args.config);
@@ -215,28 +214,23 @@ function App() {
 		var index = 0;
 		
 		rule.hour = new schedule.Range(7, 22, 1);
-		rule.minute = new schedule.Range(3, 59, 10);
+		rule.minute = new schedule.Range(3, 59, 1);
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(index % 7) {
+			switch(index % 3) {
 				case 0: {
-					fetchRSS({url: 'http://www.di.se/rss', name:'Dagens Industri'}, displayRSS);
+					var feeds = [
+						{url: 'http://www.di.se/rss', name: 'Dagens Industri'},
+						{url: 'http://www.sydsvenskan.se/rss.xml', name: 'Sydsvenskan'},
+						{url: 'http://www.svd.se/?service=rss&type=senastenytt', name: 'SvD'},
+						{url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name: 'Google'}
+					];
+					
+					fetchRSS(feeds[index % 4], displayRSS);
 					break;
 				}
 				case 1: {
-					fetchRSS({url: 'http://www.sydsvenskan.se/rss.xml', name:'Sydsvenskan'}, displayRSS);
-					break;
-				}
-				case 2: {
-					fetchRSS({url: 'http://www.svd.se/?service=rss&type=senastenytt', name:'SvD'}, displayRSS);
-					break;
-				}
-				case 3: {
-					fetchRSS({url: 'http://news.google.com/news?pz=1&cf=all&ned=sv_se&hl=sv&topic=h&num=3&output=rss', name:'Google'}, displayRSS);
-					break;
-				}
-				case 4: {
 					var tickers = [
 						{id: 'USDSEK', name: 'USD/SEK'},
 						{id: 'EURSEK', name: 'EUR/SEK'},
@@ -246,13 +240,13 @@ function App() {
 					fetchRates(tickers, displayRates);
 					break;
 				}
-				case 5: {
+				case 2: {
 					fetchWeather('12883682', displayWeather);
 					break;
 				}
 			}
 			
-			index = (index + 1) % 1000;
+			index = (index + 1) % 10000;
 		});
 	}
 
