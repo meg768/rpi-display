@@ -325,15 +325,9 @@ function App() {
 			displayIdle();
 		});
 		
-		//scheduleRecurrences();
-		//scheduleClock();
+		scheduleRecurrences();
+		scheduleClock();
 
-		fetchRSS(config.rss.feeds[0], displayRSS);
-		config.rss.feeds.push(config.rss.feeds.shift());
-		fetchRSS(config.rss.feeds[0], displayRSS);
-		config.rss.feeds.push(config.rss.feeds.shift());
-
-	
 	}
 	
 }
