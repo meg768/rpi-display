@@ -18,7 +18,7 @@ function App() {
 	var _counter = 0;
 	
 	function next() {
-		return (_counter + 1) % 100000;
+		return counter = (_counter + 1) % 100000;
 	}
 
 	function fetchRates(tickers, callback) {
