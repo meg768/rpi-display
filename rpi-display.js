@@ -15,7 +15,6 @@ var args     = minimist(process.argv.slice(2));
 function App() {
 
 	var _this = this;
-	var _counter = 0;
 	
 
 	function fetchRates(tickers, callback) {
@@ -207,13 +206,21 @@ function App() {
 	
 	function displayIdle() {
 		var now = new Date();
-
-		var options = {};
-		options.file = sprintf('./animations/%s', args.config);
-		options.duration = -1;
-		options.iterations = 10000;
-
-		matrix.start(matrix.animation(options));
+		var hours = now.getHours();
+		var minutes = now.getMinutes();
+		
+		if (hours >= 0 && hours <= 7) {
+			matrix.start(matrix.perlin({mode:3, delay:25}));
+		}
+		else {
+			var options = {};
+			options.file = sprintf('./animations/%s', args.config);
+			options.duration = -1;
+			options.iterations = 10000;
+	
+			matrix.start(matrix.animation(options));
+			
+		}
 	}
 	
 	
