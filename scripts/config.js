@@ -40,7 +40,16 @@ var config = module.exports = {
 			image: {
 				duration : 60,
 				scroll   : 'none'
+			},
+			
+			perlin: {
+				duration : 60
+			},
+			
+			rain: {
+				duration : 60
 			}
+			
 		}	
 	}
 	
