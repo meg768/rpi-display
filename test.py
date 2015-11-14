@@ -26,12 +26,13 @@ def main(argv):
 	time = datetime.datetime.now()
 	matrixImage = Image.new("RGBA", (matrixWidth, matrixHeight)) 
 
-	backgroundImage = Image.open("./images/clock/bg.png")
-	foregroundImage = Image.open("./images/clock/fg.png")
-	secondsImage = Image.open("./images/clock/seconds.png")
-	minutesImage = Image.open("./images/clock/minutes.png")
-	hoursImage = Image.open("./images/clock/hours.png")
-	secondsImage = Image.open("./images/clock/seconds.png")
+	clock = Image.open("./images/clock/clock1.png")
+
+	backgroundImage = clock.crop((matrixWidth * 0, 0, matrixWidth * 0 + matrixWidth, matrixHeight))
+	foregroundImage = clock.crop((matrixWidth * 1, 0, matrixWidth * 1 + matrixWidth, matrixHeight))
+	hoursImage      = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
+	minutesImage    = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
+	secondsImage    = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
 	
 
 	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0))
