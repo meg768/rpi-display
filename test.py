@@ -38,13 +38,7 @@ class Clock:
 		matrixImage.paste(secondsImage, [0, 0, 96, 96], secondsImage)
 		matrixImage.paste(foregroundImage, [0, 0, 96, 96], foregroundImage)
 
-		image = matrixImage
-
-	def displayImage(canvas):
-		for y in range(0, 96):
-			for x in range(0, 96):
-				rgb = image.getpixel((x, y))
-				canvas.SetPixel(x, y, rgb[0], rgb[1], rgb[2])
+		return matrixImage
 
 
 
@@ -92,9 +86,13 @@ def run():
 	clock  = Clock();
 	
 	while True:
-		clock.createImage
-		clock.displayImage(canvas)
-		
+		image = clock.createImage()
+
+		for y in range(0, 96):
+			for x in range(0, 96):
+				rgb = image.getpixel((x, y))
+				canvas.SetPixel(x, y, rgb[0], rgb[1], rgb[2])
+
 		canvas = matrix.SwapOnVSync(canvas)
 		time.sleep(0.1)
 		
