@@ -10,13 +10,10 @@ from rgbmatrix import RGBMatrix
 
 def test():
 	
-	rows = 16
-	chains = 1
-	parallel = 2
-	myMatrix = RGBMatrix(32, 3, 3)
-	myMatrix.Fill(255, 0, 0)
+	matrix = RGBMatrix(32, 3, 3)
+	matrix.Fill(255, 255, 0)
 	time.sleep(5)
-	myMatrix.Clear()	
+	matrix.Clear()	
 
 
 def main(argv):
