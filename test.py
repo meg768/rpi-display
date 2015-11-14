@@ -91,7 +91,7 @@ def run():
 				canvas.SetPixel(x, y, rgb[0], rgb[1], rgb[2])
 
 		canvas = matrix.SwapOnVSync(canvas)
-		time.sleep(0.01)
+		#time.sleep(0.01)
 		
 
 def test():
