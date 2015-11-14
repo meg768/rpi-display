@@ -16,7 +16,7 @@ class Clock:
 	clock = Image.open("./images/clock/clock1.png")
 	image = Image.new("RGBA", (matrixWidth, matrixHeight))
 
-	def createImage:
+	def createImage():
 		
 		time = datetime.datetime.now()
 	
@@ -89,14 +89,13 @@ def run():
 
 	matrix = RGBMatrix(32, 3, 3)
 	canvas = matrix.CreateFrameCanvas()
-	clock	= Clock();
+	clock  = Clock();
 	
 	while True:
 		clock.createImage()
 		clock.displayImage(canvas);
 		
 		canvas = matrix.SwapOnVSync(canvas)
-		
 		time.sleep(0.1)
 		
 
