@@ -86,7 +86,7 @@ def run():
 	clock  = Clock();
 	
 	while True:
-		image = clock.createImage()
+		image = clock.createImage
 
 		for y in range(0, 96):
 			for x in range(0, 96):
