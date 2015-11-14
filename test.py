@@ -36,7 +36,7 @@ def renderClockImage():
 	return matrixImage
 
 
-def displayImageOnCanvas(image, canvas):
+def renderImageOnCanvas(image, canvas):
 
 	for y in range(0, 96):
 		for x in range(0, 96):
