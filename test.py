@@ -52,7 +52,7 @@ def displayImage(image):
 
 	for y in range(0, 96):
 		for x in range(0, 96):
-			red, green, blue = image.getpixel((x, y))
+			red, green, blue = image.getpixel(x, y)
 			matrix.SetPixel(x, y, red, green, blue)
 			
 	time.sleep(100)
