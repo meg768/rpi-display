@@ -8,7 +8,7 @@ from PIL import Image
 import time
 from rgbmatrix import RGBMatrix
 
-def test():
+def test(argv):
 	
 	matrix = RGBMatrix(32, 3, 3)
 	matrix.Fill(255, 255, 0)
@@ -56,5 +56,5 @@ def main(argv):
 
      
 
-#main(sys.argv[1:])
-test()
+main(sys.argv[1:])
+#test(sys.argv[1:])
