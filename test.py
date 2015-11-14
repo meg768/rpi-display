@@ -14,7 +14,6 @@ class Clock:
 	matrixHeight = 96
 
 	clock = Image.open("./images/clock/clock1.png")
-	image = Image.new("RGBA", (matrixWidth, matrixHeight))
 
 	def createImage():
 		
@@ -42,19 +41,17 @@ class Clock:
 
 
 
-def renderClockImage():
+def renderClockImage(template):
 	matrixWidth  = 96
 	matrixHeight = 96
 	
 	time = datetime.datetime.now()
 
-	clock = Image.open("./images/clock/clock1.png")
-
-	backgroundImage = clock.crop((matrixWidth * 0, 0, matrixWidth * 0 + matrixWidth, matrixHeight))
-	foregroundImage = clock.crop((matrixWidth * 1, 0, matrixWidth * 1 + matrixWidth, matrixHeight))
-	hoursImage		 = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
-	minutesImage	 = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
-	secondsImage	 = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
+	backgroundImage  = template.crop((matrixWidth * 0, 0, matrixWidth * 0 + matrixWidth, matrixHeight))
+	foregroundImage  = template.crop((matrixWidth * 1, 0, matrixWidth * 1 + matrixWidth, matrixHeight))
+	hoursImage		 = template.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
+	minutesImage	 = template.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
+	secondsImage	 = template.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
 
 	# Rotate clock 
 	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0), Image.BICUBIC)
@@ -83,10 +80,10 @@ def run():
 
 	matrix = RGBMatrix(32, 3, 3)
 	canvas = matrix.CreateFrameCanvas()
-	clock  = Clock();
+	template = Image.open("./images/clock/clock1.png")
 	
 	while True:
-		image = clock.createImage
+		image = renderClockImage(template);
 
 		for y in range(0, 96):
 			for x in range(0, 96):
@@ -98,8 +95,9 @@ def run():
 		
 
 def test():
-	
-	image = renderClockImage();
+	template = Image.open("./images/clock/clock1.png")
+
+	image = renderClockImage(template);
 	image.save("clock.png");	
 
 
