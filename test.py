@@ -2,11 +2,9 @@
 # coding=utf-8
 
 
-import sys, getopt, logging
+import sys, getopt, logging, datetime
 
-import Image
-import ImageDraw
-import ImageFont
+from PIL import Image
 import time
 
 
@@ -25,6 +23,7 @@ def main(argv):
 	logger = logging.getLogger(__name__)	
 	
 	
+	time = datetime.datetime.now()
 	matrixImage = Image.new("RGBA", (matrixWidth, matrixHeight)) 
 
 	backgroundImage = Image.open("./images/clock/bg.png")
@@ -34,9 +33,10 @@ def main(argv):
 	hoursImage = Image.open("./images/clock/hours.png")
 	secondsImage = Image.open("./images/clock/seconds.png")
 	
-	secondsImage = secondsImage.rotate(45)
-	hoursImage = hoursImage.rotate(10)
-	minutesImage = minutesImage.rotate(-75)
+
+	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0))
+	hoursImage = hoursImage.rotate(-360.0 * ((time.hour % 12) * 60 + time.minute) / (12.0 * 60.0))
+	minutesImage = minutesImage.rotate(-360.0 * (time.minute / 60.0))
 
 	matrixImage.paste(backgroundImage, [0, 0, 96, 96], backgroundImage)
 	matrixImage.paste(hoursImage, [0, 0, 96, 96], hoursImage)
