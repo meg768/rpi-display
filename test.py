@@ -92,7 +92,7 @@ def run():
 	clock  = Clock();
 	
 	while True:
-		clock.createImage()
+		clock.createImage
 		clock.displayImage(canvas);
 		
 		canvas = matrix.SwapOnVSync(canvas)
