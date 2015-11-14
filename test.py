@@ -48,32 +48,6 @@ def clockImage():
 
 
 
-
-
-
-
-
-
-  offsetCanvas = self.matrix.CreateFrameCanvas()
-
-        while True:
-            rotation += 1
-            rotation %= 360
-
-            for x in range(int(min_rotate), int(max_rotate)):
-                for y in range(int(min_rotate), int(max_rotate)):
-                    ret = self.Rotate(x - cent_x, y - cent_x, deg_to_rad * rotation)
-                    rot_x = ret["new_x"]
-                    rot_y = ret["new_y"]
-
-                    if x >= min_display and x < max_display  and y >= min_display and y < max_display:
-                        offsetCanvas.SetPixel(rot_x + cent_x, rot_y + cent_y, self.scale_col(x, min_display, max_display), 255 - self.scale_col(y, min_display, max_display), self.scale_col(y, min_display, max_display))
-                    else:
-                        offsetCanvas.SetPixel(rot_x + cent_x, rot_y + cent_y, 0, 0, 0)
-
-            offsetCanvas = self.matrix.SwapOnVSync(offsetCanvas)
-
-
 def displayImage(image):
 		
 	from rgbmatrix import RGBMatrix
