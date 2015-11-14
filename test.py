@@ -22,9 +22,9 @@ class Clock:
 	
 		backgroundImage = clock.crop((matrixWidth * 0, 0, matrixWidth * 0 + matrixWidth, matrixHeight))
 		foregroundImage = clock.crop((matrixWidth * 1, 0, matrixWidth * 1 + matrixWidth, matrixHeight))
-		hoursImage      = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
-		minutesImage    = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
-		secondsImage    = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
+		hoursImage	  = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
+		minutesImage	  = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
+		secondsImage	  = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
 	
 		# Rotate clock 
 		secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0), Image.BICUBIC)
@@ -58,9 +58,9 @@ def renderClockImage():
 
 	backgroundImage = clock.crop((matrixWidth * 0, 0, matrixWidth * 0 + matrixWidth, matrixHeight))
 	foregroundImage = clock.crop((matrixWidth * 1, 0, matrixWidth * 1 + matrixWidth, matrixHeight))
-	hoursImage      = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
-	minutesImage    = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
-	secondsImage    = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
+	hoursImage		 = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
+	minutesImage	 = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
+	secondsImage	 = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
 
 	# Rotate clock 
 	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0), Image.BICUBIC)
@@ -89,13 +89,13 @@ def run():
 
 	matrix = RGBMatrix(32, 3, 3)
 	canvas = matrix.CreateFrameCanvas()
-	clock  = Clock();
+	clock	= Clock();
 	
 	while True:
 		clock.createImage()
 		clock.displayImage(canvas);
 		
-        canvas = matrix.SwapOnVSync(canvas)
+		canvas = matrix.SwapOnVSync(canvas)
 		
 		time.sleep(0.1)
 		
@@ -110,11 +110,11 @@ def test():
 def main(argv):
 	matrixWidth  = 96
 	matrixHeight = 96
-	fileName     = "adafruit.png"
-	repeats      = 1
-	delay        = 22
-	pwm          = 8
-	hold         = 0
+	fileName	  = "adafruit.png"
+	repeats	  = 1
+	delay		  = 22
+	pwm		  = 8
+	hold		  = 0
 	
 	#logging.basicConfig(filename='example.log',level=logging.DEBUG)
 
@@ -128,9 +128,9 @@ def main(argv):
 
 	backgroundImage = clock.crop((matrixWidth * 0, 0, matrixWidth * 0 + matrixWidth, matrixHeight))
 	foregroundImage = clock.crop((matrixWidth * 1, 0, matrixWidth * 1 + matrixWidth, matrixHeight))
-	hoursImage      = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
-	minutesImage    = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
-	secondsImage    = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
+	hoursImage		 = clock.crop((matrixWidth * 2, 0, matrixWidth * 2 + matrixWidth, matrixHeight))
+	minutesImage	 = clock.crop((matrixWidth * 3, 0, matrixWidth * 3 + matrixWidth, matrixHeight))
+	secondsImage	 = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
 	
 
 	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0), Image.BICUBIC)
@@ -145,7 +145,7 @@ def main(argv):
 	matrixImage.save("./test.png")
 	
 
-     
+	 
 
 #test()
 run();
