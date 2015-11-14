@@ -54,7 +54,7 @@ def run():
 		image = renderClockImage()
 		renderImageOnCanvas(image, canvas)
 		canvas = matrix.SwapOnVSync(canvas)
-		time.sleep(0.7)
+		time.sleep(0.1)
 		
 
 def test():
