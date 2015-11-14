@@ -6,7 +6,17 @@ import sys, getopt, logging, datetime
 
 from PIL import Image
 import time
+from rgbmatrix import RGBMatrix
 
+def test():
+	
+	rows = 16
+	chains = 1
+	parallel = 2
+	myMatrix = RGBMatrix(32, 3, 3)
+	myMatrix.Fill(255, 0, 0)
+	time.sleep(5)
+	myMatrix.Clear()	
 
 
 def main(argv):
@@ -49,5 +59,5 @@ def main(argv):
 
      
 
-main(sys.argv[1:])
-
+#main(sys.argv[1:])
+test()
