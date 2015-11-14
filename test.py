@@ -16,7 +16,7 @@ class Clock:
 	clock = Image.open("./images/clock/clock1.png")
 	image = Image.new("RGBA", (matrixWidth, matrixHeight))
 
-	def createImage():
+	def createImage:
 		
 		time = datetime.datetime.now()
 	
