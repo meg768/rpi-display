@@ -93,7 +93,7 @@ def run():
 	
 	while True:
 		clock.createImage
-		clock.displayImage(canvas)
+		clock.displayImage canvas
 		
 		canvas = matrix.SwapOnVSync(canvas)
 		time.sleep(0.1)
