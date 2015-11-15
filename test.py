@@ -42,8 +42,8 @@ class Clock:
 
 
 def renderClockImage(template):
-	matrixWidth  = 96
-	matrixHeight = 96
+	matrixWidth  = 512
+	matrixHeight = 512
 	
 	time = datetime.datetime.now()
 
@@ -58,13 +58,15 @@ def renderClockImage(template):
 	hoursImage = hoursImage.rotate(-360.0 * ((time.hour % 12) * 60 + time.minute) / (12.0 * 60.0), Image.BICUBIC)
 	minutesImage = minutesImage.rotate(-360.0 * (time.minute / 60.0), Image.BICUBIC)
 
-	matrixImage = Image.new("RGB", (matrixWidth, matrixHeight), "black") 
-	matrixImage.paste(backgroundImage, [0, 0, 96, 96], backgroundImage)
-	matrixImage.paste(hoursImage, [0, 0, 96, 96], hoursImage)
-	matrixImage.paste(minutesImage, [0, 0, 96, 96], minutesImage)
-	matrixImage.paste(secondsImage, [0, 0, 96, 96], secondsImage)
-	matrixImage.paste(foregroundImage, [0, 0, 96, 96], foregroundImage)
-	return matrixImage
+	matrixImage = Image.new("RGBA", (matrixWidth, matrixHeight), "black") 
+	matrixImage.paste(backgroundImage, [0, 0, matrixWidth, matrixWidth], backgroundImage)
+	matrixImage.paste(hoursImage, [0, 0, matrixWidth, matrixWidth], hoursImage)
+	matrixImage.paste(minutesImage, [0, 0, matrixWidth, matrixWidth], minutesImage)
+	matrixImage.paste(secondsImage, [0, 0, matrixWidth, matrixWidth], secondsImage)
+	matrixImage.paste(foregroundImage, [0, 0, matrixWidth, matrixWidth], foregroundImage)
+
+	return matrixImage.thumbnail((96, 96))
+	#return matrixImage
 
 
 def renderImageOnCanvas(image, canvas):
