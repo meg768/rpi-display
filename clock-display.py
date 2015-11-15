@@ -173,4 +173,4 @@ def test():
 
 
 #run("black")
-runV2("swiss-red-white")
+runV2("swiss-blue")
