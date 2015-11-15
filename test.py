@@ -6,7 +6,7 @@ import sys, getopt, logging, datetime
 
 from PIL import Image
 import time
-
+import math
 
 class Clock:
 
@@ -99,7 +99,7 @@ def buildClockImage(backgroundImage, foregroundImage, hoursImage, minutesImage, 
 	 
 	time = datetime.datetime.now()
 
-	hoursIndex     = ((time.hour % 12) * 60 + time.minute) / 12 
+	hoursIndex     = math.floor(((time.hour % 12) * 60 + time.minute) / 12) 
 	minutesIndex   = time.minute
 	secondsIndex   = time.second
 	
