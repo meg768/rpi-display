@@ -80,7 +80,7 @@ def run():
 
 	matrix = RGBMatrix(32, 3, 3)
 	canvas = matrix.CreateFrameCanvas()
-	template = Image.open("./images/clock/clock1.png")
+	template = Image.open("./images/clock/swiss.png")
 	
 	while True:
 		image = renderClockImage(template);
