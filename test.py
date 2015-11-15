@@ -42,8 +42,8 @@ class Clock:
 
 
 def renderClockImage(template):
-	matrixWidth  = 192*2
-	matrixHeight = 192*2
+	matrixWidth  = 96*5
+	matrixHeight = 96*5
 	
 	time = datetime.datetime.now()
 
