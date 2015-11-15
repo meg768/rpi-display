@@ -84,7 +84,15 @@ def run():
 	
 	while True:
 		image = renderClockImage(template);
-		renderImageOnCanvas(image, canvas)
+		
+
+		for y in range(0, 96):
+			for x in range(0, 96):
+				rgb = image.getpixel((x, y))
+				canvas.SetPixel(x, y, rgb[0], rgb[1], rgb[2])
+
+		canvas = matrix.SwapOnVSync(canvas)
+		#time.sleep(0.01)
 		
 
 def test():
