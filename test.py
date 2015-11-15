@@ -65,8 +65,8 @@ def renderClockImage(template):
 	matrixImage.paste(secondsImage, [0, 0, matrixWidth, matrixWidth], secondsImage)
 	matrixImage.paste(foregroundImage, [0, 0, matrixWidth, matrixWidth], foregroundImage)
 
-	return matrixImage.thumbnail((96, 96))
-	#return matrixImage
+	matrixImage.thumbnail((96, 96))
+	return matrixImage
 
 
 def renderImageOnCanvas(image, canvas):
