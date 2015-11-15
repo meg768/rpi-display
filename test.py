@@ -103,6 +103,8 @@ def buildClockImage(backgroundImage, foregroundImage, hoursImage, minutesImage, 
 	minutesIndex   = time.minute
 	secondsIndex   = time.second
 	
+	print(secondsIndex)
+	
 	hoursImage		 = hoursImage.crop((width * hoursIndex, 0, width * (hoursIndex + 1), height))
 	minutesImage	 = minutesImage.crop((width * minutesIndex, 0, width * (minutesIndex + 1), height))
 	secondsImage	 = secondsImage.crop((width * secondsIndex, 0, width * (secondsIndex + 1), height))
