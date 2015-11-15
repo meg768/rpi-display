@@ -84,7 +84,7 @@ def generateRotatedImages(image):
 
 	out = Image.new("RGBA", (image.width * 60, image.height)) 
 	
-	for index in range(0, 59):
+	for index in range(0, 60):
 		tmpimage = image.rotate(-360.0 * (index / 60.0), Image.BICUBIC)
 		out.paste(tmpimage, [index * image.width, 0, (index + 1) * image.width, image.height])
 
@@ -102,8 +102,6 @@ def buildClockImage(backgroundImage, foregroundImage, hoursImage, minutesImage, 
 	hoursIndex     = int(math.floor(((time.hour % 12) * 60 + time.minute) / 12)) 
 	minutesIndex   = time.minute
 	secondsIndex   = time.second
-	
-	print(secondsIndex)
 	
 	hoursImage		 = hoursImage.crop((width * hoursIndex, 0, width * (hoursIndex + 1), height))
 	minutesImage	 = minutesImage.crop((width * minutesIndex, 0, width * (minutesIndex + 1), height))
