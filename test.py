@@ -54,9 +54,9 @@ def renderClockImage(template):
 	secondsImage	 = template.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
 
 	# Rotate clock 
-	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0))
-	hoursImage = hoursImage.rotate(-360.0 * ((time.hour % 12) * 60 + time.minute) / (12.0 * 60.0))
-	minutesImage = minutesImage.rotate(-360.0 * (time.minute / 60.0))
+	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0), Image.BICUBIC)
+	hoursImage = hoursImage.rotate(-360.0 * ((time.hour % 12) * 60 + time.minute) / (12.0 * 60.0), Image.BICUBIC)
+	minutesImage = minutesImage.rotate(-360.0 * (time.minute / 60.0), Image.BICUBIC)
 
 	matrixImage = Image.new("RGBA", (matrixWidth, matrixHeight)) 
 	matrixImage.paste(backgroundImage, [0, 0, 96, 96], backgroundImage)
