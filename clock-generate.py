@@ -92,10 +92,10 @@ def generate():
 	template = Image.open("./template.png")
 	
 	backgroundImage  = template.crop((template.height * 0, 0, template.height * 1, template.height))
-	foregroundImage  = template.crop((template.height * 1, 0, template.height * 2, template.height))
-	hoursImage       = template.crop((template.height * 2, 0, template.height * 3, template.height))
-	minutesImage     = template.crop((template.height * 3, 0, template.height * 4, template.height))
-	secondsImage     = template.crop((template.height * 4, 0, template.height * 5, template.height))
+	hoursImage       = template.crop((template.height * 1, 0, template.height * 2, template.height))
+	minutesImage     = template.crop((template.height * 2, 0, template.height * 3, template.height))
+	secondsImage     = template.crop((template.height * 3, 0, template.height * 4, template.height))
+	foregroundImage  = template.crop((template.height * 4, 0, template.height * 5, template.height))
 
 	hoursImage		 = generateRotatedImages(hoursImage)
 	minutesImage	 = generateRotatedImages(minutesImage)
