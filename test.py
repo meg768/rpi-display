@@ -58,7 +58,7 @@ def renderClockImage(template):
 	hoursImage = hoursImage.rotate(-360.0 * ((time.hour % 12) * 60 + time.minute) / (12.0 * 60.0), Image.BICUBIC)
 	minutesImage = minutesImage.rotate(-360.0 * (time.minute / 60.0), Image.BICUBIC)
 
-	matrixImage = Image.new("RGBA", (matrixWidth, matrixHeight)) 
+	matrixImage = Image.new("RGB", (matrixWidth, matrixHeight), "black") 
 	matrixImage.paste(backgroundImage, [0, 0, 96, 96], backgroundImage)
 	matrixImage.paste(hoursImage, [0, 0, 96, 96], hoursImage)
 	matrixImage.paste(minutesImage, [0, 0, 96, 96], minutesImage)
@@ -90,7 +90,7 @@ def run():
 		
 
 def test():
-	template = Image.open("./images/clock/clock2.png")
+	template = Image.open("./images/clock/swiss-red.png")
 
 	image = renderClockImage(template);
 	image.save("clock.png");	
@@ -99,5 +99,5 @@ def test():
 
 	 
 
-#test()
-run()
+test()
+#run()
