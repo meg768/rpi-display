@@ -99,7 +99,7 @@ def buildClockImage(backgroundImage, foregroundImage, hoursImage, minutesImage, 
 	 
 	time = datetime.datetime.now()
 
-	hoursIndex     = math.floor(((time.hour % 12) * 60 + time.minute) / 12) 
+	hoursIndex     = int(math.floor(((time.hour % 12) * 60 + time.minute) / 12)) 
 	minutesIndex   = time.minute
 	secondsIndex   = time.second
 	
