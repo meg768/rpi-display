@@ -76,7 +76,7 @@ def buildClockImage(backgroundImage, foregroundImage, hoursImage, minutesImage, 
 	minutesImage	 = minutesImage.crop((width * minutesIndex, 0, width * (minutesIndex + 1), height))
 	secondsImage	 = secondsImage.crop((width * secondsIndex, 0, width * (secondsIndex + 1), height))
 
-	clockImage = Image.new("RGBA", (width, height), "black")
+	clockImage = Image.new("RGB", (width, height), "black")
 	clockImage.paste(backgroundImage, [0, 0, width, height], backgroundImage)
 	clockImage.paste(hoursImage, [0, 0, width, height], hoursImage)
 	clockImage.paste(minutesImage, [0, 0, width, height], minutesImage)
