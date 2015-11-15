@@ -148,4 +148,4 @@ def test():
 	clockImage.save("out/clock.png")
 
 
-run("swiss-red")
+run("black")
