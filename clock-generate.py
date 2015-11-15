@@ -114,6 +114,55 @@ def generate():
 	secondsImage.save("out/seconds.png")
 	
 
+def generateV2():
+	
+	template = Image.open("./template.png")
+
+	width  = template.width / 5
+	height = template.height
+	
+	backgroundImage  = template.crop((width * 0, 0, width * 1, height))
+	hoursImage       = template.crop((width * 1, 0, width * 2, height))
+	minutesImage     = template.crop((width * 2, 0, width * 3, height))
+	secondsImage     = template.crop((width * 3, 0, width * 4, height))
+	foregroundImage  = template.crop((width * 4, 0, width * 5, height))
+
+	hoursImages		 = generateRotatedImages(hoursImage)
+	minutesImages	 = generateRotatedImages(minutesImage)
+	secondsImages	 = generateRotatedImages(secondsImage)
+	
+	clockImage = Image.new("RGBA", (width * (60 + 60 + 60 + 2), height))
+	
+	clockImage.paste(backgroundImage, [0, 0, width, height], backgroundImage)
+	
+	offset = 1
+	
+	for index in range(0, 60):
+		image = hoursImages.crop([index * width, 0, (index + 1) * width, height])
+		clockImage.paste(image, [width * (offset + index), 0, width * (offset + index + 1), height], image)
+		
+	offset += 60
+
+	for index in range(0, 60):
+		image = minutesImages.crop([index * width, 0, (index + 1) * width, height])
+		clockImage.paste(image, [width * (offset + index), 0, width * (offset + index + 1), height], image)
+		
+	offset += 60
+
+	for index in range(0, 60):
+		image = secondsImages.crop([index * width, 0, (index + 1) * width, height])
+		clockImage.paste(image, [width * (offset + index), 0, width * (offset + index + 1), height], image)
+
+	offset += 1
+
+	clockImage.paste(foregroundImage, [width * (offset + index), 0, width * (offset + index + 1), height], foregroundImage)
+		
+
+	clockImage = clockImage.resize((96*(60+60+60+2), 96), Image.BICUBIC)
+	clockImage.save("clockv2.png")
+	return clockImage
+	
+
 
 
 def run(name):
@@ -147,4 +196,4 @@ def test():
 
 	clockImage.save("out/clock.png")
 
-generate()
+generateV2()

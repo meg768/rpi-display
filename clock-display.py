@@ -115,6 +115,30 @@ def generate():
 	
 
 
+def runV2():
+	from rgbmatrix import RGBMatrix
+
+	matrix = RGBMatrix(32, 3, 3)
+	canvas = matrix.CreateFrameCanvas()
+
+	image  = Image.open("./clockv2.png")
+	count  = image.width / image.height
+	width  = image.width / count
+	height = image.height
+	
+	backgroundImage = image.crop([0, 0, width, height])
+	foregroundImage = image.crop([width * (60 + 60 + 60 + 1), 0, width * (60 + 60 + 60 + 2), height])
+
+	hoursImage    = image.crop([width * 2, 0, width * 62, height])
+	minutesImages = image.crop([width * (2 + 60), 0, width * (2 + 60 + 60), height])
+	secondsImages = image.crop([width * (2 + 60 + 60 ), 0, width * (2 + 60 + 60 + 60), height])
+	
+	while True:
+		clockImage = buildClockImage(backgroundImage, foregroundImage, hoursImage, minutesImage, secondsImage)
+		renderImageOnCanvas(clockImage, canvas)
+		canvas = matrix.SwapOnVSync(canvas)
+		time.sleep(0.1)
+
 
 def run(name):
 	from rgbmatrix import RGBMatrix
@@ -148,4 +172,5 @@ def test():
 	clockImage.save("out/clock.png")
 
 
-run("black")
+#run("black")
+runV2()
