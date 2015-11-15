@@ -128,9 +128,9 @@ def main(argv):
 	secondsImage	 = clock.crop((matrixWidth * 4, 0, matrixWidth * 4 + matrixWidth, matrixHeight))
 	
 
-	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0), Image.NEAREST)
-	hoursImage = hoursImage.rotate(-360.0 * ((time.hour % 12) * 60 + time.minute) / (12.0 * 60.0), Image.NEAREST)
-	minutesImage = minutesImage.rotate(-360.0 * (time.minute / 60.0), Image.NEAREST)
+	secondsImage = secondsImage.rotate(-360.0 * (time.second / 60.0), Image.BILINEAR)
+	hoursImage = hoursImage.rotate(-360.0 * ((time.hour % 12) * 60 + time.minute) / (12.0 * 60.0), Image.BILINEAR)
+	minutesImage = minutesImage.rotate(-360.0 * (time.minute / 60.0), Image.BILINEAR)
 
 	matrixImage.paste(backgroundImage, [0, 0, 96, 96], backgroundImage)
 	matrixImage.paste(hoursImage, [0, 0, 96, 96], hoursImage)
