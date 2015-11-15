@@ -159,7 +159,7 @@ def generateV2():
 		
 
 	clockImage = clockImage.resize((96*(60+60+60+2), 96), Image.BICUBIC)
-	clockImage.save("clockv2.png")
+	clockImage.save("template-result.png")
 	return clockImage
 	
 

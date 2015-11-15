@@ -115,13 +115,13 @@ def generate():
 	
 
 
-def runV2():
+def runV2(name):
 	from rgbmatrix import RGBMatrix
 
 	matrix = RGBMatrix(32, 3, 3)
 	canvas = matrix.CreateFrameCanvas()
 
-	image  = Image.open("./clockv2.png")
+	image  = Image.open("./images/clocks/" + name + ".png")
 	count  = image.width / image.height
 	width  = image.width / count
 	height = image.height
@@ -173,4 +173,4 @@ def test():
 
 
 #run("black")
-runV2()
+runV2("swiss")
