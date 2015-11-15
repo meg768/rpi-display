@@ -99,5 +99,5 @@ def test():
 
 	 
 
-test()
-#run()
+#test()
+run()
