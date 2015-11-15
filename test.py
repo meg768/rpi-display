@@ -42,8 +42,8 @@ class Clock:
 
 
 def renderClockImage(template):
-	matrixWidth  = 512
-	matrixHeight = 512
+	matrixWidth  = 192
+	matrixHeight = 192
 	
 	time = datetime.datetime.now()
 
@@ -88,7 +88,7 @@ def run():
 		image = renderClockImage(template);
 		renderImageOnCanvas(image, canvas)
 		canvas = matrix.SwapOnVSync(canvas)
-		time.sleep(0.3)
+		time.sleep(0.1)
 		
 
 def test():
