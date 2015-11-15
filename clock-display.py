@@ -129,9 +129,9 @@ def runV2():
 	backgroundImage = image.crop([0, 0, width, height])
 	foregroundImage = image.crop([width * (60 + 60 + 60 + 1), 0, width * (60 + 60 + 60 + 2), height])
 
-	hoursImage    = image.crop([width * 2, 0, width * 62, height])
-	minutesImages = image.crop([width * (2 + 60), 0, width * (2 + 60 + 60), height])
-	secondsImages = image.crop([width * (2 + 60 + 60 ), 0, width * (2 + 60 + 60 + 60), height])
+	hoursImage   = image.crop([width * 2, 0, width * 62, height])
+	minutesImage = image.crop([width * (2 + 60), 0, width * (2 + 60 + 60), height])
+	secondsImage = image.crop([width * (2 + 60 + 60 ), 0, width * (2 + 60 + 60 + 60), height])
 	
 	while True:
 		clockImage = buildClockImage(backgroundImage, foregroundImage, hoursImage, minutesImage, secondsImage)
