@@ -101,11 +101,11 @@ def generate():
 	minutesImage	 = generateRotatedImages(minutesImage)
 	secondsImage	 = generateRotatedImages(secondsImage)
 	
-	backgroundImage  = backgroundImage.resize((96, 96), Image.ANTIALIAS)
-	foregroundImage  = foregroundImage.resize((96, 96), Image.ANTIALIAS)
-	hoursImage       = hoursImage.resize((96 * 60, 96), Image.ANTIALIAS)
-	minutesImage     = minutesImage.resize((96 * 60, 96), Image.ANTIALIAS)
-	secondsImage     = secondsImage.resize((96 * 60, 96), Image.ANTIALIAS)
+	backgroundImage  = backgroundImage.resize((96, 96), Image.BICUBIC)
+	foregroundImage  = foregroundImage.resize((96, 96), Image.BICUBIC)
+	hoursImage       = hoursImage.resize((96 * 60, 96), Image.BICUBIC)
+	minutesImage     = minutesImage.resize((96 * 60, 96), Image.BICUBIC)
+	secondsImage     = secondsImage.resize((96 * 60, 96), Image.BICUBIC)
 	
 	backgroundImage.save("out/background.png")
 	foregroundImage.save("out/foreground.png")
