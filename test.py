@@ -88,7 +88,7 @@ def run():
 		image = renderClockImage(template);
 		renderImageOnCanvas(image, canvas)
 		canvas = matrix.SwapOnVSync(canvas)
-		#time.sleep(0.01)
+		time.sleep(0.3)
 		
 
 def test():
