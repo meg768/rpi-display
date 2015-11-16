@@ -10,6 +10,10 @@ class ClockAnimation : public Animation {
 	
 public:
 	ClockAnimation(Matrix *matrix) : Animation(matrix) {
+		_imageWidth  = 0;
+		_imageHeight = 0;
+		_frameWidth  = 0;
+		_frameHeight = 0;
 	}
 	
 	void fileName(const char *value) {
@@ -17,15 +21,23 @@ public:
 		image.read(value);
 		
 		_image = image;
+
+		_imageWidth = _image.columns();
+		_imageHeight = _image.rows();
+		
+		_frameWidth = _imageWidth / (60 + 60 + 60 + 2);
+		_frameHeight = _imageHeight;
+		
+	
 	}
 
 	void createImage(Magick::Image &image, int offset) {
 	
-		Magick::Image img(Magick::Geometry(96, 96), "transparent");
+		Magick::Image img(Magick::Geometry(_frameWidth, _frameHeight), "transparent");
 		img.magick("RGBA");
 		
-		const Magick::PixelPacket *src = _image.getConstPixels(96 * offset, 0, 96, 96);
-		Magick::PixelPacket *dst = img.setPixels(0, 0, 96, 96);
+		const Magick::PixelPacket *src = _image.getConstPixels(_frameWidth * offset, 0, _frameWidth, _frameWidth);
+		Magick::PixelPacket *dst = img.setPixels(0, 0, _frameWidth, _frameHeight);
 
 		for (int i = 0; i < 9216; i++)
 			*dst++ = *src++;
@@ -39,21 +51,13 @@ public:
 		time_t t = time(0);
 		struct tm *now = localtime(&t);
 
-		int imageWidth = _image.columns();
-		int imageHeight = _image.rows();
-		
-		int frameWidth = imageWidth / (60 + 60 + 60 + 2);
-		int frameHeight = imageHeight;
-		
-		Magick::Image image(Magick::Geometry(frameWidth, frameHeight), "black");
+		Magick::Image image(Magick::Geometry(_frameWidth, _frameHeight), "black");
 
 		int bgIndex      = 0;
 		int hoursIndex   = 1 + (((now->tm_hour % 12) * 60) + now->tm_min) / 12;
 		int minutesIndex = 1 + 60 + now->tm_min;
 		int secondsIndex = 1 + 60 + 60 + now->tm_sec;
 		int fgIndex      = 1 + 60 + 60 + 60;
-
-		//printf("%d %d %d\n", hoursIndex, minutesIndex, secondsIndex);
 
 		Magick::Image img;
 		
@@ -78,6 +82,8 @@ public:
 	
 protected:
 	Magick::Image _image;
+	int _frameWidth, _frameHeight;
+	int _imageWidth, _imageHeight;
 };
 
 
