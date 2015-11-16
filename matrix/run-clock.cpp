@@ -112,7 +112,7 @@ int main (int argc, char *argv[])
 				matrix.config(optarg);
 				break;
 			case 'z':
-				matrix.delay(atof(optarg));
+				animation.delay(atof(optarg));
 				break;
 			case 'd':
 				animation.duration(atoi(optarg));
