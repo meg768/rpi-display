@@ -35,11 +35,17 @@ public:
 		// Add background
 		image.composite(_image, 0, 0, Magick::OverCompositeOp);
 
-		// Add hour
-		image.composite(_image, frameWidth * ((now->tm_hour % 12) + 1), 0, Magick::OverCompositeOp);
+		int bgIndex      = 0;
+		int hoursIndex   = 1 + (now->tm_hour % 12);
+		int minutesIndex = 1 + 60 + now->tm_min;
+		int secondsIndex = 1 + 60 + 60 + 7;
+		int fgIndex      = 1 + 60 + 60 + 60;
 
-		// Add minute
-		image.composite(_image, frameWidth * ((now->tm_hour % 12) + 60 + 1), 0, Magick::OverCompositeOp);
+		image.composite(_image, frameWidth * bgIndex, 0, Magick::OverCompositeOp);
+		image.composite(_image, frameWidth * hoursIndex, 0, Magick::OverCompositeOp);
+		image.composite(_image, frameWidth * minutesIndex, 0, Magick::OverCompositeOp);
+		image.composite(_image, frameWidth * secondsIndex, 0, Magick::OverCompositeOp);
+		image.composite(_image, frameWidth * fgIndex, 0, Magick::OverCompositeOp);
 
 		_matrix->drawImage(image);
 		_matrix->refresh();
