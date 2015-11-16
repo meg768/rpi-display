@@ -48,12 +48,12 @@ public:
 		Magick::Image image(Magick::Geometry(frameWidth, frameHeight), "black");
 
 		int bgIndex      = 0;
-		int hoursIndex   = 1 + (now->tm_hour % 12);
+		int hoursIndex   = 1 + (((now->tm_hour % 12) * 60) + now->tm_min) / 12;
 		int minutesIndex = 1 + 60 + now->tm_min;
-		int secondsIndex = 1 + 60 + 60 + 7;
+		int secondsIndex = 1 + 60 + 60 + now->tm_sec;
 		int fgIndex      = 1 + 60 + 60 + 60;
 
-		//printf("%d %d %d %d\n", frameWidth, frameHeight, imageWidth, imageHeight);
+		//printf("%d %d %d\n", hoursIndex, minutesIndex, secondsIndex);
 
 		Magick::Image img;
 		
