@@ -55,17 +55,26 @@ public:
 		return false;
 	}
 	
-	virtual int run() {
+	virtual void init() {
 		_matrix->init();
 		_matrix->clear();
 		_matrix->refresh();
+	}
+	
+	virtual void cleanup() {
+		_matrix->clear();
+		_matrix->refresh();
+	}
+	
+	virtual int run() {
+
+		init();
 		
 		while (!expired()) {
 			loop();
 		}
-		
-		_matrix->clear();
-		_matrix->refresh();
+	
+		cleanup();
 		
 		return 0;
 		

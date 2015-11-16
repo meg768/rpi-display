@@ -15,33 +15,50 @@ public:
 		_frameWidth  = 0;
 		_frameHeight = 0;
 	}
-	
-	void fileName(const char *value) {
-		Magick::Image image;
-		image.read(value);
-		
-		_image = image;
 
-		_imageWidth = _image.columns();
-		_imageHeight = _image.rows();
-		
-		_frameWidth = _imageWidth / (60 + 60 + 60 + 2);
-		_frameHeight = _imageHeight;
+	void fileName(const char *value) {
+
+		_fileName = value;
 	}
 
 	void extractFrame(Magick::Image &image, int offset) {
-	
+		
 		Magick::Image frame(Magick::Geometry(_frameWidth, _frameHeight), "transparent");
 		frame.magick("RGBA");
 		
 		const Magick::PixelPacket *src = _image.getConstPixels(_frameWidth * offset, 0, _frameWidth, _frameHeight);
 		Magick::PixelPacket *dst = frame.setPixels(0, 0, _frameWidth, _frameHeight);
-
+		
 		memcpy(dst, src, _frameWidth * _frameHeight * sizeof(Magick::PixelPacket));
-
+		
 		frame.syncPixels();
 		
 		image = frame;
+	}
+	
+	virtual void init() {
+
+		Animation::init();
+		
+		Magick::Image image;
+		image.read(_fileName.c_str());
+		
+		Matrix *matrix = Animation::matrix();
+		
+		int matrixHeight = matrix->height();
+		int imageWidth   = image.columns();
+		int imageHeight  = image.rows();
+		
+		if (imageHeight ! matrixHeight)
+			image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
+		
+		_image = image;
+		
+		_imageWidth = _image.columns();
+		_imageHeight = _image.rows();
+		
+		_frameWidth = _imageWidth / (60 + 60 + 60 + 2);
+		_frameHeight = _imageHeight;
 	}
 	
 	virtual void loop() {
@@ -81,6 +98,7 @@ public:
 	
 protected:
 	Magick::Image _image;
+	std::string _fileName;
 	int _frameWidth, _frameHeight;
 	int _imageWidth, _imageHeight;
 };
@@ -101,7 +119,7 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 	ClockAnimation animation(&matrix);
 
-	animation.delay(50);
+	animation.delay(100);
 	animation.duration(60);
 	
 	int option = 0, index = 0;
