@@ -5,29 +5,47 @@
 #include "include/image-animation.h"
 
 
-class ClockAnimation {
+class ClockAnimation : public Animation {
 
+	
+public:
+	ClockAnimation(Matrix *matrix) : Animation(matrix) {
+	}
+	
 	void fileName(const char *value) {
 		Magick::Image image;
 		image.read(value);
 		
-
-		// Convert transparent PNG:s
-		if (true) {
-			Magick::Image tmp(Magick::Geometry(image.columns(), image.rows()), "black");
-			tmp.composite(image, 0, 0, Magick::OverCompositeOp);
-			
-			image = tmp;
-		}
-		
 		_image = image;
+	}
+
+	
+	virtual void loop() {
+		time_t t = time(0);
+		struct tm *now = localtime(&t);
+
+		int imageWidth = _image.columns();
+		int imageHeight = _image.rows();
 		
+		int frameWidth = imageWidth / (60 + 60 + 60 + 2);
+		int frameHeight = imageHeight;
+		
+		Magick::Image image(Magick::Geometry(frameWidth, frameHeight), "black");
+
+		// Add background
+		image.composite(_image, 0, 0, Magick::OverCompositeOp);
+
+		// Add hour
+		image.composite(_image, frameWidth * ((now->tm_hour % 12) + 1), 0, Magick::OverCompositeOp);
+
+		// Add minute
+		image.composite(_image, frameWidth * ((now->tm_hour % 12) + 60 + 1), 0, Magick::OverCompositeOp);
+
+		_matrix->DrawImage(image);
 	}
 	
-	
-
+protected:
 	Magick::Image _image;
-
 };
 
 
@@ -44,12 +62,10 @@ int main (int argc, char *argv[])
 	Magick::InitializeMagick(*argv);
 	
 	Matrix matrix;
-
-	ImageAnimation animation(&matrix);
+	ClockAnimation animation(&matrix);
 
 	animation.delay(18.0);
-	animation.scroll("auto");
-	animation.duration(10);
+	animation.duration(60);
 	
 	int option = 0, index = 0;
 	
