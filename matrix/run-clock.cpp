@@ -19,6 +19,20 @@ public:
 		_image = image;
 	}
 
+	void createImage(Magick::Image &image, int offset) {
+	
+		Magick::Image img(Magick::Geometry(96, 96));
+		
+		const Magick::PixelPacket *src = _image.getConstPixels(96 * offset, 0, 96, 96);
+		const Magick::PixelPacket *dst = image.setPixels(0, 0, 96, 96);
+
+		for (int i = 0; i < 9216; i++)
+			*dst++ = *src++;
+
+		img.syncPixels();
+		
+		image = img;
+	}
 	
 	virtual void loop() {
 		time_t t = time(0);
@@ -32,22 +46,32 @@ public:
 		
 		Magick::Image image(Magick::Geometry(frameWidth, frameHeight), "black");
 
-
-		
 		int bgIndex      = 0;
 		int hoursIndex   = 1 + (now->tm_hour % 12);
 		int minutesIndex = 1 + 60 + now->tm_min;
 		int secondsIndex = 1 + 60 + 60 + 7;
 		int fgIndex      = 1 + 60 + 60 + 60;
 
-		printf("%d %d %d %d\n", frameWidth, frameHeight, imageWidth, imageHeight);
+		//printf("%d %d %d %d\n", frameWidth, frameHeight, imageWidth, imageHeight);
 
-		//image.composite(_image, frameWidth * bgIndex, 0, Magick::OverCompositeOp);
-		image.composite(_image, frameWidth * hoursIndex, 0, Magick::OverCompositeOp);
-		image.composite(_image, frameWidth * minutesIndex, 0, Magick::OverCompositeOp);
-		image.composite(_image, frameWidth * secondsIndex, 0, Magick::OverCompositeOp);
-		image.composite(_image, frameWidth * fgIndex, 0, Magick::OverCompositeOp);
+		Magick::Image img;
+		
+		createImage(img, fgIndex);
+		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
+		createImage(img, hoursIndex);
+		image.composite(img, 0, 0, Magick::OverCompositeOp);
+
+		createImage(img, minutesIndex);
+		image.composite(img, 0, 0, Magick::OverCompositeOp);
+
+		createImage(img, secondsIndex);
+		image.composite(img, 0, 0, Magick::OverCompositeOp);
+
+		createImage(img,fgIndex);
+		image.composite(img, 0, 0, Magick::OverCompositeOp);
+
+		
 		_matrix->drawImage(image);
 		_matrix->refresh();
 	}
