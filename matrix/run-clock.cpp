@@ -41,7 +41,8 @@ public:
 		// Add minute
 		image.composite(_image, frameWidth * ((now->tm_hour % 12) + 60 + 1), 0, Magick::OverCompositeOp);
 
-		_matrix->DrawImage(image);
+		_matrix->drawImage(image);
+		_matrix->refresh();
 	}
 	
 protected:
