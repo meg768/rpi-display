@@ -24,7 +24,7 @@ public:
 		Magick::Image img(Magick::Geometry(96, 96));
 		
 		const Magick::PixelPacket *src = _image.getConstPixels(96 * offset, 0, 96, 96);
-		const Magick::PixelPacket *dst = img.setPixels(0, 0, 96, 96);
+		Magick::PixelPacket *dst = img.setPixels(0, 0, 96, 96);
 
 		for (int i = 0; i < 9216; i++)
 			*dst++ = *src++;
