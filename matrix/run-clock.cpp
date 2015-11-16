@@ -24,7 +24,7 @@ public:
 		Magick::Image img(Magick::Geometry(96, 96));
 		
 		const Magick::PixelPacket *src = _image.getConstPixels(96 * offset, 0, 96, 96);
-		const Magick::PixelPacket *dst = image.setPixels(0, 0, 96, 96);
+		const Magick::PixelPacket *dst = img.setPixels(0, 0, 96, 96);
 
 		for (int i = 0; i < 9216; i++)
 			*dst++ = *src++;
@@ -56,7 +56,7 @@ public:
 
 		Magick::Image img;
 		
-		createImage(img, fgIndex);
+		createImage(img, bgIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
 		createImage(img, hoursIndex);
