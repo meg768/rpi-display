@@ -77,6 +77,8 @@ public:
 		
 		_matrix->drawImage(image);
 		_matrix->refresh();
+		
+		sleep();
 	}
 	
 protected:
