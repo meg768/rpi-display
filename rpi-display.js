@@ -213,18 +213,20 @@ function App() {
 		var hours = now.getHours();
 		var minutes = now.getMinutes();
 
-				
+		var animations = [];
+
+		if (config.matrix.config == '96x96') {
+			var cmd = {};
+			cmd.command = './matrix/run-clock';
+			cmd.args    = ['--file', './images/clocks/swiss-blue.png', '--config', config.matrix.config, '--duration', -1];
+			cmd.options = {};
+			
+			animations.push(cmd);
+		}
+		
 		if (hours >= 0 && hours <= 7) {
-			switch (next() % 2) {
-				case 0: {
-					matrix.start(matrix.perlin({mode:3, duration:-1}));
-					break;
-				};
-				case 1: {
-					matrix.start(matrix.rain({duration:-1}));
-					break;
-				};
-			}
+			animations.push(matrix.perlin({mode:3, duration:-1}));
+			animations.push(matrix.rain({duration:-1}));
 		}
 		else {
 			var options = {};
@@ -232,8 +234,11 @@ function App() {
 			options.duration = -1;
 			options.iterations = 10000;
 	
-			matrix.start(matrix.animation(options));
+			animations.push(matrix.animation(options));
+			
 		}
+
+		matrix.start(animations[next() % animations.length]);			
 	}
 	
 	
@@ -306,8 +311,10 @@ function App() {
 		
 		
 		if (args.config == '32x32') {
-			config.matrix.width = 32;
+			config.matrix.width  = 32;
 			config.matrix.height = 32;
+			config.matrix.config = '32x32';
+			
 			config.matrix.paths.animations = './animations/32x32';
 			config.matrix.paths.emojis = './images/emojis/32x32';
 
@@ -318,8 +325,9 @@ function App() {
 		}	
 
 		else if (args.config == '96x96') {
-			config.matrix.width = 96;
+			config.matrix.width  = 96;
 			config.matrix.height = 96;
+			config.matrix.config = '96x96';
 			
 			config.matrix.defaults.text.delay = 10;
 			config.matrix.defaults.text.size = 32;

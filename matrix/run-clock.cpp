@@ -2,7 +2,6 @@
 #include "include/matrix.h"
 #include "include/timer.h"
 #include "include/animation.h" 
-#include "include/image-animation.h"
 
 
 class ClockAnimation : public Animation {
@@ -17,7 +16,6 @@ public:
 	}
 
 	void fileName(const char *value) {
-
 		_fileName = value;
 	}
 
@@ -43,9 +41,7 @@ public:
 		Magick::Image image;
 		image.read(_fileName.c_str());
 		
-		Matrix *matrix = Animation::matrix();
-		
-		int matrixHeight = matrix->height();
+		int matrixHeight = _matrix->height();
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
 		
