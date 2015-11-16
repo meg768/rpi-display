@@ -63,7 +63,6 @@ public:
 		createImage(img, hoursIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
-		/*
 		createImage(img, minutesIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
@@ -72,7 +71,6 @@ public:
 
 		createImage(img,fgIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
-*/
 		
 		_matrix->drawImage(image);
 		_matrix->refresh();
