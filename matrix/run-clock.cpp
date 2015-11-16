@@ -101,15 +101,18 @@ int main (int argc, char *argv[])
 	Matrix matrix;
 	ClockAnimation animation(&matrix);
 
-	animation.delay(18.0);
+	animation.delay(50);
 	animation.duration(60);
 	
 	int option = 0, index = 0;
 	
-	while ((option = getopt_long_only(argc, argv, "x:f:d:", options, &index)) != -1) {
+	while ((option = getopt_long_only(argc, argv, "x:f:d:z:", options, &index)) != -1) {
 		switch (option) {
 			case 'x':
 				matrix.config(optarg);
+				break;
+			case 'z':
+				matrix.delay(atof(optarg));
 				break;
 			case 'd':
 				animation.duration(atoi(optarg));
