@@ -49,7 +49,7 @@ public:
 		int imageWidth   = image.columns();
 		int imageHeight  = image.rows();
 		
-		if (imageHeight ! matrixHeight)
+		if (imageHeight != matrixHeight)
 			image.sample(Magick::Geometry(int(double(imageWidth) * double(imageHeight) / double(matrixHeight)), matrixHeight));
 		
 		_image = image;
