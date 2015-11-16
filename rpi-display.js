@@ -15,10 +15,13 @@ var args     = minimist(process.argv.slice(2));
 function App() {
 
 	var _this = this;
-	var _counter = 0;
+	var _counter = {};
 	
-	function next() {
-		return _counter = (_counter + 1) % 100000;
+	function next(type) {
+		if (_counter[type] == undefined)
+			_counter[type] = 0;
+			
+		return _counter[type] = (_counter[type] + 1) % 100000;
 	}
 
 	function fetchRates(tickers, callback) {
@@ -215,7 +218,7 @@ function App() {
 
 		var animations = [];
 
-		if (config.matrix.config == '96x96') {
+		if (args.config == '96x96') {
 			var cmd = {};
 			cmd.command = './matrix/run-clock';
 			cmd.args    = ['--file', './images/clocks/swiss-blue.png', '--config', config.matrix.config, '--duration', -1];
@@ -238,7 +241,7 @@ function App() {
 			
 		}
 
-		matrix.start(animations[next() % animations.length]);			
+		matrix.start(animations[next('idleAnimation') % animations.length]);			
 	}
 	
 	
@@ -250,7 +253,7 @@ function App() {
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(next() % 4) {
+			switch(next('recurrence') % 4) {
 				case 0: {
 					fetchRSS(config.rss.feeds[0], displayRSS);
 					config.rss.feeds.push(config.rss.feeds.shift());
