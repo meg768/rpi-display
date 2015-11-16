@@ -27,23 +27,21 @@ public:
 		
 		_frameWidth = _imageWidth / (60 + 60 + 60 + 2);
 		_frameHeight = _imageHeight;
-		
-	
 	}
 
-	void createImage(Magick::Image &image, int offset) {
+	void extractFrame(Magick::Image &image, int offset) {
 	
-		Magick::Image img(Magick::Geometry(_frameWidth, _frameHeight), "transparent");
-		img.magick("RGBA");
+		Magick::Image frame(Magick::Geometry(_frameWidth, _frameHeight), "transparent");
+		frame.magick("RGBA");
 		
-		const Magick::PixelPacket *src = _image.getConstPixels(_frameWidth * offset, 0, _frameWidth, _frameWidth);
-		Magick::PixelPacket *dst = img.setPixels(0, 0, _frameWidth, _frameHeight);
+		const Magick::PixelPacket *src = _image.getConstPixels(_frameWidth * offset, 0, _frameWidth, _frameHeight);
+		Magick::PixelPacket *dst = frame.setPixels(0, 0, _frameWidth, _frameHeight);
 
 		memcpy(dst, src, _frameWidth * _frameHeight * sizeof(Magick::PixelPacket));
 
-		img.syncPixels();
+		frame.syncPixels();
 		
-		image = img;
+		image = frame;
 	}
 	
 	virtual void loop() {
@@ -58,22 +56,22 @@ public:
 		int secondsIndex = 1 + 60 + 60 + now->tm_sec;
 		int fgIndex      = 1 + 60 + 60 + 60;
 
-		Magick::Image img;
+		Magick::Image frame;
 		
-		createImage(img, bgIndex);
-		image.composite(img, 0, 0, Magick::OverCompositeOp);
+		extractFrame(frame, bgIndex);
+		image.composite(frame, 0, 0, Magick::OverCompositeOp);
 
-		createImage(img, hoursIndex);
-		image.composite(img, 0, 0, Magick::OverCompositeOp);
+		extractFrame(frame, hoursIndex);
+		image.composite(frame, 0, 0, Magick::OverCompositeOp);
 
-		createImage(img, minutesIndex);
-		image.composite(img, 0, 0, Magick::OverCompositeOp);
+		extractFrame(frame, minutesIndex);
+		image.composite(frame, 0, 0, Magick::OverCompositeOp);
 
-		createImage(img, secondsIndex);
-		image.composite(img, 0, 0, Magick::OverCompositeOp);
+		extractFrame(frame, secondsIndex);
+		image.composite(frame, 0, 0, Magick::OverCompositeOp);
 
-		createImage(img,fgIndex);
-		image.composite(img, 0, 0, Magick::OverCompositeOp);
+		extractFrame(frame,fgIndex);
+		image.composite(frame, 0, 0, Magick::OverCompositeOp);
 		
 		_matrix->drawImage(image);
 		_matrix->refresh();
