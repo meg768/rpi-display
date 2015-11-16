@@ -22,7 +22,7 @@ public:
 	void createImage(Magick::Image &image, int offset) {
 	
 		Magick::Image img(Magick::Geometry(96, 96), "red");
-		
+		/*
 		const Magick::PixelPacket *src = _image.getConstPixels(96 * offset, 0, 96, 96);
 		Magick::PixelPacket *dst = img.setPixels(0, 0, 96, 96);
 
@@ -30,7 +30,7 @@ public:
 			*dst++ = *src++;
 
 		img.syncPixels();
-		
+		*/
 		image = img;
 	}
 	
@@ -59,7 +59,8 @@ public:
 		createImage(img, bgIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
-		createImage(img, hoursIndex);
+/*
+ createImage(img, hoursIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
 		createImage(img, minutesIndex);
@@ -70,7 +71,7 @@ public:
 
 		createImage(img,fgIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
-
+*/
 		
 		_matrix->drawImage(image);
 		_matrix->refresh();
