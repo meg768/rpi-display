@@ -39,7 +39,7 @@ public:
 		const Magick::PixelPacket *src = _image.getConstPixels(_frameWidth * offset, 0, _frameWidth, _frameWidth);
 		Magick::PixelPacket *dst = img.setPixels(0, 0, _frameWidth, _frameHeight);
 
-		memcpy(*dst, *src, _frameWidth * _frameHeight * sizeof(Magick::PixelPacket));
+		memcpy(dst, src, _frameWidth * _frameHeight * sizeof(Magick::PixelPacket));
 
 		img.syncPixels();
 		
