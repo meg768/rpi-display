@@ -21,8 +21,7 @@ public:
 
 	void createImage(Magick::Image &image, int offset) {
 	
-		Magick::Image img;
-		image.size(Magick::Geometry(96, 96));
+		Magick::Image img(Magick::Geometry(96, 96), "black");
 		image.magick("RGBA");
 		
 		const Magick::PixelPacket *src = _image.getConstPixels(96 * offset, 0, 96, 96);
