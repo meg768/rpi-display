@@ -32,9 +32,9 @@ public:
 		
 		Magick::Image image(Magick::Geometry(frameWidth, frameHeight), "black");
 
-		// Add background
-		image.composite(_image, 0, 0, Magick::OverCompositeOp);
 
+		printf("%d %d %d %d\n", frameWidth, frameHeight, imageWidth, imageHeight);
+		
 		int bgIndex      = 0;
 		int hoursIndex   = 1 + (now->tm_hour % 12);
 		int minutesIndex = 1 + 60 + now->tm_min;
