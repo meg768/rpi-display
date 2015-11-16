@@ -60,10 +60,10 @@ public:
 		createImage(img, bgIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
-/*
- createImage(img, hoursIndex);
+		createImage(img, hoursIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
+		/*
 		createImage(img, minutesIndex);
 		image.composite(img, 0, 0, Magick::OverCompositeOp);
 
