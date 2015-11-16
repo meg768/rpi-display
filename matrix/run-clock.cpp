@@ -33,7 +33,6 @@ public:
 		Magick::Image image(Magick::Geometry(frameWidth, frameHeight), "black");
 
 
-		printf("%d %d %d %d\n", frameWidth, frameHeight, imageWidth, imageHeight);
 		
 		int bgIndex      = 0;
 		int hoursIndex   = 1 + (now->tm_hour % 12);
@@ -41,7 +40,9 @@ public:
 		int secondsIndex = 1 + 60 + 60 + 7;
 		int fgIndex      = 1 + 60 + 60 + 60;
 
-		image.composite(_image, frameWidth * bgIndex, 0, Magick::OverCompositeOp);
+		printf("%d %d %d %d\n", frameWidth, frameHeight, imageWidth, imageHeight);
+
+		//image.composite(_image, frameWidth * bgIndex, 0, Magick::OverCompositeOp);
 		image.composite(_image, frameWidth * hoursIndex, 0, Magick::OverCompositeOp);
 		image.composite(_image, frameWidth * minutesIndex, 0, Magick::OverCompositeOp);
 		image.composite(_image, frameWidth * secondsIndex, 0, Magick::OverCompositeOp);
