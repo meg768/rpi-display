@@ -33,10 +33,11 @@ class Matrix {
 		signal(SIGINT, Matrix::quit);
 		signal(SIGKILL, Matrix::quit);
 		
-		_io     = 0;
-		_matrix = 0;
-		_canvas = 0;
-		_config = "32x32";
+		_io      = 0;
+		_matrix  = 0;
+		_canvas  = 0;
+		_pwmBits = 0;
+		_config  = "32x32";
 	}
 
 	virtual ~Matrix() {
@@ -68,6 +69,8 @@ class Matrix {
 				
 				_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
 				_canvas = _matrix->CreateFrameCanvas();
+				
+				SetPWMBits(_pwmBits);
 			}
 		}
 	}
@@ -116,7 +119,11 @@ class Matrix {
 	}
 	
 	inline void setPWMBits(int value) {
-		_matrix->SetPWMBits(value);
+		
+		_pwmBits = value;
+		
+		if (_matrix != 0 && _pwmBits > 0)
+			_matrix->SetPWMBits(_pwmBits);
 	
 	}
 
@@ -224,6 +231,7 @@ class Matrix {
 	
 	
 protected:
+	int _pwmBits;
 	rgb_matrix::RGBMatrix *_matrix;
 	rgb_matrix::GPIO *_io;
 	rgb_matrix::FrameCanvas *_canvas;
