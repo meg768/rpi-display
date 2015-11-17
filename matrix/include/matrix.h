@@ -55,25 +55,7 @@ class Matrix {
 		exit(-1);
 	}
 	
-	void init() {
-		if (_io == 0) {
-			int width = 0, height = 0;
-			int result = sscanf(_config.c_str(), "%dx%d", &width, &height);
-			
-			if (result == 2 && width > 0 && height > 0) {
-				_io = new rgb_matrix::GPIO();
-				
-				if (!_io->Init()) {
-					exit(-1);
-				}
-				
-				_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
-				_canvas = _matrix->CreateFrameCanvas();
-				
-				SetPWMBits(_pwmBits);
-			}
-		}
-	}
+
 
 	const char *config() {
 		return _config.c_str();
@@ -228,7 +210,26 @@ class Matrix {
 	void refresh() {
 		_canvas = _matrix->SwapOnVSync(_canvas);
 	}
-	
+
+	void init() {
+		if (_io == 0) {
+			int width = 0, height = 0;
+			int result = sscanf(_config.c_str(), "%dx%d", &width, &height);
+			
+			if (result == 2 && width > 0 && height > 0) {
+				_io = new rgb_matrix::GPIO();
+				
+				if (!_io->Init()) {
+					exit(-1);
+				}
+				
+				_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
+				_canvas = _matrix->CreateFrameCanvas();
+				
+				SetPWMBits(_pwmBits);
+			}
+		}
+	}
 	
 protected:
 	int _pwmBits;
