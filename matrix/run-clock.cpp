@@ -108,6 +108,7 @@ int main (int argc, char *argv[])
 		{"delay",      1, 0, 'z'},
 		{"file",       1, 0, 'f'},
 		{"pwm",        1, 0, 'w'},
+		{"brightness", 1, 0, 'b'},
 		{0, 0, 0, 0}
 	};
 	
@@ -121,13 +122,16 @@ int main (int argc, char *argv[])
 	
 	int option = 0, index = 0;
 	
-	while ((option = getopt_long_only(argc, argv, "x:f:d:z:w:", options, &index)) != -1) {
+	while ((option = getopt_long_only(argc, argv, "x:f:d:z:w:b:", options, &index)) != -1) {
 		switch (option) {
 			case 'x':
 				matrix.config(optarg);
 				break;
 			case 'w':
 				matrix.setPWMBits(atoi(optarg));
+				break;
+			case 'b':
+				matrix.setBrightness(atoi(optarg));
 				break;
 			case 'z':
 				animation.delay(atof(optarg));
