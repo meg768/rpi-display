@@ -33,11 +33,12 @@ class Matrix {
 		signal(SIGINT, Matrix::quit);
 		signal(SIGKILL, Matrix::quit);
 		
-		_io      = 0;
-		_matrix  = 0;
-		_canvas  = 0;
-		_pwmBits = 0;
-		_config  = "32x32";
+		_io         = 0;
+		_matrix     = 0;
+		_canvas     = 0;
+		_pwmBits    = 0;
+		_brightness = 0;
+		_config     = "32x32";
 	}
 
 	virtual ~Matrix() {
@@ -97,15 +98,26 @@ class Matrix {
 	
 
 	inline void setBrightness(int value) {
-		_matrix->SetBrightness(value);
+		_brightness = value;
+		
+		if (_matrix != 0)
+			_matrix->SetBrightness(value);
+
+		if (_canvas != 0)
+			_canvas->SetBrightness(value);
 	}
 	
 	inline void setPWMBits(int value) {
 		
 		_pwmBits = value;
 		
-		if (_matrix != 0 && _pwmBits > 0)
-			_matrix->SetPWMBits(_pwmBits);
+		if (_pwmBits > 0) {
+			if (_matrix != 0)
+				_matrix->SetPWMBits(_pwmBits);
+
+			if (_canvas != 0)
+				_canvas->SetPWMBits(_pwmBits);
+		}
 	
 	}
 
@@ -224,15 +236,22 @@ class Matrix {
 				}
 				
 				_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
+				
+				if (_pwmBits > 0)
+					_matrix->SetPWMBits(_pwmBits);
+				
+				if (_brightness > 0)
+					_matrix->setBrightness(_brightness);
+				
 				_canvas = _matrix->CreateFrameCanvas();
 				
-				setPWMBits(_pwmBits);
 			}
 		}
 	}
 	
 protected:
 	int _pwmBits;
+	int _brightness;
 	rgb_matrix::RGBMatrix *_matrix;
 	rgb_matrix::GPIO *_io;
 	rgb_matrix::FrameCanvas *_canvas;
