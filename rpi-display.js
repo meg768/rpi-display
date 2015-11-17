@@ -228,7 +228,7 @@ function App() {
 		}
 		
 		if (hours >= 0 && hours <= 7) {
-			animations.push(matrix.perlin({mode:3, duration:-1}));
+			//animations.push(matrix.perlin({mode:3, duration:-1}));
 			animations.push(matrix.rain({duration:-1}));
 		}
 		else {
