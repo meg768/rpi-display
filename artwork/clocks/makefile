@@ -1,7 +1,13 @@
 
 DST = ../../images/clocks
 
-all: \
+PSD = gold.psd black.psd
+PNG = $(addsuffix .png, $(basename $(PSD)))
+KALLE = $(DST)/$(PNG)
+ECHO = @echo
+
+
+FILES = \
 	$(DST)/gold.png \
 	$(DST)/black.png \
 	$(DST)/red.png \
@@ -9,6 +15,11 @@ all: \
 	$(DST)/swiss-red.png \
 	$(DST)/swiss-blue.png 
 
+all: $(FILES)
+
+
+clean:
+	rm $(FILES)
 
 $(DST)/swiss.png: swiss.psd
 	python generate-clock.py -f $< -o $@

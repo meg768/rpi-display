@@ -5,5 +5,5 @@ all:
 	$(MAKE) -C hzeller led-image-viewer
 	$(MAKE) -C matrix 
 	$(MAKE) -C artwork/clocks 
-#	npm update
+	npm update
 
