@@ -38,6 +38,51 @@ public:
 
 		Animation::init();
 		
+		if (_fileName.length() == 0) {
+			fprintf(stderr, "No animation specified.\n");
+			exit(-1);
+		}
+		
+		for (;;) {
+			struct stat status;
+			
+			if (stat(_fileName.c_str(), &status) != 0) {
+				fprintf(stderr, "Cannot open file.\n");
+				exit(-1);
+			}
+			
+			if (S_ISREG(status.st_mode))
+				break;
+			
+			else if (S_ISDIR(status.st_mode)) {
+				DIR *dir = opendir(_fileName.c_str());
+				
+				std::vector <string> files;
+				
+				if (dir != NULL) {
+					struct dirent *entry;
+					
+					while ((entry = readdir(dir)) != NULL) {
+						if (entry->d_name[0] != '.')
+							files.push_back(entry->d_name);
+					}
+					
+					closedir(dir);
+				}
+				
+				if (files.size() > 0)
+					_fileName = _fileName + "/" + files[rand() % files.size()];
+				else {
+					fprintf(stderr, "No files in directory.\n");
+					exit(-1);
+				}
+			}
+			else {
+				fprintf(stderr, "Funny file.\n");
+				exit(-1);
+			}
+		}
+		
 		Magick::Image image;
 		image.read(_fileName.c_str());
 		
