@@ -241,7 +241,7 @@ class Matrix {
 					_matrix->SetPWMBits(_pwmBits);
 				
 				if (_brightness > 0)
-					_matrix->setBrightness(_brightness);
+					_matrix->SetBrightness(_brightness);
 				
 				_canvas = _matrix->CreateFrameCanvas();
 				
