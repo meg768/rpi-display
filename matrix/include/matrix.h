@@ -226,7 +226,7 @@ class Matrix {
 				_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
 				_canvas = _matrix->CreateFrameCanvas();
 				
-				SetPWMBits(_pwmBits);
+				setPWMBits(_pwmBits);
 			}
 		}
 	}
