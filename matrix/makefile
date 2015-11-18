@@ -18,45 +18,48 @@ all: $(BINARIES)
 clean:
 	rm -f *.o $(BINARIES)
 	
-run-image: run-image.cpp $(INCLUDES)
+.cpp: $(INCLUDES)
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
-run-text: run-text.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#run-image: run-image.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-text: run-text.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-rain: run-rain.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-perlin: run-perlin.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-life: run-life.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-clock: run-clock.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-static: run-static.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-gif: run-gif.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-twinkle: run-twinkle.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-hue-block: run-hue-block.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-circle: run-circle.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#
+#run-wash: run-wash.cpp $(INCLUDES)
+#	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
-run-rain: run-rain.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
-run-perlin: run-perlin.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
+#%.o : %.cpp
+#	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-run-life: run-life.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-run-clock: run-clock.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-run-static: run-static.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-run-gif: run-gif.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-run-twinkle: run-twinkle.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-run-hue-block: run-hue-block.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-run-circle: run-circle.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-run-wash: run-wash.cpp $(INCLUDES)
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
-
-
-%.o : %.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
-
-%.o : %.cc
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+#%.o : %.cc
+#	$(CXX) $(CXXFLAGS) -c -o $@ $<
