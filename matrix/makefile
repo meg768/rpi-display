@@ -15,9 +15,11 @@ CXXFLAGS += -I$(RGB_INCDIR)
 
 all: $(BINARIES) 
 
+$(BINARIES): $(INCLUDES)
+
 clean:
 	rm -f *.o $(BINARIES)
-	
-.cpp: $(INCLUDES)
+
+.cpp:
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS) 
 
