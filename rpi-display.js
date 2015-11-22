@@ -215,21 +215,22 @@ function App() {
 		var now = new Date();
 		var hours = now.getHours();
 		var minutes = now.getMinutes();
-
 		var animations = [];
 
-		if (args.config == '96x96') {
-			var cmd = {};
-			cmd.command = './matrix/run-clock';
-			cmd.args    = ['--file', './images/clocks', '--config', config.matrix.config, '--duration', -1];
-			cmd.options = {};
-			
-			animations.push(cmd);
-		}
-		
 		if (hours >= 0 && hours <= 7) {
-			//animations.push(matrix.perlin({mode:3, duration:-1}));
-			animations.push(matrix.rain({duration:-1}));
+			if (args.config == '96x96') {
+				var cmd = {};
+				cmd.command = './matrix/run-clock';
+				cmd.args    = ['--file', './images/clocks/night', '--config', config.matrix.config, '--duration', -1];
+				cmd.options = {};
+				
+				animations.push(cmd);
+			}
+			else {
+				animations.push(matrix.perlin({mode:3, duration:-1}));
+				animations.push(matrix.rain({duration:-1}));
+				
+			}
 		}
 		else {
 			var options = {};
@@ -238,6 +239,17 @@ function App() {
 			options.iterations = 10000;
 	
 			animations.push(matrix.animation(options));
+			animations.push(matrix.perlin({mode:3, duration:-1}));
+			animations.push(matrix.rain({duration:-1}));
+
+			if (args.config == '96x96') {
+				var cmd = {};
+				cmd.command = './matrix/run-clock';
+				cmd.args    = ['--file', './images/clocks/day', '--config', config.matrix.config, '--duration', -1];
+				cmd.options = {};
+				
+				animations.push(cmd);
+			}
 			
 		}
 
