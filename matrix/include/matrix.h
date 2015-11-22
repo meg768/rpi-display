@@ -94,8 +94,7 @@ class Matrix {
 				setPixel(x, y, red, green, blue);
 			}
 		}
-	}
-	
+	}	
 
 	inline void setBrightness(int value) {
 
