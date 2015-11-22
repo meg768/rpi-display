@@ -221,10 +221,15 @@ function App() {
 			if (args.config == '96x96') {
 				var cmd = {};
 				cmd.command = './matrix/run-clock';
-				cmd.args    = ['--file', './images/clocks/swiss-red.png', '--config', config.matrix.config, '--duration', -1];
+				cmd.args    = ['--file', './images/clocks/swiss-red.png', '--config', config.matrix.config, '--duration', -1, brightness: 50];
 				cmd.options = {};
-				
 				animations.push(cmd);
+
+				cmd.command = './matrix/run-clock';
+				cmd.args    = ['--file', './images/clocks/swiss-blue.png', '--config', config.matrix.config, '--duration', -1, brightness: 50];
+				cmd.options = {};
+				animations.push(cmd);
+
 			}
 			else {
 				animations.push(matrix.perlin({mode:3, duration:-1}));
