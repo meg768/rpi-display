@@ -265,14 +265,14 @@ function App() {
 	function scheduleRecurrences() {
 		var rule = new schedule.RecurrenceRule();
 		
-		//rule.hour = new schedule.Range(7, 23, 1);
+		rule.hour = new schedule.Range(7, 23, 1);
 		rule.minute = new schedule.Range(3, 59, 5);
 		
 		schedule.scheduleJob(rule, function() {
 
 			switch(next('recurrence') % 4) {
 				case 0: {
-					fetchRSS(config.rss.feeds, displayRSS);
+					fetchRSS(config.rss.feeds[0], displayRSS);
 					config.rss.feeds.push(config.rss.feeds.shift());
 					break;
 				}
