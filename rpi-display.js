@@ -253,9 +253,9 @@ function App() {
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(next('recurrence') % 1) {
+			switch(next('recurrence') % 4) {
 				case 0: {
-					fetchRSS(config.rss.feeds[0], displayRSS);
+					fetchRSS(config.rss.feeds, displayRSS);
 					config.rss.feeds.push(config.rss.feeds.shift());
 					break;
 				}
