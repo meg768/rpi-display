@@ -6,7 +6,6 @@
 
 class ClockAnimation : public Animation {
 
-	
 public:
 	ClockAnimation(Matrix *matrix) : Animation(matrix) {
 		_imageWidth  = 0;
