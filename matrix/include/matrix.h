@@ -98,13 +98,16 @@ class Matrix {
 	
 
 	inline void setBrightness(int value) {
+
 		_brightness = value;
 		
-		if (_matrix != 0)
-			_matrix->SetBrightness(value);
-
-		if (_canvas != 0)
-			_canvas->SetBrightness(value);
+		if (_brightness > 0) {
+			if (_matrix != 0)
+				_matrix->SetBrightness(_brightness);
+			
+			if (_canvas != 0)
+				_canvas->SetBrightness(_brightness);
+		}
 	}
 	
 	inline void setPWMBits(int value) {
@@ -236,14 +239,10 @@ class Matrix {
 				}
 				
 				_matrix = new rgb_matrix::RGBMatrix(_io, 32, width / 32, height / 32);
-				
-				if (_pwmBits > 0)
-					_matrix->SetPWMBits(_pwmBits);
-				
-				if (_brightness > 0)
-					_matrix->SetBrightness(_brightness);
-				
 				_canvas = _matrix->CreateFrameCanvas();
+				
+				setBrightness(_brightness);
+				setPWMBits(_pwmBits);
 				
 			}
 		}
