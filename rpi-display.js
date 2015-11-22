@@ -253,7 +253,7 @@ function App() {
 		
 		schedule.scheduleJob(rule, function() {
 
-			switch(next('recurrence') % 4) {
+			switch(next('recurrence') % 1) {
 				case 0: {
 					fetchRSS(config.rss.feeds[0], displayRSS);
 					config.rss.feeds.push(config.rss.feeds.shift());
@@ -306,6 +306,7 @@ function App() {
 		
 
 		config.rss.feeds = [
+			{url: 'http://www.vafinans.se/rss/nyheter', name: 'Veckans Affärer'},
 			{url: 'http://www.di.se/rss', name: 'Dagens Industri'},
 			{url: 'http://www.sydsvenskan.se/rss.xml', name: 'Sydsvenskan'},
 			{url: 'http://www.svd.se/?service=rss&type=senastenytt', name: 'SvD'},
