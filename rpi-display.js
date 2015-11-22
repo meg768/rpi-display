@@ -188,7 +188,7 @@ function App() {
 		options.delay = config.matrix.defaults.text.delay * 2.0;
 
 		if (args.config == '96x96') {
-			options.font  = 'Digital';
+			options.font  = 'DJB-Get-Digital';
 			options.size  = 50;
 		}
 
