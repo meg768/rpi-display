@@ -258,7 +258,7 @@ function App() {
 			
 		}
 
-		matrix.start(random.choose(animations§));			
+		matrix.start(random.choose(animations));			
 	}
 	
 	
