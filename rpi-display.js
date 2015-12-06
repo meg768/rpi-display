@@ -217,7 +217,7 @@ function App() {
 		var minutes = now.getMinutes();
 		var animations = [];
 
-		if (hours >= 0 && hours <= 7) {
+		if (hours >= 21 || hours <= 7) {
 			if (args.config == '96x96') {
 				var cmd = {};
 				cmd.command = './matrix/run-clock';
