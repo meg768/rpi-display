@@ -217,7 +217,7 @@ function App() {
 		var minutes = now.getMinutes();
 		var animations = [];
 
-		if (hours >= 21 || hours <= 7) {
+		if (hours >= 21 || hours <= 8) {
 			if (args.config == '96x96') {
 				var cmd = {};
 				cmd.command = './matrix/run-clock';
@@ -258,7 +258,7 @@ function App() {
 			
 		}
 
-		matrix.start(animations[next('idleAnimation') % animations.length]);			
+		matrix.start(random.choose(animations§));			
 	}
 	
 	
