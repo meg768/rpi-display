@@ -23,6 +23,8 @@ var YQL = module.exports = function() {
 	
 		var url = 'https://query.yahooapis.com/v1/public/yql?' + params;
 	
+		console.log(url);
+		
 		request(url, function (error, response, body) {
 			try {
 				if (error)
