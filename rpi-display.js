@@ -8,7 +8,7 @@ var config   = require('./scripts/config.js');
 var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
-var Colors   = require('./colors.js');
+var Colors   = require('./scripts/colors.js');
 var args     = minimist(process.argv.slice(2));
 
 
