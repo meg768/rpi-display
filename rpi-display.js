@@ -192,7 +192,7 @@ function App() {
 
 
 		if (args.config == '96x96') {
-			color = Colors.hslToRgb(hue, 1, 0.5);
+			color = Colors.hslToRgb(hue / 360.0, 1, 0.5);
 			//options.font  = 'DJB-Get-Digital';
 			options.color = sprintf('rgb(%d, %d, %d)', color.red, color.green, color.blue);
 			options.size  = 32;
