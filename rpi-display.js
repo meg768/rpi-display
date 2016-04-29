@@ -8,7 +8,7 @@ var config   = require('./scripts/config.js');
 var sprintf  = require('./scripts/sprintf.js');
 var random   = require('./scripts/random.js');
 var matrix   = require('./scripts/matrix.js');
-
+var Colors   = require('./colors.js');
 var args     = minimist(process.argv.slice(2));
 
 
@@ -187,9 +187,14 @@ function App() {
 		options.color = 'rgb(255, 0, 0)';
 		options.delay = config.matrix.defaults.text.delay * 2.0;
 
+		var now = new Date();
+		var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;
+
+
 		if (args.config == '96x96') {
 			//options.font  = 'DJB-Get-Digital';
-			options.size  = 50;
+			options.color = Colors.hslToRgb(hue, 0.5, 0.5);
+			options.size  = 32;
 		}
 
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
@@ -297,6 +302,8 @@ function App() {
 	
 	_this.run = function() {
 
+displayClock();
+return;
 		// Set the time zone according to config settings
 		process.env.TZ = config.timezone;
 	

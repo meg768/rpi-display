@@ -1,9 +1,7 @@
 
-var Module = module.exports = {};
 
 
-
-Module.hslToRgb = function(h, s, l) {
+module.exports.hslToRgb = function(h, s, l) {
     
     var r, g, b;
 
