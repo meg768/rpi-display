@@ -187,15 +187,14 @@ function App() {
 		options.color = 'rgb(255, 0, 0)';
 		options.delay = config.matrix.defaults.text.delay * 2.0;
 
-		var now = new Date();
-		var hue = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;
-
+		var now   = new Date();
+		var hue   = ((now.getHours() % 12) * 60 + now.getMinutes()) / 2;
+		var color = Colors.hslToRgb(hue / 360.0, 1, 0.5);
+		
+		options.color = sprintf('rgb(%d, %d, %d)', color.red, color.green, color.blue);
 
 		if (args.config == '96x96') {
-			color = Colors.hslToRgb(hue / 360.0, 1, 0.5);
-			//options.font  = 'DJB-Get-Digital';
-			options.color = sprintf('rgb(%d, %d, %d)', color.red, color.green, color.blue);
-			options.size  = 32;
+			options.size = 32;
 		}
 
 		display.text(sprintf('%02d:%02d', now.getHours(), now.getMinutes()), options);	
@@ -227,12 +226,12 @@ function App() {
 			if (args.config == '96x96') {
 				var cmd = {};
 				cmd.command = './matrix/run-clock';
-				cmd.args    = ['--file', './images/clocks/swiss-red.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 50];
+				cmd.args    = ['--file', './images/clocks/swiss-red.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 100];
 				cmd.options = {};
 				animations.push(cmd);
 
 				cmd.command = './matrix/run-clock';
-				cmd.args    = ['--file', './images/clocks/swiss-blue.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 50];
+				cmd.args    = ['--file', './images/clocks/swiss-blue.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 100];
 				cmd.options = {};
 				animations.push(cmd);
 
