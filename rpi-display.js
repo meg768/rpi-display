@@ -205,7 +205,7 @@ function App() {
 
 	function scheduleClock(callback) {
 		var rule = new schedule.RecurrenceRule();	
-		rule.minute = new schedule.Range(0, 59, 5);
+		rule.minute = new schedule.Range(0, 59, 1);
 		
 		if (callback == undefined)
 			callback = displayClock;
@@ -302,8 +302,6 @@ function App() {
 	
 	_this.run = function() {
 
-displayClock();
-return;
 		// Set the time zone according to config settings
 		process.env.TZ = config.timezone;
 	
