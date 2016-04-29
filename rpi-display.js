@@ -235,6 +235,8 @@ function App() {
 				cmd.options = {};
 				animations.push(cmd);
 
+				animations.push(matrix.rain({duration:-1}));
+
 			}
 			else {
 				animations.push(matrix.perlin({mode:3, duration:-1}));
