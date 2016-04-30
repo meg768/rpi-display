@@ -251,8 +251,8 @@ function App() {
 
 		if (hours >= 22 || hours <= 7) {
 			if (args.config == '96x96') {
-				animations.push(redClock);
-				animations.push(blueClock);
+				animations.push(redClockAnimation);
+				animations.push(blueClockAnimation);
 				animations.push(matrix.animation(gifAnimationOptions));
 			}
 			else {
