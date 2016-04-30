@@ -205,7 +205,7 @@ function App() {
 
 	function scheduleClock(callback) {
 		var rule = new schedule.RecurrenceRule();	
-		rule.minute = new schedule.Range(0, 59, 5);
+		rule.minute = new schedule.Range(0, 59, 1);
 		
 		if (callback == undefined)
 			callback = displayClock;
@@ -221,46 +221,56 @@ function App() {
 		var hours = now.getHours();
 		var minutes = now.getMinutes();
 		var animations = [];
+		var options = {};
 
-		if (hours >= 21 || hours <= 7) {
+		var blueClockAnimation = {};
+		blueClockAnimation.command = './matrix/run-clock';
+		blueClockAnimation.args    = ['--file', './images/clocks/swiss-red.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 100];
+		blueClockAnimation.options = {};
+
+		var redClockAnimation = {};
+		redClockAnimation.command = './matrix/run-clock';
+		redClockAnimation.args    = ['--file', './images/clocks/swiss-blue.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 100];
+		redClockAnimation.options = {};
+
+		var randomClockAnimation = {};
+		randomClockAnimation.command = './matrix/run-clock';
+		randomClockAnimation.args    = ['--file', './images/clocks', '--config', config.matrix.config, '--duration', -1];
+		randomClockAnimation.options = {};
+
+		var gifAnimationOptions = {};
+		gifAnimationOptions.file = sprintf('./animations/%s', args.config);
+		gifAnimationOptions.duration = -1;
+		gifAnimationOptions.iterations = 10000;
+		
+		var perlinAnimationOptions = {};
+		perlinAnimationOptions.mode = 3;
+		perlinAnimationOptions.duration = -1;
+		
+		animations.push(matrix.rain({duration:-1}));
+
+		if (hours >= 22 || hours <= 7) {
 			if (args.config == '96x96') {
-				var cmd = {};
-				cmd.command = './matrix/run-clock';
-				cmd.args    = ['--file', './images/clocks/swiss-red.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 100];
-				cmd.options = {};
-				animations.push(cmd);
-
-				cmd.command = './matrix/run-clock';
-				cmd.args    = ['--file', './images/clocks/swiss-blue.png', '--config', config.matrix.config, '--duration', -1, '--brightness', 100];
-				cmd.options = {};
-				animations.push(cmd);
-
-				animations.push(matrix.rain({duration:-1}));
-
+				animations.push(redClock);
+				animations.push(blueClock);
+				animations.push(matrix.animation(gifAnimationOptions));
 			}
 			else {
-				animations.push(matrix.perlin({mode:3, duration:-1}));
-				animations.push(matrix.rain({duration:-1}));
+				animations.push(matrix.perlin(perlinAnimationOptions));
 				
 			}
 		}
 		else {
-			var options = {};
-			options.file = sprintf('./animations/%s', args.config);
-			options.duration = -1;
-			options.iterations = 10000;
 	
-			animations.push(matrix.animation(options));
-			animations.push(matrix.perlin({mode:3, duration:-1}));
-			animations.push(matrix.rain({duration:-1}));
+			animations.push(matrix.animation(gifAnimationOptions));
 
 			if (args.config == '96x96') {
-				var cmd = {};
-				cmd.command = './matrix/run-clock';
-				cmd.args    = ['--file', './images/clocks', '--config', config.matrix.config, '--duration', -1];
-				cmd.options = {};
+				animations.push(randomClock);
+				animations.push(matrix.animation(gifAnimationOptions));
+			}
+			else {
+				animations.push(matrix.perlin(perlinAnimationOptions));
 				
-				animations.push(cmd);
 			}
 			
 		}
