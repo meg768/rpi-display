@@ -265,7 +265,7 @@ function App() {
 			animations.push(matrix.animation(gifAnimationOptions));
 
 			if (args.config == '96x96') {
-				animations.push(randomClock);
+				animations.push(randomClockAnimation);
 				animations.push(matrix.animation(gifAnimationOptions));
 			}
 			else {
