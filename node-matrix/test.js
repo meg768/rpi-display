@@ -8,9 +8,9 @@ function draw() {
 		for (var y = 0; y < 20; y++)
 			addon.setPixel(x, y, 255, 255, 255);
 	
+	addon.refresh();
 }
 
-addon.refresh();
 addon.start();
 draw();
 
