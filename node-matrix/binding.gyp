@@ -1,7 +1,7 @@
 
 {
 	"variables": {
-    	"boost_root%": "/Users/Magnus/Desktop/GitHub/addon"
+    	"boost_root%": "/home/pi/rpi-display"
 	},
     "targets": [
         {
