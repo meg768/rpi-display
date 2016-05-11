@@ -308,6 +308,7 @@ void setPixel(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
 };
 
+/*
 void Pow(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
     if (info.Length() < 2) {
@@ -326,7 +327,7 @@ void Pow(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
     info.GetReturnValue().Set(num);
 }
-
+*/
 void Init(v8::Local<v8::Object> exports) {  
     exports->Set(Nan::New("pow").ToLocalChecked(), Nan::New<v8::FunctionTemplate>(Pow)->GetFunction());
     exports->Set(Nan::New("start").ToLocalChecked(), Nan::New<v8::FunctionTemplate>(start)->GetFunction());

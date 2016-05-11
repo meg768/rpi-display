@@ -1,22 +1,20 @@
-var addon = require('./build/Release/matrix');
-
-console.log(addon.pow(4, 2));
+var matrix = require('./build/Release/matrix');
 
 function draw() {
 
 	for (var x = 0; x < 32; x++)
 		for (var y = 0; y < 32; y++)
-			addon.setPixel(x, y, 255, 255, 255);
+			matrix.setPixel(x, y, 255, 255, 255);
 	
-	addon.refresh();
+	matrix.refresh();
 }
 
-addon.start();
+matrix.start();
 draw();
 
 
 setTimeout(function(){
-	addon.stop();	
+	matrix.stop();	
 }, 10000);
 
 
