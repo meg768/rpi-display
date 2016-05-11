@@ -10,6 +10,7 @@ function draw() {
 	
 }
 
+addon.refresh();
 addon.start();
 draw();
 
